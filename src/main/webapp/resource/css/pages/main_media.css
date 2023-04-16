@@ -1,0 +1,26 @@
+@charset "utf-8";
+/*==========================================================================
+main media screen tab & mobile 
+==========================================================================*/
+@media screen and (max-width:720px) {
+.sec_tit {font-size:50px}
+.section-group-1 .circle {width:240px;height:240px;}
+.section-group-1 .circle .img {width:180px;height:180px;margin:30px;}
+.section-group-1 .circle .txt span {
+
+	font-size: 20px;
+
+
+	position:absolute;
+	left:50%;
+	transform-origin:0 120px;
+}
+
+
+
+}
+@media screen and (max-width:520px) {
+
+
+
+}

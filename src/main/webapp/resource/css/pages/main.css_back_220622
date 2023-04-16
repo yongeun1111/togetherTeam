@@ -1,0 +1,49 @@
+@charset "utf-8";
+/*==========================================================================
+main
+==========================================================================*/
+html,body {overflow-x: hidden;scroll-behavior: smooth;}
+#wrap {min-height:100vh;background:url('../../images/main/bg_mainfull.png') repeat;scroll-behavior: smooth;}
+
+.section {height:100vh;font-size: 5rem;font-weight:bold;box-sizing:border-box;transition:all 0.5s;}
+.quick_bar {position:fixed;top:50%;left:0;transform:translate(0,-50%);border-left:4px solid #999999;padding-left:22px;z-index:900;width:auto;}
+.quick_bar ul li {padding:7px 0;}
+.quick_bar ul li a {color:#555555;font-size:16px;padding:10px;display:inline-block;}
+.quick_bar ul li.on a {}
+
+.sec_tit {}
+.sec_txt {}
+.con_txt {}
+/* ===============================================
+컨텐츠 방향
+===============================================*/
+/*right*/
+.section-group-horizontal-right {display:flex;flex-direction:row-reverse;}
+.section-group-horizontal-right > .section {width:100%;display:flex;justify-content: center;flex-shrink: 0;}
+/*left*/
+.section-group-horizontal-left {display:flex;}
+.section-group-horizontal-left > .section {width:100%;display:flex;justify-content: center;flex-shrink: 0;}
+.section-group-horizontal-left > .section + .section {transform: translate(0, 100vh);background:#eee;}
+.section-group-horizontal-left > .section + .section + .section {    transform: translate(0, 200vh);background:#000;}
+
+/* ===============================================
+	section-group-1  
+===============================================*/
+.section-group-1 {overflow:hidden;background:url('../../images/main/main_vs_bg.jpg') top center no-repeat;background-size:100% auto;z-index:1}
+.section-group-1 .section {flex-direction: column;}
+.section-group-1 .section-2 {height: 275px;background:url('../../images/main/main_sec1_2bg.png') center no-repeat;background-size:cover;justify-content: flex-end;transition:all 1.5s;overflow:hidden;}
+.section-group-1 .section-2 .txt_line {text-align:center;line-height:110px;font-size:100px;color:#505054;}
+.section-group-1 .section-2 .txt_line > span,
+.section-group-1 .section-2 .txt_line > span > b {display:inline-block;z-index:-1;transition:all 0.8s !important}
+.section-group-1 .section-2 .txt_line.line2 {color:#761129;}
+
+
+/* ===============================================
+	section-group-2  
+	섹션 개수만큼 vh  + 마진탑 - 효과 
+===============================================*/
+.section-group-2 {height:calc(300vh + 440px) !important;background:url('../../images/main/bg_mainfull.png') repeat;transition:all 1s !important;z-index:10;position:relative;box-sizing:border-box;}
+.section-group-2 .sec_line {line-height:70px;height:70px;font-size:30px;color:#761129;border-top:2px solid #761129;border-bottom:2px solid #761129;box-sizing:border-box;text-align:center;background:url('../../images/main/bg_mainfull.png') repeat;display:block;width:100%;z-index:2;position:absolute;top:0;left:0;}
+.section-group-2  .section {margin-top:440px;}
+.section-group-2  .section-1 {padding-top:70px;}
+.section-group-8 {height:300vh;background:#ccc;transition:all 1s !important;z-index:10;position:relative;box-sizing:border-box;}

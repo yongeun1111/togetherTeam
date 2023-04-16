@@ -1,0 +1,154 @@
+
+/* 노토산스 */
+@font-face {
+  font-family:"Noto Sans KR";
+  font-style:normal;
+  font-weight:100;
+  src:url("NotoSansKR_Thin.otf") format("opentype"),
+  url("NotoSansKR_Thin.woff") format("woff"),
+  url("NotoSansKR_Thin.woff2") format("woff2");
+}
+@font-face {
+  font-family:"Noto Sans KR";
+  font-style:normal;
+  font-weight:300;
+  src:url("NotoSansKR_Light.otf") format("opentype"),
+  url("NotoSansKR_Light.woff") format("woff"),
+  url("NotoSansKR_Light.woff2") format("woff2");
+}
+@font-face {
+  font-family:"Noto Sans KR";
+  font-style:normal;
+  font-weight:400;
+  src:url("NotoSansKR_Regular.otf") format("opentype"),
+  url("NotoSansKR_Regular.woff") format("woff"),
+  url("NotoSansKR_Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family:"Noto Sans KR";
+  font-style:normal;
+  font-weight:500;
+  src:url("NotoSansKR_Regular.otf") format("opentype"),
+  url("NotoSansKR_Regular.woff") format("woff"),
+  url("NotoSansKR_Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family:"Noto Sans KR";
+  font-style:normal;
+  font-weight:600;
+  src:url("NotoSansKR_Medium.otf") format("opentype"),
+  url("NotoSansKR_Medium.woff") format("woff"),
+  url("NotoSansKR_Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family:"Noto Sans KR";
+  font-style:normal;
+  font-weight:800;
+  src:url("NotoSansKR_Bold.otf") format("opentype"),
+  url("NotoSansKR_Bold.woff") format("woff"),
+  url("NotoSansKR_Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family:"Noto Sans KR";
+  font-style:normal;
+  font-weight:900;
+  src:url("NotoSansKR_Bold.otf") format("opentype"),
+  url("NotoSansKR_Bold.woff") format("woff"),
+  url("NotoSansKR_Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family:"Noto Sans KR";
+  font-style:normal;
+  font-weight:bold;
+  src:url("NotoSansKR_Bold.otf") format("opentype"),
+  url("NotoSansKR_Bold.woff") format("woff"),
+  url("NotoSansKR_Bold.woff2") format("woff2");
+}
+ 
+
+ 
+ 
+
+
+/*IbarraRealNova - 타이틀 명조*/
+@font-face {
+    font-family: 'IbarraRealNova';
+    font-weight: 100;
+    font-style: normal;
+    src: url('IbarraRealNova-Regular.woff') format('woff'),
+        url('IbarraRealNova-Regular.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'IbarraRealNova';
+    font-weight: 200;
+    font-style: normal;
+   src: url('IbarraRealNova-Regular.woff') format('woff'),
+        url('IbarraRealNova-Regular.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'IbarraRealNova';
+    font-weight: 300;
+    font-style: normal;
+    src: url('IbarraRealNova-Regular.woff') format('woff'),
+        url('IbarraRealNova-Regular.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'IbarraRealNova';
+    font-weight: 400;
+  src: url('IbarraRealNova-Regular.woff') format('woff'),
+        url('IbarraRealNova-Regular.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'IbarraRealNova';
+    font-weight: 500;
+    font-style: normal;
+    src: url('IbarraRealNova-Medium.woff') format('woff'),
+        url('IbarraRealNova-Medium.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'IbarraRealNova';
+    font-weight: 600;
+    font-style: normal;
+    src: url('IbarraRealNova-Medium.woff') format('woff'),
+        url('IbarraRealNova-Medium.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'IbarraRealNova';
+    font-weight: 700;
+    font-style: normal;
+    src: url('IbarraRealNova-Medium.woff') format('woff'),
+        url('IbarraRealNova-Medium.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'IbarraRealNova';
+    font-weight: 800;
+    font-style: normal;
+    src:url('IbarraRealNova-SemiBold.woff') format('woff'),
+        url('IbarraRealNova-SemiBold.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'IbarraRealNova';
+    font-weight: 900;
+    font-style: normal;
+     src:url('IbarraRealNova-SemiBold.woff') format('woff'),
+        url('IbarraRealNova-SemiBold.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'IbarraRealNova';
+    font-weight: bold;
+    font-style: normal;
+     src:url('IbarraRealNova-Bold.woff') format('woff'),
+        url('IbarraRealNova-Bold.ttf') format("truetype");
+    font-display: swap;
+}
+
