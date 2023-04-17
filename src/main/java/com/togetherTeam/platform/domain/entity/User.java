@@ -1,4 +1,4 @@
-package com.example.portfolio_23.domain.entity;
+package com.togetherTeam.platform.domain.entity;
 
 
 import lombok.AllArgsConstructor;

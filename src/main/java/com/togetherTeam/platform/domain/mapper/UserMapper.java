@@ -1,8 +1,8 @@
-package com.example.portfolio_23.domain.mapper;
-
-import com.example.portfolio_23.domain.entity.User;
+package com.togetherTeam.platform.domain.mapper;
 
 import java.util.List;
+
+import com.togetherTeam.platform.domain.entity.User;
 
 
 public interface UserMapper {
