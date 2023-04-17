@@ -1,8 +1,8 @@
-package com.togetherTeam.platform.domain.mapper;
+package com.togetherTeam.platform.mapper;
 
 import java.util.List;
 
-import com.togetherTeam.platform.domain.entity.User;
+import com.togetherTeam.platform.entity.User;
 
 
 public interface UserMapper {
