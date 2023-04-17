@@ -7,48 +7,31 @@
 <body>
 <!-- #wrap -->
 <div id="wrap">
-	<!-- #skipNav -->
-	<div id="skipNav">
-		<a href="#container">본문 바로가기</a>
-		<a href="#header">글로벌 네비게이션 바로가기</a>
-	</div>
-	<header id="header">
-		<a href="javascript:void(0);" class="logo"><img src="${contextPath}/resource/images/common/logo.png" alt="minlog site"><span class="ally-hidden">메인페이지 이동</span></a>
-		<a href="javascript:(0);" onclick="btnMenu()" class="btn_menu"><em></em><span class="ally-hidden">메뉴 열기</span></a>
-	</header>
 	<!--header-->
-	<div class="menu_wrap">
-		<div class="inner">
-			<ul>
-				<li style="--i:0.8s;">
-					<a href="./pages/wep.jsp">
-						01.Back And Site
-					</a>
-					<p></p>
-				</li>
-				<li style="--i:1.0s;">
-					<a href="./pages/port.jsp">
-						02. Pront And SIte
-					</a>
-					<p></p>
-				</li>
-				<li style="--i:1.2s;">
-					<a href="./pages/mak.jsp">
-						03. marketing
-					</a>
-					<p></p>
-				</li>
-			</ul>
-			<div class="f_center">
-				<a href="">Blog </a>
-				<a href="">Git </a>
-				<a href=""></a>
-				<a href="">카카오톡</a>
-			</div>
+	<header>
+		<div class="container">
+			<nav>
+				<div class="nav-wrap">
+					<h1>
+						<a href="javascript:void(0);" class="logo">
+							<img src="${contextPath}/resource/images/logo.png" alt="사이트 이름"><span class="ally-hidden">메인페이지 이동</span>
+						</a>
+					</h1>
+					<div class="gnb-wrap">
+						<ul class="gnb">
+							<li><a href="#">중고 상품</a></li>
+							<li><a href="#">상품 등록하기</a></li>
+							<li><a href="#">상품 검색</a></li>
+						</ul>
+					</div>
+					<ul class="util-menu">
+						<li><a href="#">로그인</a></li>
+						<li><a href="#">회원가입</a></li>
+					</ul>
+				</div>
+			</nav>
 		</div>
-	</div>
-	<!-- menu_wrap -->
-
+	</header>
 
 	<!-- start :container-->
 	<div id="container" class="">

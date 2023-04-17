@@ -3,24 +3,6 @@
 header
 ========================================================*/
 
-function btnMenu(){
-	console.log('full')
-	if($('.btn_menu').hasClass('active') == false){
-		$('.btn_menu').addClass('active');
-		$('.menu_wrap').addClass('active');
-	}else{
-		$('.btn_menu').removeClass('active');
-		$('.menu_wrap').removeClass('active');
-	}
-	
-}
-$(function(){
-	
-
-
-});
-
-
 /*========================================================
 footer
 ========================================================*/
