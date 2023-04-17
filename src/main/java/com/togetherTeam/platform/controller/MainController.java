@@ -4,13 +4,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(name = "/")
 public class MainController  {
 
-
+	@RequestMapping("/")
     public String main(){
         System.out.println("main controller start");
         return "index";
     }
-
+	
+	@RequestMapping("test")
+	public String test() {
+		return "test";
+	}
 }
