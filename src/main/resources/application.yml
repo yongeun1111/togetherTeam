@@ -1,7 +1,24 @@
 server:
-  port: 7070
+  servlet:
+    jsp:
+      init-parameters:
+        development: 'true'
+  port: '7070'
 spring:
   mvc:
+    static-path-pattern: /resources/**
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+  datasource:
+    password: tmdlswo123
+    driver-class-name: oracle.jdbc.OracleDriver
+    username: togetherTeam
+    url: jdbc:oracle:thin:@project-db-stu.ddns.net:1524/xe
+  thymeleaf:
+    enabled: 'false'
+mybatis:
+  mapper-locations: mybatis/mapper/**/*.xml
+  configuration:
+    jdbc-type-for-null: 'NULL'
+    cache-enabled: 'false'
