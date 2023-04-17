@@ -20,7 +20,6 @@ common - header / footer
 .container {
     width: 1400px;
     margin: 0 auto;
-    border: 1px solid red;
     box-sizing: border-box;
 }
 
@@ -36,7 +35,6 @@ header h1{
 }
 
 header .gnb-wrap {
-    border: 1px solid blue;
     display: flex;
     justify-content: center;
 }
@@ -52,6 +50,7 @@ header .gnb-wrap ul.gnb li:not(:last-child) {
 header .gnb-wrap ul.gnb li a {
     font-size: 1.1rem;
     color: #222;
+    font-weight: 600;
 }
 
 header nav .nav-wrap {
@@ -62,20 +61,26 @@ header nav .nav-wrap .util-menu {
     position: absolute;
     top: 0;
     right: 0;
+    margin-top: 3px;
 }
 
 header nav .nav-wrap .util-menu li {
     float: left;
-
 }
 
+header nav .nav-wrap .util-menu li a{
+    font-size: 1.0rem;
+    color: #999;
+}
 
-
-
-
-
-
-
+.after::after {
+    margin: 0 15px;
+    content: "";
+    background-color: #ddd;
+    width: 1px;
+    height: 10px;
+    display: inline-block;
+}
 
 
 /* footer*/

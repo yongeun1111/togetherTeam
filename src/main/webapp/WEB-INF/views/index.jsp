@@ -17,19 +17,29 @@
 
 <!-- #container -->
 <div class="main">
-   <div class="mv-wrap">
-      <div class="mv-txt">
-        <p class="sm-txt">쉽고, 편리하게!</p>
-        <p class="lg-txt">안전한 중고 거래</p>
-        <p class="mv-txt">
-          <span class="bold">믿을 수 있는 중고 거래 서비스 플랫폼</span>을 지금 바로 경험해 보세요!
-        </p>
-      </div>
-    
-      <div class="mv-img">
 
-      </div>
-   </div>
+  <!-- main visual -->
+  <div class="mv-wrap">
+    <div class="mv-txt">
+      <p class="sm-txt">쉽고, 편리하게!</p>
+      <p class="lg-txt">안전한 중고 거래</p>
+      <p class="mv-txt">
+        <span class="bold">믿을 수 있는 중고 거래 서비스 플랫폼</span>을 지금 바로 경험해 보세요!
+      </p>
+    </div>
+
+    <div class="mv-img">
+
+    </div>
+  </div>
+
+  <!-- 최근 등록 상품 -->
+  <h2>최근 등록 상품</h2>
+  
+
+
+
+
  
  
  
