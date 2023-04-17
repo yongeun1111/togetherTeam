@@ -17,7 +17,7 @@
 			<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 
 			<!-- style normal -->
-			<link rel="stylesheet" href="${contextPath}/resource/css/fonts/font.css">
+			<!-- <link rel="stylesheet" href="${contextPath}/resource/css/fonts/font.css"> -->
 			<link rel="stylesheet" href="${contextPath}/resource/css/com/style.css">
 			<link rel="stylesheet" href="${contextPath}/resource/css/com/common.css">
 			<!-- style meida -->
