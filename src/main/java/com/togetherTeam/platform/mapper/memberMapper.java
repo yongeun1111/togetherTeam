@@ -8,4 +8,6 @@ import com.togetherTeam.platform.entity.Member;
 public interface memberMapper {
 
 	public Member login(Member vo);
+	public Member search_id(Member vo);
+	
 }
