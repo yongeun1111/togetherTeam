@@ -18,7 +18,10 @@
 <!-- #container -->
 <div class="main">
     상품 리스트 페이지
-
-
+	<c:forEach var="vo" items="${list}">
+		<h1>${vo.pro_title}</h1>
+		<p>${vo.pro_name}</p>
+		<p>${vo.pro_content}</p>
+	</c:forEach>
 </div>
 <c:import url="${contextPath}/WEB-INF/views/inc/footer.jsp"/>

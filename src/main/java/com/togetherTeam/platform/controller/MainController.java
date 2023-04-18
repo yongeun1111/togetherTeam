@@ -24,10 +24,6 @@ public class MainController  {
         return "home";
     }
 
-    @GetMapping("/proList") // 중고 상품 페이지(proList.jsp)로 이동
-    public String proList(){
-        return "sub/proList";
-    }
 
     @GetMapping("/registration") // 상품 등록하기 페이지(registration.jsp)로 이동
     public String registration(){
