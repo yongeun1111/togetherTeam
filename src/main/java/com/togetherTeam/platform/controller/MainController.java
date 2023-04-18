@@ -73,7 +73,7 @@ public class MainController  {
 	        model.addAttribute("error", "입력하신 정보와 일치하는 아이디가 없습니다.");
 	        return "search_id"; // 아이디찾기 페이지로 이동
 	    } else { // 조회 성공시
-	        model.addAttribute("search", result); // 조회결과 정보를 모델에 저장
+	        model.addAttribute("search_id", result); // 조회결과 정보를 모델에 저장
 	        return "login"; // 로그인페이지로 이동
 	    }
     }
@@ -83,4 +83,16 @@ public class MainController  {
         return "search_pwd";
     }
 
+	@PostMapping("/search_pwd") // search_pwd 비밀번호찾기 페이지로 이동
+    public String search_pwd1(Member vo, Model model){
+		Member result = mapper.search_pwd(vo);
+		if(result == null) { // 조회결과가 없을때
+	        model.addAttribute("error", "입력하신 정보와 일치하는 계정이 없습니다.");
+	        return "search_pwd"; // 비밀번호찾기 페이지로 이동
+	    } else { // 조회 성공시
+	        model.addAttribute("search_pwd", result); // 조회결과 정보를 모델에 저장
+	        return "login"; // 로그인페이지로 이동
+	    }
+    }
+	
 }
