@@ -35,6 +35,9 @@ dependencies {
     
     // mybatis
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+    
+    // DEVTOOLS (jsp auto-reload)
+    implementation 'org.springframework.boot:spring-boot-devtools'
 }
 
 tasks.named('test') {

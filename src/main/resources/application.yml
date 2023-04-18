@@ -17,6 +17,9 @@ spring:
     url: jdbc:oracle:thin:@project-db-stu.ddns.net:1524/xe
   thymeleaf:
     enabled: 'false'
+  devtools:
+    livereload:
+      enabled: true
     
 mybatis:
   mapper-locations: mybatis/mapper/**/*.xml
