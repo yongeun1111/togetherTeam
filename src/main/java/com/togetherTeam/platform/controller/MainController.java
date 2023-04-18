@@ -48,6 +48,18 @@ public class MainController  {
         return "join";
     }
 	
+	@PostMapping("/join") // 회원가입진행
+    public String join1(Member vo, Model model, String mem_id){
+		int result = mapper.join(vo);
+		if(result == 0) { // 회원가입실패
+	        model.addAttribute("error", "회원가입이 실패하였습니다.");
+	        return "join"; // 회원가입 페이지로 이동
+	    } else { // 회원가입성공
+	        model.addAttribute("join", mem_id); // 입력한 회원아이디
+	        return "login"; // 로그인페이지로 이동
+	    }
+    }
+	
 	@PostMapping("/loginSucces") // login 성공시 home으로 이동
     public String loginSucces(Member vo, Model model, HttpSession session){
 	    Member result = mapper.login(vo);
