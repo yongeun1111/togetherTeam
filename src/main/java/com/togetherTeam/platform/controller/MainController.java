@@ -52,7 +52,7 @@ public class MainController  {
 	        return "login"; // 로그인 페이지로 이동
 	    } else { // 로그인 성공 시
 	        session.setAttribute("login", result); // 로그인 정보를 세션에 저장
-	        return "home"; // 홈 페이지로 이동
+	        return "redirect:/"; // 홈 페이지로 이동
 	    }
     }
 	
@@ -107,4 +107,11 @@ public class MainController  {
 	    }
     }
 	
+	@RequestMapping("/logout") // 로그아웃
+	public String logoutPost(HttpSession session) {
+		
+		session.invalidate();
+		
+		return "redirect:/";
+	}
 }
