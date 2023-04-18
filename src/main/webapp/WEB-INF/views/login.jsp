@@ -21,8 +21,8 @@
 
       <h2>로그인</h2>
       <form class="login-form" action="/login" method="post">
-          <p class="mb10"><input type="text" name="id" placeholder="아이디"></p>
-          <p><input type="password" name="pwd" placeholder="비밀번호"></p>
+          <p class="mb10"><input type="text" name="mem_id" placeholder="아이디"></p>
+          <p><input type="password" name="mem_pwd" placeholder="비밀번호"></p>
           <div>
             <ul class="mt20">
               <li>
