@@ -90,6 +90,7 @@ common - header / footer
 #wrap {
     width: 100%;
     font-family: 'Pretendard';
+    margin-top: 85px;
 }
 
 .container {
@@ -115,6 +116,8 @@ header {
     padding: 30px 0;
     width: 100%;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    z-index: 999;
 }
 
 header h1 {

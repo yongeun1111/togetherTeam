@@ -18,6 +18,10 @@ hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 
 img {vertical-align:middle;border:none;max-width:100%;display:block;}
 fieldset {border: 0; margin: 0; padding: 0;}
 
+input::placeholder {
+	color: #999;
+}
+
 input[type='text'],input[type='password'],input[type='submit'],input[type='search'],input[type='number'],input[type='tel'],input[type='date'] {-webkit-appearance:none; border-radius:0;}
 a {color:#494949;text-decoration:none;}
 a:visited {/*color:#494949;*/text-decoration:none;}
@@ -25,7 +29,7 @@ a:hover {/*color:#494949;*/text-decoration: none;}
 select {font-family:"Noto Sans KR", "Arial", Arial,Dotum; font-size: 14px;vertical-align:middle;}
 dd{margin:0;}
 label,input{vertical-align:middle;}
-input, select {height:60px;line-height:30px;padding: 0 30px;border:1px solid #000;}
+input, select {height:60px;line-height:30px;padding: 0 30px;}
 textarea {padding:10px;line-height:30px;resize: none;border:1px solid #000;}
 
 ul,ol,li{list-style:none;padding:0;}
@@ -50,6 +54,7 @@ margin: 0;
 input[type=number] {
   -moz-appearance: textfield;
 }
+
 iframe {border:none !important;}
 
 

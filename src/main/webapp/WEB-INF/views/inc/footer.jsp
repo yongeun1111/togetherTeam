@@ -3,9 +3,6 @@
 <%@taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-					<div class="">
-						<a href="#" title="상단 이동" ><em class="xi-up-circle"></em></a>
-					</div>
 				</div>
 				<!-- end :container-->
 				<footer>

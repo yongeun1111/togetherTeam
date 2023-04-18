@@ -4,7 +4,11 @@
 subpage
 ==========================================================================*/
 
-/* 로그인 */
+.con-wrap {
+    padding-top: 80px;
+}
+
+/* 로그인 -------------------------------------------------------------- */
 .login-wrap {
     margin-top: 85px;
     padding: 200px 0 100px;
@@ -68,4 +72,106 @@ h2 {
     background-color: #1a69c3;
     transition: all 0.3s;
 }
+
+/* 회원가입 -------------------------------------------------------------- */
+.join-form {
+    margin: 0 auto;
+    width: 624px;
+    box-sizing: border-box;
+}
+
+.join-form p input {
+    width: 624px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.join-form .field {
+    margin-bottom: 20px;
+}
+
+.join-form p.join-txt {
+    margin: 10px 0 20px 30px;
+    text-align: left;
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.join-form .tel-number select{
+    width: 188px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.join-form .tel-number input{
+    width: 188px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.join-form span {
+    padding: 0 5px;
+}
+
+.join-form .join-btn input {
+    width: 624px;
+    height: 60px;
+    background-color: #1f79df;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.join-form .join-btn input:hover {
+    background-color: #1a69c3;
+    transition: all 0.3s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
