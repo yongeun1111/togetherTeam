@@ -16,22 +16,35 @@
 <script src="${contextPath}/resource/js/pages/main.js"></script>
 
 <!-- #container -->
-<div class="container center">
-  <h2>로그인</h2>
-    <form class="login-form" action="/login" method="post">
-      <p class="mb10"><input type="text" name="id" placeholder="아이디"></p>
-      <p><input type="password" name="pwd" placeholder="비밀번호"></p>
+<div class="login-wrap">
+    <div class="center">
 
-      <ul>
-        <li><a href="/join">회원가입</a></li>
-        <li><a href="/findInfo">비밀번호찾기</a></li>
-      </ul>
+      <h2>로그인</h2>
+      <form class="login-form" action="/login" method="post">
+          <p class="mb10"><input type="text" name="id" placeholder="아이디"></p>
+          <p><input type="password" name="pwd" placeholder="비밀번호"></p>
+          <div>
+            <ul class="mt20">
+              <li>
+                  <a href="/join">회원가입</a>
+              </li>
+              <li>
+                  <a href="/search_id">아이디 찾기</a>
+              </li>
+              <li>
+                  <a href="/search_pwd">비밀번호 찾기</a>
+              </li>
+            </ul>
+          </div>
 
-      <div class="login-btn">
-        <input type="submit" value="로그인">
-      </div>
-    </form>
+          <div class="login-btn mt30">
+            <input type="submit" value="로그인">
+          </div>
+      </form>
 
+    </div>
+    <c:import url="inc/footer.jsp"/>
 </div>
+                    
 
-<c:import url="inc/footer.jsp"/>
+
