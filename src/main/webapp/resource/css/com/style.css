@@ -25,10 +25,13 @@ a:hover {/*color:#494949;*/text-decoration: none;}
 select {font-family:"Noto Sans KR", "Arial", Arial,Dotum; font-size: 14px;vertical-align:middle;}
 dd{margin:0;}
 label,input{vertical-align:middle;}
-input, select {height:50px;line-height:30px;padding:10px;border:1px solid #000;}
+input, select {height:60px;line-height:30px;padding: 0 30px;border:1px solid #000;}
 textarea {padding:10px;line-height:30px;resize: none;border:1px solid #000;}
 
 ul,ol,li{list-style:none;padding:0;}
+.clearfix {
+	clear: both;
+}
 .clear{clear:both;content:"";display:block;/*padding:0;margin:0;width:0;height:0;line-height:0;font-size:0;*/}
 .cf:after{clear:both;content:"";display:block;}
 li, p { background-image:url(''); }
