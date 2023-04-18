@@ -6,8 +6,17 @@
   
 <mapper namespace="com.togetherTeam.platform.mapper.productMapper">
 
+	<!-- proList.jsp 진입 전체 상품 불러오기  -->
 	<select id="getAllList" resultType="com.togetherTeam.platform.entity.Product">
 		SELECT *
 		  FROM product
 	</select>
+	
+	<!-- proList.jsp 카테고리별 상품 불러오기 -->
+	<select id="getCategoryList" parameterType="String" resultType="com.togetherTeam.platform.entity.Product">
+		SELECT *
+		  FROM product
+		 WHERE pro_category = #{category}
+	</select>
+	
 </mapper>
