@@ -38,30 +38,13 @@ public class MainController  {
 
 	
 	@GetMapping("/login") // test 로그인 및 회원가입 등을 하는 페이지
-    public String start(){
+    public String loginGet(){
         System.out.println("main controller start");
         return "login";
     }
 	
-	@GetMapping("/join") // join 회원가입 페이지로 이동
-    public String join(){
-        return "join";
-    }
-	
-	@PostMapping("/join") // 회원가입진행
-    public String join1(Member vo, Model model, String mem_id){
-		int result = mapper.join(vo);
-		if(result == 0) { // 회원가입실패
-	        model.addAttribute("error", "회원가입이 실패하였습니다.");
-	        return "join"; // 회원가입 페이지로 이동
-	    } else { // 회원가입성공
-	        model.addAttribute("join", mem_id); // 입력한 회원아이디
-	        return "login"; // 로그인페이지로 이동
-	    }
-    }
-	
-	@PostMapping("/loginSucces") // login 성공시 home으로 이동
-    public String loginSucces(Member vo, Model model, HttpSession session){
+	@PostMapping("/login") // login 성공시 home으로 이동
+    public String loginPost(Member vo, Model model, HttpSession session){
 	    Member result = mapper.login(vo);
 	    if(result == null) { // 로그인 실패 시
 	        model.addAttribute("error", "아이디 또는 비밀번호가 올바르지 않습니다.");
@@ -73,13 +56,30 @@ public class MainController  {
 	    }
     }
 	
+	@GetMapping("/join") // join 회원가입 페이지로 이동
+    public String joinGet(){
+        return "join";
+    }
+	
+	@PostMapping("/join") // 회원가입진행
+    public String joinPost(Member vo, Model model, String mem_id){
+		int result = mapper.join(vo);
+		if(result == 0) { // 회원가입실패
+	        model.addAttribute("error", "회원가입이 실패하였습니다.");
+	        return "join"; // 회원가입 페이지로 이동
+	    } else { // 회원가입성공
+	        model.addAttribute("join", mem_id); // 입력한 회원아이디
+	        return "login"; // 로그인페이지로 이동
+	    }
+    }
+	
 	@GetMapping("/search_id") // search_id 아이디찾기 페이지로 이동
-    public String search_id(){
+    public String search_idGet(){
         return "search_id";
     }
 	
 	@PostMapping("/search_id") // search_id 아이디찾기 페이지로 이동
-    public String search_id1(Member vo, Model model){
+    public String search_idPost(Member vo, Model model){
 		Member result = mapper.search_id(vo);
 		if(result == null) { // 조회결과가 없을때
 	        model.addAttribute("error", "입력하신 정보와 일치하는 아이디가 없습니다.");
@@ -91,12 +91,12 @@ public class MainController  {
     }
 	
 	@GetMapping("/search_pwd") // search_pwd 비밀번호찾기 페이지로 이동
-    public String search_pwd(){
+    public String search_pwdGet(){
         return "search_pwd";
     }
 
 	@PostMapping("/search_pwd") // search_pwd 비밀번호찾기 페이지로 이동
-    public String search_pwd1(Member vo, Model model){
+    public String search_pwdPost(Member vo, Model model){
 		Member result = mapper.search_pwd(vo);
 		if(result == null) { // 조회결과가 없을때
 	        model.addAttribute("error", "입력하신 정보와 일치하는 계정이 없습니다.");
