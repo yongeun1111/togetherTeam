@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.togetherTeam.platform.entity.Member;
 import com.togetherTeam.platform.entity.Product;
@@ -32,6 +33,18 @@ public class MainController  {
         return "home";
     }
 
+	@GetMapping("/get-products")
+	@ResponseBody
+	public List<Product> getProducts(String category) {
+	    List<Product> productList = mapper_pro.getCategoryListRecent(category);
+	    return productList;
+	}
+	
+	
+    @GetMapping("/registration") // 상품 등록하기 페이지(registration.jsp)로 이동
+    public String registration(){
+        return "sub/registration";
+    }
 
     @GetMapping("/proSearch") // 상품 검색 페이지(proSearch.jsp)로 이동
     public String proSearch(){
@@ -76,9 +89,9 @@ public class MainController  {
 	    }
     }
 	
-	@GetMapping("/search_idpw") // search_idpw 아이디찾기 페이지로 이동
+	@GetMapping("/search_id") // search_id 아이디찾기 페이지로 이동
     public String search_idGet(){
-        return "search_idpw";
+        return "search_id";
     }
 	
 	@PostMapping("/search_id") // search_id 아이디찾기 페이지로 이동
@@ -91,6 +104,11 @@ public class MainController  {
 	        model.addAttribute("search_id", result); // 조회결과 정보를 모델에 저장
 	        return "login"; // 로그인페이지로 이동
 	    }
+    }
+	
+	@GetMapping("/search_pwd") // search_pwd 비밀번호찾기 페이지로 이동
+    public String search_pwdGet(){
+        return "search_pwd";
     }
 
 	@PostMapping("/search_pwd") // search_pwd 비밀번호찾기 페이지로 이동
