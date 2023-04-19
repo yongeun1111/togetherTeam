@@ -15,8 +15,8 @@
 <script src="${contextPath}/resource/js/pages/main.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    var categoryBtn = $('#categoryBtn');
-    var categoryList = $('#categoryList');
+    var categoryBtn = $('.categoryBtn');
+    var categoryList = $('.categoryList');
 
     // 카테고리 버튼 클릭시 데이터 처리하기
     categoryBtn.click(function(){
@@ -78,12 +78,12 @@ $(document).ready(function(){
   <div class="tab">
     <ul class="tabnav">
       <li><a href="#tab01">ALL</a></li>
-      <li><a id="categoryBtn" data-category="에어프라이어" href="#tab02">에어프라이어</a></li>
-      <li><a href="#tab03">전기포트</a></li>
-      <li><a href="#tab04">전자렌지</a></li>
-      <li><a href="#tab05">토스트기</a></li>
-      <li><a href="#tab06">헤어드라이기</a></li>
-      <li><a href="#tab07">공기청정기</a></li>
+      <li><a class="categoryBtn" data-category="에어프라이어" href="#tab02">에어프라이어</a></li>
+      <li><a class="categoryBtn" data-category="전기포트" href="#tab03">전기포트</a></li>
+      <li><a class="categoryBtn" data-category="전자렌지" href="#tab04">전자렌지</a></li>
+      <li><a class="categoryBtn" data-category="토스티기" href="#tab05">토스트기</a></li>
+      <li><a class="categoryBtn" data-category="헤어드라이기" href="#tab06">헤어드라이기</a></li>
+      <li><a class="categoryBtn" data-category="공기청정기" href="#tab07">공기청정기</a></li>
     </ul>
     <div class="tabcontent">
       <div id="tab01">tab1 content
@@ -99,13 +99,23 @@ $(document).ready(function(){
         </c:forEach>
       </div>
       <div id="tab02">tab2 content
-		<div id="categoryList"></div>
+		<div class="categoryList"></div>
       </div>
-      <div id="tab03">tab3 content</div>
-      <div id="tab04">tab4 content</div>
-      <div id="tab05">tab5 content</div>
-      <div id="tab06">tab6 content</div>
-      <div id="tab07">tab7 content</div>
+      <div id="tab03">tab3 content
+		<div class="categoryList"></div>      
+      </div>
+      <div id="tab04">tab4 content
+		<div class="categoryList"></div>      
+      </div>
+      <div id="tab05">tab5 content
+		<div class="categoryList"></div>      
+      </div>
+      <div id="tab06">tab6 content
+		<div class="categoryList"></div>      
+      </div>
+      <div id="tab07">tab7 content
+		<div class="categoryList"></div>      
+      </div>
     </div>
   </div><!--tab-->
   
