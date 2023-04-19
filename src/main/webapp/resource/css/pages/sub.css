@@ -6,7 +6,7 @@ subpage
 
 .con-wrap {
     margin-top: 85px;
-    padding-bottom: 100px;
+    padding: 70px 100px;
 }
 
 .common-wrap {
@@ -28,7 +28,6 @@ subpage
 }
 
 h2 {
-    padding-top: 70px;
     margin-bottom: 40px;
     font-size: 2.7rem;
 }
@@ -88,8 +87,12 @@ h2 {
 }
 
 /* 아이디/비밀번호 찾기 */
-.common-wrap .search_idpw {
+.search_idpw p {
+    color: #666;
+}
 
+.search_idpw .tabnav {
+    margin-bottom: 30px;
 }
 
 .search_idpw .tabnav li a {

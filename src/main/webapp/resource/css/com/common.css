@@ -126,12 +126,14 @@ header h1 {
 }
 
 header .gnb-wrap {
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    position: absolute;
+    top: 0;
 }
 
 header .gnb-wrap ul.gnb {
     display: flex;
+    justify-content: center;
 }
 
 header .gnb-wrap ul.gnb li:not(:last-child) {

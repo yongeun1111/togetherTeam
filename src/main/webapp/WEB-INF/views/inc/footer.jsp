@@ -7,9 +7,7 @@
 				<!-- end :container-->
 				<footer>
 					<div class="info_contact main"> 
-						<a href="javascript:void(0);" class="logo">
-							<img src="${contextPath}/resource/images/logo.png" alt="사이트 이름"><span class="ally-hidden">메인페이지 이동</span>
-						</a>
+						<img src="${contextPath}/resource/images/logo.png" alt="사이트 이름"><span class="ally-hidden">메인페이지 이동</span>
 						<div class="info-wrap">
 							<ul>   
 								<li>(주)중고나라 사업자 정보 (주)중고나라</li>
