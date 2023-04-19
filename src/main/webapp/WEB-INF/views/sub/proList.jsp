@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="${contextPath}/resource/css/pages/main_media.css">
 <script src="${contextPath}/resource/js/jquery/gsap.min.js"></script>
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
-<script src="${contextPath}/resource/js/pages/main.js"></script>
+<script src="${contextPath}/resource/js/pages/sub.js"></script>
 <script type="text/javascript">
 	
 

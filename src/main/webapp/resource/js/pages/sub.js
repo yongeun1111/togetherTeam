@@ -1,8 +1,9 @@
 $(document).ready(function(){
 	$(".proCategory").click(function(){
 		var category = $(this).text()
+		console.log(category)
 		$.ajax({
-			url : "${cpath}/getCategory",
+			url : "/getCategory",
 			type : "post",
 			data : {"category" : category},
 			dataType : "json",
