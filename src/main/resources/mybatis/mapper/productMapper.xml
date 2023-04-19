@@ -20,7 +20,7 @@
 	</select>	
 	
 	<!-- proList.jsp 진입 전체 상품 불러오기 (인기순) -->
-	<select id="getAllList" resultType="com.togetherTeam.platform.entity.Product">
+	<select id="getAllListLike" resultType="com.togetherTeam.platform.entity.Product">
 		SELECT *
 		  FROM product
 		 ORDER BY pro_like DESC
@@ -34,7 +34,7 @@
 	</select>
 	
 	<!-- proList.jsp 카테고리별 상품 불러오기 (최신순) -->
-	<select id="getCategoryList" parameterType="String" resultType="com.togetherTeam.platform.entity.Product">
+	<select id="getCategoryListRecent" parameterType="String" resultType="com.togetherTeam.platform.entity.Product">
 		SELECT *
 		  FROM product
 		 WHERE pro_category = #{category}
@@ -42,7 +42,7 @@
 	</select>
 
 	<!-- proList.jsp 카테고리별 상품 불러오기 (인기순) -->
-	<select id="getCategoryList" parameterType="String" resultType="com.togetherTeam.platform.entity.Product">
+	<select id="getCategoryListLike" parameterType="String" resultType="com.togetherTeam.platform.entity.Product">
 		SELECT *
 		  FROM product
 		 WHERE pro_category = #{category}
