@@ -31,10 +31,9 @@ public class productSearchController {
 	}
 	
 	@RequestMapping("/searchProduct")
-	public List<Product> searchProduct(Model model, String query){
+	public List<Product> searchProduct(String query){
 		
 		List<Product> list = mapper.searchProduct(query);
-		model.addAttribute("list", list);
 		
 		return list;
 	}
