@@ -136,9 +136,9 @@ public class MainController  {
 	    }
     }
 
-	@GetMapping("/mypage") // 마이페이지(mypage.jsp)로 이동
-    public String mypage(){
-        return "sub/mypage";
+	@GetMapping("/mypage_memInfo") // 마이페이지(mypage.jsp)로 이동
+    public String mypage_memInfo(){
+        return "sub/mypage_memInfo";
     }
 	
 	@RequestMapping("/logout") // 로그아웃
