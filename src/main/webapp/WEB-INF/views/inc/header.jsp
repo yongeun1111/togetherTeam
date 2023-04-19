@@ -13,7 +13,7 @@
 			<nav>
 				<div class="nav-wrap">
 					<h1>
-						<a href="javascript:void(0);" class="logo">
+						<a href="/" class="logo">
 							<img src="${contextPath}/resource/images/logo.png" alt="사이트 이름"><span class="ally-hidden">메인페이지 이동</span>
 						</a>
 					</h1>

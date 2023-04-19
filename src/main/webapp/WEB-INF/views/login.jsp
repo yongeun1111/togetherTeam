@@ -43,7 +43,6 @@
       </form>
 
     </div>
-    <c:import url="inc/footer.jsp"/>
 </div>
                     
 

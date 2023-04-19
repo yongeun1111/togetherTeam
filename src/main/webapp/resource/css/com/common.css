@@ -175,8 +175,10 @@ header nav .nav-wrap .util-menu li a {
 
 /* footer*/
 footer {
+    width: 100%;
     margin-top: 100px;
     border-top: 1px solid #ddd;
+    position: inherit;
 }
 
 footer .info_contact .logo {
@@ -210,6 +212,4 @@ footer .info_contact .info-wrap p {
     font-size: 0.9rem;
     color: #ccc;
 }
-
-
 
