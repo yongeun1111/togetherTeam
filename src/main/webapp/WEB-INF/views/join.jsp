@@ -15,6 +15,35 @@
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 <script src="${contextPath}/resource/js/pages/main.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  function check_pw() {
+    var pw = $('#pw').val();
+    var pw2 = $('#pw2').val();
+    
+    $.ajax({
+      type: 'POST',
+      url: '/check_password',
+      data: { pw: pw, pw2: pw2 },
+      dataType: 'json', // 데이터 타입을 json으로 설정
+      success: function(data) {
+        if (data.result == 'success') {
+          $('#check').html('비밀번호가 일치합니다.');
+          $('#check').css('color', 'blue');
+        } else {
+          $('#check').html('비밀번호가 일치하지 않습니다.');
+          $('#check').css('color', 'red');
+        }
+      }
+    });
+  }
+
+  $('#pw').on('keyup', check_pw);
+  $('#pw2').on('keyup', check_pw);
+});
+</script>
+
 <!-- #container -->
 <div class="container join-wrap">
 
@@ -30,13 +59,17 @@
       
       <!-- 2. 비밀번호 -->
       <div class="field">
-        <p><input type="password" name="mem_pwd" required placeholder="비밀번호"></p>
+        <p><input id="pw" type="password" name="mem_pwd" required placeholder="비밀번호"></p>
         <p class="join-txt">영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자</p>
       </div>
 
       <!-- 3. 비밀번호 재확인 -->
       <div class="field">
-        <p><input type="password" name="mem_pwd_confirm" required placeholder="비밀번호 확인"></p>
+        <p><input id="pw2" type="password" name="mem_pwd_confirm" required placeholder="비밀번호 확인"></p>
+      </div>
+      
+      <div class="field">
+        <p><span id="check"></span></p>
       </div>
       
       <!-- 4. 이름 -->

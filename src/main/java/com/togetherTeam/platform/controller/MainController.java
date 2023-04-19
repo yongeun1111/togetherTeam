@@ -1,6 +1,8 @@
 package com.togetherTeam.platform.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.togetherTeam.platform.entity.Member;
 import com.togetherTeam.platform.entity.Product;
@@ -72,21 +76,35 @@ public class MainController  {
         return "join";
     }
 
+	@PostMapping("/check_password")
+	@ResponseBody
+	public Map<String, String> checkPassword(@RequestParam String pw, @RequestParam String pw2) {
+	    Map<String, String> result = new HashMap<>();
+	    
+	    if (pw.equals(pw2)) {
+	      result.put("result", "success");
+	    } else {
+	      result.put("result", "fail");
+	    }
+	    
+	    return result;
+	}
+	
+	@PostMapping("/join") // 회원가입진행
+    public String joinPost(Member vo, RedirectAttributes rttr, String mem_id){
+		int result = mapper.join(vo);
+		if(result == 0) { // 회원가입실패
+	        rttr.addFlashAttribute("error", "회원가입이 실패하였습니다.");
+	        return "join"; // 회원가입 페이지로 이동
+	    } else { // 회원가입성공
+	        rttr.addFlashAttribute("join", mem_id); // 입력한 회원아이디
+	        return "redirect:join_success"; // 로그인페이지로 이동
+	    }
+    }
+	
 	@GetMapping("/join_success") // join 회원가입 완료 페이지(join_success.jsp)로 이동
     public String joinSuccess(){
         return "join_success";
-    }
-	
-	@PostMapping("/join") // 회원가입진행
-    public String joinPost(Member vo, Model model, String mem_id){
-		int result = mapper.join(vo);
-		if(result == 0) { // 회원가입실패
-	        model.addAttribute("error", "회원가입이 실패하였습니다.");
-	        return "join"; // 회원가입 페이지로 이동
-	    } else { // 회원가입성공
-	        model.addAttribute("join", mem_id); // 입력한 회원아이디
-	        return "login"; // 로그인페이지로 이동
-	    }
     }
 	
 	@GetMapping("/search_idpw") // search_idpw 아이디찾기 페이지로 이동
