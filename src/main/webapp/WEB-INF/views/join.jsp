@@ -59,13 +59,17 @@ $(document).ready(function(){
       
       <!-- 2. 비밀번호 -->
       <div class="field">
-        <p><input type="password" name="mem_pwd" required placeholder="비밀번호"></p>
+        <p><input id="pw" type="password" name="mem_pwd" required placeholder="비밀번호"></p>
         <p class="join-txt">영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자</p>
       </div>
 
       <!-- 3. 비밀번호 재확인 -->
       <div class="field">
-        <p><input type="password" name="mem_pwd_confirm" required placeholder="비밀번호 확인"></p>
+        <p><input id="pw2" type="password" name="mem_pwd_confirm" required placeholder="비밀번호 확인"></p>
+      </div>
+      
+      <div class="field">
+        <p><span id="check"></span></p>
       </div>
       
       <!-- 4. 이름 -->
