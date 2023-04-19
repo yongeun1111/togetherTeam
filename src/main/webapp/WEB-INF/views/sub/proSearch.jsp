@@ -12,13 +12,14 @@
 <link rel="stylesheet" href="${contextPath}/resource/css/pages/main_media.css">
 <script src="${contextPath}/resource/js/jquery/gsap.min.js"></script>
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
-<script src="${contextPath}/resource/js/pages/main.js"></script>
+<script src="${contextPath}/resource/js/pages/sub.js"></script>
 
 
 <!-- #container -->
 <div class="main">
-    상품 검색 페이지
-
+    <input type="text" id="searchProduct" placeholder="검색검색"/>
+   	<button id="search">검색</button>             
+      
 
 </div>
 <c:import url="${contextPath}/WEB-INF/views/inc/footer.jsp"/>

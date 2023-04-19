@@ -13,21 +13,28 @@ import com.togetherTeam.platform.mapper.productMapper;
 @RestController
 public class productSearchController {
 
+	List<Product> list = null;
+
 	@Autowired
 	private productMapper mapper;
 	
 	@RequestMapping("/getCategory")
 	public List<Product> getCategory(String category){
-	
-		List<Product> list = null;
-		
-		System.out.println(category);
-		
+			
 		if (category.equals("ALL")) {
 			list = mapper.getAllList();
 		} else {
 			list = mapper.getCategoryList(category);
 		}
+		
+		return list;
+	}
+	
+	@RequestMapping("/searchProduct")
+	public List<Product> searchProduct(Model model, String query){
+		
+		List<Product> list = mapper.searchProduct(query);
+		model.addAttribute("list", list);
 		
 		return list;
 	}
