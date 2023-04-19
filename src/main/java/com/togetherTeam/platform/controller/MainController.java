@@ -1,6 +1,8 @@
 package com.togetherTeam.platform.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.togetherTeam.platform.entity.Member;
@@ -72,6 +75,20 @@ public class MainController  {
         return "join";
     }
 
+	@PostMapping("/check_password")
+	@ResponseBody
+	public Map<String, String> checkPassword(@RequestParam String pw, @RequestParam String pw2) {
+	    Map<String, String> result = new HashMap<>();
+	    
+	    if (pw.equals(pw2)) {
+	      result.put("result", "success");
+	    } else {
+	      result.put("result", "fail");
+	    }
+	    
+	    return result;
+	}
+	
 	@GetMapping("/join_success") // join 회원가입 완료 페이지(join_success.jsp)로 이동
     public String joinSuccess(){
         return "join_success";

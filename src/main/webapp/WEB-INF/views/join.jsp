@@ -15,6 +15,35 @@
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 <script src="${contextPath}/resource/js/pages/main.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  function check_pw() {
+    var pw = $('#pw').val();
+    var pw2 = $('#pw2').val();
+    
+    $.ajax({
+      type: 'POST',
+      url: '/check_password',
+      data: { pw: pw, pw2: pw2 },
+      dataType: 'json', // 데이터 타입을 json으로 설정
+      success: function(data) {
+        if (data.result == 'success') {
+          $('#check').html('비밀번호가 일치합니다.');
+          $('#check').css('color', 'blue');
+        } else {
+          $('#check').html('비밀번호가 일치하지 않습니다.');
+          $('#check').css('color', 'red');
+        }
+      }
+    });
+  }
+
+  $('#pw').on('keyup', check_pw);
+  $('#pw2').on('keyup', check_pw);
+});
+</script>
+
 <!-- #container -->
 <div class="container join-wrap">
 
