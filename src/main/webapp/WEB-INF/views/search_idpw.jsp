@@ -33,8 +33,12 @@ $(document).ready(function(){
             url: '/search_id',
             data: {mem_name : name, mem_phone : phone},
             success: function(result){
+            	    if(result){
 					var mem_id = result.mem_id;
 					alert(mem_id);
+            	    } else {
+            	    alert('이름과 휴대폰번호를 정확히 입력해주세요.');
+            	    }
             },
             error: function(){
                 alert('데이터를 가져오는데 실패하였습니다.');
@@ -52,7 +56,11 @@ $(document).ready(function(){
             url: '/search_pwd',
             data: {mem_id : id, mem_phone : phone, mem_email : email},
             success: function(result){
+            	  if(result){
                   alert('등록되어진 주소로 이메일을 발송하였습니다.')
+            	  } else {
+            	  alert('아이디와 휴대폰번호, 이메일을 정확히 입력해주세요.');
+            	  }
             },
             error: function(){
                 alert('데이터를 가져오는데 실패하였습니다.');
