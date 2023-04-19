@@ -18,7 +18,71 @@
 <!-- #container -->
 <div class="main">
     상품 등록 페이지
+	<h2>상품 등록</h2>
+	<form role="form" method="post" autocomplete="off">
 
+		<div class="inputArea">
+			<label>상품태마</label>
+			<select class="category1" name="pro_theme">
+				<option value="all">전체</option>
+			</select> 
+		</div>
+
+		<div class="inputArea">
+			<label for="gdsName">이미지등록</label> <input type="text" id="gdsName"
+				name="gdsName" />
+		</div>
+		
+		<div class="inputArea">
+			<label for="gdsName">이미지 추가 등록</label> <input type="text" id="gdsName"
+				name="gdsName" />
+		</div>
+		
+		<div class="inputArea">
+			<label for="seller_mem_no">회원정보</label>
+			<input type="text" readonly="readonly" value="${login.mem_no}" name="seller_mem_no" />
+		</div>
+		
+		<div class="inputArea">
+			<label for="pro_name">상품명</label>
+			<input type="text" id="pro_name" name="pro_name" />
+		</div>
+
+		<div class="inputArea">
+			<label for="buy_price">상품구매가격</label>
+			<input type="text" id="pro_buy_price" name="pro_buy_price" />
+		</div>
+
+		<div class="inputArea">
+			<label for="buy_date">사용기간</label>
+			<input type="text" id="buy_date" name="buy_date" />
+		</div>
+		
+		<div class="inputArea">
+			<label for="sale_price">판매가격</label>
+			<input type="text" id="pro_sale_price" name="pro_sale_price" />
+		</div>
+		
+		<div class="inputArea">
+			<label for="pro_title">제목</label>
+			<input type="text" id="pro_title" name="pro_title" />
+		</div>
+
+		<div class="inputArea">
+			<label for="pro_category">상품정보</label>
+			<textarea rows="5" cols="50" id="pro_category" name="pro_category"></textarea>
+		</div>
+		
+		<div class="inputArea">
+			<label for="pro_content">판매자 설명</label>
+			<textarea rows="5" cols="50" id="gdsDes" name="pro_content"></textarea>
+		</div>
+
+		<div class="inputArea">
+			<button type="submit" id="register_Btn" class="btn btn-primary">등록</button>
+		</div>
+
+	</form>
 
 </div>
 <c:import url="${contextPath}/WEB-INF/views/inc/footer.jsp"/>

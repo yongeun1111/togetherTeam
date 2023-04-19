@@ -49,6 +49,11 @@
 		 ORDER BY pro_like DESC
 	</select>
 
+	<!-- registration.jsp 상품 등록하기 -->
+	<insert id="productRegister" parameterType="com.togetherTeam.platform.entity.Product">
+		insert into product(seller_mem_no, pro_title, pro_category, pro_name, pro_theme, buy_date, pro_buy_price, pro_sale_price, pro_content)
+		values (#{seller_mem_no}, #{pro_title}, #{pro_category}, #{pro_name}, #{pro_theme}, #{buy_date}, #{pro_buy_price}, #{pro_sale_price}, #{pro_content})
+	</insert>
 
 
 	

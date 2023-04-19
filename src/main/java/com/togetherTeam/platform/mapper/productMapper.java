@@ -15,5 +15,7 @@ public interface productMapper {
 	public List<Product> getCategoryList(String category);
 	public List<Product> getCategoryListRecent(String category);
 	public List<Product> getCategoryListLike(String category);
+	
+	public void productRegister(Product vo); // insert SQL
 
 }
