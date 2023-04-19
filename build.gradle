@@ -38,6 +38,10 @@ dependencies {
     
     // DEVTOOLS (jsp auto-reload)
     implementation 'org.springframework.boot:spring-boot-devtools'
+    // Chat
+    implementation 'org.webjars:stomp-websocket:2.3.3-1'
+	implementation 'org.webjars:sockjs-client:1.1.2'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket:2.7.5'
 }
 
 tasks.named('test') {
