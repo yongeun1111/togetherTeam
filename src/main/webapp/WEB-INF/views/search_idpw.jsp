@@ -14,6 +14,58 @@
 <script src="${contextPath}/resource/js/jquery/gsap.min.js"></script>
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 <script src="${contextPath}/resource/js/pages/main.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    var searchBtn = $('.search-btn');
+
+    // 검색 버튼 클릭시 데이터 처리하기
+    searchBtn.click(function(){
+    	
+        var search = $(this).data('search'); // 누르는 버튼이 무엇인지 판단 : 아이디 / 비밀번호
+
+        if (search == '아이디') {
+        	
+        var name = $('.search-name').val();
+        var phone = $('.search-phone').val();
+        	
+        $.ajax({
+            type: 'POST',
+            url: '/search_id',
+            data: {mem_name : name, mem_phone : phone},
+            success: function(result){
+					var mem_id = result.mem_id;
+					alert(mem_id);
+            },
+            error: function(){
+                alert('데이터를 가져오는데 실패하였습니다.');
+            }
+        });
+        
+        } else {
+        	
+        var id = $('.search-id').val();
+        var phone = $('.search-phone').val();
+        var email = $('.search-email').val();
+        
+        $.ajax({
+            type: 'POST',
+            url: '/search_pwd',
+            data: {mem_id : id, mem_phone : phone, mem_email : email},
+            success: function(result){
+                  alert('등록되어진 주소로 이메일을 발송하였습니다.')
+            },
+            error: function(){
+                alert('데이터를 가져오는데 실패하였습니다.');
+            }
+        });	
+        	
+        }
+    });
+});
+</script>
+
+
+
 
 <!-- #container -->
 <div class="common-wrap">
@@ -34,11 +86,11 @@
           <div id="tab01">
             <form action="/search_id" method="post">         
               <!-- 1. 이름 -->
-              <div class="field"><input type="text" name="mem_name" placeholder="이름"></div>
+              <div class="field"><input class="search-name" type="text" name="mem_name" placeholder="이름"></div>
               <!-- 2. 핸드폰 번호 -->
-              <div class="field mt10"><input type="text" name="mem_phone" placeholder="휴대폰 번호(- 없이 입력)"></div>
+              <div class="field mt10"><input class="search-phone" type="text" name="mem_phone" placeholder="휴대폰 번호(- 없이 입력)"></div>
               <!-- 아이디 찾기 버튼 -->
-              <div class="btn mt50"><input type="submit" value="아이디 찾기"></div>
+              <div class="btn mt50"><input class="search-btn" data-search="아이디" type="reset" value="아이디 찾기"></div>
             </form>
           </div>
 
@@ -46,13 +98,13 @@
           <div id="tab02">
             <form action="/search_pwd" method="post">
               <!-- 1. 아이디 -->
-              <div class="field"><input type="text" name="mem_id" placeholder="아이디"></div>
+              <div class="field"><input class="search-id" type="text" name="mem_id" placeholder="아이디"></div>
               <!-- 2. 핸드폰 번호 -->
-              <div class="field mt10"><input type="text" name="mem_phone" placeholder="휴대폰 번호(- 없이 입력)"></div>
+              <div class="field mt10"><input class="search-phone" type="text" name="mem_phone" placeholder="휴대폰 번호(- 없이 입력)"></div>
               <!-- 3. 이메일-->
-              <div class="field mt10"><input type="text" name="mem_email"  placeholder="이메일"></div>
+              <div class="field mt10"><input class="search-email" type="text" name="mem_email"  placeholder="이메일"></div>
               <!-- 비밀번호 찾기 버튼 -->
-              <div class="btn mt50"><input type="submit" value="비밀번호 찾기"></div>
+              <div class="btn mt50"><input class="search-btn" data-search="비밀번호" type="reset" value="비밀번호 찾기"></div>
             </form>
 
           </div>
