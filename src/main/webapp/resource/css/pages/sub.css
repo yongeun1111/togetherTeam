@@ -39,7 +39,7 @@ h2 {
     margin: 0 auto;
 }
 
-.login-form p input {
+.login-form div input {
     width: 560px;
     border: 1px solid #ddd;
     border-radius: 5px;

@@ -17,33 +17,19 @@
 
 <!-- #container -->
 <div class="login-wrap">
-    <div class="center">
+  <div class="center">
 
-      <h2>로그인</h2>
-      <form class="login-form" action="/login" method="post">
-          <div class="mb10"><input type="text" name="mem_id" placeholder="아이디"></div>
-          <div><input type="password" name="mem_pwd" placeholder="비밀번호"></div>
-          <div>
-            <ul class="mt20">
-              <li>
-                  <a href="/join">회원가입</a>
-              </li>
-              <li>
-                  <a href="/search_idpw">아이디 찾기</a>
-              </li>
-              <li>
-                  <a href="/search_idpw">비밀번호 찾기</a>
-              </li>
-            </ul>
-          </div>
+    <h2>비밀번호 변경</h2>
+    <form class="login-form" action="" method="post">
+        <div class="mb10"><input type="password" name="mem_pwd" placeholder="변경할 비밀번호"></div>
+        <div><input type="password" name="mem_pwd" placeholder="변경할 비밀번호 재입력"></div>
 
-          <div class="login-btn mt30">
-            <input type="submit" value="로그인">
-          </div>
-      </form>
+        <div class="login-btn mt30">
+          <input type="submit" value="변경 완료">
+        </div>
+    </form>
 
-    </div>
+  </div>
 </div>
-                    
-
+       
 
