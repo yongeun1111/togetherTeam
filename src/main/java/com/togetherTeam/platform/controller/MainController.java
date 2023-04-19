@@ -1,5 +1,7 @@
 package com.togetherTeam.platform.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.togetherTeam.platform.entity.Member;
+import com.togetherTeam.platform.entity.Product;
 import com.togetherTeam.platform.mapper.memberMapper;
+import com.togetherTeam.platform.mapper.productMapper;
 
 @Controller
 public class MainController  {
@@ -18,12 +22,21 @@ public class MainController  {
 	@Autowired
 	private memberMapper mapper;
 	
+	@Autowired
+	private productMapper mapper_pro;
+	
 	@RequestMapping("/")
-    public String main(){
-        System.out.println("main controller start");
+    public String main(Model model){
+        List<Product> list = mapper_pro.getAllListRecent();
+        model.addAttribute("allList", list);
         return "home";
     }
 
+
+    @GetMapping("/registration") // 상품 등록하기 페이지(registration.jsp)로 이동
+    public String registration(){
+        return "sub/registration";
+    }
 
     @GetMapping("/proSearch") // 상품 검색 페이지(proSearch.jsp)로 이동
     public String proSearch(){
