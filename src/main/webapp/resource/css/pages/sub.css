@@ -202,6 +202,11 @@ h2 {
 
 /* 회원가입 완료 ------------------------------------------ */
 .join-suc-wrap {
+    padding-top: 150px;
+}
+
+.join-suc-wrap .join-suc-inner {
+    margin: 0 auto;
     padding: 80px;
     width: 900px;
     border: 1px solid #ddd;
@@ -236,7 +241,6 @@ h2 {
     color: #fff;
     border-radius: 60px;
     background-color: #1f79df;
-
 }
 
 
