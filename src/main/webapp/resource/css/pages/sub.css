@@ -22,6 +22,10 @@ subpage
     display: flex;
 }
 
+.sub-inner {
+    padding-top: 70px;
+}
+
 /* 로그인 -------------------------------------------------------------- */
 .login-wrap {
     width: 100%;
@@ -31,7 +35,7 @@ subpage
 }
 
 h2 {
-    margin-bottom: 40px;
+    padding-bottom: 40px;
     font-size: 2.7rem;
 }
 
@@ -68,7 +72,7 @@ h2 {
 }
 
 .login-form ul li a:hover {
-    color: #1f79df;
+    color: #0a5fc1;
     text-decoration : underline;
     text-underline-position : under;
 }
@@ -85,8 +89,8 @@ h2 {
 }
 
 .login-form .login-btn input:hover {
-    background-color: #1a69c3;
-    transition: all 0.3s;
+    background-color: #0059bf;
+    transition: all 0.2s;
 }
 
 /* 아이디/비밀번호 찾기 */
@@ -153,7 +157,7 @@ h2 {
 }
 
 .join-form p.join-txt {
-    margin: 10px 0 20px 30px;
+    margin: 10px 0 20px 20px;
     text-align: left;
     color: #666;
     font-size: 0.9rem;
@@ -191,8 +195,8 @@ h2 {
 }
 
 .join-form .join-btn input:hover {
-    background-color: #1a69c3;
-    transition: all 0.3s;
+    background-color: #0059bf;
+    transition: all 0.2s;
 }
 
 .footer_fix {
@@ -244,13 +248,45 @@ h2 {
 }
 
 /* 마이페이지 */
-.mypage-wrap {
-    border: 1px solid red;
+.mypage-wrap .tab-wrap {
+    margin-bottom: 80px;
 }
+
+.mypage-wrap .tab-menu {
+    /* display: flex;
+    justify-content: space-around; */
+}
+
+.mypage-wrap .tab-menu li {
+    float: left;
+    width: 33.3%;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    
+}
+
+.mypage-wrap .tab-menu li a {
+    box-sizing: border-box;
+    display: block;
+}
+
+
+.mypage-wrap .tab-menu li.on {
+    border-bottom: 2px solid #1f79df;
+}
+
+.mypage-wrap .tab-menu li.on a {
+    color: #1f79df;
+}
+
 
 .mypage-wrap .info-box {
     background-color: #f5f5f5;
     padding: 30px 60px;
+    margin-bottom: 20px;
 }
 
 .mypage-wrap .info-box ul li {
@@ -269,6 +305,7 @@ h2 {
     margin-top: 12px;
     margin-left: -8px;
 }
+
 
 .mypage-wrap p {
     font-size: 1.05rem;
@@ -299,6 +336,54 @@ h2 {
 
 .mypage-wrap .meminfo-table tr td:last-child {
     color: #666;
+}
+
+.mypage-wrap .meminfo-table tr td p.pw_txt {
+    margin: 10px 0 0 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.mypage-wrap .meminfo-table tr td input {
+    width: 700px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.meminfo-wrap .btn {
+    text-align: center;
+}
+
+.meminfo-wrap .btn input {
+    padding: 0 150px;
+    height: 60px;
+    border-radius: 30px;
+    font-family: 'Pretendard';
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.meminfo-wrap .btn input:first-child {
+    margin-right: 10px;
+    background-color: #1f79df;
+    color: #fff;
+}
+
+.meminfo-wrap .btn input:first-child:hover {
+    background-color: #0059bf;
+    transition: all 0.2s;
+}
+
+.meminfo-wrap .btn input:last-child {
+    background-color: #fff;
+    border: 1px solid #666;
+    color: #666;
+}
+
+.meminfo-wrap .btn input:last-child:hover {
+    background-color: #666;
+    transition: all 0.2s;
+    color: #fff;
 }
 
 

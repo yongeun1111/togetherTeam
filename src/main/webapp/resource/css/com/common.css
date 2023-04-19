@@ -139,8 +139,10 @@ header {
 }
 
 header h1 {
-    left: 0;
-    float: left;
+    position: relative;
+    z-index: 999;
+    width: 81px;
+    height: 21px;
 }
 
 header .gnb-wrap {
@@ -201,15 +203,14 @@ footer {
     position: inherit;
 }
 
-footer .info_contact .logo {
-    display: inline-block;
-    position: relative;
-    left: 0;
+footer .info_contact img {
+    position: absolute;
 }
 
 footer .info_contact .info-wrap {
     width: 80%;
     float: right;
+    padding-bottom: 40px;
 }
 
 footer .info_contact ul li {
