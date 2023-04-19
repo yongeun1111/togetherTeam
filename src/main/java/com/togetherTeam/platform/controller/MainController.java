@@ -25,11 +25,6 @@ public class MainController  {
     }
 
 
-    @GetMapping("/registration") // 상품 등록하기 페이지(registration.jsp)로 이동
-    public String registration(){
-        return "sub/registration";
-    }
-
     @GetMapping("/proSearch") // 상품 검색 페이지(proSearch.jsp)로 이동
     public String proSearch(){
         return "sub/proSearch";
