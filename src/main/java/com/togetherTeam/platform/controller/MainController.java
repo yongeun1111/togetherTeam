@@ -117,6 +117,11 @@ public class MainController  {
 	        return "change_pw"; // 비밀번호 변경 페이지로 이동
 	    }
     }
+
+	@GetMapping("/mypage") // 마이페이지(mypage.jsp)로 이동
+    public String mypage(){
+        return "sub/mypage";
+    }
 	
 	@RequestMapping("/logout") // 로그아웃
 	public String logoutPost(HttpSession session) {

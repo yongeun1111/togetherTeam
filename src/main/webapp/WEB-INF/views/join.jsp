@@ -62,6 +62,8 @@
       <div class="join-btn mt40">
         <input type="submit" value="회원가입">
       </div>
+
+    </form>
       
   </div>
   

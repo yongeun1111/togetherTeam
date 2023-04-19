@@ -243,6 +243,63 @@ h2 {
     background-color: #1f79df;
 }
 
+/* 마이페이지 */
+.mypage-wrap {
+    border: 1px solid red;
+}
+
+.mypage-wrap .info-box {
+    background-color: #f5f5f5;
+    padding: 30px 60px;
+}
+
+.mypage-wrap .info-box ul li {
+    line-height: 1.8rem;
+    color: #666;
+}
+
+.mypage-wrap .info-box ul li::before {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    border-radius: 3px;
+    background-color: #1f79df;
+    position: absolute;
+    margin-top: 12px;
+    margin-left: -8px;
+}
+
+.mypage-wrap p {
+    font-size: 1.05rem;
+    color: #222;
+    font-weight: 600;
+}
+
+.mypage-wrap .meminfo-table {
+    width: 1400px;
+    border-top: 2px solid #222;
+    box-sizing: border-box;
+    font-family: 'Pretendard';
+}
+
+.mypage-wrap .meminfo-table tr {
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.mypage-wrap .meminfo-table tr td {
+    padding: 20px 0 20px 40px;
+}
+
+.mypage-wrap .meminfo-table tr td:first-child {
+    color: #222;
+    font-weight: 600;
+}
+
+.mypage-wrap .meminfo-table tr td:last-child {
+    color: #666;
+}
 
 
 

@@ -32,3 +32,10 @@ $(document).ready(function(){
 	
 	
 });
+
+// 취소 버튼 처리
+$(function(){
+	$("#cancelBtn").click(function(){
+		alert("회원정보 변경이 취소되었습니다.");
+	})
+})
