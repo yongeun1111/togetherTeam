@@ -1,6 +1,7 @@
 package com.togetherTeam.platform.service;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -75,9 +76,34 @@ public class ChatRoomService implements chatRoomMapper {
 		return chatHistory;
 	}
 	
-	public void updateFileName(int chat_room_no, String file_name) {
+	public void createFile(int pro_no, int chat_room_no) throws IOException {
+		
+		String file_name = pro_no + "_"+ chat_room_no + ".txt";
+		String path_name = fileUploadPath + file_name;
+		// file 클래스에 path_name 할당
+		File txtFile = new File(path_name);
+		txtFile.createNewFile();
+		
 		chatRoomMapper.updateFileName(chat_room_no, file_name);
 	}
 	
+	public void updateFileName(int chat_room_no, String file_name) {
+		
+		chatRoomMapper.updateFileName(chat_room_no, file_name);
+	}
 	
+	public int countBychat_room_no(int chat_room_no, int buyer_mem_no) {
+		
+		return chatRoomMapper.countBychat_room_no(chat_room_no, buyer_mem_no);
+	}
+	
+	public ChatRoom findBychat_room_no(int pro_no, int buyer_mem_no) {
+		
+		return chatRoomMapper.findBychat_room_no(pro_no, buyer_mem_no);
+	}
+	
+	public int get_no(int pro_no, int buyer_mem_no) {
+		
+		return chatRoomMapper.get_no(pro_no, buyer_mem_no);
+	}
 }

@@ -12,20 +12,25 @@
 <link rel="stylesheet" href="${contextPath}/resource/css/pages/main_media.css">
 <script src="${contextPath}/resource/js/jquery/gsap.min.js"></script>
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
-<script src="${contextPath}/resource/js/pages/sub.js"></script>
 
 
 <!-- #container -->
 <div class="main">
-
-
+		<h2>채팅 테스트</h2>
+		<p>${pro.pro_title}</p>
+		<p>${pro.pro_name}</p>
 
 
 
 </div>
 
+<script src="/webjars/stomp-websocket/2.3.3-1/stomp.js" type="text/javascript"></script>
+<script src="/webjars/sockjs-client/1.1.2/sockjs.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 	
+	var	stompClient = null;
+	var buyer_id = $('#buyer_id').val();
 	// STOMP 설정 및 메시지 전송
 	// url : /user 로 시작
 	// send : /app 으로 시작

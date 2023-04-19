@@ -13,8 +13,21 @@
 <script src="${contextPath}/resource/js/jquery/gsap.min.js"></script>
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 <script src="${contextPath}/resource/js/pages/sub.js"></script>
+
 <script type="text/javascript">
-	
+ $(document).ready(function(){
+	$(".h1_pro_title").click(function(){
+		var pro_title = $(this).text()
+		var pro_name = $(this).next().text()
+		
+		$("#pro_title").val(pro_title)
+		$("#pro_name").val(pro_name)
+		
+		$("#chatFrm").submit()
+	});
+	 
+	 
+ });
 
 
 
@@ -31,11 +44,15 @@
     <button class="proCategory">헤어드라이어</button>
     <button class="proCategory">공기청정기</button>
     </br>
-	<c:forEach var="vo" items="${list}">
-		<h1>${vo.pro_title}</h1>
-		<p>${vo.pro_name}</p>
-		<p>${vo.pro_content}</p>
-		</br>
-	</c:forEach>
+    <form id="chatFrm" action="testChat" method="post">
+    	<input type="hidden" id="pro_title" name="pro_title"/>
+    	<input type="hidden" id="pro_name" name="pro_name"/>
+		<c:forEach var="vo" items="${list}">
+			<h1 class="h1_pro_title" value="${vo.pro_title}">${vo.pro_title}</h1>
+			<p>${vo.pro_name}</p>
+			<p>${vo.pro_content}</p>
+			</br>
+		</c:forEach>
+	</form>
 </div>
 <c:import url="${contextPath}/WEB-INF/views/inc/footer.jsp"/>

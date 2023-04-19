@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.togetherTeam.platform.mapper.chatRoomMapper">
+
+	<insert id="addChatRoom" parameterType="com.togetherTeam.platform.entity.ChatRoom">
+		INSERT INTO CHAT_ROOM(
+  			CHAT_ROOM_NO,
+  			SELLER_MEM_NO,
+  			BUYER_MEM_NO,
+  			ROOM_DATE
+  			PRO_NO,
+  			FILE_NAME,
+  			SELLER_MEM_ID,
+  			BUYER_MEM_ID
+  		) VALUES (
+  			#{CHAT_ROOM_NO},
+  			#{SELLER_MEM_NO},
+  			#{BUYER_MEM_NO},
+  			#{ROOM_DATE},
+  			#{PRO_NO},
+  			#{FILE_NAME}
+  			#{SELLER_MEM_ID}
+  			#{BUYER_MEM_ID}
+  		)	
+	</insert>
+	
+	<update id="updateFileName" parameterType="com.togetherTeam.platform.entity.ChatRoom">
+		UPDATE CHAT_ROOM
+		   SET FILE_NAME = #{FILE_NAME}
+		 WHERE CHAT_ROOM_NO = #{CHAT_ROOM_NO}
+	</update>
+	
+	<select id="countByChatId" parameterType="com.togetherTeam.platform.entity.ChatRoom" resultType="int">
+    	SELECT COUNT(*)
+    	FROM CHAT_ROOM
+    	WHERE CHAT_ROOM_NO = #{CHAT_ROOM_NO} 
+    	  AND BUYER_MEM_NO = #{BUYER_MEM_NO}
+    </select>
+	
+</mapper>

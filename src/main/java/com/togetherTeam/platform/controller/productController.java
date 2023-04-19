@@ -50,4 +50,11 @@ public class productController {
     	
     	return "home";
     }
+    
+    @PostMapping("/testChat") // 채팅 테스트
+    public String testChat(Model model, Product vo) {
+    	
+    	model.addAttribute("pro", vo);
+    	return "sub/testChat";
+    }
 }
