@@ -15,7 +15,7 @@ public class Member {
     private String mem_id;  // 회원아이디
     private String mem_pwd; // 회원비밀번호
     private String mem_name; // 회원이름
-    private String mem_phone; // 회원전화번호
+    private int mem_phone; // 회원전화번호
     private String mem_birth; // 회원생년월일
     private String mem_email; // 회원이메일
     private LocalDateTime mem_date; // 회원가입일자
