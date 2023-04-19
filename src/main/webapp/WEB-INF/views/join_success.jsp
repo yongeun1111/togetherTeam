@@ -16,31 +16,18 @@
 <script src="${contextPath}/resource/js/pages/main.js"></script>
 
 <!-- #container -->
-<div class="login-wrap">
-    <div class="center">
+<div class="join-wrap">
+    <div class="join-suc-wrap center">
 
-      <h2>로그인</h2>
-      <form class="login-form" action="/login" method="post">
-          <p class="mb10"><input type="text" name="mem_id" placeholder="아이디"></p>
-          <p><input type="password" name="mem_pwd" placeholder="비밀번호"></p>
-          <div>
-            <ul class="mt20">
-              <li>
-                  <a href="/join">회원가입</a>
-              </li>
-              <li>
-                  <a href="/search_idpw">아이디 찾기</a>
-              </li>
-              <li>
-                  <a href="/search_idpw">비밀번호 찾기</a>
-              </li>
-            </ul>
-          </div>
+        <h2>회원가입 완료</h2>
 
-          <div class="login-btn mt30">
-            <input type="submit" value="로그인">
-          </div>
-      </form>
+        <p class="check-img"><img src="${contextPath}/resource/images/check_icon.png" alt=""></p>
+
+        <div class="suc-info mt30">
+            <p>ghy0302님 환영합니다!</p>
+            <p>LOGO 회원가입이 정상적으로 처리되었습니다.</p>
+            <div class="btn mt30"><a href="/">메인으로 이동</a></div>
+        </div>
 
     </div>
 </div>

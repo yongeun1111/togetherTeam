@@ -84,9 +84,9 @@ public class MainController  {
 	    }
     }
 	
-	@GetMapping("/search_id") // search_id 아이디찾기 페이지로 이동
+	@GetMapping("/search_idpw") // search_idpw 아이디찾기 페이지로 이동
     public String search_idGet(){
-        return "search_id";
+        return "search_idpw";
     }
 	
 	@PostMapping("/search_id") // search_id 아이디찾기 페이지로 이동
@@ -99,11 +99,6 @@ public class MainController  {
 	        model.addAttribute("search_id", result); // 조회결과 정보를 모델에 저장
 	        return "login"; // 로그인페이지로 이동
 	    }
-    }
-	
-	@GetMapping("/search_pwd") // search_pwd 비밀번호찾기 페이지로 이동
-    public String search_pwdGet(){
-        return "search_pwd";
     }
 
 	@PostMapping("/search_pwd") // search_pwd 비밀번호찾기 페이지로 이동

@@ -24,7 +24,10 @@ subpage
 
 /* 로그인 -------------------------------------------------------------- */
 .login-wrap {
-    padding-top: 150px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    margin-top: -10%;
 }
 
 h2 {
@@ -131,8 +134,6 @@ h2 {
 
 }
 
-
-
 /* 회원가입 -------------------------------------------------------------- */
 .join-form {
     margin: 0 auto;
@@ -197,6 +198,45 @@ h2 {
 .footer_fix {
     position: absolute;
     bottom: 0;
+}
+
+/* 회원가입 완료 ------------------------------------------ */
+.join-suc-wrap {
+    padding: 80px;
+    width: 900px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fbfbfb;
+}
+
+.join-suc-wrap .check-img {
+    display: inline-block;
+    text-align: center;
+}
+
+.join-suc-wrap .suc-info p:nth-child(1){
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.join-suc-wrap .suc-info p:nth-child(2){
+    font-size: 1.1rem;
+    line-height: 2.3rem;
+    color: #666;
+}
+
+.join-suc-wrap .suc-info .btn a {
+    display: inline-block;
+    width: 260px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 60px;
+    background-color: #1f79df;
+
 }
 
 
