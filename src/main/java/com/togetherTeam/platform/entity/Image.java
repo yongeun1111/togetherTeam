@@ -12,6 +12,6 @@ public class Image {
 	private LocalDateTime img_date; // 이미지 등록일
 	private String upload_path; // 이미지 경로
 	private String uuid; // 이미지 이름
-	private String file_name; // 파일경로
+	private String file_name; // 이미지 원본 이름
 	
 }

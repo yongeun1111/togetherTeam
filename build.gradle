@@ -38,10 +38,19 @@ dependencies {
     
     // DEVTOOLS (jsp auto-reload)
     implementation 'org.springframework.boot:spring-boot-devtools'
+    
     // Chat
     implementation 'org.webjars:stomp-websocket:2.3.3-1'
 	implementation 'org.webjars:sockjs-client:1.1.2'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket:2.7.5'
+	
+    implementation 'commons-io:commons-io:2.11.0'    /* Apache commons-io */
+	implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4' /* Apache Commons FileUpload */
+	
+	// JSON 사용 라이브러리 추가
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.12.1'
+	
 }
 
 tasks.named('test') {

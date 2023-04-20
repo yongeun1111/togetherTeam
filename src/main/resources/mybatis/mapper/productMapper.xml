@@ -51,8 +51,13 @@
 
 	<!-- registration.jsp 상품 등록하기 -->
 	<insert id="productRegister" parameterType="com.togetherTeam.platform.entity.Product">
+		<selectKey resultType="int" keyProperty="pro_no" order="AFTER">
+			select max(pro_no) from product
+		</selectKey>
+		
 		insert into product(seller_mem_no, pro_title, pro_category, pro_name, pro_theme, buy_date, pro_buy_price, pro_sale_price, pro_content)
 		values (#{seller_mem_no}, #{pro_title}, #{pro_category}, #{pro_name}, #{pro_theme}, #{buy_date}, #{pro_buy_price}, #{pro_sale_price}, #{pro_content})
+	
 	</insert>
 	
 	<select id="searchProduct" parameterType="String" resultType="com.togetherTeam.platform.entity.Product">
@@ -62,6 +67,12 @@
 		    OR pro_name like '%'||#{query}||'%'
 		    OR pro_category like '%'||#{query}||'%'
 	</select>
+	
+	<!-- 이미지 정보 등록하기 -->
+	<insert id="imageEnroll" parameterType="com.togetherTeam.platform.entity.Image">
+		insert into image(pro_no, upload_path, uuid, file_name)
+		values (#{pro_no}, #{upload_path}, #{uuid}, #{file_name})
+	</insert>
 
 
 	

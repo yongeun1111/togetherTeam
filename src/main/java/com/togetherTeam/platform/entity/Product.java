@@ -1,5 +1,7 @@
 package com.togetherTeam.platform.entity;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -20,6 +22,8 @@ public class Product {
     private int buyer; // 구매자회원번호
     private String deal_date; // 구매완료일
     private int pro_like; // 찜카운트
+    
+    private List<Image> imageList; // 이미지 정보
 	
 	
 }

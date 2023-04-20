@@ -12,8 +12,38 @@
 <link rel="stylesheet" href="${contextPath}/resource/css/pages/main_media.css">
 <script src="${contextPath}/resource/js/jquery/gsap.min.js"></script>
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
-<script src="${contextPath}/resource/js/pages/main.js"></script>
+<script src="${contextPath}/resource/js/pages/sub.js"></script>
 
+<style type="text/css">
+	#result_card img{
+		max-width: 100%;
+	    height: auto;
+	    display: block;
+	    padding: 5px;
+	    margin-top: 10px;
+	    margin: auto;	
+	}
+	#result_card {
+		position: relative;
+	}
+	.imgDeleteBtn{
+	    position: absolute;
+	    top: 0;
+	    right: 5%;
+	    background-color: #ef7d7d;
+	    color: wheat;
+	    font-weight: 900;
+	    width: 30px;
+	    height: 30px;
+	    border-radius: 50%;
+	    line-height: 26px;
+	    text-align: center;
+	    border: none;
+	    display: block;
+	    cursor: pointer;	
+	}
+	
+</style>
 
 <!-- #container -->
 <div class="main">
@@ -22,15 +52,23 @@
 	<form role="form" method="post" autocomplete="off">
 
 		<div class="inputArea">
-			<label>상품태마</label>
+			<label>상품테마</label>
 			<select class="category1" name="pro_theme">
 				<option value="all">전체</option>
 			</select> 
 		</div>
 
 		<div class="inputArea">
-			<label for="gdsName">이미지등록</label> <input type="text" id="gdsName"
-				name="gdsName" />
+			<label for="gdsName">이미지등록</label>
+			<input type="file" id="fileItem" name="uploadFile" multiple="multiple" style="height: 30px;"/>
+			<div id="uploadResult">
+			<!-- 
+				<div id = "result_card">
+					<div class="imgDeleteBtn">x</div>
+					<img src="/display?file_name=fried.jpg">
+				</div>
+			 -->
+			</div>
 		</div>
 		
 		<div class="inputArea">
