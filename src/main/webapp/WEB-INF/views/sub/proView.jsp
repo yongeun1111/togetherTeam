@@ -80,9 +80,9 @@
                 </tr>
             </table>
 
-            <div class="btn mt70">
-                <input type="submit" value="찜하기">
-                <input type="button" id="cancelBtn" value="판매자에게 문의" onClick="location.href='#'">
+            <div class="btn">
+                <input type="submit" value="찜하기" class="like-btn">
+                <input type="button" id="cancelBtn" class="chat-btn" value="판매자에게 문의" onClick="location.href='#'">
               </div>
 
         </div>
@@ -93,15 +93,29 @@
                 <p>상세정보</p>
             </div>
            
-            <!-- 상품 상세 정보 불러오기 -->
-            <div class="">
-                <p>기본 사양 들어가는 곳</p>
-            </div>
+            <div class="info-con">
+                <!-- 상품 상세 정보 불러오기 -->
+                <div class="detail">
+                    <p class="de-tit">기본 사양</p>
+                    <div class="de-table">
+                        <table>
+                            <tr>
+                                <td col="col" width="15%">제목</td>
+                                <td>내용</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
 
-            <!-- 판매자 설명 -->
-            <div class="seller-txt">
-                <p>판매자 설명이 들어가는 곳입니다. 판매자 설명이 들어가는 곳입니다. </p>
+                <!-- 판매자 설명 -->
+                <div class="seller-info">
+                    <p class="de-tit">판매자 설명</p>
+                    <div class="sell-wrap">
+                        <p class="seller-txt">판매자 설명이 들어가는 곳입니다. 판매자 설명이 들어가는 곳입니다. </p>
+                    </div>
+                </div>
             </div>
+            
         </div>
 
     </div>

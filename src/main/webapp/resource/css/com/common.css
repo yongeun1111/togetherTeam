@@ -332,7 +332,6 @@ footer .info_contact .info-wrap p {
     position: relative;
     width: 55%;
     height: 580px;
-    border:1px solid #FF0000;
     box-sizing: border-box;
 }
 
@@ -360,37 +359,42 @@ footer .info_contact .info-wrap p {
     box-sizing: border-box;
 }
 
-.represent ul.represent-list li a {
-
-}
-
 .represent ul.represent-list li img {
     width:100%;
 }
 
 
 /* 우측 상품 정보 */
+.view-wrap {
+    position: relative;
+    padding-top: 70px;
+}
+
 .view-wrap .view-info {
-    float: right;
+    position: absolute;
+    right: 0;
+    height: 580px;
     width: 45%;
     padding-left: 100px;
-    border: 1px solid green;
     box-sizing: border-box;
 }
 
 .view-wrap .view-info .category {
+    margin-bottom: 10px;
     font-size: 1.3rem;
     font-weight: 500;
     color: #999;
 }
 
 .view-wrap .view-info .pro-name {
+    margin-bottom: 20px;
     font-size: 2rem;
     font-weight: 800;
     color: #222;
 }
 
 .view-wrap .view-info .tag {
+    margin-bottom: 20px;
     display: inline-block;
     padding: 5px 15px;
     border-radius: 3px;
@@ -404,6 +408,11 @@ footer .info_contact .info-wrap p {
 .view-wrap .view-info .txt {
     font-size: 1.0rem;
     color: #666;
+    word-break: keep-all;
+}
+
+.view-wrap .view-info .pro-price {
+    margin: 20px 0;
 }
 
 .view-wrap .view-info .pro-price span {
@@ -436,7 +445,13 @@ footer .info_contact .info-wrap p {
     font-family: 'Pretendard';
 }
 
-.view-info table tr td {}
+.view-info table tr:first-child td {
+    padding-top: 20px;
+}
+
+.view-info table tr:last-child td {
+    padding-bottom: 20px;
+}
 
 .view-info table tr td {
     padding: 13px 0 13px 20px;
@@ -448,21 +463,107 @@ footer .info_contact .info-wrap p {
     font-weight: 500;
 }
 
-
-
-
-
+.info-wrap .info-con {
+    padding: 50px 100px;
+    border-bottom: 1px solid #222;
+}
 
 .view-wrap .info-wrap .info-tit {
     border-bottom: 2px solid #222;
 }
 
 .view-wrap .info-wrap .info-tit p {
+    padding-top: 80px;
+    margin-bottom: 10px;
     font-size: 1.3rem;
-    font-weight: 600;
+    font-weight: 700;
     color: #222;
 }
 
+.view-info .btn {
+    position: absolute;
+    bottom: 0;
+    right: 0px;
+    display: flex;
+    padding: 0;
+}
+
+.view-info .btn input {
+    width: 276px;
+    height: 60px;
+    border-radius: 30px;
+    font-family: 'Pretendard';
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0;
+}
+
+.view-info .btn .like-btn {
+    border: 1px solid #1f79df;
+    background: none;
+    color: #1f79df;
+    box-sizing: border-box;
+}
+
+.view-info .btn .like-btn:hover {
+    background-color: #1f79df;
+    color: #fff;
+    transition: all 0.2s;
+}
+
+.view-info .btn .chat-btn {
+    margin-left: 10px;
+    background-color: #1f79df;
+    color: #fff;
+}
+
+.view-info .btn .chat-btn:hover {
+    background-color: #0059bf;
+    color: #fff;
+    transition: all 0.2s;
+}
+
+.info-wrap .seller-info {
+    margin-top: 70px;
+
+}
+
+.info-wrap .de-tit {
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+    font-weight: 666;
+}
+
+.info-wrap .de-table table {
+    width: 100%;
+    font-family: 'Pretendard';
+    border: 1px solid #ddd;
+}
+
+.info-wrap .de-table td {
+    padding: 15px 0 15px 20px; 
+}
+
+.info-wrap .de-table td:first-child {
+    background-color: #f8f8f8;
+    border-right: 1px solid #ddd;
+    color: #222;
+    font-weight: 600;
+}
+
+.info-wrap .de-table td:last-child {
+    color: #666;
+}
+
+.info-wrap .seller-info .sell-wrap {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.info-wrap .seller-txt {
+    margin: 30px 0 30px 50px;
+    word-break: keep-all;
+}
 
 
 
