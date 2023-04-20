@@ -432,6 +432,23 @@ footer .info_contact .info-wrap p {
     border-bottom: 1px solid #ddd;
 }
 
+.view-info table {
+    font-family: 'Pretendard';
+}
+
+.view-info table tr td {}
+
+.view-info table tr td {
+    padding: 13px 0 13px 20px;
+    font-size: 1.0rem;
+    color: #999;
+}
+
+.view-info table tr td:first-child {
+    font-weight: 500;
+}
+
+
 
 
 
