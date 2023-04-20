@@ -35,6 +35,10 @@ $(document).ready(function(){
           $('#check').html('비밀번호가 일치하지 않습니다.');
           $('#check').css('color', 'red');
         }
+
+        if (pw == "" && pw2 == ""){
+        	$('#check').html("")
+        }
       }
     });
   }
