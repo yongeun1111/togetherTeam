@@ -91,6 +91,11 @@ common - header / footer
     color: #1f79df;
 }
 
+.sub-color {
+    color: #ff9000;
+    background-color: #ff9000;
+}
+
 .tit-color {
     color: #222;
 }
@@ -297,6 +302,7 @@ footer .info_contact .info-wrap p {
 
 .pro-list .tab-content a .pro-img {
     overflow: hidden;
+    border: 1px solid #ddd;
 }
 
 .pro-list .tab-content a .pro-img img{
@@ -321,34 +327,129 @@ footer .info_contact .info-wrap p {
     color: #1f79df;
 }
 
+.represent {
+    float: left;
+    position: relative;
+    width: 55%;
+    height: 580px;
+    border:1px solid #FF0000;
+    box-sizing: border-box;
+}
 
+.represent ul.represent-list {
+    height: 580px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    list-style: outside none none;
+}
 
-
-
-
-
-
-
-/* 상품 리스트 */
-.pro-list .list-img img {
+.represent ul.represent-list li {
+    width: 130px;
+    height: 130px;
     border: 1px solid #ddd;
-}
-
-.pro-list .list-txt {
 
 }
 
-.pro-list .list-txt .name {
+#imgRepresent {
+    height: 580px;
+    position: absolute;
+    right: 0;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.represent ul.represent-list li a {
+
+}
+
+.represent ul.represent-list li img {
+    width:100%;
+}
+
+
+/* 우측 상품 정보 */
+.view-wrap .view-info {
+    float: right;
+    width: 45%;
+    padding-left: 100px;
+    border: 1px solid green;
+    box-sizing: border-box;
+}
+
+.view-wrap .view-info .category {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #999;
+}
+
+.view-wrap .view-info .pro-name {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #222;
+}
+
+.view-wrap .view-info .tag {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 3px;
+    background-color: #ff9000;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
     
 }
 
-.pro-list .list-txt .price {
-    
+.view-wrap .view-info .txt {
+    font-size: 1.0rem;
+    color: #666;
 }
 
-.pro-list .list-txt .price .won {
-    
+.view-wrap .view-info .pro-price span {
+    font-size: 1.7rem;
+    color: #222;
 }
+
+.view-wrap .view-info .pro-price .tit {
+    margin-right: 70px;
+    font-weight: 600;
+}
+
+.view-wrap .view-info .pro-price .price {
+    font-weight: 900;
+}
+
+.view-wrap .view-info .pro-price .won {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #666;
+}
+
+.view-info table {
+    width: 100%;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+
+
+
+
+.view-wrap .info-wrap .info-tit {
+    border-bottom: 2px solid #222;
+}
+
+.view-wrap .info-wrap .info-tit p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #222;
+}
+
+
+
+
+
 
 
 

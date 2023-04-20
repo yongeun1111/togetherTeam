@@ -19,11 +19,19 @@ popup
 tab
 ========================================================*/
 $(function(){
-    $('.tabcontent > div').hide();
-    $('.tabnav a').click(function () {
-      $('.tabcontent > div').hide().filter(this.hash).fadeIn();
-      $('.tabnav a').removeClass('active');
-      $(this).addClass('active');
-      return false;
-    }).filter(':eq(0)').click();
+  $('.tabcontent > div').hide();
+  $('.tabnav a').click(function () {
+    $('.tabcontent > div').hide().filter(this.hash).fadeIn();
+    $('.tabnav a').removeClass('active');
+    $(this).addClass('active');
+    return false;
+  }).filter(':eq(0)').click();
 });
+
+/*========================================================
+상품 상세 썸네일
+========================================================*/
+function changeRepresentImage(num) {
+  var link = jQuery(".imgServe").eq(num).attr("src");
+  jQuery("#imgRepresent").attr("src", link)
+}

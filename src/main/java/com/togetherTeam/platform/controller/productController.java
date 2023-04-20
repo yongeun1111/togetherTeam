@@ -43,6 +43,13 @@ public class productController {
 		
         return "sub/proList";
     }
+
+	@GetMapping("/proView") // 중고 상품 페이지(proList.jsp)로 이동
+    public String proView(Model model){
+		
+        return "sub/proView";
+    }
+	
 	
     @GetMapping("/registration") // 상품 등록하기 페이지(registration.jsp)로 이동
     public String registration(HttpSession session, Model model){
