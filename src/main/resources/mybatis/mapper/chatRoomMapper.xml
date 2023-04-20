@@ -11,39 +11,48 @@
   			CHAT_ROOM_NO,
   			SELLER_MEM_NO,
   			BUYER_MEM_NO,
-  			ROOM_DATE
+  			ROOM_DATE,
   			PRO_NO,
   			FILE_NAME,
   			SELLER_MEM_ID,
   			BUYER_MEM_ID
   		) VALUES (
-  			#{CHAT_ROOM_NO},
-  			#{SELLER_MEM_NO},
-  			#{BUYER_MEM_NO},
-  			#{ROOM_DATE},
-  			#{PRO_NO},
-  			#{FILE_NAME}
-  			#{SELLER_MEM_ID}
-  			#{BUYER_MEM_ID}
+  			#{chat_room_no},
+  			#{seller_mem_no},
+  			#{buyer_mem_no},
+  			#{room_date},
+  			#{pro_no},
+  			#{file_name},
+  			#{seller_mem_id},
+  			#{buyer_mem_id}
   		)	
 	</insert>
 	
 	<update id="updateFileName" parameterType="com.togetherTeam.platform.entity.ChatRoom">
 		UPDATE CHAT_ROOM
-		   SET FILE_NAME = #{FILE_NAME}
-		 WHERE CHAT_ROOM_NO = #{CHAT_ROOM_NO}
+		   SET FILE_NAME = #{file_name}
+		 WHERE CHAT_ROOM_NO = #{chat_room_no}
 	</update>
 	
-	<select id="countByChatId" parameterType="com.togetherTeam.platform.entity.ChatRoom" resultType="int">
+	<select id="countBychat_room_no" parameterType="com.togetherTeam.platform.entity.ChatRoom" resultType="int">
     	SELECT COUNT(*)
-    	FROM CHAT_ROOM
-    	WHERE CHAT_ROOM_NO = #{CHAT_ROOM_NO} 
-    	  AND BUYER_MEM_NO = #{BUYER_MEM_NO}
+    	  FROM CHAT_ROOM
+    	 WHERE PRO_NO = #{pro_no} 
+    	   AND BUYER_MEM_NO = #{buyer_mem_no}
     </select>
 	
-	<select id='test' resultType="com.togetherTeam.platform.entity.Product">
-		SELECT *
-		  FROM PRODUCT
-		 WHERE PRO_NO = 3
-	</select>
+	<select id="get_no" resultType="int">
+    	SELECT CHAT_ROOM_NO
+    	  FROM CHAT_ROOM
+    	 WHERE PRO_NO = #{pro_no} 
+    	   AND BUYER_MEM_NO = #{buyer_mem_no}
+    </select>
+    
+    <select id="findBychat_room_no" parameterType="com.togetherTeam.platform.entity.ChatRoom" resultType="com.togetherTeam.platform.entity.ChatRoom">
+    	SELECT *
+    	  FROM CHAT_ROOM
+    	 WHERE PRO_NO = #{pro_no} 
+    	   AND BUYER_MEM_NO = #{buyer_mem_no}
+    </select>
+    
 </mapper>

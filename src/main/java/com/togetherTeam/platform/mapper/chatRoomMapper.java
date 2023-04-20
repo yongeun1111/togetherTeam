@@ -3,6 +3,7 @@ package com.togetherTeam.platform.mapper;
 import java.io.IOException;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.togetherTeam.platform.entity.ChatRoom;
 
@@ -10,9 +11,8 @@ import com.togetherTeam.platform.entity.ChatRoom;
 public interface chatRoomMapper {
 
 	public void addChatRoom(ChatRoom chatRoom);
-	public void updateFileName(int chat_room_no, String file_name);
-	public int countBychat_room_no(int chat_room_no, int buyer_mem_no);
-	public ChatRoom findBychat_room_no(int pro_no, int buyer_mem_no);
-	public int get_no(int pro_no, int buyer_mem_no);
-	public String test();
+	public void updateFileName(@Param("chat_room_no") int chat_room_no, @Param("file_name") String file_name);
+	public int countBychat_room_no(@Param("pro_no") int pro_no, @Param("buyer_mem_no") int buyer_mem_no);
+	public ChatRoom findBychat_room_no(@Param("pro_no") int pro_no, @Param("buyer_mem_no") int buyer_mem_no);
+	public int get_no(@Param("pro_no") int pro_no, @Param("buyer_mem_no") int buyer_mem_no);
 }

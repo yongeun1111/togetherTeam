@@ -34,15 +34,11 @@ public class ChatController {
 	private ChatRoomService chatRoomService;
 	
 	
-	@GetMapping("/test")
-	public String test(Model model) {
-		
-		return "test";		
-	}
 	
 	// 채팅
 	@GetMapping("/chatMessage")
 	public String getWebSocketWithSockJs(Model model, HttpSession session, @ModelAttribute("chatRoom") ChatRoom chatRoom) throws IOException {
+		
 		
 		// 채팅 화면에 전달할 parameter 설정
 		Member member = (Member) session.getAttribute("login");
@@ -52,7 +48,7 @@ public class ChatController {
 		chatRoom.setBuyer_mem_id(buyer_mem_id);
 		
 		// 채팅방이 이미 만들어져있는지 확인하고 이전 기록 불러오기
-		if (chatRoomService.countBychat_room_no(chatRoom.getChat_room_no(), chatRoom.getBuyer_mem_no())>0) {
+		if (chatRoomService.countBychat_room_no(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no())>0) {
 			// 채팅방 정보 확인
 			ChatRoom chatRoomTemp = chatRoomService.findBychat_room_no(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no());
 			// 채팅 기록 불러오기
@@ -68,7 +64,7 @@ public class ChatController {
 		// chatRoom 객체를 view로 전달
 		model.addAttribute("chatRoomInfo", chatRoom);
 		
-		return "sub/testChat";
+		return "testChat";
 	}
 	
 	@MessageMapping("/boradcast")

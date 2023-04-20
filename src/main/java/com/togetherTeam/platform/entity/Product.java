@@ -25,5 +25,6 @@ public class Product {
     
     private List<Image> imageList; // 이미지 정보
 	
-	
+ // not in DB, 채팅 테스트 용
+    private String mem_id;
 }

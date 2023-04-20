@@ -74,6 +74,12 @@
 		values (#{pro_no}, #{upload_path}, #{uuid}, #{file_name})
 	</insert>
 
-
+	<!-- 채팅 테스트 -->
+	<select id='test' resultType="com.togetherTeam.platform.entity.Product">
+		SELECT a.*, b.mem_id
+  		  FROM product a INNER JOIN member b
+    	    ON a.seller_mem_no = b.mem_no
+ 		 WHERE a.pro_no = 3
+	</select>
 	
 </mapper>

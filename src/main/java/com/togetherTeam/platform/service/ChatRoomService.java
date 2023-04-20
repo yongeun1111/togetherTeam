@@ -25,7 +25,7 @@ public class ChatRoomService implements chatRoomMapper {
 	@Autowired
 	chatRoomMapper chatRoomMapper;
 	
-	String fileUploadPath = "C:\\chat";
+	String fileUploadPath = "C:\\chat/";
 	
 	@Override
 	public void addChatRoom(ChatRoom chatRoom) {
@@ -127,9 +127,9 @@ public class ChatRoomService implements chatRoomMapper {
 	
 	
 	@Override
-	public int countBychat_room_no(int chat_room_no, int buyer_mem_no) {
+	public int countBychat_room_no(int pro_no, int buyer_mem_no) {
 		
-		return chatRoomMapper.countBychat_room_no(chat_room_no, buyer_mem_no);
+		return chatRoomMapper.countBychat_room_no(pro_no, buyer_mem_no);
 	}
 	
 	@Override
@@ -144,9 +144,4 @@ public class ChatRoomService implements chatRoomMapper {
 		return chatRoomMapper.get_no(pro_no, buyer_mem_no);
 	}
 
-	@Override
-	public String test() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

@@ -20,4 +20,6 @@ public interface productMapper {
 	public void productRegister(Product vo); // insert SQL
 	public void imageEnroll(Image vo); // 이미지 등록 insert
 
+	public Product test(); // 채팅 테스트
+	
 }

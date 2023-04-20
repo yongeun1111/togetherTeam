@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.togetherTeam.platform.entity.ChatRoom;
 import com.togetherTeam.platform.entity.Image;
 import com.togetherTeam.platform.entity.Member;
 import com.togetherTeam.platform.entity.Product;
@@ -34,6 +35,7 @@ public class productController {
 
 	@Autowired
 	private productMapper mapper;
+	
 	
 	@GetMapping("/proList") // 중고 상품 페이지(proList.jsp)로 이동
     public String proList(Model model){
@@ -227,6 +229,15 @@ public class productController {
     
     	return result;
     }
+    
+    @GetMapping("/test")
+	public String test(Model model) {
+		ChatRoom chatRoom = new ChatRoom();
+		model.addAttribute("chatRoom", chatRoom);
+		Product vo = mapper.test();
+		model.addAttribute("vo", vo);
+		return "test";		
+	}
     
     @PostMapping("/testChat") // 채팅 테스트
     public String testChat(Model model, Product vo) {
