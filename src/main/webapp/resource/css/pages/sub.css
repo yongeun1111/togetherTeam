@@ -31,7 +31,7 @@ subpage
     width: 100%;
     position: absolute;
     top: 50%;
-    margin-top: -10%;
+    margin-top: -12%;
 }
 
 .login-form {
@@ -245,6 +245,7 @@ subpage
 /* 마이페이지 */
 .mypage-wrap .tab-wrap {
     margin-bottom: 80px;
+    padding-top: 30px;
 }
 
 .mypage-wrap .tab-menu {
@@ -281,7 +282,7 @@ subpage
 .mypage-wrap .info-box {
     background-color: #f5f5f5;
     padding: 30px 60px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .mypage-wrap .info-box ul li {
@@ -346,6 +347,7 @@ subpage
 }
 
 .meminfo-wrap .btn {
+    width: 100%;
     text-align: center;
 }
 
