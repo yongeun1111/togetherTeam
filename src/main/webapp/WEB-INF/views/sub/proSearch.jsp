@@ -16,7 +16,7 @@
 
 
 <!-- #container -->
-<div class="main">
+<div class="con-inner">
     <input type="text" id="searchProduct" placeholder="검색검색"/>
    	<button id="search">검색</button>             
       

@@ -2,8 +2,16 @@
 common media screen tab and mobile
 ==========================================================================*/
 
-@media screen and (max-width:1580px) {
+@media screen and (max-width:1460px) {
 	/* header*/
+	.con-inner {
+		margin: 0 auto;
+		width: 1400px;
+		min-width: 1400px;
+		border: 1px solid red;
+	}
+
+	
 
 	/* footer*/
 	.footer .f_inner {width:100%;padding: 0 38px;}
@@ -14,4 +22,11 @@ common media screen tab and mobile
 
 
 }
+
+@media (min-width: 1460px) {
+	.container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1400px;
+}
+}
+
 

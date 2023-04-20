@@ -16,7 +16,7 @@
 
 
 <!-- #container -->
-<div class="main">
+<div class="con-inner">
 
   <!-- main visual -->
   <div class="mv-wrap">

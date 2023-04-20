@@ -21,7 +21,7 @@
 
         <div class="join-suc-inner">
             <h2>회원가입 완료</h2>
-            <p class="check-img"><img src="${contextPath}/resource/images/check_icon.png" alt=""></p>
+            <p class="check-img"><img src="${contextPath}/resource/images/check_icon.png" alt="체크 아이콘"></p>
             <div class="suc-info mt30">
                 <p>${join}님 환영합니다!</p>
                 <p>LOGO 회원가입이 정상적으로 처리되었습니다.</p>

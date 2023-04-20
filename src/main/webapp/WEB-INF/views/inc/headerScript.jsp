@@ -16,6 +16,12 @@
 			<!--icon-->			
 			<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 
+			<!-- 부트스트랩 -->
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+			<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 			<!-- style normal -->
 			<!-- <link rel="stylesheet" href="${contextPath}/resource/css/fonts/font.css"> -->
 			<link rel="stylesheet" href="${contextPath}/resource/css/com/style.css">
@@ -24,7 +30,5 @@
 			<link rel="stylesheet" href="${contextPath}/resource/css/com/style_media.css">
 			<link rel="stylesheet" href="${contextPath}/resource/css/com/common_media.css">
 
-
-			<script src="${contextPath}/resource/js/jquery/jquery-3.6.0.min.js"></script>
 			<script src="${contextPath}/resource/js/com/common.js"></script>
 		</head>

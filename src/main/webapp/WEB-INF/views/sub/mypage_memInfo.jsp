@@ -16,7 +16,7 @@
 <script src="${contextPath}/resource/js/pages/sub.js"></script>
 
 <!-- #container -->
-<div class="container mypage-wrap">
+<div class="con-inner mypage-wrap">
 
   <div class="sub-inner">
     <h2 class="center">마이페이지</h2>
