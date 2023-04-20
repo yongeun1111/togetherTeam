@@ -41,4 +41,9 @@
     	  AND BUYER_MEM_NO = #{BUYER_MEM_NO}
     </select>
 	
+	<select id='test' resultType="com.togetherTeam.platform.entity.Product">
+		SELECT *
+		  FROM PRODUCT
+		 WHERE PRO_NO = 3
+	</select>
 </mapper>

@@ -1,20 +1,27 @@
 package com.togetherTeam.platform.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.togetherTeam.platform.entity.ChatRoom;
 import com.togetherTeam.platform.entity.Member;
+import com.togetherTeam.platform.mapper.chatRoomMapper;
 import com.togetherTeam.platform.service.ChatRoomService;
+
+import ch.qos.logback.core.util.TimeUtil;
 
 
 @Controller
@@ -26,8 +33,15 @@ public class ChatController {
 	@Autowired
 	private ChatRoomService chatRoomService;
 	
+	
+	@GetMapping("/test")
+	public String test(Model model) {
+		
+		return "test";		
+	}
+	
 	// 채팅
-	@RequestMapping("/chatMessage")
+	@GetMapping("/chatMessage")
 	public String getWebSocketWithSockJs(Model model, HttpSession session, @ModelAttribute("chatRoom") ChatRoom chatRoom) throws IOException {
 		
 		// 채팅 화면에 전달할 parameter 설정
@@ -54,6 +68,25 @@ public class ChatController {
 		// chatRoom 객체를 view로 전달
 		model.addAttribute("chatRoomInfo", chatRoom);
 		
-		return "chatBroadcastProduct";
+		return "sub/testChat";
+	}
+	
+	@MessageMapping("/boradcast")
+	public void send(ChatRoom chatRoom) throws IOException {
+		
+		chatRoom.setSendTime(LocalDateTime.now().toString());
+		
+		chatRoomService.appendMessage(chatRoom);
+		
+		int chat_room_no = chatRoom.getChat_room_no();
+		String url = "/user/" + chat_room_no + "/queue/messages";
+		
+		ChatRoom temp_chatRoom = new ChatRoom();
+		temp_chatRoom.setSender_no(chatRoom.getSender_no());
+		temp_chatRoom.setSender_id(chatRoom.getSender_id());
+		temp_chatRoom.setContent(chatRoom.getContent());
+		temp_chatRoom.setSendTime(chatRoom.getSendTime());
+		
+		simpMessage.convertAndSend(url, temp_chatRoom);
 	}
 }

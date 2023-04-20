@@ -41,7 +41,7 @@ public class WebsocketBrokerConfig implements WebSocketMessageBrokerConfigurer {
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
 		
 		registry.addEndpoint("/broadcast")
-		.withSockJS()
-		.setHeartbeatTime(60_000);
+			.withSockJS()
+			.setHeartbeatTime(60_000);
 	}
 }
