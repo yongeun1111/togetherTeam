@@ -61,7 +61,7 @@ public class productController {
     @PostMapping("/registration") // 상품등록하기
     public String registration(Product vo) {
     	
-    	System.out.println("vo.getImageList()"+vo.getImageList());
+    	// System.out.println("vo.getImageList()"+vo.getImageList());
     	
     	// System.out.println(vo);
     	mapper.productRegister(vo);
@@ -79,7 +79,7 @@ public class productController {
     		
     		// 이미지에 물품 번호 등록
     		attach.setPro_no(vo.getPro_no());
-    		System.out.println(attach);
+    		// System.out.println(attach);
     		
     		mapper.imageEnroll(attach);
     		
@@ -96,8 +96,8 @@ public class productController {
     	// 이미지 파일인지 체크하기
     	for(MultipartFile multipartFile: uploadFile) {
     		
-    		System.out.println("파일이름 : " + multipartFile.getOriginalFilename());
-    		System.out.println("파일타입 : " + multipartFile.getContentType());
+    		// System.out.println("파일이름 : " + multipartFile.getOriginalFilename());
+    		// System.out.println("파일타입 : " + multipartFile.getContentType());
     		
     		
     		// 전달받은 uploadFile을 File 객체로 만들고 변수에 대입
@@ -110,7 +110,7 @@ public class productController {
     		try {
     			
     			type = Files.probeContentType(checkfile.toPath());
-    			System.out.println("MIME TYPE : " + type);
+    			// System.out.println("MIME TYPE : " + type);
     		
     		} catch(IOException e) {
     			e.printStackTrace();

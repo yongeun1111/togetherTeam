@@ -30,7 +30,7 @@ public class ImageController {
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getImage(String file_name){
 		
-		System.out.println("getImage() : " + file_name);
+		// System.out.println("getImage() : " + file_name);
 		
 		File file = new File("c:\\upload\\" + file_name);
 		
@@ -68,7 +68,7 @@ public class ImageController {
 			
 			// 원본 파일 삭제
 			String originFileName = file.getAbsolutePath().replace("s_","");
-			System.out.println("originFileName : "+ originFileName);
+			// System.out.println("originFileName : "+ originFileName);
 			
 			file = new File(originFileName);
 			file.delete();

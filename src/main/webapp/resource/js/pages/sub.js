@@ -46,7 +46,7 @@ $(document).ready(function(){
 		
 		for(let i = 0; i < fileList.length; i++){
 			formData.append("uploadFile", fileList[i]);
-			console.log(fileList[i])
+			// console.log(fileList[i])
 		}
 		
 		$.ajax({
@@ -57,7 +57,7 @@ $(document).ready(function(){
 	    	type : 'POST',
 	    	dataType : 'json',
 	    	success : function(result){
-				console.log(result);
+				// console.log(result);
 				showUploadImage(result);
 			},
 			error : function(result){
