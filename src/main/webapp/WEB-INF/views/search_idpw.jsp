@@ -65,7 +65,7 @@ $(document).ready(function(){
             	    $.each(result, function(idx, vo){
                         mem_emails.push(vo.mem_email); // 추출한 mem_email 값을 배열에 추가
                     });
-                    alert('등록되어진 주소로 이메일을 발송하였습니다.');
+                   // alert('등록되어진 주소로 이메일을 발송하였습니다.');
                 } else {
                     alert('아이디와 휴대폰번호, 이메일을 정확히 입력해주세요.');
                 }
@@ -112,15 +112,15 @@ $(document).ready(function(){
 
           <!-- tab02 비밀번호 찾기 -->
           <div id="tab02">
-            <form action="/search_pwd" method="post">
+            <form action="/change_pwd" method="get">
               <!-- 1. 아이디 -->
               <div class="field"><input id="pwd-search-id" type="text" name="mem_id" placeholder="아이디"></div>
               <!-- 2. 핸드폰 번호 -->
-              <div class="field mt10"><input id="pwd-search-phone" type="text" name="mem_phone" placeholder="휴대폰 번호(- 없이 입력)"></div>
+              <div class="field mt10"><input id="pwd-search-phone" type="text" placeholder="휴대폰 번호(- 없이 입력)"></div>
               <!-- 3. 이메일-->
-              <div class="field mt10"><input id="pwd-search-email" type="text" name="mem_email"  placeholder="이메일"></div>
+              <div class="field mt10"><input id="pwd-search-email" type="text" placeholder="이메일"></div>
               <!-- 비밀번호 찾기 버튼 -->
-              <div class="btn mt50"><input class="search-btn" data-search="비밀번호" type="reset" value="비밀번호 찾기"></div>
+              <div class="btn mt50"><input class="search-btn" data-search="비밀번호" type="submit" value="비밀번호 찾기"></div>
             </form>
 
           </div>

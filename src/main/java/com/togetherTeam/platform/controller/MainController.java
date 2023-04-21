@@ -58,6 +58,7 @@ public class MainController  {
         return "login";
     }
 	
+	
 	@PostMapping("/login") // login 성공시 home으로 이동
     public String loginPost(Member vo, Model model, HttpSession session){
 	    Member result = mapper.login(vo);
@@ -141,6 +142,24 @@ public class MainController  {
 	    return result;
 	}
 
+	
+	@GetMapping("/change_pwd") // test 로그인 및 회원가입 등을 하는 페이지
+    public String change_pwdGet(String mem_id, Model model){
+		model.addAttribute("mem_id", mem_id);
+        return "change_pw";
+    }
+	@PostMapping("/change_pwd") // test 로그인 및 회원가입 등을 하는 페이지
+	public String change_pwdPost(Member vo){
+		mapper.change_pwd(vo);
+		return "login";
+	}
+	@GetMapping("/a") // test 로그인 및 회원가입 등을 하는 페이지
+	public String a(){
+		
+		return "change_pw";
+	}
+	
+	
 	@RequestMapping("/logout") // 로그아웃
 	public String logoutPost(HttpSession session) {
 		
