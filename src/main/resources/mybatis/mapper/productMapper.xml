@@ -7,9 +7,28 @@
 <mapper namespace="com.togetherTeam.platform.mapper.productMapper">
 
 	<!-- proList.jsp 진입 전체 상품 불러오기  -->
-	<select id="getAllList" resultType="com.togetherTeam.platform.entity.Product">
-		SELECT *
-		  FROM product
+	<select id="getAllList" parameterType="com.togetherTeam.platform.entity.PageMakerList" resultType="com.togetherTeam.platform.entity.Product">
+	 	SELECT *
+		  FROM(SELECT PRO_NO,
+          	          SELLER_MEM_NO,
+                      PRO_TITLE,
+                 	  PRO_CATEGORY,
+               		  PRO_NAME,
+               		  PRO_THEME,
+               		  BUY_DATE,
+               		  PRO_BUY_PRICE,
+               		  PRO_SALE_PRICE,
+               		  PRO_CONTENT,
+               		  PRO_DATE,
+               		  PRO_SALE,
+               		  BUYER,
+               		  DEAL_DATE,
+               		  PRO_LIKE,
+               		  ROWNUM as RNUM
+                 FROM (SELECT *
+            			 FROM PRODUCT
+        			    ORDER BY PRO_NO DESC))
+   		 WHERE RNUM BETWEEN #{startPage}+1 and #{endPage}
 	</select>
 	
 	<!-- proList.jsp 진입 전체 상품 불러오기 (최신순)  -->
@@ -67,6 +86,11 @@
 		    OR pro_name like '%'||#{query}||'%'
 		    OR pro_category like '%'||#{query}||'%'
 	</select>
+	
+	<select id="totalCount" resultType="int">
+    	SELECT COUNT(*)
+    	  FROM product
+    </select> 
 	
 	<!-- 이미지 정보 등록하기 -->
 	<insert id="imageEnroll" parameterType="com.togetherTeam.platform.entity.Image">

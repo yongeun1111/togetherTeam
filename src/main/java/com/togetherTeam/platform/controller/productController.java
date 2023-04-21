@@ -25,8 +25,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.togetherTeam.platform.entity.ChatRoom;
+import com.togetherTeam.platform.entity.CriteriaList;
 import com.togetherTeam.platform.entity.Image;
 import com.togetherTeam.platform.entity.Member;
+import com.togetherTeam.platform.entity.PageMakerList;
 import com.togetherTeam.platform.entity.Product;
 import com.togetherTeam.platform.mapper.productMapper;
 
@@ -36,16 +38,19 @@ public class productController {
 	@Autowired
 	private productMapper mapper;
 	
-	
 	@GetMapping("/proList") // 중고 상품 페이지(proList.jsp)로 이동
-    public String proList(Model model){
-		
-		List<Product> list = mapper.getAllList();
+    public String proList(CriteriaList cri, Model model){
+		List<Product> list = mapper.getAllList(cri);
 		model.addAttribute("list", list);
+		
+		PageMakerList pageMakerList = new PageMakerList();
+		pageMakerList.setCri(cri);
+		pageMakerList.setTotalCount(mapper.totalCount());
+		model.addAttribute("pm", pageMakerList);
 		
         return "sub/proList";
     }
-
+	
 	@GetMapping("/proView") // 중고 상품 페이지(proList.jsp)로 이동
     public String proView(Model model){
 		

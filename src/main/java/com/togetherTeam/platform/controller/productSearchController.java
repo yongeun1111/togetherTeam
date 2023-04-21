@@ -18,17 +18,17 @@ public class productSearchController {
 	@Autowired
 	private productMapper mapper;
 	
-	@RequestMapping("/getCategory")
-	public List<Product> getCategory(String category){
-			
-		if (category.equals("ALL")) {
-			list = mapper.getAllList();
-		} else {
-			list = mapper.getCategoryList(category);
-		}
-		
-		return list;
-	}
+//	@RequestMapping("/getCategory")
+//	public List<Product> getCategory(String category){
+//			
+//		if (category.equals("ALL")) {
+//			list = mapper.getAllList();
+//		} else {
+//			list = mapper.getCategoryList(category);
+//		}
+//		
+//		return list;
+//	}
 	
 	@RequestMapping("/searchProduct")
 	public List<Product> searchProduct(String query){

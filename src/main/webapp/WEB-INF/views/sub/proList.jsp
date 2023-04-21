@@ -52,226 +52,40 @@
 			<!-- 01. ALL -->
 			<div id="tab01" class="pro-m tab-pane active">
 				<div class="row">
+					<c:forEach var="vo" items="${list}">
 					<div class="col-sm">
 						<a href="./proView">
 							<div class="pro-img">
 								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
 							</div>
 							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
+								<p class="name">${vo.pro_title}</p>
 								<p class="price">
-									15,000 <span class="won">원</span>
+									${vo.pro_sale_price}<span class="won">원</span>
 								</p>
 							</div>
 						</a>
 					</div>
-					<div class="col-sm">
-						<a href="./proView">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
-								<p class="price">
-									15,000 <span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
-					<div class="col-sm">
-						<a href="./proView">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
-								<p class="price">
-									15,000 <span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
-					<div class="col-sm">
-						<a href="./proView">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
-								<p class="price">
-									15,000 <span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
-					
-				</div>
-				<div class="row">
-					<div class="col-sm">
-						<a href="./proView">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
-								<p class="price">
-									15,000 <span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
-					<div class="col-sm">
-						<a href="./proView">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
-								<p class="price">
-									15,000 <span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
-					<div class="col-sm">
-						<a href="./proView">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
-								<p class="price">
-									15,000 <span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
-					<div class="col-sm">
-						<a href="./proView">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
-								<p class="price">
-									15,000 <span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
-					
-				</div>
-				<div class="row">
-					<div class="col-sm">
-						<a href="./proView">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
-								<p class="price">
-									15,000 <span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
-					<div class="col-sm">
-						<a href="./proView">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
-								<p class="price">
-									15,000 <span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
-					<div class="col-sm">
-						<a href="./proView">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
-								<p class="price">
-									15,000 <span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
-					<div class="col-sm">
-						<a href="./proView">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
-								<p class="price">
-									15,000 <span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
-					
-				</div>
-				<div class="row">
-					<div class="col-sm">
-						<a href="./proView">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
-								<p class="price">
-									15,000 <span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
-					<div class="col-sm">
-						<a href="./proView">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
-								<p class="price">
-									15,000 <span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
-					<div class="col-sm">
-						<a href="./proView">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
-								<p class="price">
-									15,000 <span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
-					<div class="col-sm">
-						<a href="./proView">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">상품 이름 영역</p>
-								<p class="price">
-									15,000 <span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
-					
-				</div>
-			</div>
+					</c:forEach>
+					<ul class="pagination justify-content-center"
+								style="margin: 20px 0">
+								<c:if test="${pm.prev}">
+									<li class="page-item"><a class="page-link"
+										href="${pm.startPage-1}">Previous</a></li>
+								</c:if>
+								<c:forEach var="pageNum" begin="${pm.startPage}"
+									end="${pm.endPage}">
+									<li class="page-item ${pm.cri.page==pageNum ? 'active':''}"><a
+										class="page-link" href="${pageNum}">${pageNum}</a></li>
+								</c:forEach>
+								<c:if test="${pm.next}">
+									<li class="page-item"><a class="page-link"
+										href="${pm.endPage+1}">Next</a></li>
+								</c:if>
+							</ul>
+							<form id="pageFrm" action="proList" method="get">
+								<input type="hidden" id="page" name="page" value="${pm.cri.page}">
+							</form>
 
 			<!-- 02. 에어프라이어 -->
 			<div id="tab02" class="container tab-pane fade"><br>
