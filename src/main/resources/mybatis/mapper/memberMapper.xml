@@ -55,6 +55,22 @@
 	 where mem_id = #{mem_id}
   </update>
 
+  <!-- 회원정보변경 sql -->
+  <update id="change_info" parameterType="com.togetherTeam.platform.entity.Member">
+    update member
+       set mem_pwd = NVL(#{mem_pwd}, mem_pwd)
+         , mem_phone = #{mem_phone}
+         , mem_email = #{mem_email}
+	 where mem_id = #{mem_id}
+  </update>
+  
+  <!-- 로그인정보수정 sql -->
+  <select id="update_login" parameterType="com.togetherTeam.platform.entity.Member" 
+  resultType="com.togetherTeam.platform.entity.Member">
+    select * from member
+	 where mem_id = #{mem_id}
+  </select>
+  
   <!-- 로그인 sql -->
   <select id="login" parameterType="com.togetherTeam.platform.entity.Member" 
   resultType="com.togetherTeam.platform.entity.Member">

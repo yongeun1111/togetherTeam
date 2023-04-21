@@ -10,10 +10,12 @@ import com.togetherTeam.platform.entity.Member;
 public interface memberMapper {
 
 	public Member login(Member vo);
+	public Member update_login(Member vo);
 	public List<Member> search_id(Member vo);
 	public List<Member> search_pwd(Member vo);
 	public int check_id(String id);
 	public void change_pwd(Member vo);
+	public void change_info(Member vo);
 	public int join(Member vo);
 	
 }

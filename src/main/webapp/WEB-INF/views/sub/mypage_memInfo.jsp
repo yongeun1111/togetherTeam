@@ -61,6 +61,8 @@ $(document).ready(function(){
 		  $('#submitBtn').on('click', function() {
 			    if (checkForm() == 1) {
 			    	event.preventDefault(); // 제출 버튼의 기본 동작인 페이지 새로고침을 막음
+			    } else if (checkForm() == 2) {
+			    	$('#pw').preventDefault();
 			    }
 			});
 	  
@@ -90,7 +92,8 @@ $(document).ready(function(){
 
     <div class="meminfo-wrap">
       <p class="mb20">※ 변경하시려는 정보를 입력해 주세요.</p>
-      <form action="#">
+      <form action="/change_info" method="post">
+        <input type="hidden" name="mem_id" value="${login.mem_id}">
         <table class="meminfo-table">
           <tr>
             <td col="col" width="13%">아이디</td>
@@ -103,14 +106,14 @@ $(document).ready(function(){
           <tr>
             <td>비밀번호</td>
             <td>
-              <input id="pw" type="password" name="mem_pwd" required placeholder="변경할 비밀번호를 입력해 주세요. ">
+              <input id="pw" type="password" name="mem_pwd" placeholder="변경할 비밀번호를 입력해 주세요. ">
               <p class="pw_txt">영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자</p>
             </td>
           </tr>
           <tr>
             <td>비밀번호 재입력</td>
             <td>
-            <input id="pw2" type="password" required placeholder="변경할 비밀번호를 다시 한번  입력해 주세요. "><br>
+            <input id="pw2" type="password" placeholder="변경할 비밀번호를 다시 한번  입력해 주세요. "><br>
             <span id="check"></span>
             </td>
           </tr>
