@@ -39,7 +39,7 @@
 		<div class="input input-wrap">
 			<table class="inputArea">
 				<tr>
-					<td width="15%"><label>상품테마</label></td>
+					<td width="15%"><label>상품 테마</label></td>
 					<td class="category1" name="pro_theme">
 						<select name="thema">
 							<option value="">상품의 테마를 선택해 주세요.</option>
@@ -85,14 +85,30 @@
 
 					</td>
 				</tr>
+
 				<tr>
-					<td><label for="gdsName">이미지등록</label></td>
+					<td><label for="gdsName">이미지 등록</label></td>
 					<td>
 						<div class="filebox"> 
 							
-							<input type="file" id="fileItem" name="uploadFile" multiple="multiple">
-							<label for="gdsName">이미지 등록</label> 
-							<input class="upload-name" value="파일선택">
+							<label>
+								<input class="file_real" type="file" accept="image/jpg, image/png, image/gif" />
+								<input class="file_fake" type="text" placeholder="*.jpg/png/gif Only" readonly tabindex="-1" />
+							  
+								<input type="button" class="button" value="파일 찾기" />
+							</label>
+
+							<script>
+								$('.file_real').on('change', function() {
+									var files = $(this)[0].files[0];
+									var fake = $('.file_fake');
+									
+									fake.val('');
+									if ( files !== undefined ) {
+										fake.val(files.name);
+									}
+								});
+							</script>
 						</div>
 						
 						<div id="uploadResult">
@@ -116,27 +132,55 @@
 					</td>
 				</tr>
 				<tr>
-					<td><label for="seller_mem_no">회원정보</label></td>
+					<td><label for="seller_mem_no">회원 정보</label></td>
 					<td><input type="text" readonly="readonly" value="${login.mem_no}" name="seller_mem_no" /></td>
 				</tr>
 				<tr>
-					<td><label for="buy_price">상품구매가격</label></td>
-					<td><input type="text" id="pro_buy_price" name="pro_buy_price" /></td>
+					<td><label for="buy_price">상품 구매 가격</label></td>
+					<td><input type="text" id="pro_buy_price" name="pro_buy_price" /> <span>원</span></td>
 				</tr>
 				<tr>
-					<td><label for="buy_date">사용기간</label></td>
-					<td><input type="text" id="buy_date" name="buy_date" /></td>
+					<td><label for="buy_date">사용 기간</label></td>
+					<td>
+						<!-- 사용 년 수 -->
+						<select name="years">
+							<option value="">사용 년도 선택</option>
+							<option value="1년 이하">1년 이하</option>
+							<option value="1년">1년</option>
+							<option value="2년">2년</option>
+							<option value="3년">3년</option>
+							<option value="4년">4년</option>
+							<option value="5년 이상">5년 이상</option>
+						</select>
+						<span class="mr20">년</span>
+						<!-- 사용 개월 수 -->
+						<select name="months">
+							<option value="1개월">1개월</option>
+							<option value="2개월">2개월</option>
+							<option value="3개월">3개월</option>
+							<option value="4개월">4개월</option>
+							<option value="5개월">5개월</option>
+							<option value="6개월">6개월</option>
+							<option value="7개월">7개월</option>
+							<option value="8개월">8개월</option>
+							<option value="9개월">9개월</option>
+							<option value="10개월">10개월</option>
+							<option value="11개월">11개월</option>
+							<option value="12개월">12개월</option>
+						</select>	
+						<span>개월</span>
+					</td>
 				</tr>
 				<tr>
-					<td><label for="sale_price">판매가격</label></td>
-					<td><input type="text" id="pro_sale_price" name="pro_sale_price" /></td>
+					<td><label for="sale_price">판매 가격</label></td>
+					<td><input type="text" id="pro_sale_price" name="pro_sale_price" /> <span>원</span></td>
 				</tr>
 				<tr>
 					<td><label for="pro_title">제목</label></td>
-					<td><input type="text" id="pro_title" name="pro_title" /></td>
+					<td class="regi-tit"><input type="text" id="pro_title" name="pro_title" placeholder="제목을 입력해 주세요."/></td>
 				</tr>
 				<tr>
-					<td><label for="pro_category">상품정보</label></td>
+					<td><label for="pro_category">상품 정보</label></td>
 					<td><textarea rows="5" cols="50" id="pro_category" name="pro_category"></textarea></td>
 				</tr>
 				<tr>
