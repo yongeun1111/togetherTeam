@@ -15,6 +15,59 @@
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 <script src="${contextPath}/resource/js/pages/sub.js"></script>
 
+<script src="${contextPath}/resource/js/pages/main.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	function check_pw() {
+	    var pw = $('#pw').val();
+	    var pw2 = $('#pw2').val();
+	    
+	    $.ajax({
+	      type: 'POST',
+	      url: '/check_password',
+	      data: { pw: pw, pw2: pw2 },
+	      dataType: 'json', // 데이터 타입을 json으로 설정
+	      success: function(data) {
+	        if (data.result == 'success') {
+	          $('#check').html('비밀번호가 일치합니다.');
+	          $('#check').css('color', 'blue');
+	        } else {
+	          $('#check').html('비밀번호가 일치하지 않습니다.');
+	          $('#check').css('color', 'red');
+	        }
+
+	        if (pw == "" && pw2 == ""){
+	        	$('#check').html("")
+	        }
+	      }
+	    });
+	  }
+	
+	  $('#pw').on('keyup', check_pw);
+	  $('#pw2').on('keyup', check_pw);	
+
+	  
+	  function checkForm() {
+		  if ($('#check').html() == '비밀번호가 일치하지 않습니다.') {
+		      alert("비밀번호가 일치하지 않습니다.");
+		      $('#pw2').focus();
+		      return 1;
+		  } else if ($('#check').html() == ''){
+			  return 2;
+		  }
+		  return 3;
+		  }
+		  
+		  $('#submitBtn').on('click', function() {
+			    if (checkForm() == 1) {
+			    	event.preventDefault(); // 제출 버튼의 기본 동작인 페이지 새로고침을 막음
+			    }
+			});
+	  
+});
+</script>
+
+
 <!-- #container -->
 <div class="con-inner mypage-wrap">
 
@@ -37,39 +90,42 @@
 
     <div class="meminfo-wrap">
       <p class="mb20">※ 변경하시려는 정보를 입력해 주세요.</p>
-      <form action="">
+      <form action="#">
         <table class="meminfo-table">
           <tr>
             <td col="col" width="13%">아이디</td>
-            <td>abc1234</td>
+            <td>${login.mem_id}</td>
           </tr>
           <tr>
             <td>이름</td>
-            <td>홍길동</td>
+            <td>${login.mem_name}</td>
           </tr>
           <tr>
             <td>비밀번호</td>
             <td>
-              <input type="password" name="mem_pwd" required placeholder="변경할 비밀번호를 입력해 주세요. ">
+              <input id="pw" type="password" name="mem_pwd" required placeholder="변경할 비밀번호를 입력해 주세요. ">
               <p class="pw_txt">영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자</p>
             </td>
           </tr>
           <tr>
             <td>비밀번호 재입력</td>
-            <td><input type="password" name="mem_pwd" required placeholder="변경할 비밀번호를 다시 한번  입력해 주세요. "></td>
+            <td>
+            <input id="pw2" type="password" required placeholder="변경할 비밀번호를 다시 한번  입력해 주세요. "><br>
+            <span id="check"></span>
+            </td>
           </tr>
           <tr>
             <td>휴대폰 번호</td>
-            <td><input type="text" name="mem_phone" required placeholder="핸드폰 번호(띄어쓰기 없이 숫자만 입력해주세요 / 예시:01012345678)"></td>
+            <td><input type="text" name="mem_phone" required value="${login.mem_phone}"></td>
           </tr>
           <tr>
             <td>이메일</td>
-            <td><input type="text" name="mem_email" required placeholder="이메일을 입력해주세요 (예시:abc@abc.com)"></td>
+            <td><input type="text" name="mem_email" required value="${login.mem_email}"></td>
           </tr>
         </table>
 
         <div class="btn mt70">
-          <input type="submit" value="확인">
+          <input id="submitBtn" type="submit" value="확인">
           <input type="button" id="cancelBtn" value="취소" onClick="location.href='/'">
         </div>
   
