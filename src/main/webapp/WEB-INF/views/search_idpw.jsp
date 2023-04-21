@@ -25,8 +25,8 @@ $(document).ready(function(){
 
         if (search == '아이디') {
         	
-        var name = $('.search-name').val();
-        var phone = $('.search-phone').val();
+        var name = $('#id-search-name').val();
+        var phone = $('#id-search-phone').val();
         	
         $.ajax({
             type: 'POST',
@@ -52,10 +52,9 @@ $(document).ready(function(){
         
         } else {
         	
-        var id = $('.search-id').val();
-        var phone = $('.search-phone').val();
-        var email = $('.search-email').val();
-
+        var id = $('#pwd-search-id').val();
+        var phone = $('#pwd-search-phone').val();
+        var email = $('#pwd-search-email').val();
         $.ajax({
             type: 'POST',
             url: '/search_pwd',
@@ -103,9 +102,9 @@ $(document).ready(function(){
           <div id="tab01">
             <form action="/search_id" method="post">         
               <!-- 1. 이름 -->
-              <div class="field"><input class="search-name" type="text" name="mem_name" placeholder="이름"></div>
+              <div class="field"><input id="id-search-name" type="text" name="mem_name" placeholder="이름"></div>
               <!-- 2. 핸드폰 번호 -->
-              <div class="field mt10"><input class="search-phone" type="text" name="mem_phone" placeholder="휴대폰 번호(- 없이 입력)"></div>
+              <div class="field mt10"><input id="id-search-phone" type="text" name="mem_phone" placeholder="휴대폰 번호(- 없이 입력)"></div>
               <!-- 아이디 찾기 버튼 -->
               <div class="btn mt50"><input class="search-btn" data-search="아이디" type="reset" value="아이디 찾기"></div>
             </form>
@@ -115,11 +114,11 @@ $(document).ready(function(){
           <div id="tab02">
             <form action="/search_pwd" method="post">
               <!-- 1. 아이디 -->
-              <div class="field"><input class="search-id" type="text" name="mem_id" placeholder="아이디"></div>
+              <div class="field"><input id="pwd-search-id" type="text" name="mem_id" placeholder="아이디"></div>
               <!-- 2. 핸드폰 번호 -->
-              <div class="field mt10"><input class="search-phone" type="text" name="mem_phone" placeholder="휴대폰 번호(- 없이 입력)"></div>
+              <div class="field mt10"><input id="pwd-search-phone" type="text" name="mem_phone" placeholder="휴대폰 번호(- 없이 입력)"></div>
               <!-- 3. 이메일-->
-              <div class="field mt10"><input class="search-email" type="text" name="mem_email"  placeholder="이메일"></div>
+              <div class="field mt10"><input id="pwd-search-email" type="text" name="mem_email"  placeholder="이메일"></div>
               <!-- 비밀번호 찾기 버튼 -->
               <div class="btn mt50"><input class="search-btn" data-search="비밀번호" type="reset" value="비밀번호 찾기"></div>
             </form>

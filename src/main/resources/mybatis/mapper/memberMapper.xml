@@ -38,7 +38,7 @@
   resultType="com.togetherTeam.platform.entity.Member">
     select * from member
 	 where mem_id = #{mem_id}
-	   and mem_name = #{mem_name}
+	   and mem_phone = #{mem_phone}
        and mem_email = #{mem_email}
   </select>
 
