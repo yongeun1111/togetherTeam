@@ -24,7 +24,13 @@
   		#{mem_email}
   	)
   </insert>
-
+  
+  <!-- 아이디 중복여부 확인 sql -->
+  <select id="check_id" resultType="int">
+    select count(*) from member
+	 where mem_id = #{id}
+  </select>
+  
   <!-- 아이디찾기 sql -->
   <select id="search_id" parameterType="com.togetherTeam.platform.entity.Member" 
   resultType="com.togetherTeam.platform.entity.Member">

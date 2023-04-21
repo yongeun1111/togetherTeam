@@ -45,6 +45,59 @@ $(document).ready(function(){
 
   $('#pw').on('keyup', check_pw);
   $('#pw2').on('keyup', check_pw);
+  
+ 
+  // 아이디 입력 필드에서 키보드 입력 시 중복 아이디 검사 수행
+  $('#id').on('keyup', function() {
+    check_id();
+  });
+  
+  // 중복 아이디 검사 함수
+  function check_id() {
+    var id = $('#id').val();
+    
+    $.ajax({
+      type: 'POST',
+      url: '/check_id',
+      data: { id : id },
+      dataType: 'json',
+      success: function(data) {
+        if (data.result == 'success') {
+          $('#check_id').html('사용가능한 아이디입니다.');
+          $('#check_id').css('color', 'blue');
+        } else {
+          $('#check_id').html('이미 사용중인 아이디입니다.');
+          $('#check_id').css('color', 'red');
+        }
+
+        if (id == ""){
+          $('#check_id').html("");
+        }
+      }
+    });
+  }
+  
+  
+  function checkForm() {
+  if ($('#check_id').html() != '사용가능한 아이디입니다.') {
+      alert("아이디 중복확인을 해주세요.");
+      $('#id').focus();
+      return false;
+    } 
+  if ($('#check').html() != '비밀번호가 일치합니다.') {
+      alert("비밀번호가 일치하지 않습니다.");
+      $('#pw2').focus();
+      return false;
+    }
+  return true;
+  }
+  
+  $('#submitBtn').on('click', function() {
+	    if (checkForm() == false) {
+	    	event.preventDefault(); // 제출 버튼의 기본 동작인 페이지 새로고침을 막음
+	    }
+	});
+  
 });
 </script>
 
@@ -57,8 +110,12 @@ $(document).ready(function(){
       
       <!-- 1. 아이디 -->
       <div class="field">
-        <p><input type="text" name="mem_id" required placeholder="아이디"></p>
+        <p><input id="id" type="text" name="mem_id" required placeholder="아이디"></p>
         <p class="join-txt">로그인 아이디로 사용할 이메일을 입력해 주세요.</p>
+      </div>
+
+      <div class="field">
+        <p><span id="check_id"></span></p>
       </div>
       
       <!-- 2. 비밀번호 -->
@@ -97,7 +154,7 @@ $(document).ready(function(){
       </div>
 
       <div class="join-btn mt40">
-        <input type="submit" value="회원가입">
+        <input id="submitBtn" type="submit" value="회원가입">
       </div>
 
     </form>

@@ -75,7 +75,22 @@ public class MainController  {
     public String joinGet(){
         return "join";
     }
-
+	
+	@PostMapping("/check_id")
+	@ResponseBody
+	public Map<String, String> check_id(@RequestParam String id) {
+	    Map<String, String> result = new HashMap<>();
+	    int check = mapper.check_id(id);
+	    
+	    if (check == 0) {
+	      result.put("result", "success");
+	    } else {
+	      result.put("result", "fail");
+	    }
+	    
+	    return result;
+	}
+	
 	@PostMapping("/check_password")
 	@ResponseBody
 	public Map<String, String> checkPassword(@RequestParam String pw, @RequestParam String pw2) {

@@ -12,6 +12,7 @@ public interface memberMapper {
 	public Member login(Member vo);
 	public List<Member> search_id(Member vo);
 	public List<Member> search_pwd(Member vo);
+	public int check_id(String id);
 	public int join(Member vo);
 	
 }
