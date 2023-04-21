@@ -6,28 +6,25 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
+<html>
 
 <c:import url="${contextPath}/WEB-INF/views/inc/headerScript.jsp"/>
 <c:import url="${contextPath}/WEB-INF/views/inc/header.jsp"/>
 
-<link rel="stylesheet" href="${contextPath}/resource/css/pages/main.css">
-<link rel="stylesheet" href="${contextPath}/resource/css/pages/main_media.css">
+<link rel="stylesheet" href="${contextPath}/resource/css/pages/testChat.css">
 <script src="${contextPath}/resource/js/jquery/gsap.min.js"></script>
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
-<script src="${contextPath}/webjars/stomp-websocket/2.3.3-1/stomp.js"></script>
-<script src="${contextPath}/webjars/sockjs-client/1.1.2/sockjs.js"></script>
 
-
+<body>
 <!-- #container -->
 <div class="main">
 	<h2>채팅 테스트</h2>
 	<div class="title_text">
-		<p>${pro.pro_title}</p>
-		<p>${pro.pro_name}</p>
+		<p>${chatRoomInfo.pro_title}</p>
 	</div>
 	<div>
 		<!-- chatHistory와 사용자가 실시간으로 입력하는 메시지 출력 -->
-		<div>
+		<div id="content">
 			<c:forEach var="chatRoom" items="${chatHistory}"> 
 				<p>
 					<span id="chatRoomSenderID">${chatRoom.sender_id}</span>
@@ -42,12 +39,12 @@
 				<input type="text" id="message" class="form_control" placeholder="입력입력"/>	
 				<div class="input_group_append">
 					<button id="send" onclick="send()">보내기</button>
-					<input type="hidden" value="${login.mem_no}" id="sender_no"/>
-					<input type="hidden" value="${login.mem_id}" id="sender_id"/>
-					<input type="hidden" value="${chatRoomInfo.chat_room_no}" id="chat_room_no"/>
+					<input type="hidden" value="${login.mem_no}" id="buyer_mem_no"/>
+					<input type="hidden" value="${login.mem_id}" id="buyer_mem_id"/>
 					<input type="hidden" value="${chatRoomInfo.pro_no}" id="pro_no"/>
-					<input type="hidden" value="${chatRoomInfo.buyer_mem_no}" id="buyer_mem_no"/>
 					<input type="hidden" value="${chatRoomInfo.seller_mem_no}" id="seller_mem_no"/>
+					<input type="hidden" value="${chatRoomInfo.seller_mem_id}" id="seller_mem_id"/>
+					<input type="hidden" value="${chatRoomInfo.chat_room_no}" id="chat_room_no"/>
 				</div>
 			</div>
 		</div>
@@ -56,16 +53,18 @@
 </div>
 
 
+<script src="${contextPath}/webjars/stomp-websocket/2.3.3-1/stomp.js" type="text/javascript"></script>
+<script src="${contextPath}/webjars/sockjs-client/1.1.2/sockjs.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-	
+<script type="text/javascript">	
 	var	stompClient = null;
-	var chat_room_no = $("chat_room_no").val();
+	var chat_room_no = $("#chat_room_no").val();
 	var pro_no = $("#pro_no").val();
-	var sender_no = $("#sender_no").val();
-	var sender_id = $("#sender_id").val();
-	var buyer_mem_no = $("#buyer_mem_no").val();
 	var seller_mem_no = $("#seller_mem_no").val();
+	var seller_mem_id = $("#seller_mem_id").val();
+	var buyer_mem_id = $("#buyer_mem_id").val();
+	var buyer_mem_no = $("#buyer_mem_no").val();
+	var sender_id = $("#buyer_mem_id").val();
 	
 	
 	$(document).ready(connect());
@@ -76,8 +75,9 @@
 	// 메시지를 다이렉트로 전달 받는 경로는 subscribe로 설정
 	function connect() {
 		// map URL using SockJS
+		console.log("connected");
 		var socket = new SockJS('/broadcast');
-		var url = '/user' + chat_room_no + '/queue/messages';
+		var url = '/user/' + chat_room_no + '/queue/messages';
 		console.log("url:",url)
 		// webSocket 대신 SockJS를 사용
 		// Stomp.client()가 아닌 Stomp.over()를 사용
@@ -85,6 +85,8 @@
 		
 		// connect(header, connectCallback(연결 성공 메소드))
 		stompClient.connect({}, function(){
+			
+			console.log("connected STOMP")
 			// url : 채팅방 참여자에게 공유 경로
 			// callback(function())
 			// 클라이언트가 서버(Controller broker)로부터 메시지를 수신했을 때 실행
@@ -104,6 +106,7 @@
 	
 	// WebSocket broker 경로로 JSON 타입 메시지 데이터를 전송
 	function sendBroadcast(json) {
+		console.log("sendBoradcast 성공")
 		stompClient.send("/app/broadcast", {}, JSON.stringify(json));
 	}
 	
@@ -113,10 +116,13 @@
 		sendBroadcast({
 			'chat_room_no':chat_room_no,
 			'pro_no':pro_no,
-			'sender_no':sender_no,
+			'sender_no':buyer_mem_no,
 			'sender_id':sender_id,
 			'buyer_mem_no':buyer_mem_no,
-			'seller_mem_no':seller_mem_no
+			'buyer_mem_id':buyer_mem_id,
+			'seller_mem_no':seller_mem_no,
+			'seller_mem_id':seller_mem_id,
+			'content':content,
 		});
 		$("message").val("");
 	}
@@ -136,9 +142,9 @@
 	function createTextNode(messageObj) {
 		console.log("createTextNode");
 		console.log("messageObj: "+ messageObj.content);
-		return "<p><div>" +
+		return '<p><div class="row alert alert-info"><div class="col_8">' +
 		messageObj.sender_id +
-		"</div><div>" +
+		'</div><div class="col_4 text-right">' +
 		messageObj.content +
 		"</div><div>[" +
 		messageObj.sendTime +
@@ -158,3 +164,5 @@
 	
 </script>
 <c:import url="${contextPath}/WEB-INF/views/inc/footer.jsp"/>
+</body>
+</html>

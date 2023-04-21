@@ -67,9 +67,8 @@ public class ChatController {
 		return "testChat";
 	}
 	
-	@MessageMapping("/boradcast")
+	@MessageMapping("/broadcast")
 	public void send(ChatRoom chatRoom) throws IOException {
-		
 		chatRoom.setSendTime(LocalDateTime.now().toString());
 		
 		chatRoomService.appendMessage(chatRoom);
