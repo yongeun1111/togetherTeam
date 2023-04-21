@@ -8,12 +8,11 @@ common media screen tab and mobile
 		margin: 0 auto;
 		width: 1400px;
 		min-width: 1400px;
-		border: 1px solid red;
 	}
 
 	.sub-inner {
-		    width: 1400px;
-    margin: 0 auto;
+		width: 1400px;
+    	margin: 0 auto;
 	}
 
 	

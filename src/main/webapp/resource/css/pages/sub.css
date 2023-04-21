@@ -22,10 +22,6 @@ subpage
     display: flex;
 }
 
-.sub-inner {
-    padding-top: 70px;
-}
-
 /* 로그인 -------------------------------------------------------------- */
 .login-wrap {
     width: 100%;
@@ -88,7 +84,7 @@ subpage
     transition: all 0.2s;
 }
 
-/* 아이디/비밀번호 찾기 */
+/* 아이디/비밀번호 찾기 ------------------------------------------ */
 .search_idpw p {
     color: #666;
 }
@@ -242,7 +238,7 @@ subpage
     background-color: #1f79df;
 }
 
-/* 마이페이지 */
+/* 마이페이지 ------------------------------------------------ */
 .mypage-wrap .tab-wrap {
     margin-bottom: 80px;
     padding-top: 30px;
@@ -279,18 +275,18 @@ subpage
 }
 
 
-.mypage-wrap .info-box {
+.info-box {
     background-color: #f5f5f5;
     padding: 30px 60px;
     margin-bottom: 40px;
 }
 
-.mypage-wrap .info-box ul li {
+.info-box ul li {
     line-height: 1.8rem;
     color: #666;
 }
 
-.mypage-wrap .info-box ul li::before {
+.info-box ul li::before {
     content: "";
     display: inline-block;
     width: 3px;
@@ -346,12 +342,14 @@ subpage
     border-radius: 5px;
 }
 
-.meminfo-wrap .btn {
+/* 버튼 공통 */
+
+.btn {
     width: 100%;
     text-align: center;
 }
 
-.meminfo-wrap .btn input {
+.btn input {
     padding: 0 150px;
     height: 60px;
     border-radius: 30px;
@@ -360,30 +358,249 @@ subpage
     font-weight: 600;
 }
 
-.meminfo-wrap .btn input:first-child {
+.btn input:first-child {
     margin-right: 10px;
     background-color: #1f79df;
     color: #fff;
 }
 
-.meminfo-wrap .btn input:first-child:hover {
+.btn input:first-child:hover {
     background-color: #0059bf;
     transition: all 0.2s;
 }
 
-.meminfo-wrap .btn input:last-child {
+.btn input:last-child {
     background-color: #fff;
     border: 1px solid #666;
     color: #666;
 }
 
-.meminfo-wrap .btn input:last-child:hover {
+.btn input:last-child:hover {
     background-color: #666;
     transition: all 0.2s;
     color: #fff;
 }
 
+/* 상품 등록하기--------------------------------------------- */
+.agree-wrap {
+    width: 1400px;
+}
 
+.agree-wrap textarea {
+    margin-bottom: 20px;
+    padding: 30px 50px;
+    width: 1400px;
+    height: 120px;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    line-height: 1.6rem;
+    font-weight: 300;
+    color: #666;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+/* 동의하기 */
+.checks {position: relative;}
+
+.checks input[type="checkbox"] {  /* 실제 체크박스는 화면에서 숨김 */
+  position: absolute;
+   width: 1px;
+   height: 1px;
+   padding: 0;
+   margin: -1px;
+   overflow: hidden;
+   clip:rect(0,0,0,0);
+   border: 0
+}
+
+.checks input[type="checkbox"] + label {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.checks label {
+    font-size: 1.0rem;
+    color: #666;
+} 
+
+/* checkbox off */
+.checks input[type="checkbox"] + label:before {  /* 가짜 체크박스 */
+  content: ' ';
+  display: inline-block;
+  width: 17px;  /* 체크박스의 너비를 지정 */
+  height: 17px;  /* 체크박스의 높이를 지정 */
+  line-height: 17px; /* 세로정렬을 위해 높이값과 일치 */
+  margin: -2px 5px 0 0;
+  text-align: center; 
+  vertical-align: middle;
+  background: no-repeat url(../../images/check_box_off.png);
+}
+
+/* checkbox on */
+.checks input[type="checkbox"]:checked + label:before {  /* 체크박스를 체크했을때 */ 
+    content: ' ';
+    display: inline-block;
+    text-align: center; 
+    vertical-align: middle;
+    background: no-repeat url(../../images/check_box_on.png);
+}
+
+/* 상품 정보 등록 테이블 */
+.inputArea {
+    font-family: 'Pretendard';
+    margin-top: 40px;
+    width: 100%;
+}
+
+.inputArea tr{
+    border-bottom: 1px solid #ddd;
+}
+
+.inputArea tr:first-child{
+    border-top: 2px solid #222;
+}
+
+.inputArea tr:last-child{
+    border-bottom: 1px solid #222;
+}
+
+.inputArea tr td {
+    padding: 20px 30px 20px 30px
+}
+
+.inputArea tr td input {
+    width: 400px;
+}
+
+.inputArea tr td select {
+    margin-right: 5px;
+    width: 200px;
+}
+
+.inputArea tr td textarea {
+    padding-right: 30px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.inputArea tr td input, .inputArea tr td select {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.inputArea tr td label {
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+/* 파일 업로드 */
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+  }
+  
+  .filebox label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #999;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+  }
+  
+  /* named upload */
+  .filebox .upload-name {
+    display: inline-block;
+    height: 35px;
+    font-size:18px; 
+    padding: 0 10px;
+    vertical-align: middle;
+    background-color: #f5f5f5;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+  
+  }
+
+.inputArea .file-info {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.inputArea .file-info span {
+    margin-left: 8px;
+    font-weight: 600;
+}
+
+.inputArea .file-info span::before {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    border-radius: 3px;
+    background-color: #1f79df;
+    position: absolute;
+    margin-top: 9px;
+    margin-left: -8px;
+}
+
+.inputArea .img-info {
+    margin-top: 10px;
+}
+
+.inputArea .img-info p {
+    margin-bottom: 3px;
+    font-size: 1rem;
+    color: #666;
+}
+
+.inputArea .img-info ul li {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+#result_card img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    padding: 5px;
+    margin-top: 10px;
+    margin: auto;	
+}
+#result_card {
+    position: relative;
+}
+.imgDeleteBtn{
+    position: absolute;
+    top: 0;
+    right: 5%;
+    background-color: #ef7d7d;
+    color: wheat;
+    font-weight: 900;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    line-height: 26px;
+    text-align: center;
+    border: none;
+    display: block;
+    cursor: pointer;	
+}
 
 
 

@@ -139,6 +139,9 @@ custom style
 .color_main {color:var(--color-main) !important;}
 .color_sub {color:var(--color-sub) !important;}
 
+.bold {
+	font-weight: bold;
+}
 
 /*tab style*/
 
