@@ -40,6 +40,7 @@ public class productController {
 	
 	@GetMapping("/proList") // 중고 상품 페이지(proList.jsp)로 이동
     public String proList(CriteriaList cri, Model model){
+
 		List<Product> list = mapper.getAllList(cri);
 		model.addAttribute("list", list);
 		

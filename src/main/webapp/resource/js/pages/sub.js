@@ -1,4 +1,15 @@
 $(document).ready(function(){
+	// 페이지 번호 클릭 시 이동
+	$(".page-link").on("click", function(e) {
+		// .preventDefault(); : 기능을 막음
+		e.preventDefault();
+		var page = $(this).attr("href");
+		$("#page").attr("value", page);
+		// $("#pageFrm").find("#page").val(page)
+		$("#pageFrm").submit();
+
+	});
+	
 	$(".proCategory").click(function(){
 		var category = $(this).text()
 		console.log(category)
