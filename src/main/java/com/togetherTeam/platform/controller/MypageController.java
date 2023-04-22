@@ -32,6 +32,11 @@ public class MypageController {
     public String mypage_memInfo(){
         return "sub/mypage_memInfo";
     }
+
+	@GetMapping("/mypage_likeList") // 마이페이지(mypage_likeList.jsp)로 이동
+    public String mypage_likeList(){
+        return "sub/mypage_likeList";
+    }
 	
 	@PostMapping("/change_info") // 회원정보수정
 	public String change_infoPost(Member vo, HttpSession session) {
