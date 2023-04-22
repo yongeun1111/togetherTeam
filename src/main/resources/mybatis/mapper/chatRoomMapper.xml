@@ -30,29 +30,30 @@
 	
 	<update id="updateFileName" parameterType="com.togetherTeam.platform.entity.ChatRoom">
 		UPDATE CHAT_ROOM
-		   SET FILE_NAME = #{file_name}
-		 WHERE CHAT_ROOM_NO = #{chat_room_no}
+		   SET FILE_NAME = #{fileName}
+		 WHERE CHAT_ROOM_NO = #{chatRoomNo}
 	</update>
 	
-	<select id="countBychat_room_no" parameterType="com.togetherTeam.platform.entity.ChatRoom" resultType="int">
+	<select id="countChatRoomNo" parameterType="com.togetherTeam.platform.entity.ChatRoom" resultType="int">
     	SELECT COUNT(*)
     	  FROM CHAT_ROOM
-    	 WHERE PRO_NO = #{pro_no} 
-    	   AND BUYER_MEM_NO = #{buyer_mem_no}
+    	 WHERE PRO_NO = #{proNo} 
+    	   AND BUYER_MEM_NO = #{buyerNo}
     </select>
 	
-	<select id="get_no" resultType="int">
-    	SELECT CHAT_ROOM_NO
-    	  FROM CHAT_ROOM
-    	 WHERE PRO_NO = #{pro_no} 
-    	   AND BUYER_MEM_NO = #{buyer_mem_no}
-    </select>
-    
-    <select id="findBychat_room_no" parameterType="com.togetherTeam.platform.entity.ChatRoom" resultType="com.togetherTeam.platform.entity.ChatRoom">
+    <select id="findChatRoomNo" parameterType="com.togetherTeam.platform.entity.ChatRoom" resultType="com.togetherTeam.platform.entity.ChatRoom">
     	SELECT *
     	  FROM CHAT_ROOM
-    	 WHERE PRO_NO = #{pro_no} 
-    	   AND BUYER_MEM_NO = #{buyer_mem_no}
+    	 WHERE PRO_NO = #{proNo} 
+    	   AND BUYER_MEM_NO = #{buyerNo}
     </select>
+    
+	<select id="getNo" resultType="int">
+    	SELECT CHAT_ROOM_NO
+    	  FROM CHAT_ROOM
+    	 WHERE PRO_NO = #{proNo} 
+    	   AND BUYER_MEM_NO = #{buyerNo}
+    </select>
+    
     
 </mapper>

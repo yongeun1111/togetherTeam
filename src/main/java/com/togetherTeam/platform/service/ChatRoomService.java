@@ -78,70 +78,73 @@ public class ChatRoomService implements chatRoomMapper {
 		return chatHistory;
 	}
 	
-	public void createFile(int pro_no, int chat_room_no) throws IOException {
+	public void createFile(int proNo, int chatRoomNo) throws IOException {
 		
-		String file_name = pro_no + "_"+ chat_room_no + ".txt";
-		String path_name = fileUploadPath + file_name;
+		String fileName = proNo + "_"+ chatRoomNo + ".txt";
+		String pathName = fileUploadPath + fileName;
 		// file 클래스에 path_name 할당
-		File txtFile = new File(path_name);
+		File txtFile = new File(pathName);
 		txtFile.createNewFile();
 		
-		chatRoomMapper.updateFileName(chat_room_no, file_name);
+		chatRoomMapper.updateFileName(chatRoomNo, fileName);
 	}
 	
 	@Override
-	public void updateFileName(int chat_room_no, String file_name) {
+	public void updateFileName(int chatRoomNo, String fileName) {
 		
-		chatRoomMapper.updateFileName(chat_room_no, file_name);
+		chatRoomMapper.updateFileName(chatRoomNo, fileName);
 	}
 
 	
 	public void appendMessage(ChatRoom chatRoom) throws IOException {
 		
-		int pro_no = chatRoom.getPro_no();
-		int buyer_mem_no = chatRoom.getBuyer_mem_no();
+		System.out.println(chatRoom);
 		
-		ChatRoom chatRoomAppend = chatRoomMapper.findBychat_room_no(pro_no, buyer_mem_no);
+		int proNo = chatRoom.getPro_no();
+		int buyerNo = chatRoom.getBuyer_mem_no();
 		
-		String path_name = fileUploadPath + chatRoomAppend.getFile_name();
 		
-		FileOutputStream fos = new FileOutputStream(path_name, true);
+		ChatRoom chatRoomAppend = chatRoomMapper.findChatRoomNo(proNo, buyerNo);
+		
+		String pathName = fileUploadPath + chatRoomAppend.getFile_name();
+		
+		FileOutputStream fos = new FileOutputStream(pathName, true);
 		String content = chatRoom.getContent();
-		int sender_no = chatRoom.getSender_no();
-		String sender_id = chatRoom.getSender_id();
+		int senderNo = chatRoom.getSender_no();
+		String senderId = chatRoom.getSender_id();
 		String sendTime = chatRoom.getSendTime();
 		System.out.println("print:"+ content);
 		
-		String writeContent = sender_id + "\n" + content + "\n" + "[" + sendTime + "]" + "\n";
+		String writeContent = senderId + "\n" + content + "\n" + "[" + sendTime + "]" + "\n";
 		
 		byte[] b = writeContent.getBytes();
 		
 		fos.write(b);
 		fos.close();
 		
-		System.out.println("sender_no: "+ sender_no);
-		System.out.println("seller_id: "+ chatRoom.getSender_id());
+		System.out.println("senderNo: "+ senderNo);
+		System.out.println("senderId: "+ chatRoom.getSender_id());
 		
 	}
 	
 	
 	
 	@Override
-	public int countBychat_room_no(int pro_no, int buyer_mem_no) {
+	public int countChatRoomNo(int proNo, int buyerNo) {
 		
-		return chatRoomMapper.countBychat_room_no(pro_no, buyer_mem_no);
+		return chatRoomMapper.countChatRoomNo(proNo, buyerNo);
 	}
 	
 	@Override
-	public ChatRoom findBychat_room_no(int pro_no, int buyer_mem_no) {
+	public ChatRoom findChatRoomNo(int proNo, int buyerNo) {
 		
-		return chatRoomMapper.findBychat_room_no(pro_no, buyer_mem_no);
+		return chatRoomMapper.findChatRoomNo(proNo, buyerNo);
 	}
 	
 	@Override
-	public int get_no(int pro_no, int buyer_mem_no) {
+	public int getNo(int proNo, int buyerNo) {
 		
-		return chatRoomMapper.get_no(pro_no, buyer_mem_no);
+		return chatRoomMapper.getNo(proNo, buyerNo);
 	}
 
 }

@@ -39,12 +39,12 @@
 				<input type="text" id="message" class="form_control" placeholder="입력입력"/>	
 				<div class="input_group_append">
 					<button id="send" onclick="send()">보내기</button>
-					<input type="hidden" value="${login.mem_no}" id="buyer_mem_no"/>
-					<input type="hidden" value="${login.mem_id}" id="buyer_mem_id"/>
-					<input type="hidden" value="${chatRoomInfo.pro_no}" id="pro_no"/>
-					<input type="hidden" value="${chatRoomInfo.seller_mem_no}" id="seller_mem_no"/>
-					<input type="hidden" value="${chatRoomInfo.seller_mem_id}" id="seller_mem_id"/>
-					<input type="hidden" value="${chatRoomInfo.chat_room_no}" id="chat_room_no"/>
+					<input type="hidden" value="${login.mem_no}" id="buyerNo"/>
+					<input type="hidden" value="${login.mem_id}" id="buyerId"/>
+					<input type="hidden" value="${chatRoomInfo.pro_no}" id="proNo"/>
+					<input type="hidden" value="${chatRoomInfo.seller_mem_no}" id="sellerNo"/>
+					<input type="hidden" value="${chatRoomInfo.seller_mem_id}" id="sellerId"/>
+					<input type="hidden" value="${chatRoomInfo.chat_room_no}" id="chatRoomNo"/>
 				</div>
 			</div>
 		</div>
@@ -58,13 +58,13 @@
 
 <script type="text/javascript">	
 	var	stompClient = null;
-	var chat_room_no = $("#chat_room_no").val();
-	var pro_no = $("#pro_no").val();
-	var seller_mem_no = $("#seller_mem_no").val();
-	var seller_mem_id = $("#seller_mem_id").val();
-	var buyer_mem_id = $("#buyer_mem_id").val();
-	var buyer_mem_no = $("#buyer_mem_no").val();
-	var sender_id = $("#buyer_mem_id").val();
+	var chatRoomNo = $("#chatRoomNo").val();
+	var proNo = $("#proNo").val();
+	var sellerNo = $("#sellerNo").val();
+	var sellerId = $("#sellerId").val();
+	var buyerId = $("#buyerId").val();
+	var buyerNo = $("#buyerNo").val();
+	var senderId = $("#buyerId").val();
 	
 	
 	$(document).ready(connect());
@@ -77,7 +77,7 @@
 		// map URL using SockJS
 		console.log("connected");
 		var socket = new SockJS('/broadcast');
-		var url = '/user/' + chat_room_no + '/queue/messages';
+		var url = '/user/' + chatRoomNo + '/queue/messages';
 		console.log("url:",url)
 		// webSocket 대신 SockJS를 사용
 		// Stomp.client()가 아닌 Stomp.over()를 사용
@@ -114,14 +114,14 @@
 	function send() {
 		var content = $('#message').val();
 		sendBroadcast({
-			'chat_room_no':chat_room_no,
-			'pro_no':pro_no,
-			'sender_no':buyer_mem_no,
-			'sender_id':sender_id,
-			'buyer_mem_no':buyer_mem_no,
-			'buyer_mem_id':buyer_mem_id,
-			'seller_mem_no':seller_mem_no,
-			'seller_mem_id':seller_mem_id,
+			'chat_room_no':chatRoomNo,
+			'pro_no':proNo,
+			'sender_no':buyerNo,
+			'sender_id':senderId,
+			'buyer_mem_no':buyerNo,
+			'buyer_mem_id':buyerId,
+			'seller_mem_no':sellerNo,
+			'seller_mem_id':sellerId,
 			'content':content,
 		});
 		$("message").val("");
