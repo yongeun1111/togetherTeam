@@ -15,59 +15,6 @@
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 <script src="${contextPath}/resource/js/pages/sub.js"></script>
 
-<script src="${contextPath}/resource/js/pages/main.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	function check_pw() {
-	    var pw = $('#pw').val();
-	    var pw2 = $('#pw2').val();
-	    
-	    $.ajax({
-	      type: 'POST',
-	      url: '/check_password',
-	      data: { pw: pw, pw2: pw2 },
-	      dataType: 'json', // 데이터 타입을 json으로 설정
-	      success: function(data) {
-	        if (data.result == 'success') {
-	          $('#check').html('비밀번호가 일치합니다.');
-	          $('#check').css('color', 'blue');
-	        } else {
-	          $('#check').html('비밀번호가 일치하지 않습니다.');
-	          $('#check').css('color', 'red');
-	        }
-
-	        if (pw == "" && pw2 == ""){
-	        	$('#check').html("")
-	        }
-	      }
-	    });
-	  }
-	
-	  $('#pw').on('keyup', check_pw);
-	  $('#pw2').on('keyup', check_pw);	
-
-	  
-	  function checkForm() {
-		  if ($('#check').html() == '비밀번호가 일치하지 않습니다.') {
-		      alert("비밀번호가 일치하지 않습니다.");
-		      $('#pw2').focus();
-		      return 1;
-		  } else if ($('#check').html() == ''){
-			  return 2;
-		  }
-		  return 3;
-		  }
-		  
-		  $('#submitBtn').on('click', function() {
-			    if (checkForm() == 1) {
-			    	event.preventDefault(); // 제출 버튼의 기본 동작인 페이지 새로고침을 막음
-			    }
-			});
-	  
-});
-</script>
-
-
 <!-- #container -->
 <div class="con-inner mypage-wrap">
 
@@ -75,8 +22,8 @@ $(document).ready(function(){
     <h2 class="center">마이페이지</h2>
     <div class="tab-wrap">
       <ul class="tab-menu">
-        <li><a href="/mypage_memInfo">회원정보 수정</a></li>
-        <li class="on"><a href="javascript:;">내가 찜한 목록</a></li>
+        <li><a href="mypage_memInfo">회원정보 수정</a></li>
+        <li class="on"><a href="#">내가 찜한 목록</a></li>
         <li><a href="/mypage_proSale">판매 내역</a></li>
       </ul>
     </div>
@@ -91,6 +38,7 @@ $(document).ready(function(){
     <div class="meminfo-wrap">
       <p class="mypage-tit mb10">내가 찜한 목록</p>
       <form action="#">
+        <c:forEach var="vo" items="${list}">
         <table class="meminfo-table like-table">
           <tr>
             <td col="col" width="15%">
@@ -98,94 +46,35 @@ $(document).ready(function(){
             </td>
             <td>
               <ul class="pro-info">
-                <li class="pro-cate">상품카테고리</li>
+                <li class="pro-cate">${vo.pro_category}</li>
                 <li class="pro-com">제조사</li>
               </ul>
-              <p class="name">상품 판매 제목이 노출되는 영역입니다.</p>
+              <p class="name">${vo.pro_title}</p>
             </td>
             <td col="col" width="15%">
-              <p class="price">249,000 <span class="won">원</span></p>
+              <p class="price">${vo.pro_sale_price} <span class="won">원</span></p>
             </td>
             <td col="col" width="18%">
               <button class="del-btn">삭제</button>
             </td>
           </tr>
-          <tr>
-            <td>
-              <img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-            </td>
-            <td>
-              <ul class="pro-info">
-                <li class="pro-cate">상품카테고리</li>
-                <li class="pro-com">제조사</li>
-              </ul>
-              <p class="name">상품 판매 제목이 노출되는 영역입니다.</p>
-            </td>
-            <td>
-              <p class="price">249,000 <span class="won">원</span></p>
-            </td>
-            <td>
-              <button class="del-btn">삭제</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-            </td>
-            <td>
-              <ul class="pro-info">
-                <li class="pro-cate">상품카테고리</li>
-                <li class="pro-com">제조사</li>
-              </ul>
-              <p class="name">상품 판매 제목이 노출되는 영역입니다.</p>
-            </td>
-            <td>
-              <p class="price">249,000 <span class="won">원</span></p>
-            </td>
-            <td>
-              <button class="del-btn">삭제</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-            </td>
-            <td>
-              <ul class="pro-info">
-                <li class="pro-cate">상품카테고리</li>
-                <li class="pro-com">제조사</li>
-              </ul>
-              <p class="name">상품 판매 제목이 노출되는 영역입니다.</p>
-            </td>
-            <td>
-              <p class="price">249,000 <span class="won">원</span></p>
-            </td>
-            <td>
-              <button class="del-btn">삭제</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-            </td>
-            <td>
-              <ul class="pro-info">
-                <li class="pro-cate">상품카테고리</li>
-                <li class="pro-com">제조사</li>
-              </ul>
-              <p class="name">상품 판매 제목이 노출되는 영역입니다.</p>
-            </td>
-            <td>
-              <p class="price">249,000 <span class="won">원</span></p>
-            </td>
-            <td>
-              <button class="del-btn">삭제</button>
-            </td>
-          </tr>
-        </table>
-
+        </c:forEach> 
+        
         <div class="page">
-          <p>페이징 처리</p>
+          <ul class="pagination justify-content-center" style="margin: 20px 0">
+			<c:if test="${pm.prev}">
+			  <li class="page-item"><a class="page-link" href="${pm.startPage-1}">Previous</a></li>
+			</c:if>
+			<c:forEach var="pageNum" begin="${pm.startPage}" end="${pm.endPage}">
+			  <li class="page-item ${pm.cri.page==pageNum ? 'active':''}"><a class="page-link" href="${pageNum}">${pageNum}</a></li>
+			</c:forEach>
+			<c:if test="${pm.next}">
+			  <li class="page-item"><a class="page-link" href="${pm.endPage+1}">Next</a></li>
+			</c:if>
+		  </ul>
+		  <form id="pageFrm" action="proList" method="get">
+			<input type="hidden" id="page" name="page" value="${pm.cri.page}">
+		  </form>
         </div>
   
       </form>

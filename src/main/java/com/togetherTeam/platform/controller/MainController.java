@@ -154,15 +154,11 @@ public class MainController  {
 		model.addAttribute("mem_id", mem_id);
         return "change_pw";
     }
+	
 	@PostMapping("/change_pwd") // test 로그인 및 회원가입 등을 하는 페이지
 	public String change_pwdPost(Member vo){
 		mapper.change_pwd(vo);
 		return "login";
-	}
-	@GetMapping("/a") // test 로그인 및 회원가입 등을 하는 페이지
-	public String a(){
-		
-		return "change_pw";
 	}
 	
 	
