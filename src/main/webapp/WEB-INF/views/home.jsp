@@ -56,7 +56,7 @@ $(document).ready(function(){
 
 
 <!-- #container -->
-<div class="main">
+<div class="container">
 
   <!-- main visual -->
   <div class="mv-wrap">
@@ -75,57 +75,80 @@ $(document).ready(function(){
 
   <!-- 최근 등록 상품 -->
   <h2>최근 등록 상품</h2>
-  <div class="tab">
-    <ul class="tabnav">
-      <li><a href="#tab01">ALL</a></li>
-      <li><a class="categoryBtn" data-category="에어프라이어" href="#tab02">에어프라이어</a></li>
-      <li><a class="categoryBtn" data-category="전기포트" href="#tab03">전기포트</a></li>
-      <li><a class="categoryBtn" data-category="전자렌지" href="#tab04">전자렌지</a></li>
-      <li><a class="categoryBtn" data-category="토스티기" href="#tab05">토스트기</a></li>
-      <li><a class="categoryBtn" data-category="헤어드라이기" href="#tab06">헤어드라이기</a></li>
-      <li><a class="categoryBtn" data-category="공기청정기" href="#tab07">공기청정기</a></li>
-    </ul>
-    <div class="tabcontent">
-      <div id="tab01">tab1 content
-        <c:forEach var="vo" items="${allList}">
-        <div style="border: 1px solid black">
-          <div>이미지 들어가는 공간</div>
-          <div>
-            제품명/가격
-            <p>${vo.pro_name}</p>
-            <p>${vo.pro_sale_price}</p>
-          </div>
-        </div>
-        </c:forEach>
-      </div>
-      <div id="tab02">tab2 content
-		<div class="categoryList"></div>
-      </div>
-      <div id="tab03">tab3 content
-		<div class="categoryList"></div>      
-      </div>
-      <div id="tab04">tab4 content
-		<div class="categoryList"></div>      
-      </div>
-      <div id="tab05">tab5 content
-		<div class="categoryList"></div>      
-      </div>
-      <div id="tab06">tab6 content
-		<div class="categoryList"></div>      
-      </div>
-      <div id="tab07">tab7 content
-		<div class="categoryList"></div>      
-      </div>
-    </div>
-  </div><!--tab-->
+  <div class="pro-list">
+    <ul class="nav nav-tabs row">
+		  <li class="nav-item col">
+			<a class="nav-link active" data-toggle="tab" href="#tab01">ALL</a>
+		  </li>
+		  <li class="nav-item col">
+			<a class="nav-link categoryBtn" data-category="에어프라이어" data-toggle="tab" href="#tab02">에어프라이어</a>
+		  </li>
+		  <li class="nav-item col">
+			<a class="nav-link categoryBtn" data-category="전기포트" data-toggle="tab" href="#tab03">전기포트</a>
+		  </li>
+		  <li class="nav-item col">
+			<a class="nav-link categoryBtn" data-category="전자렌지" data-toggle="tab" href="#tab04">전자렌지</a>
+		  </li>
+		  <li class="nav-item col">
+			<a class="nav-link categoryBtn" data-category="토스티기" data-toggle="tab" href="#tab05">토스트기</a>
+		  </li>
+		  <li class="nav-item col">
+			<a class="nav-link categoryBtn" data-category="헤어드라이기" data-toggle="tab" href="#tab06">헤어드라이기</a>
+		  </li>
+		  <li class="nav-item col">
+			<a class="nav-link categoryBtn" ata-category="공기청정기" data-toggle="tab" href="#tab07">공기청정기</a>
+		  </li>
+	  </ul>
+  </div>  
   
-
-
-
-
- 
- 
- 
+  
+    <div class="tab-content">
+    
+      <div id="tab01" class="pro-m tab-pane active">
+        <div class="row">
+        <c:forEach var="vo" items="${allList}" varStatus="status">
+          <div class="col-sm">
+		    <a href="./proView">
+			  <div class="pro-img">
+				<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
+			  </div>
+		      <div class="pro-info">
+		        <p class="name">${vo.pro_title}</p>
+		        <p class="price">
+			      ${vo.pro_sale_price}<span class="won">원</span>
+		        </p>
+		      </div>
+		    </a>
+		  </div>
+		  <c:if test="${status.index % 5 == 4}">
+           </div><div class="row">
+          </c:if>
+          </c:forEach>
+        </div><!--row-->
+        <div align="center">
+          <button>더보기</button>
+        </div>
+      </div>
+        <div id="tab02" class="pro-m tab-pane fade">tab2 content
+		  <div class="categoryList"></div>
+        </div>
+        <div id="tab03" class="pro-m tab-pane fade">tab3 content
+		  <div class="categoryList"></div>      
+        </div>
+        <div id="tab04" class="pro-m tab-pane fade">tab4 content
+		  <div class="categoryList"></div>      
+        </div>
+        <div id="tab05" class="pro-m tab-pane fade">tab5 content
+		  <div class="categoryList"></div>      
+        </div>
+        <div id="tab06" class="pro-m tab-pane fade">tab6 content
+		  <div class="categoryList"></div>      
+        </div>
+        <div id="tab07" class="pro-m tab-pane fade">tab7 content
+		  <div class="categoryList"></div>      
+        </div>
+      
+    </div><!--tab-content-->
 
 </div>
 

@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.togetherTeam.platform.entity.CriteriaList;
 import com.togetherTeam.platform.entity.Member;
+import com.togetherTeam.platform.entity.PageMakerList;
 import com.togetherTeam.platform.entity.Product;
 import com.togetherTeam.platform.mapper.memberMapper;
 import com.togetherTeam.platform.mapper.productMapper;
@@ -32,8 +34,12 @@ public class MainController  {
 	
 	@RequestMapping("/")
     public String main(Model model){
-        List<Product> list = mapper_pro.getAllListRecent();
+        int page = 1;
+        int perPageNum = 10;
+        CriteriaList cri = new CriteriaList(page,perPageNum);
+		List<Product> list = mapper_pro.getAllList(cri);
         model.addAttribute("allList", list);
+        
         return "home";
     }
 

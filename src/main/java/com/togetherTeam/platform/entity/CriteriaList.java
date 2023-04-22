@@ -14,6 +14,11 @@ public class CriteriaList {
 		
 	}
 
+	public CriteriaList(int page, int perPageNum) {
+		this.page = page;
+		this.perPageNum = perPageNum;
+	}
+
 	// 현재 페이지 게시글의 시작번호 구하기
 	// 메소드 이름에서 get 다음 pageStart를 따로 속성 지정 안해도 
 	// myBatis에서 인식 가능함
