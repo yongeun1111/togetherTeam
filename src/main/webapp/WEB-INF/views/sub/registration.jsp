@@ -40,8 +40,8 @@
 			<table class="inputArea">
 				<tr>
 					<td width="15%"><label>상품 테마</label></td>
-					<td class="category1" name="pro_theme">
-						<select name="thema">
+					<td class="category1">
+						<select name="pro_theme">
 							<option value="">상품의 테마를 선택해 주세요.</option>
 							<option value="#슬기로운 자취 생활">#슬기로운 자취 생활</option>
 							<option value="#사회초년생 추천 상품">#사회초년생 추천 상품</option>
@@ -50,49 +50,14 @@
 						</select>
 					</td>
 				</tr>
-				<tr>
-					<td><label for="pro_infor">상품 정보</label></td>
-					<td>
-						<div class="pro-infor-wrap">
-							<!-- 상품 테마 선택 -->
-							<select name="thema">
-								<option value="">상품 카테고리</option>
-								<option value="에어프라이어">에어프라이어</option>
-								<option value="전기포트">전기포트</option>
-								<option value="전자렌지">전자렌지</option>
-								<option value="토스트기">토스트기</option>
-								<option value="헤어드라이기">헤어드라이기</option>
-								<option value="공기청정기">공기청정기</option>
-							</select>
-							<!-- 제조사 선택 -->
-							<select name="category">
-								<option value="">제조사</option>
-								<option value="422">422</option>
-								<option value="아이닉">아이닉</option>
-								<option value="윈드피아">윈드피아</option>
-								<option value="LG전자">LG전자</option>
-								<option value="삼성전자">삼성전자</option>
-								<option value="유닉스">유닉스</option>
-								<option value="바비리스">바비리스</option>
-								<option value="드롱기">드롱기</option>
-								<option value="테팔">테팔</option>
-							</select>
-							<!-- 상품 모델 -->
-							<input type="text" id="pro_name" name="pro_name" />
-
-						</div>
-						
-
-					</td>
-				</tr>
-
+				
 				<tr>
 					<td><label for="gdsName">이미지 등록</label></td>
 					<td>
 						<div class="filebox"> 
 							
 							<label>
-								<input class="file_real" type="file" accept="image/jpg, image/png, image/gif" />
+								<input class="file_real" id="fileItem" name="uploadFile" multiple="multiple" type="file" accept="image/jpg, image/png, image/gif" />
 								<input class="file_fake" type="text" placeholder="*.jpg/png/gif Only" readonly tabindex="-1" />
 							  
 								<input type="button" class="button" value="파일 찾기" />
@@ -131,6 +96,43 @@
 						</div>
 					</td>
 				</tr>
+				
+				<tr>
+					<td><label for="pro_infor">상품 정보</label></td>
+					<td>
+						<div class="pro-infor-wrap">
+							<!-- 상품 테마 선택 -->
+							<select name="pro_category">
+								<option value="">상품 카테고리</option>
+								<option value="에어프라이어">에어프라이어</option>
+								<option value="전기포트">전기포트</option>
+								<option value="전자렌지">전자렌지</option>
+								<option value="토스트기">토스트기</option>
+								<option value="헤어드라이기">헤어드라이기</option>
+								<option value="공기청정기">공기청정기</option>
+							</select>
+							<!-- 제조사 선택 -->
+							<select name="category">
+								<option value="">제조사</option>
+								<option value="422">422</option>
+								<option value="아이닉">아이닉</option>
+								<option value="윈드피아">윈드피아</option>
+								<option value="LG전자">LG전자</option>
+								<option value="삼성전자">삼성전자</option>
+								<option value="유닉스">유닉스</option>
+								<option value="바비리스">바비리스</option>
+								<option value="드롱기">드롱기</option>
+								<option value="테팔">테팔</option>
+							</select>
+							<!-- 상품 모델 -->
+							<input type="text" id="pro_name" name="pro_name" />
+
+						</div>
+						
+
+					</td>
+				</tr>
+
 				<tr>
 					<td><label for="seller_mem_no">회원 정보</label></td>
 					<td><input type="text" readonly="readonly" value="${login.mem_no}" name="seller_mem_no" /></td>
@@ -146,27 +148,26 @@
 						<select name="years">
 							<option value="">사용 년도 선택</option>
 							<option value="1년 이하">1년 이하</option>
-							<option value="1년">1년</option>
-							<option value="2년">2년</option>
-							<option value="3년">3년</option>
-							<option value="4년">4년</option>
+							<option value="1년">1</option>
+							<option value="2년">2</option>
+							<option value="3년">3</option>
+							<option value="4년">4</option>
 							<option value="5년 이상">5년 이상</option>
 						</select>
 						<span class="mr20">년</span>
 						<!-- 사용 개월 수 -->
 						<select name="months">
-							<option value="1개월">1개월</option>
-							<option value="2개월">2개월</option>
-							<option value="3개월">3개월</option>
-							<option value="4개월">4개월</option>
-							<option value="5개월">5개월</option>
-							<option value="6개월">6개월</option>
-							<option value="7개월">7개월</option>
-							<option value="8개월">8개월</option>
-							<option value="9개월">9개월</option>
-							<option value="10개월">10개월</option>
-							<option value="11개월">11개월</option>
-							<option value="12개월">12개월</option>
+							<option value="1개월">1</option>
+							<option value="2개월">2</option>
+							<option value="3개월">3</option>
+							<option value="4개월">4</option>
+							<option value="5개월">5</option>
+							<option value="6개월">6</option>
+							<option value="7개월">7</option>
+							<option value="8개월">8</option>
+							<option value="9개월">9</option>
+							<option value="10개월">10</option>
+							<option value="11개월">11</option>
 						</select>	
 						<span>개월</span>
 					</td>

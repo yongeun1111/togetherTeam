@@ -78,8 +78,8 @@ public class productController {
     	
     	// System.out.println("vo.getImageList()"+vo.getImageList());
     	
-    	// System.out.println(vo);
-    	mapper.productRegister(vo);
+    	System.out.println(vo);
+    	// mapper.productRegister(vo);
     	
     	// 이미지 없을 경우
 //    	if(vo.getImageList() == null || vo.getImageList().size() <= 0) {
