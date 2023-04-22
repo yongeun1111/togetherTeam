@@ -174,6 +174,20 @@ $(document).ready(function(){
 		
 	})
 	
+	// 이미지 삽입
+	$(".image_wrap").each(function(i, obj){
+		
+		const bobj = $(obj);
+		
+		const upload_path = bobj.data("path");
+		const uuid = bobj.data("uuid");
+		const file_name = bobj.data("file_name");
+
+		const fileCallPath = encodeURIComponent(upload_path + "/s_" + uuid + "_" + file_name);
+		console.log(fileCallPath)
+		$(this).find("img").attr('src', '/display?file_name=' + fileCallPath);
+		
+	})
 	
 	
 	

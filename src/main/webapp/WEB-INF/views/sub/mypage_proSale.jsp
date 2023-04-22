@@ -41,7 +41,11 @@
         <table class="meminfo-table">
         <c:forEach items="${list}" var="list">
           <tr>
-            <td col="col" width="13%" class="memSaleImage">이미지 들어갈 자리</td>
+            <td col="col" width="13%" class="memSaleImage">
+            	<div class="image_wrap" data-pro_no="${list.pro_no}" data-path="${list.upload_path}" data-uuid="${list.uuid}" data-file_name="${list.file_name}">
+            		<img>
+            	</div>
+            </td>
             <td>${list.pro_category}, ${list.pro_title}</td>
             <td>${list.pro_sale_price}</td>
             <td>버튼 n이면 활성화, y면 비활성화/${list.pro_sale}</td>
