@@ -62,10 +62,11 @@ $(document).ready(function(){
             success: function(result){
                 if(result.length > 0){
                 	var mem_emails = []; // mem_email 값을 담을 배열 변수
-            	    $.each(result, function(idx, vo){
-                        mem_emails.push(vo.mem_email); // 추출한 mem_email 값을 배열에 추가
-                    });
-                   // alert('등록되어진 주소로 이메일을 발송하였습니다.');
+            		$.each(result, function(idx, vo){
+                		mem_emails.push(vo.mem_email); // 추출한 mem_email 값을 배열에 추가
+                	});
+                // alert('등록되어진 주소로 이메일을 발송하였습니다.');
+            		$('form').submit();
                 } else {
                     alert('아이디와 휴대폰번호, 이메일을 정확히 입력해주세요.');
                 }
@@ -120,7 +121,7 @@ $(document).ready(function(){
               <!-- 3. 이메일-->
               <div class="field mt10"><input id="pwd-search-email" type="text" placeholder="이메일"></div>
               <!-- 비밀번호 찾기 버튼 -->
-              <div class="btn mt50"><input class="search-btn" data-search="비밀번호" type="submit" value="비밀번호 찾기"></div>
+              <div class="btn mt50"><input class="search-btn" data-search="비밀번호" type="button" value="비밀번호 찾기"></div>
             </form>
 
           </div>
