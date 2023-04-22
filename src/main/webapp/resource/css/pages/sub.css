@@ -381,6 +381,24 @@ subpage
     color: #fff;
 }
 
+/* 내역 없을 경우(공통) */
+.meminfo-table .empty-area {
+    text-align: center;
+    padding: 180px 0 !important;
+}
+
+.meminfo-table .empty-area p {
+    color: #999;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.meminfo-table .empty-area p img {
+    margin: 0 auto;
+    display: inline-block;
+}
+
+
 /* 상품 등록하기--------------------------------------------- */
 .agree-wrap {
     width: 1400px;

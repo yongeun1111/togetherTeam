@@ -77,8 +77,8 @@ $(document).ready(function(){
     <h2 class="center">마이페이지</h2>
     <div class="tab-wrap">
       <ul class="tab-menu">
-        <li class="on"><a href="#">회원정보 수정</a></li>
-        <li><a href="#">내가 찜한 목록</a></li>
+        <li class="on"><a href="javascript:;">회원정보 수정</a></li>
+        <li><a href="/mypage_likeList">내가 찜한 목록</a></li>
         <li><a href="/mypage_proSale">판매 내역</a></li>
       </ul>
     </div>
