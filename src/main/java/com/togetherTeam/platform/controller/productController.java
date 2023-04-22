@@ -143,7 +143,7 @@ public class productController {
     	}
     	
     	// 저장 경로 설정
-    	String uploadFolder = "C:\\upload";
+    	String uploadFolder = "C:\\Users\\smhrd\\git\\togetherTeam\\src\\main\\webapp\\resource\\upload";
     	
     	// 날짜 폴더 경로
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

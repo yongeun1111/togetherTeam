@@ -32,7 +32,7 @@ public class ImageController {
 		
 		// System.out.println("getImage() : " + file_name);
 		
-		File file = new File("c:\\upload\\" + file_name);
+		File file = new File("C:\\Users\\smhrd\\git\\togetherTeam\\src\\main\\webapp\\resource\\upload\\" + file_name);
 		
 		// 뷰로 반환할 ResponseEntity 객체의 주소를 저장할 참조 변수 선언
 		ResponseEntity<byte[]> result = null;
@@ -63,7 +63,7 @@ public class ImageController {
 		
 		try {
 			// 대표 파일 삭제
-			file = new File("c:\\upload\\" + URLDecoder.decode(file_name, "UTF-8"));
+			file = new File("C:\\Users\\smhrd\\git\\togetherTeam\\src\\main\\webapp\\resource\\upload\\" + URLDecoder.decode(file_name, "UTF-8"));
 			file.delete();
 			
 			// 원본 파일 삭제
