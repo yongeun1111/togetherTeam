@@ -12,7 +12,7 @@ public class CriteriaSale {
 	
 	public CriteriaSale() {
 		this.page=1;
-		this.perPageNum=10; // 조정
+		this.perPageNum=7; // 조정
 	}
 	
 	// select * from memboard order by boardGroup desc, boardSeq asc limit 1, 10
