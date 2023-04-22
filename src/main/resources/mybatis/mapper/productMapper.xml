@@ -106,4 +106,35 @@
  		 WHERE a.pro_no = 3
 	</select>
 	
+	<!-- 회원이 등록한 상품 리스트, 이미지 하나씩 가져오기 -->
+	<!-- ROW_NUMBER() OVER (PARTITION BY a.pro_no ORDER BY a.pro_no DESC) AS RN
+		: 조인 후 a.pro_no로 그룹화하고 a.pro_no을 기준으로 내림차순 정렬 후 RN 생성 -->
+	<select id="getMemProductList" parameterType="Map" resultType="com.togetherTeam.platform.entity.Product">
+	
+    	SELECT *
+			FROM(
+				SELECT T.*, ROWNUM AS RNUM
+				FROM (
+  					SELECT S.*
+  					FROM (
+    					SELECT a.seller_mem_no, a.pro_no, a.pro_title, b.upload_path, b.uuid, b.file_name, a.pro_category, a.pro_name, a.pro_sale_price, a.pro_sale,
+      						ROW_NUMBER() OVER (PARTITION BY a.pro_no ORDER BY a.pro_no DESC) AS RN
+    					FROM product a LEFT OUTER JOIN image b ON a.pro_no = b.pro_no
+    					WHERE a.seller_mem_no = #{mem_no}
+    					ORDER BY pro_no DESC
+  					) S
+				) T
+        	WHERE RN=1
+        	)
+		WHERE RN=1 and RNUM BETWEEN #{cri.pageStart}+1 AND #{cri.pageEnd}
+  		
+	</select>
+	
+	<!-- 상품 총 개수 -->
+  	<select id="memProTotalCount" parameterType="com.togetherTeam.platform.entity.Member" resultType="int">
+  	
+  		select count(*) from product where seller_mem_no = #{mem_no}
+
+  	</select>
+	
 </mapper>

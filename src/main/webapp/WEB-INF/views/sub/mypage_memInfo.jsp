@@ -79,7 +79,7 @@ $(document).ready(function(){
       <ul class="tab-menu">
         <li class="on"><a href="#">회원정보 수정</a></li>
         <li><a href="#">내가 찜한 목록</a></li>
-        <li><a href="#">판매 내역</a></li>
+        <li><a href="/mypage_proSale">판매 내역</a></li>
       </ul>
     </div>
 

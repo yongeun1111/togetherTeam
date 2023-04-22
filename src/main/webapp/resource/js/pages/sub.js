@@ -160,6 +160,22 @@ $(document).ready(function(){
 
 	}
 	
+	// 페이지 이동 버튼
+	let pageFrm = $('#pageForm');
+	
+	$(".page-item a").on("click", function(e){
+		
+		// 브라우저의 동작을 중단시키는 역할, submit이 동작했을때 페이지를 새로고침 안시키기 위해서 사용
+		e.preventDefault();
+		
+		var page = $(this).attr("href");
+			pageFrm.find("#page").val(page);
+			pageFrm.submit();
+		
+	})
+	
+	
+	
 	
 	
 	
