@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.print.attribute.standard.DateTimeAtCompleted;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,8 @@ public class ChatController {
 			chatRoomService.createFile(chatRoom.getPro_no(), chatRoomService.getNo(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no()));
 		}
 		
+		chatRoom.setChat_room_no(chatRoomService.getNo(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no()));
+		
 		// chatRoom 객체를 view로 전달
 		model.addAttribute("chatRoomInfo", chatRoom);
 		
@@ -85,5 +88,39 @@ public class ChatController {
 		tempChatRoom.setSendTime(chatRoom.getSendTime());
 		
 		simpMessage.convertAndSend(url, tempChatRoom);
+	}
+	
+	@RequestMapping("/userChatInfo")
+	public String getUserChatList(HttpSession session, Model model) {
+		
+		Member member = (Member) session.getAttribute("login");
+		int memNo = member.getMem_no();
+
+		List<ChatRoom> chatRoom = chatRoomService.getChatList(memNo);
+		
+		model.addAttribute("chatList", chatRoom);
+		System.out.println(chatRoom);
+		return "userChatInfo";
+	}
+	
+	@RequestMapping("/userToChat")
+	public String getChatRoom(Model model, int chatRoomNo) throws IOException {
+		
+		ChatRoom chatRoomRead = chatRoomService.findChatRoom(chatRoomNo);
+		int proNo = chatRoomRead.getPro_no();
+		int buyerNo = chatRoomRead.getBuyer_mem_no();
+		List<ChatRoom> chatHistory = chatRoomService.readChatHistory(chatRoomRead);
+		
+		model.addAttribute("chatHistory", chatHistory);
+		
+		String proTitle = chatRoomRead.getPro_title();
+		int sellerNo = chatRoomRead.getSeller_mem_no();
+		model.addAttribute("chatRoomNo", chatRoomNo);
+		model.addAttribute("proNo", proNo);
+		model.addAttribute("buyerNo", buyerNo);
+		model.addAttribute("sellerNo", sellerNo);
+		model.addAttribute("proTitle", proTitle);
+		
+		return "chatBroadcastChatRoom";
 	}
 }

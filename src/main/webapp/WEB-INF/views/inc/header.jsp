@@ -30,6 +30,7 @@
 							<li><a href="join">회원가입</a></li>
 						</c:if>
 						<c:if test="${!empty login}">
+							<li class="after"><a href="userChatInfo">채팅리스트</a>
 							<li class="after"><a href="mypage_memInfo">마이 페이지</a>
 							<li><a href="logout">로그아웃</a></li>
 						</c:if>

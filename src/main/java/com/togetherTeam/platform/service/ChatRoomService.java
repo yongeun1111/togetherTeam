@@ -89,6 +89,11 @@ public class ChatRoomService implements chatRoomMapper {
 		chatRoomMapper.updateFileName(chatRoomNo, fileName);
 	}
 	
+	public List<ChatRoom> getChatList(int memNo) {
+		List<ChatRoom> chatRoom = chatRoomMapper.getChatList(memNo);
+		return chatRoom;
+	}
+	
 	@Override
 	public void updateFileName(int chatRoomNo, String fileName) {
 		
@@ -145,6 +150,11 @@ public class ChatRoomService implements chatRoomMapper {
 	public int getNo(int proNo, int buyerNo) {
 		
 		return chatRoomMapper.getNo(proNo, buyerNo);
+	}
+	
+	@Override
+	public ChatRoom findChatRoom(int chatRoomNo) {
+		return chatRoomMapper.findChatRoom(chatRoomNo);
 	}
 
 }

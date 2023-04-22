@@ -11,7 +11,7 @@
 <c:import url="${contextPath}/WEB-INF/views/inc/headerScript.jsp"/>
 <c:import url="${contextPath}/WEB-INF/views/inc/header.jsp"/>
 
-<link rel="stylesheet" href="${contextPath}/resource/css/pages/testChat.css">
+<link rel="stylesheet" href="${contextPath}/resource/css/pages/chatBroadcastChatRoom.css">
 <script src="${contextPath}/resource/js/jquery/gsap.min.js"></script>
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 
@@ -20,7 +20,7 @@
 <div class="main">
 	<h2>채팅 테스트</h2>
 	<div class="title_text">
-		<p>${chatRoomInfo.pro_title}</p>
+		<p>${proTitle}</p>
 	</div>
 	<div>
 		<!-- chatHistory와 사용자가 실시간으로 입력하는 메시지 출력 -->
@@ -39,12 +39,12 @@
 				<input type="text" id="message" class="form_control" placeholder="입력입력"/>	
 				<div class="input_group_append">
 					<button id="send" onclick="send()">보내기</button>
-					<input type="hidden" value="${login.mem_no}" id="buyerNo"/>
-					<input type="hidden" value="${login.mem_id}" id="buyerId"/>
-					<input type="hidden" value="${chatRoomInfo.pro_no}" id="proNo"/>
-					<input type="hidden" value="${chatRoomInfo.seller_mem_no}" id="sellerNo"/>
-					<input type="hidden" value="${chatRoomInfo.seller_mem_id}" id="sellerId"/>
-					<input type="hidden" value="${chatRoomInfo.chat_room_no}" id="chatRoomNo"/>
+					<input type="hidden" value="${login.mem_no}" id="senderNo"/>
+					<input type="hidden" value="${login.mem_id}" id="senderId"/>
+					<input type="hidden" value="${proNo}" id="proNo"/>
+					<input type="hidden" value="${sellerNo}" id="sellerNo"/>
+					<input type="hidden" value="${buyerNo}" id="buyerNo"/>
+					<input type="hidden" value="${chatRoomNo}" id="chatRoomNo"/>
 				</div>
 			</div>
 		</div>
@@ -61,12 +61,9 @@
 	var chatRoomNo = $("#chatRoomNo").val();
 	var proNo = $("#proNo").val();
 	var sellerNo = $("#sellerNo").val();
-	var sellerId = $("#sellerId").val();
-	var buyerId = $("#buyerId").val();
 	var buyerNo = $("#buyerNo").val();
-	var senderId = $("#buyerId").val();
-	
-	
+	var senderNo = $("#senderNo").val();
+	var senderId = $("#senderId").val();
 	$(document).ready(connect());
 	// STOMP 설정 및 메시지 전송
 	// url : /user 로 시작
@@ -119,9 +116,7 @@
 			'sender_no':buyerNo,
 			'sender_id':senderId,
 			'buyer_mem_no':buyerNo,
-			'buyer_mem_id':buyerId,
 			'seller_mem_no':sellerNo,
-			'seller_mem_id':sellerId,
 			'content':content,
 		});
 		$("message").val("");
@@ -129,11 +124,11 @@
 	
 	// 메시지 입력 창에서 Enter키가 보내기와 연동
 	var inputMessage = document.getElementById("message");
-	inputMessage.addEventListener("keyup", function enterSend(event){
-		if (event.keyCode === null){
+	inputMessage.addEventListener("keyup", function enterSend(e){
+		if (e.keyCode === null){
 			event.preventDeault();
 		}
-		if (event.keyCode === 13){
+		if (e.keyCode === 13){
 			send();
 			$("#message").val("");
 		}
@@ -150,18 +145,18 @@
 		"</div><div>[" +
 		messageObj.sendTime +
 		"]</div></p>";
-	}
+	};
 	
 	// HTML 형태의 메시지를 화면에 출력
 	// 해당되는 id 태그의 모든 하위 내용들을 
 	// message가 추가된 내용으로 갱신
 	function showBroadcastMessage(message) {
 		$("#content").html($("#content").html() + message);
-	}
+	};
 	
 	function clearBoardcast() {
-		$("#content").val("");
-	}
+		$("#content").html("");
+	};
 	
 </script>
 <c:import url="${contextPath}/WEB-INF/views/inc/footer.jsp"/>

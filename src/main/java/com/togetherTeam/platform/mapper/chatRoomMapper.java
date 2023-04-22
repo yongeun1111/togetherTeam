@@ -1,6 +1,7 @@
 package com.togetherTeam.platform.mapper;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -15,4 +16,6 @@ public interface chatRoomMapper {
 	public int countChatRoomNo(@Param("proNo") int proNo, @Param("buyerNo") int buyerNo);
 	public ChatRoom findChatRoomNo(@Param("proNo") int proNo, @Param("buyerNo") int buyerNo);
 	public int getNo(@Param("proNo") int proNo, @Param("buyerNo") int buyerNo);
+	public List<ChatRoom> getChatList(int memNo);
+	public ChatRoom findChatRoom(int chatRoomNo);
 }

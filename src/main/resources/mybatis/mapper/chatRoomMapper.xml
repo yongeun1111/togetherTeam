@@ -55,5 +55,16 @@
     	   AND BUYER_MEM_NO = #{buyerNo}
     </select>
     
+    <select id="getChatList" resultType="com.togetherTeam.platform.entity.ChatRoom">
+    	SELECT *
+    	  FROM CHAT_ROOM
+    	 WHERE SELLER_MEM_NO = #{memNo}
+    </select>
+    
+    <select id="findChatRoom" resultType="com.togetherTeam.platform.entity.ChatRoom">
+    	SELECT *
+    	  FROM CHAT_ROOM
+    	 WHERE CHAT_ROOM_NO = #{chatRoomNo}
+    </select>
     
 </mapper>
