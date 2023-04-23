@@ -20,7 +20,7 @@
   <!-- main visual -->
 <div class="main">
 
-<form action="userToChat" method="get">
+<form action="listToChat" method="get">
 <c:forEach var="chat" items="${chatList}">
 	<h3>${chat.chat_room_no}</h3>
 	<h5>${chat.pro_no}</h5>

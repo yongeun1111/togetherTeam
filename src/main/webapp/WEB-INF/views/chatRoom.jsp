@@ -32,7 +32,10 @@
 					</div><div class="col_4 text-right">
 					<span id="MessageContent">${chat.chat_content}</span>
 					</div><div>
-					<span id="MessageSendTime">${chat.chat_date}</span>
+					<span id="MessageSendTime">
+						<fmt:parseDate value="${chat.chat_date}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+						[<fmt:formatDate pattern="HH:mm" value="${parsedDateTime}" />]
+					</span>
 					</div></div>
 				</p>
 			</c:forEach>
@@ -126,7 +129,7 @@
 			'chat_mem_id':senderId,
 			'chat_content':content,
 		});
-		$("message").val("");
+		$("#message").val("");
 	}
 	
 	// 메시지 입력 창에서 Enter키가 보내기와 연동
@@ -150,7 +153,7 @@
 		'</div><div class="col_4 text-right">' +
 		messageObj.chat_content +
 		"</div><div>[" +
-		messageObj.chat_date +
+		messageObj.chat_date.substring(11, 16) +
 		"]</div></p>";
 	}
 	

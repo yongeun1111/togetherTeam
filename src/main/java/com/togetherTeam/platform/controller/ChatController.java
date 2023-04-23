@@ -40,7 +40,7 @@ public class ChatController {
 	
 	// 채팅방 생성, 이전 채팅방 접속
 	@GetMapping("/createChatRoom")
-	public String getWebSocketWithSockJs(Model model, HttpSession session, @ModelAttribute("chatRoom") ChatRoom chatRoom) throws IOException {
+	public String getWebSocketWithSockJs(Model model, HttpSession session, @ModelAttribute("chatRoom") ChatRoom chatRoom) {
 		
 		// 채팅 화면에 전달할 parameter 설정
 		Member member = (Member) session.getAttribute("login");
@@ -74,7 +74,6 @@ public class ChatController {
 	public void send(Chat chat) throws IOException {
 		
 		LocalDateTime now = LocalDateTime.now();
-        now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         chat.setChat_date(now);
 		
         chatRoomService.insertChat(chat);
@@ -105,7 +104,7 @@ public class ChatController {
 	}
 	
 	// 채팅방 리스트에서 채팅방으로 접속
-	@RequestMapping("/userToChat")
+	@RequestMapping("/listToChat")
 	public String getChatRoom(Model model, int chatRoomNo, String proTitle) {
 		
 		ChatRoom chatRoom = chatRoomService.findChatRoom(chatRoomNo);
