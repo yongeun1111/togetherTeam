@@ -2,6 +2,7 @@ package com.togetherTeam.platform.controller;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.print.attribute.standard.DateTimeAtCompleted;
@@ -74,7 +75,10 @@ public class ChatController {
 	public void send(ChatRoom chatRoom) throws IOException {
 		
 		System.out.println(chatRoom);
-		chatRoom.setSendTime(LocalDateTime.now().toString());
+		LocalDateTime now = LocalDateTime.now();
+        String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초"));
+        
+		chatRoom.setSendTime(formatedNow);
 		
 		chatRoomService.appendMessage(chatRoom);
 		

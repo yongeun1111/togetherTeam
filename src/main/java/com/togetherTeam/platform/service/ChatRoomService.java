@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,9 +31,12 @@ public class ChatRoomService implements chatRoomMapper {
 	@Override
 	public void addChatRoom(ChatRoom chatRoom) {
 		
-		Timestamp createdDate = Timestamp.valueOf(LocalDateTime.now());
-		chatRoom.setRoom_date(createdDate);
-		
+//		Timestamp createdDate = Timestamp.valueOf(LocalDateTime.now());
+//		chatRoom.setRoom_date(createdDate);
+        LocalDateTime now = LocalDateTime.now();
+        String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초"));
+        
+		chatRoom.setRoom_date(formatedNow);
 		chatRoomMapper.addChatRoom(chatRoom);
 	}
 	

@@ -103,7 +103,7 @@
 		SELECT a.*, b.mem_id
   		  FROM product a INNER JOIN member b
     	    ON a.seller_mem_no = b.mem_no
- 		 WHERE a.pro_no = 3
+ 		 WHERE a.pro_no = 30
 	</select>
 	
 	<!-- 회원이 등록한 상품 리스트, 이미지 하나씩 가져오기 -->

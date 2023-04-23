@@ -11,7 +11,7 @@ public class ChatRoom {
 	private int pro_no;
 	private int seller_mem_no;
 	private int buyer_mem_no;
-	private Timestamp room_date;
+	private String room_date;
 	private String file_name;
 	private String buyer_mem_id;
 	private String seller_mem_id;
