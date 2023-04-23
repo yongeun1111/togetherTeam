@@ -3,7 +3,9 @@ package com.togetherTeam.platform.controller;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +18,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.togetherTeam.platform.entity.Chat;
 import com.togetherTeam.platform.entity.ChatRoom;
@@ -91,7 +95,7 @@ public class ChatController {
 	}
 	
 	// 채팅방 리스트
-	@RequestMapping("/chatList")
+	@RequestMapping("/chat")
 	public String getUserChatList(HttpSession session, Model model) {
 		
 		Member member = (Member) session.getAttribute("login");
@@ -100,19 +104,22 @@ public class ChatController {
 		List<ChatRoom> chatRoom = chatRoomService.getChatList(memNo);
 		
 		model.addAttribute("chatList", chatRoom);
-		return "chatList";
+		return "chat";
 	}
 	
 	// 채팅방 리스트에서 채팅방으로 접속
-	@RequestMapping("/listToChat")
-	public String getChatRoom(Model model, int chatRoomNo, String proTitle) {
+	@PostMapping("/getChatHistory")
+	@ResponseBody
+	public Map getChatHistory(int chatRoomNo) {
 		
-		ChatRoom chatRoom = chatRoomService.findChatRoom(chatRoomNo);
 		List<Chat> chatHistory = chatRoomService.readChatHistory(chatRoomNo);
+		ChatRoom chatRoomInfo = chatRoomService.findChatRoom(chatRoomNo);
 		
-		model.addAttribute("chatHistory", chatHistory);		
-		model.addAttribute("chatRoomInfo", chatRoom);
-		
-		return "chatRoom";
+		Map<String, Object> chat = new HashMap<>();
+		chat.put("chatHistory", chatHistory);
+		chat.put("chatRoomInfo", chatRoomInfo);
+				
+		return chat;
 	}
+	
 }
