@@ -25,11 +25,11 @@
 	<div>
 		<!-- chatHistory와 사용자가 실시간으로 입력하는 메시지 출력 -->
 		<div id="content">
-			<c:forEach var="chatRoom" items="${chatHistory}"> 
+			<c:forEach var="chat" items="${chatHistory}"> 
 				<p>
-					<span id="chatRoomSenderID">${chatRoom.sender_id}</span>
-					<span id="chatRoomContent">${chatRoom.content}</span>
-					<span id="chatRoomSendTime">${chatRoom.sendTime}</span>
+					<span id="MessageSenderID">${chat.chat_mem_id}</span>
+					<span id="MessageContent">${chat.chat_content}</span>
+					<span id="MessageSendTime">${chat.chat_date}</span>
 				</p>
 			</c:forEach>
 		</div>
@@ -65,6 +65,7 @@
 	var buyerId = $("#buyerId").val();
 	var buyerNo = $("#buyerNo").val();
 	var senderId = $("#buyerId").val();
+	var senderNo = $("#buyerNo").val();
 	
 	
 	$(document).ready(connect());
@@ -115,14 +116,9 @@
 		var content = $('#message').val();
 		sendBroadcast({
 			'chat_room_no':chatRoomNo,
-			'pro_no':proNo,
-			'sender_no':buyerNo,
-			'sender_id':senderId,
-			'buyer_mem_no':buyerNo,
-			'buyer_mem_id':buyerId,
-			'seller_mem_no':sellerNo,
-			'seller_mem_id':sellerId,
-			'content':content,
+			'chat_mem_no':senderNo,
+			'chat_mem_id':senderId,
+			'chat_content':content,
 		});
 		$("message").val("");
 	}
@@ -142,13 +138,13 @@
 	// 입력 메시지를 HTML 형태로 가공
 	function createTextNode(messageObj) {
 		console.log("createTextNode");
-		console.log("messageObj: "+ messageObj.content);
+		console.log("messageObj: "+ messageObj.chat_content);
 		return '<p><div class="row alert alert-info"><div class="col_8">' +
-		messageObj.sender_id +
+		messageObj.chat_mem_id +
 		'</div><div class="col_4 text-right">' +
-		messageObj.content +
+		messageObj.chat_content +
 		"</div><div>[" +
-		messageObj.sendTime +
+		messageObj.chat_date +
 		"]</div></p>";
 	}
 	

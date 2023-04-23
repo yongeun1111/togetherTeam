@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.togetherTeam.platform.entity.Chat;
 import com.togetherTeam.platform.entity.ChatRoom;
 import com.togetherTeam.platform.entity.Member;
 import com.togetherTeam.platform.mapper.chatRoomMapper;
@@ -50,11 +51,12 @@ public class ChatController {
 		chatRoom.setBuyer_mem_id(buyerId);
 		
 		// 채팅방이 이미 만들어져있는지 확인하고 이전 기록 불러오기
-		if (chatRoomService.countChatRoomNo(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no())>0) {
+		if (chatRoomService.findChatRoomNo(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no()) != null) {
 			// 채팅방 정보 확인
 			ChatRoom tempChatRoom = chatRoomService.findChatRoomNo(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no());
+			int chatRoomNo = tempChatRoom.getChat_room_no();
 			// 채팅 기록 불러오기
-			List<ChatRoom> chatHistory = chatRoomService.readChatHistory(tempChatRoom);
+			List<Chat> chatHistory = chatRoomService.readChatHistory(chatRoomNo);
 			model.addAttribute("chatHistory", chatHistory);
 		} else {
 			// 이전 채팅방이 없다면 채팅방 생성
@@ -72,26 +74,26 @@ public class ChatController {
 	}
 	
 	@MessageMapping("/broadcast")
-	public void send(ChatRoom chatRoom) throws IOException {
+	public void send(Chat chat) throws IOException {
 		
-		System.out.println(chatRoom);
+		System.out.println(chat);
 		LocalDateTime now = LocalDateTime.now();
-        String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초"));
+        now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         
-		chatRoom.setSendTime(formatedNow);
+		chat.setChat_date(now);
 		
-		chatRoomService.appendMessage(chatRoom);
+		chatRoomService.chatMessage(chat);
 		
-		int chatRoomNo = chatRoom.getChat_room_no();
+		int chatRoomNo = chat.getChat_room_no();
 		String url = "/user/" + chatRoomNo + "/queue/messages";
 		
-		ChatRoom tempChatRoom = new ChatRoom();
-		tempChatRoom.setSender_no(chatRoom.getSender_no());
-		tempChatRoom.setSender_id(chatRoom.getSender_id());
-		tempChatRoom.setContent(chatRoom.getContent());
-		tempChatRoom.setSendTime(chatRoom.getSendTime());
+		Chat message = new Chat();
+		message.setChat_mem_no(chat.getChat_mem_no());
+		message.setChat_mem_id(chat.getChat_mem_id());
+		message.setChat_content(chat.getChat_content());
+		message.setChat_date(chat.getChat_date());
 		
-		simpMessage.convertAndSend(url, tempChatRoom);
+		simpMessage.convertAndSend(url, message);
 	}
 	
 	@RequestMapping("/userChatInfo")
@@ -108,17 +110,17 @@ public class ChatController {
 	}
 	
 	@RequestMapping("/userToChat")
-	public String getChatRoom(Model model, int chatRoomNo) throws IOException {
+	public String getChatRoom(Model model, int chatRoomNo, String proTitle) {
 		
-		ChatRoom chatRoomRead = chatRoomService.findChatRoom(chatRoomNo);
-		int proNo = chatRoomRead.getPro_no();
-		int buyerNo = chatRoomRead.getBuyer_mem_no();
-		List<ChatRoom> chatHistory = chatRoomService.readChatHistory(chatRoomRead);
+		ChatRoom chatRoom = chatRoomService.findChatRoom(chatRoomNo);
+		List<Chat> chatHistory = chatRoomService.readChatHistory(chatRoomNo);
 		
 		model.addAttribute("chatHistory", chatHistory);
 		
-		String proTitle = chatRoomRead.getPro_title();
-		int sellerNo = chatRoomRead.getSeller_mem_no();
+		int sellerNo = chatRoom.getSeller_mem_no();
+		int proNo = chatRoom.getPro_no();
+		int buyerNo = chatRoom.getBuyer_mem_no();
+		
 		model.addAttribute("chatRoomNo", chatRoomNo);
 		model.addAttribute("proNo", proNo);
 		model.addAttribute("buyerNo", buyerNo);

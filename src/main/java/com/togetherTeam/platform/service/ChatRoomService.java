@@ -15,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
+import com.togetherTeam.platform.entity.Chat;
 import com.togetherTeam.platform.entity.ChatRoom;
 import com.togetherTeam.platform.mapper.chatRoomMapper;
 
@@ -34,51 +36,18 @@ public class ChatRoomService implements chatRoomMapper {
 //		Timestamp createdDate = Timestamp.valueOf(LocalDateTime.now());
 //		chatRoom.setRoom_date(createdDate);
         LocalDateTime now = LocalDateTime.now();
-        String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초"));
+        now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         
-		chatRoom.setRoom_date(formatedNow);
+		chatRoom.setRoom_date(now);
 		chatRoomMapper.addChatRoom(chatRoom);
 	}
 	
 	// no connection with DB
 	
-	public List<ChatRoom> readChatHistory(ChatRoom chatRoom) throws IOException{
+	public List<Chat> readChatHistory(int chatRoomNo) {
 		
-		String pathName = fileUploadPath + chatRoom.getFile_name();
+		List<Chat> chatHistory = chatRoomMapper.readChatHistory(chatRoomNo);
 		
-		// DB에 저장된 chat.txt 파일을 읽어옴
-		BufferedReader br = new BufferedReader(new FileReader(pathName));
-		
-		// View에 ChatRoom 객체 전달
-		ChatRoom chatRoomLines = new ChatRoom();
-		List<ChatRoom> chatHistory = new ArrayList<ChatRoom>();
-		
-		String chatLine;
-		int idx = 1;
-		
-		while ((chatLine = br.readLine()) != null) {
-			
-			// 메시지 1개 : 보낸 사람 아이디, 내용, 보낸 시간
-			// 총 3줄 구성
-			int answer = idx % 3;
-			if (answer == 1) {
-				// 보낸 사람 아이디
-				chatRoomLines.setSender_id(chatLine);
-				idx++;
-			} else if (answer == 2) {
-				// 메시지 내용
-				chatRoomLines.setContent(chatLine);
-				idx++;
-			} else {
-				// 보낸 시간
-				chatRoomLines.setSendTime(chatLine);
-				// 메시지가 담긴 ChatRoom 객체를 List타입으로 저장
-				chatHistory.add(chatRoomLines);
-				// 객체, idx(줄 수) 초기화
-				chatRoomLines= new ChatRoom();
-				idx = 1;
-			}
-		}
 		return chatHistory;
 	}
 	
@@ -105,35 +74,9 @@ public class ChatRoomService implements chatRoomMapper {
 	}
 
 	
-	public void appendMessage(ChatRoom chatRoom) throws IOException {
-		
-		System.out.println(chatRoom);
-		
-		int proNo = chatRoom.getPro_no();
-		int buyerNo = chatRoom.getBuyer_mem_no();
-		
-		
-		ChatRoom chatRoomAppend = chatRoomMapper.findChatRoomNo(proNo, buyerNo);
-		
-		String pathName = fileUploadPath + chatRoomAppend.getFile_name();
-		
-		FileOutputStream fos = new FileOutputStream(pathName, true);
-		String content = chatRoom.getContent();
-		int senderNo = chatRoom.getSender_no();
-		String senderId = chatRoom.getSender_id();
-		String sendTime = chatRoom.getSendTime();
-		System.out.println("print:"+ content);
-		
-		String writeContent = senderId + "\n" + content + "\n" + "[" + sendTime + "]" + "\n";
-		
-		byte[] b = writeContent.getBytes();
-		
-		fos.write(b);
-		fos.close();
-		
-		System.out.println("senderNo: "+ senderNo);
-		System.out.println("senderId: "+ chatRoom.getSender_id());
-		
+	public void chatMessage(Chat chat) {
+		System.out.println(chat);
+		chatRoomMapper.chatMessage(chat);
 	}
 	
 	

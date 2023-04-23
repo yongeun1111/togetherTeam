@@ -16,17 +16,6 @@
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 <script src="${contextPath}/resource/js/pages/main.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function(){
-	$(".sendChatRoomNo").click(function{
-		var chatRoomNo = $(this>input).val();
-		console.log(chatRoomNo);
-	})	
-})
-
-
-
-</script>
 
   <!-- main visual -->
 <div class="main">
@@ -38,6 +27,7 @@ $(document).ready(function(){
 	</br>
 	<button class="sendChatRoomNo">채팅입장</button>
 	<input type="hidden" value="${chat.chat_room_no}" name="chatRoomNo"/>
+	<input type="hidden" value="${chat.pro_title}" name="proTitle"/>
 </c:forEach>
 </form>
 

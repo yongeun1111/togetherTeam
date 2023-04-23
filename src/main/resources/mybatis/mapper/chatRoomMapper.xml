@@ -28,6 +28,27 @@
   		)	
 	</insert>
 	
+	<select id="readChatHistory" parameterType="com.togetherTeam.platform.entity.ChatRoom" resultType="com.togetherTeam.platform.entity.Chat">
+		SELECT *
+		  FROM CHAT
+		 WHERE CHAT_ROOM_NO = #{CHAT_ROOM_NO}
+		 ORDER BY CHAT_DATE
+	</select>
+	
+	<insert id="chatMessage" parameterType="com.togetherTeam.platform.entity.Chat">
+		INSERT INTO CHAT (
+			CHAT_ROOM_NO,
+			CHAT_MEM_NO,
+			CHAT_CONTENT,
+			CHAT_DATE
+		) VALUES (
+			#{chat_room_no},
+			#{chat_mem_no},
+			#{chat_content},
+			#{chat_date}
+		)
+	</insert>
+	
 	<update id="updateFileName" parameterType="com.togetherTeam.platform.entity.ChatRoom">
 		UPDATE CHAT_ROOM
 		   SET FILE_NAME = #{fileName}
@@ -66,5 +87,7 @@
     	  FROM CHAT_ROOM
     	 WHERE CHAT_ROOM_NO = #{chatRoomNo}
     </select>
+    
+    
     
 </mapper>
