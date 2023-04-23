@@ -11,7 +11,7 @@
 <c:import url="${contextPath}/WEB-INF/views/inc/headerScript.jsp"/>
 <c:import url="${contextPath}/WEB-INF/views/inc/header.jsp"/>
 
-<link rel="stylesheet" href="${contextPath}/resource/css/pages/testChat.css">
+<link rel="stylesheet" href="${contextPath}/resource/css/pages/chatRoom.css">
 <script src="${contextPath}/resource/js/jquery/gsap.min.js"></script>
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 
@@ -39,9 +39,11 @@
 				<input type="text" id="message" class="form_control" placeholder="입력입력"/>	
 				<div class="input_group_append">
 					<button id="send" onclick="send()">보내기</button>
-					<input type="hidden" value="${login.mem_no}" id="buyerNo"/>
-					<input type="hidden" value="${login.mem_id}" id="buyerId"/>
+					<input type="hidden" value="${login.mem_no}" id="senderNo"/>
+					<input type="hidden" value="${login.mem_id}" id="senderId"/>
 					<input type="hidden" value="${chatRoomInfo.pro_no}" id="proNo"/>
+					<input type="hidden" value="${chatRoomInfo.buyer_mem_no}" id="buyerNo">
+					<input type="hidden" value="${chatRoomInfo.buyer_mem_id}" id="buyerId">
 					<input type="hidden" value="${chatRoomInfo.seller_mem_no}" id="sellerNo"/>
 					<input type="hidden" value="${chatRoomInfo.seller_mem_id}" id="sellerId"/>
 					<input type="hidden" value="${chatRoomInfo.chat_room_no}" id="chatRoomNo"/>
@@ -64,8 +66,8 @@
 	var sellerId = $("#sellerId").val();
 	var buyerId = $("#buyerId").val();
 	var buyerNo = $("#buyerNo").val();
-	var senderId = $("#buyerId").val();
-	var senderNo = $("#buyerNo").val();
+	var senderId = $("#senderId").val();
+	var senderNo = $("#snederNo").val();
 	
 	
 	$(document).ready(connect());

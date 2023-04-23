@@ -6,25 +6,19 @@
   
 <mapper namespace="com.togetherTeam.platform.mapper.chatRoomMapper">
 
-	<insert id="addChatRoom" parameterType="com.togetherTeam.platform.entity.ChatRoom">
+	<insert id="createChatRoom" parameterType="com.togetherTeam.platform.entity.ChatRoom">
 		INSERT INTO CHAT_ROOM(
   			CHAT_ROOM_NO,
   			SELLER_MEM_NO,
   			BUYER_MEM_NO,
   			ROOM_DATE,
-  			PRO_NO,
-  			FILE_NAME,
-  			SELLER_MEM_ID,
-  			BUYER_MEM_ID
+  			PRO_NO
   		) VALUES (
   			#{chat_room_no},
   			#{seller_mem_no},
   			#{buyer_mem_no},
   			#{room_date},
-  			#{pro_no},
-  			#{file_name},
-  			#{seller_mem_id},
-  			#{buyer_mem_id}
+  			#{pro_no}
   		)	
 	</insert>
 	
@@ -49,28 +43,8 @@
 		)
 	</insert>
 	
-	<update id="updateFileName" parameterType="com.togetherTeam.platform.entity.ChatRoom">
-		UPDATE CHAT_ROOM
-		   SET FILE_NAME = #{fileName}
-		 WHERE CHAT_ROOM_NO = #{chatRoomNo}
-	</update>
-	
-	<select id="countChatRoomNo" parameterType="com.togetherTeam.platform.entity.ChatRoom" resultType="int">
-    	SELECT COUNT(*)
-    	  FROM CHAT_ROOM
-    	 WHERE PRO_NO = #{proNo} 
-    	   AND BUYER_MEM_NO = #{buyerNo}
-    </select>
-	
-    <select id="findChatRoomNo" parameterType="com.togetherTeam.platform.entity.ChatRoom" resultType="com.togetherTeam.platform.entity.ChatRoom">
+    <select id="checkChatRoom" parameterType="com.togetherTeam.platform.entity.ChatRoom" resultType="com.togetherTeam.platform.entity.ChatRoom">
     	SELECT *
-    	  FROM CHAT_ROOM
-    	 WHERE PRO_NO = #{proNo} 
-    	   AND BUYER_MEM_NO = #{buyerNo}
-    </select>
-    
-	<select id="getNo" resultType="int">
-    	SELECT CHAT_ROOM_NO
     	  FROM CHAT_ROOM
     	 WHERE PRO_NO = #{proNo} 
     	   AND BUYER_MEM_NO = #{buyerNo}
@@ -87,7 +61,6 @@
     	  FROM CHAT_ROOM
     	 WHERE CHAT_ROOM_NO = #{chatRoomNo}
     </select>
-    
     
     
 </mapper>

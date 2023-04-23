@@ -38,10 +38,9 @@ public class ChatController {
 	
 	
 	
-	// 채팅
-	@GetMapping("/chatMessage")
+	// 채팅방 생성, 이전 채팅방 접속
+	@GetMapping("/createChatRoom")
 	public String getWebSocketWithSockJs(Model model, HttpSession session, @ModelAttribute("chatRoom") ChatRoom chatRoom) throws IOException {
-		
 		
 		// 채팅 화면에 전달할 parameter 설정
 		Member member = (Member) session.getAttribute("login");
@@ -51,32 +50,29 @@ public class ChatController {
 		chatRoom.setBuyer_mem_id(buyerId);
 		
 		// 채팅방이 이미 만들어져있는지 확인하고 이전 기록 불러오기
-		if (chatRoomService.findChatRoomNo(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no()) != null) {
-			// 채팅방 정보 확인
-			ChatRoom tempChatRoom = chatRoomService.findChatRoomNo(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no());
-			int chatRoomNo = tempChatRoom.getChat_room_no();
+		ChatRoom tempChatRoom = chatRoomService.checkChatRoom(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no());
+		if (tempChatRoom != null) {
 			// 채팅 기록 불러오기
-			List<Chat> chatHistory = chatRoomService.readChatHistory(chatRoomNo);
+			chatRoom.setChat_room_no(tempChatRoom.getChat_room_no());
+			List<Chat> chatHistory = chatRoomService.readChatHistory(tempChatRoom.getChat_room_no());
 			model.addAttribute("chatHistory", chatHistory);
 		} else {
-			// 이전 채팅방이 없다면 채팅방 생성
-			chatRoomService.addChatRoom(chatRoom);
-			// 텍스트 파일 생성
-			chatRoomService.createFile(chatRoom.getPro_no(), chatRoomService.getNo(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no()));
+			// 이전 채팅방이 없다면 채팅방 생성하고 채팅방번호 할당
+			chatRoomService.createChatRoom(chatRoom);
+			tempChatRoom = chatRoomService.checkChatRoom(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no());
+			chatRoom.setChat_room_no(tempChatRoom.getChat_room_no());
 		}
-		
-		chatRoom.setChat_room_no(chatRoomService.getNo(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no()));
 		
 		// chatRoom 객체를 view로 전달
 		model.addAttribute("chatRoomInfo", chatRoom);
 		
-		return "testChat";
+		return "chatRoom";
 	}
 	
+	// 채팅 메시지
 	@MessageMapping("/broadcast")
 	public void send(Chat chat) throws IOException {
 		
-		System.out.println(chat);
 		LocalDateTime now = LocalDateTime.now();
         now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         
@@ -96,7 +92,8 @@ public class ChatController {
 		simpMessage.convertAndSend(url, message);
 	}
 	
-	@RequestMapping("/userChatInfo")
+	// 채팅방 리스트
+	@RequestMapping("/chatList")
 	public String getUserChatList(HttpSession session, Model model) {
 		
 		Member member = (Member) session.getAttribute("login");
@@ -105,28 +102,19 @@ public class ChatController {
 		List<ChatRoom> chatRoom = chatRoomService.getChatList(memNo);
 		
 		model.addAttribute("chatList", chatRoom);
-		System.out.println(chatRoom);
-		return "userChatInfo";
+		return "chatList";
 	}
 	
+	// 채팅방 리스트에서 채팅방으로 접속
 	@RequestMapping("/userToChat")
 	public String getChatRoom(Model model, int chatRoomNo, String proTitle) {
 		
 		ChatRoom chatRoom = chatRoomService.findChatRoom(chatRoomNo);
 		List<Chat> chatHistory = chatRoomService.readChatHistory(chatRoomNo);
 		
-		model.addAttribute("chatHistory", chatHistory);
+		model.addAttribute("chatHistory", chatHistory);		
+		model.addAttribute("chatRoomInfo", chatRoom);
 		
-		int sellerNo = chatRoom.getSeller_mem_no();
-		int proNo = chatRoom.getPro_no();
-		int buyerNo = chatRoom.getBuyer_mem_no();
-		
-		model.addAttribute("chatRoomNo", chatRoomNo);
-		model.addAttribute("proNo", proNo);
-		model.addAttribute("buyerNo", buyerNo);
-		model.addAttribute("sellerNo", sellerNo);
-		model.addAttribute("proTitle", proTitle);
-		
-		return "chatBroadcastChatRoom";
+		return "chatRoom";
 	}
 }

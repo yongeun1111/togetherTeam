@@ -28,7 +28,7 @@
  	<h2>${vo.mem_id}</h2>
  	
  	<div class="buy_chat">
-		<form:form id="chatSubmit_form" action="/chatMessage" method="GET" modelAttribute="chatRoom">
+		<form:form id="chatSubmit_form" action="/createChatRoom" method="GET" modelAttribute="chatRoom">
 			<a href="javascript:{}" onclick="chatSubmit()">
 				<form:input type="hidden" path="seller_mem_no" value="${vo.seller_mem_no}"/>
 				<form:input type="hidden" path="seller_mem_id" value="${vo.mem_id}"/>
