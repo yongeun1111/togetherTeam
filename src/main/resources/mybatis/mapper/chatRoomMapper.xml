@@ -23,13 +23,15 @@
 	</insert>
 	
 	<select id="readChatHistory" parameterType="com.togetherTeam.platform.entity.ChatRoom" resultType="com.togetherTeam.platform.entity.Chat">
-		SELECT *
-		  FROM CHAT
+		SELECT a.*,
+       		   b.MEM_ID as CHAT_MEM_ID
+  		  FROM CHAT a INNER JOIN MEMBER b
+  		    ON a.CHAT_MEM_NO = b.MEM_NO
 		 WHERE CHAT_ROOM_NO = #{CHAT_ROOM_NO}
 		 ORDER BY CHAT_DATE
 	</select>
 	
-	<insert id="chatMessage" parameterType="com.togetherTeam.platform.entity.Chat">
+	<insert id="insertChat" parameterType="com.togetherTeam.platform.entity.Chat">
 		INSERT INTO CHAT (
 			CHAT_ROOM_NO,
 			CHAT_MEM_NO,
@@ -54,6 +56,7 @@
     	SELECT *
     	  FROM CHAT_ROOM
     	 WHERE SELLER_MEM_NO = #{memNo}
+    	    OR BUYER_MEM_NO = #{memNo}
     </select>
     
     <select id="findChatRoom" resultType="com.togetherTeam.platform.entity.ChatRoom">

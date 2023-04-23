@@ -51,8 +51,8 @@ public class ChatRoomService implements chatRoomMapper {
 		return chatRoom;
 	}
 		
-	public void chatMessage(Chat chat) {
-		chatRoomMapper.chatMessage(chat);
+	public void insertChat(Chat chat) {
+		chatRoomMapper.insertChat(chat);
 	}
 	
 	@Override

@@ -16,5 +16,5 @@ public interface chatRoomMapper {
 	public List<ChatRoom> getChatList(int memNo);
 	public ChatRoom findChatRoom(int chatRoomNo);
 	public List<Chat> readChatHistory(int chatRoomNo);
-	public void chatMessage(Chat chat);
+	public void insertChat(Chat chat);
 }

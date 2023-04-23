@@ -75,10 +75,9 @@ public class ChatController {
 		
 		LocalDateTime now = LocalDateTime.now();
         now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        
-		chat.setChat_date(now);
+        chat.setChat_date(now);
 		
-		chatRoomService.chatMessage(chat);
+        chatRoomService.insertChat(chat);
 		
 		int chatRoomNo = chat.getChat_room_no();
 		String url = "/user/" + chatRoomNo + "/queue/messages";

@@ -6,16 +6,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<html>
+
 
 <c:import url="${contextPath}/WEB-INF/views/inc/headerScript.jsp"/>
 <c:import url="${contextPath}/WEB-INF/views/inc/header.jsp"/>
 
-<link rel="stylesheet" href="${contextPath}/resource/css/pages/chatRoom.css">
+<link rel="stylesheet" href="${contextPath}/resource/css/pages/main.css">
 <script src="${contextPath}/resource/js/jquery/gsap.min.js"></script>
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 
-<body>
+
 <!-- #container -->
 <div class="main">
 	<h2>채팅 테스트</h2>
@@ -27,9 +27,13 @@
 		<div id="content">
 			<c:forEach var="chat" items="${chatHistory}"> 
 				<p>
-					<span id="MessageSenderID">${chat.chat_mem_id}</span>
+					<div class="row alert alert-info"><div class="col_8">
+						<span id="MessageSenderID">${chat.chat_mem_id}</span>
+					</div><div class="col_4 text-right">
 					<span id="MessageContent">${chat.chat_content}</span>
+					</div><div>
 					<span id="MessageSendTime">${chat.chat_date}</span>
+					</div></div>
 				</p>
 			</c:forEach>
 		</div>
@@ -67,7 +71,7 @@
 	var buyerId = $("#buyerId").val();
 	var buyerNo = $("#buyerNo").val();
 	var senderId = $("#senderId").val();
-	var senderNo = $("#snederNo").val();
+	var senderNo = $("#senderNo").val();
 	
 	
 	$(document).ready(connect());
@@ -163,5 +167,3 @@
 	
 </script>
 <c:import url="${contextPath}/WEB-INF/views/inc/footer.jsp"/>
-</body>
-</html>
