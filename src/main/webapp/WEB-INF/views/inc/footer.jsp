@@ -26,6 +26,22 @@
 				
 			</div>
 			<!-- #wrap-->
+
+			<script>
+				// 리스트 마우스 오버시
+				let trHover = document.querySelectorAll(".trHover");
+
+				$(document).ready(function () {
+					$(".trHover").mouseover(function () {
+						// Java Script 		document.getElementsByClassName("cls").style.backgroundColor;
+						// $(this).css('background', '#00ff00');
+						$(this).css('background', 'rgba(0, 0, 0, 0.01)');
+					});
+					$(".trHover").mouseout(function () {
+						$(this).css('background', 'rgba(255, 255, 255, 0)');
+					});
+				});
+			</script>
 		</body>
 </html>
 		

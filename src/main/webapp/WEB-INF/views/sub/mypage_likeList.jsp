@@ -37,43 +37,46 @@
 
     <div class="meminfo-wrap">
       <p class="mypage-tit mb10">내가 찜한 목록</p>
-      <form action="#">
 
-        <table class="meminfo-table like-table">
-          <!-- 리스트 내용 있을 경우 -->
-          <c:if test="${!empty list}">
-            <c:forEach items="${list}" var="vo">
-              <tr>
-                <td class="meminfo-img" col="col" width="15%">
+      <table class="meminfo-table like-table">
+        <!-- 리스트 내용 있을 경우 -->
+        <c:if test="${!empty list}">
+          <c:forEach items="${list}" var="vo">
+            <tr class="trHover">
+              <td class="meminfo-img" col="col" width="15%">
+                <a href="#">
                   <img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-                </td>
-                <td>
+                </a>
+              </td>
+              <td>
+                <a href="#">
                   <ul class="pro-info">
                     <li class="pro-cate">${vo.pro_category}</li>
                     <li class="pro-com">제조사</li>
                   </ul>
                   <p class="name">${vo.pro_title}</p>
-                </td>
-                <td col="col" width="15%">
-                  <p class="price">${vo.pro_sale_price} <span class="won">원</span></p>
-                </td>
-                <td col="col" width="18%">
-                  <button class="del-btn">삭제</button>
-                </td>
-              </tr>
-            </c:forEach> 
-          </c:if>
-          <!-- 리스트 내용 없을 경우 -->
-          <c:if test="${empty list}">
-            <tr>
-              <td class="empty-area">
-                <p><img src="${contextPath}/resource/images/empty_icon.png" alt=""></p>
-                <p class="mt30">찜한 상품이 존재하지 않습니다.</p>
+                </a>
+              </td>
+              <td col="col" width="15%">
+                <p class="price">${vo.pro_sale_price} <span class="won">원</span></p>
+              </td>
+              <td col="col" width="18%">
+                <button class="del-btn">삭제</button>
               </td>
             </tr>
-          </c:if>
-        </table>
-	  </form>
+          </c:forEach> 
+        </c:if>
+        <!-- 리스트 내용 없을 경우 -->
+        <c:if test="${empty list}">
+          <tr>
+            <td class="empty-area">
+              <p><img src="${contextPath}/resource/images/empty_icon.png" alt=""></p>
+              <p class="mt30">찜한 상품이 존재하지 않습니다.</p>
+            </td>
+          </tr>
+        </c:if>
+      </table>
+
 	  
 	  
        <div class="page">
@@ -99,6 +102,7 @@
   </div>
   
 </div>
+
 
 <c:import url="../inc/footer.jsp"/>
 
