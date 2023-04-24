@@ -642,7 +642,7 @@ subpage
     cursor: pointer;	
 }
 
-/* 마이페이지 - 내가 찜한 목록 ----------------------------- */
+/* 마이페이지 - 내가 찜한 목록, 판매 내역(공통)-------------------------- */
 
 .meminfo-wrap .mypage-tit {
     font-size: 1.3rem;
@@ -650,51 +650,50 @@ subpage
     color: #222;
 }
 
-.like-table img {
+.meminfo-wrap .meminfo-img img {
     border: 1px solid #ddd;
     width: 130px;
     height: 130px;
 }
 
-.like-table .pro-info {
+.meminfo-wrap .pro-info {
     display: flex;
 }
 
-.like-table .pro-info li {
+.meminfo-wrap .pro-info li {
     font-size: 0.9rem;
     color: #999;
 }
 
-.like-table .pro-info li.pro-cate::after {
-    margin: 3px 6px;
+.meminfo-wrap .pro-info li.pro-cate::after {
     content: "";
-    background-color: #ddd;
+    margin: 0px 5px 3px 3px;
+    display: inline-block;
     width: 3px;
     height: 3px;
     border-radius: 3px;
-    display: inline-block;
+    background-color: #ddd;
 }
 
-.like-table p.name {
+.meminfo-wrap p.name {
     font-size: 1.7rem;
     font-weight: 600;
     line-height: 3rem;
     color: #222;
 }
 
-.like-table p.price {
+.meminfo-wrap p.price {
     font-size: 1.5rem;
     font-weight: 900;
 }
 
-.like-table p span.won {
+.meminfo-wrap p span.won {
     font-size: 1.2rem;
     font-weight: 400;
     color: #666;
 }
 
-
-.like-table button.del-btn {
+.meminfo-wrap button.del-btn {
     padding: 10px 60px;
     font-size: 1.2rem;
     font-weight: 600;
@@ -704,10 +703,41 @@ subpage
     background: none;
 }
 
-.like-table button.del-btn:hover {
+.meminfo-wrap button.del-btn:hover {
     background-color: #666;
     transition: all 0.2s;
     color: #fff;
+}
+
+/* 페이지 버튼(공통) */
+.pageMaker_wrap {
+    margin-top: 70px;
+    border: 1px solid red;
+    box-sizing: border-box;
+}
+
+.pageMaker_wrap .pagination .pageNum li:not(:last-child) {
+    margin-right: 5px;
+}
+
+.page-item:first-child .page-link {
+    margin-left: 0;
+    border-top-left-radius: 0rem !important;
+    border-bottom-left-radius: 0rem !important;
+}
+
+.pageMaker_wrap .pagination .page-item li a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 0;
+    text-align: center;
+}
+
+
+.pageMaker_wrap .pagination .page-item {
+    border-radius: 0;
+    text-align: center;
 }
 
 

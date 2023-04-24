@@ -37,7 +37,7 @@
     </div>
 
     <div class="meminfo-wrap">
-      <p class="mb20">※ 판매 내역</p>
+      <p class="myapge-tit mb10">판매 내역</p>
       <table class="meminfo-table">
         <!-- 리스트 내용 있을 경우 -->
         <c:if test="${!empty list}">
@@ -48,9 +48,21 @@
                   <img>
                 </div>
               </td>
-              <td>카테고리 : ${list.pro_category}, 메이커 : ${list.maker}, 제목 : ${list.pro_title}</td>
-              <td>${list.pro_sale_price}</td>
-              <td>버튼 n이면 활성화, y면 비활성화/${list.pro_sale}</td>
+              <td>
+                <!-- 상품 카테고리, 제조사, 제목 -->
+                <ul class="pro-info">
+                  <li class="pro-cate">${list.pro_category}</li\>
+                  <li class="pro-com">${list.maker}</span>
+                </ul>
+                <p class="name">${list.pro_title}</p>
+              </td>
+              <td col="col" width="15%">
+                <p class="price">${list.pro_sale_price} <span class="won">원</span></p>
+              </td>
+              <td col="col" width="18%">
+                <!-- 버튼 n이면 활성화, y면 비활성화/${list.pro_sale} -->
+                <button class="del-btn">삭제</button>
+              </td>
             </tr>
           </c:forEach>
         </c:if>
@@ -66,7 +78,7 @@
       </table>
 
       <div class="pageMaker_wrap">
-        <ul class="pagination justify-content-center" style="margin: 20px 0">
+        <ul class="pagination justify-content-center">
          	<!-- 이전버튼 -->
          	<c:if test="${pm.prev}">
 				    <li class="page-item">

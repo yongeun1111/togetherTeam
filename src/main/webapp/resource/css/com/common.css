@@ -483,13 +483,12 @@ footer .info_contact .info-wrap p {
 .view-info .btn {
     position: absolute;
     bottom: 0;
-    right: 0px;
     display: flex;
     padding: 0;
 }
 
 .view-info .btn input {
-    width: 276px;
+    width: 245px;
     height: 60px;
     border-radius: 30px;
     font-family: 'Pretendard';
@@ -514,7 +513,9 @@ footer .info_contact .info-wrap p {
 .view-info .btn .chat-btn {
     margin-left: 10px;
     background-color: #1f79df;
+    border: 1px solid #1f79df;
     color: #fff;
+    box-sizing: border-box;
 }
 
 .view-info .btn .chat-btn:hover {
