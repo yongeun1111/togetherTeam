@@ -16,6 +16,7 @@
 <script src="${contextPath}/resource/js/pages/sub.js"></script>
 <script src="${contextPath}/resource/js/com/common.js"></script>
 
+
 <!-- #container -->
 <div class="container">
 	<h2>중고 상품</h2>
@@ -54,7 +55,7 @@
 				<div class="row">
 					<c:forEach var="vo" items="${list}">
 					<div class="col-sm">
-						<a href="./proView">
+						<a href="/proView?pro_no=${vo.pro_no}">
 							<div class="pro-img">
 								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
 							</div>

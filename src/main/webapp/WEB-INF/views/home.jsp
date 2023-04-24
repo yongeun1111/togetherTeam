@@ -40,7 +40,7 @@ $(document).ready(function(){
                     
                     // 상품 정보 추가
                     html += "<div class=\"col-sm-2\">" +
-                        "<a href=\"./proView\">" +
+                        "<a href=\"/proView?pro_no=" + item.pro_no + "\">" +
                         "<div class=\"pro-img\">" +
                         "<img src=\"${contextPath}/resource/images/thum_img.jpg\" alt=\"\">" +
                         "</div>" +
@@ -136,7 +136,7 @@ $(document).ready(function(){
         <div class="row">
         <c:forEach var="vo" items="${allList}" varStatus="status">
           <div class="col-sm">
-		    <a href="./proView">
+		    <a href="/proView?pro_no=${vo.pro_no}">
 			  <div class="pro-img">
 				<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
 			  </div>

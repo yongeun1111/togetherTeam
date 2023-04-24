@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 
@@ -15,6 +17,44 @@
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 <script src="${contextPath}/resource/js/pages/sub.js"></script>
 <script src="${contextPath}/resource/js/com/common.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var txt = $(".seller-txt").text();
+	var modifyTxt = "";
+	if (txt.length > 10) {
+		modifyTxt = txt.slice(0, 10)+"...";
+	} else {
+		modifyTxt = txt;
+	}
+	$(".txt").text(modifyTxt);
+	
+    $(".like-btn").on("click", function(e) {
+        var likeCount = $(".like-count").text();
+        var heartShape = $(".heart-shape");
+        var pro_no = $("#productNum").val();
+
+        $.ajax({
+            url: "/like",
+            type: "POST",
+            data: {pro_no : pro_no},
+            success: function(result) {
+                heartShape.text(result == 1 ? "♥" : "♡");
+            },
+            error: function(xhr, status, error) {
+                alert("데이터를 가져오지 못했습니다.");
+            }   
+        });
+        
+    });
+    
+});
+
+function chatSubmit() {
+		document.getElementById('chatSubmit_form').submit();
+	} 
+</script>
+
 
 <!-- #container -->
 <div class="container">
@@ -49,40 +89,61 @@
 
         <!-- 우측 : 상품 정보 -->
         <div class="view-info">
-            <p class="category">카테고리 명</p>
-            <p class="name pro-name">상품 등록 시 제목 영역</p>
-            <p class="tag"># 슬기로운 자취생활</p>
-            <p class="txt">상품에 대한 간략한 내용이 노출되는 영역입니다. 상품에 대한 간략한 내용이 노출되
-                는 영역입니다. 상품에 대한 간략한 내용이 노출되는 영역입니다. </p>
+            <p class="category">${pro.pro_category}</p>
+            <p class="name pro-name">${pro.pro_title}</p>
+            <p class="tag"># ${pro.pro_theme}</p>
+            <p class="txt"></p>
 
             <div class="pro-price">
                 <span class="tit">판매가</span>
-                <span class="price">10,000</span>
+                <span class="price">${pro.pro_sale_price}</span>
                 <span class="won">원</span>
             </div>
 
             <table>
                 <tr>
                     <td col="col" width="30%">구매 시 가격</td>
-                    <td>10,000 원</td>
+                    <td>${pro.pro_buy_price} 원</td>
                 </tr>
                 <tr>
                     <td>조회수</td>
-                    <td>1,124</td>
+                    <td>${pro.views}</td>
                 </tr>
                 <tr>
                     <td>찜 횟수</td>
-                    <td>10</td>
+                    <td class="like-count">10</td>
+                    <td class="heart-shape">
+                      <c:if test="${result == '1'}">♥</c:if>
+                      <c:if test="${result != '1'}">♡</c:if>
+                    </td>
                 </tr>
                 <tr>
                     <td>사용 기간</td>
-                    <td>3년 6개월</td>
+                    <td>${pro.buy_date}</td>
                 </tr>
             </table>
 
             <div class="btn">
+            	<form>
+            	<input id="productNum" type="hidden" name="pro_no" value="">
                 <input type="submit" value="찜하기" class="like-btn">
-                <input type="button" id="cancelBtn" class="chat-btn" value="판매자에게 문의" onClick="location.href='#'">
+                </form>
+                <c:if test="${!empty login}">
+                	<form:form id="chatSubmit_form" action="/createChatRoom" method="GET" modelAttribute="chatRoom">
+						<a href="javascript:{}" onclick="chatSubmit()">
+						<form:input type="hidden" path="seller_mem_no" value="${pro.seller_mem_no}"/>
+						<form:input type="hidden" path="seller_mem_id" value="${pro.mem_id}"/>
+						<form:input type="hidden" path="pro_no" value="${pro.pro_no}"/>
+						<form:input type="hidden" path="pro_title" value="${pro.pro_title}"/>
+                		<input type="button" id="chat_btn" class="chat-btn" value="판매자에게 문의">
+						</a>
+					</form:form>
+				</c:if>
+				<c:if test="${empty login}">
+					<a href="login">
+					<input type="button" id="chat_btn" class="chat-btn" value="판매자에게 문의">
+					</a>
+				</c:if>
               </div>
 
         </div>
@@ -111,7 +172,7 @@
                 <div class="seller-info">
                     <p class="de-tit">판매자 설명</p>
                     <div class="sell-wrap">
-                        <p class="seller-txt">판매자 설명이 들어가는 곳입니다. 판매자 설명이 들어가는 곳입니다. </p>
+                        <p class="seller-txt">${pro.pro_content}</p>
                     </div>
                 </div>
             </div>
