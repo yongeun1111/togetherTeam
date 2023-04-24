@@ -22,8 +22,8 @@
 $(document).ready(function(){
 	var txt = $(".seller-txt").text();
 	var modifyTxt = "";
-	if (length(txt)>10) {
-		modifyTxt = txt.slice(0, 10);
+	if (txt.length > 10) {
+		modifyTxt = txt.slice(0, 10)+"...";
 	} else {
 		modifyTxt = txt;
 	}
