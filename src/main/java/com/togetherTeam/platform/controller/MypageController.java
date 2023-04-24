@@ -12,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.togetherTeam.platform.entity.CriteriaList;
 import com.togetherTeam.platform.entity.CriteriaSale;
+import com.togetherTeam.platform.entity.LikeList;
 import com.togetherTeam.platform.entity.Member;
 import com.togetherTeam.platform.entity.MypageLikeList;
 import com.togetherTeam.platform.entity.PageMakerList;
@@ -53,6 +55,48 @@ public class MypageController {
 		
         return "sub/mypage_likeList";
     }
+	
+	@PostMapping("/likeInsert")
+	@ResponseBody
+	public Map<String, Object> likeInsert(LikeList vo, HttpSession session) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Member user = (Member)session.getAttribute("login");
+		if (user == null) {
+			map.put("result", "not_login");
+			return map;
+		}
+		int mem_no = user.getMem_no();
+		vo.setMem_no(mem_no);
+		try {
+			mapper.likeInsert(vo);
+			map.put("result", "success");
+		} catch(Exception e) {
+			e.printStackTrace();
+			map.put("result", "fail");
+		}
+		return map;
+	}
+		
+	@PostMapping("/likeDelete")
+	@ResponseBody
+	public Map<String, Object> likeDelete(LikeList vo, HttpSession session) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Member user = (Member)session.getAttribute("login");
+		if (user == null) {
+			map.put("result", "not_login");
+			return map;
+		}
+		int mem_no = user.getMem_no();
+		vo.setMem_no(mem_no);
+		try {
+			mapper.likeDelete(vo);
+			map.put("result", "success");
+		} catch(Exception e) {
+			e.printStackTrace();
+			map.put("result", "fail");
+		}
+		return map;
+	}
 	
 	@PostMapping("/change_info") // 회원정보수정
 	public String change_infoPost(Member vo, HttpSession session) {

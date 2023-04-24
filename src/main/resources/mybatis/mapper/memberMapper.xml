@@ -95,6 +95,19 @@
 	where RN BETWEEN #{startPage}+1 and #{endPage}
   </select> 
   
+  <!-- 좋아요 추가 sql -->
+  <insert id="likeInsert" parameterType="com.togetherTeam.platform.entity.LikeList">
+    INSERT INTO like_list (pro_no, mem_no)
+    VALUES (#{pro_no}, #{mem_no})
+  </insert>
+
+  <!-- 좋아요 제거 sql -->
+  <delete id="likeDelete" parameterType="com.togetherTeam.platform.entity.LikeList">
+    DELETE FROM like_list
+    WHERE pro_no = #{pro_no}
+    AND mem_no = #{mem_no}
+  </delete>
+  
   <!-- 로그인 sql -->
   <select id="login" parameterType="com.togetherTeam.platform.entity.Member" 
   resultType="com.togetherTeam.platform.entity.Member">
