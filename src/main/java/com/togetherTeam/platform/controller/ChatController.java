@@ -55,28 +55,23 @@ public class ChatController {
 		
 		// 채팅방이 이미 만들어져있는지 확인하고 이전 기록 불러오기
 		ChatRoom tempChatRoom = chatRoomService.checkChatRoom(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no());
-		if (tempChatRoom != null) {
-			// 채팅 기록 불러오기
-			chatRoom.setChat_room_no(tempChatRoom.getChat_room_no());
-			List<Chat> chatHistory = chatRoomService.readChatHistory(tempChatRoom.getChat_room_no());
-			model.addAttribute("chatHistory", chatHistory);
-		} else {
+		if (tempChatRoom == null) {
 			// 이전 채팅방이 없다면 채팅방 생성하고 채팅방번호 할당
 			chatRoomService.createChatRoom(chatRoom);
-			tempChatRoom = chatRoomService.checkChatRoom(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no());
-			chatRoom.setChat_room_no(tempChatRoom.getChat_room_no());
 		}
 		
 		// chatRoom 객체를 view로 전달
-		model.addAttribute("chatRoomInfo", chatRoom);
+		List<ChatRoom> chatRoomList = chatRoomService.getChatList(buyerNo);
 		
-		return "chatRoom";
+		model.addAttribute("chatList", chatRoomList);
+		
+		return "chat";
 	}
 	
 	// 채팅 메시지
 	@MessageMapping("/broadcast")
 	public void send(Chat chat) throws IOException {
-		
+		System.out.println(chat);
 		LocalDateTime now = LocalDateTime.now();
         chat.setChat_date(now);
 		

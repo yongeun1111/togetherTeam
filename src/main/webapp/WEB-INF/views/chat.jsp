@@ -32,28 +32,11 @@
 	</div>
 	<div style="width:50%; float:left;">
 	
-	<c:if test="${!empty chat.chatRoomInfo}">
-	<div class="title_text">
-		<p>${chatRoomInfo.pro_title}</p>
-	</div>
-	<div>
+	
 		<!-- chatHistory와 사용자가 실시간으로 입력하는 메시지 출력 -->
 		<div id="content">
-			<c:forEach var="chat" items="${chatHistory}"> 
-				<p>
-					<div class="row alert alert-info"><div class="col_8">
-						<span id="MessageSenderID">${chat.chat_mem_id}</span>
-					</div><div class="col_4 text-right">
-					<span id="MessageContent">${chat.chat_content}</span>
-					</div><div>
-					<span id="MessageSendTime">
-						<fmt:parseDate value="${chat.chat_date}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
-						[<fmt:formatDate pattern="HH:mm" value="${parsedDateTime}" />]
-					</span>
-					</div></div>
-				</p>
-			</c:forEach>
-		</div>
+			
+		</div>	
 		<!-- 메시지 입력창, 보내기 버튼 -->
 		<div>
 			<div class="input_group" id="sendMessage">
@@ -62,20 +45,12 @@
 					<button id="send" onclick="send()">보내기</button>
 					<input type="hidden" value="${login.mem_no}" id="senderNo"/>
 					<input type="hidden" value="${login.mem_id}" id="senderId"/>
-					<input type="hidden" value="${chatRoomInfo.pro_no}" id="proNo"/>
-					<input type="hidden" value="${chatRoomInfo.buyer_mem_no}" id="buyerNo">
-					<input type="hidden" value="${chatRoomInfo.buyer_mem_id}" id="buyerId">
-					<input type="hidden" value="${chatRoomInfo.seller_mem_no}" id="sellerNo"/>
-					<input type="hidden" value="${chatRoomInfo.seller_mem_id}" id="sellerId"/>
-					<input type="hidden" value="${chatRoomInfo.chat_room_no}" id="chatRoomNo"/>
+					<input type="hidden" id="chatRoomNo"/>
 				</div>
 			</div>
 		</div>
-	</div>
-	</c:if>
-	<c:if test="${empty chat.chatRoomInfo}">
-		현 재 채 팅 없 음
-	</c:if>
+	
+	
 </div>
 </div>
 
@@ -84,14 +59,9 @@
 
 <script type="text/javascript">	
 	var	stompClient = null;
-	var chatRoomNo = $("#chatRoomNo").val();
-	var proNo = $("#proNo").val();
-	var sellerNo = $("#sellerNo").val();
-	var sellerId = $("#sellerId").val();
-	var buyerId = $("#buyerId").val();
-	var buyerNo = $("#buyerNo").val();
 	var senderId = $("#senderId").val();
 	var senderNo = $("#senderNo").val();
+	var hisList = "";
 	
 	$(document).ready(function(){
 		
@@ -109,17 +79,27 @@
 	})
 	
 	function chatRoom(data){
-		var	stompClient = null;
+		stompClient = null;
 		console.log(data)
 		var chatRoomNo = data.chatRoomInfo.chat_room_no
-		connect();
+		$("#chatRoomNo").val(chatRoomNo);
+		$.each(data.chatHistory,function(index, obj){
+			var chatHisId=obj.chat_mem_id;
+	        var chatHisContent=obj.chat_content;
+	        var chatHisDate=obj.chat_date;
+	        hisList += '<p><div class="row alert alert-info"><div class="col_8"><span id="MessageSenderID">'+ chatHisId + '</span></div>'
+	        hisList += '<div class="col_4 text-right"><span id="MessageContent">' + chatHisContent + '</span></div>' 
+	        hisList += '<span id="MessageSendTime">[' + chatHisDate.substring(11, 16) + ']</span></div></div></p>' 
+		})
+			$("#content").html(hisList);
+		connect(chatRoomNo);
 	}
 	// STOMP 설정 및 메시지 전송
 	// url : /user 로 시작
 	// send : /app 으로 시작
 	// send를 통해 메시지를 전송하면 broker 중개를 거쳐서 유저에게 전달
 	// 메시지를 다이렉트로 전달 받는 경로는 subscribe로 설정
-	function connect() {
+	function connect(chatRoomNo) {
 		// map URL using SockJS
 		console.log("connected");
 		var socket = new SockJS('/broadcast');
@@ -159,8 +139,10 @@
 	// 보내기 버튼 실행 메소드
 	function send() {
 		var content = $('#message').val();
+		var chatRoomNo= $('#chatRoomNo').val();
+		var tempChatRoomNo = Number(chatRoomNo);
 		sendBroadcast({
-			'chat_room_no':chatRoomNo,
+			'chat_room_no':tempChatRoomNo,
 			'chat_mem_no':senderNo,
 			'chat_mem_id':senderId,
 			'chat_content':content,
