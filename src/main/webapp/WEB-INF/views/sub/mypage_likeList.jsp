@@ -42,7 +42,7 @@
         <table class="meminfo-table like-table">
           <!-- 리스트 내용 있을 경우 -->
           <c:if test="${!empty list}">
-            <c:forEach items="${list}" var="list">
+            <c:forEach items="${list}" var="vo">
               <tr>
                 <td class="meminfo-img" col="col" width="15%">
                   <img src="${contextPath}/resource/images/thum_img.jpg" alt="">
@@ -73,7 +73,7 @@
             </tr>
           </c:if>
         </table>
-        
+       </form> 
 
         
     
@@ -91,12 +91,12 @@
 			    </c:if>
 		    </ul>
 
-          <form id="pageFrm" action="proList" method="get">
+          <form id="pageFrm" action="mypage_likeList" method="get">
             <input type="hidden" id="page" name="page" value="${pm.cri.page}">
           </form>
       </div>
   
-      </form>
+      
     </div>
 
   </div>
