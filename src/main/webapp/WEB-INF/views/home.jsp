@@ -30,20 +30,48 @@ $(document).ready(function(){
                 // categoryList 영역 초기화
                 categoryList.empty();
 
-                // 전달받은 데이터를 순회하면서 동적으로 HTML 코드 생성
+             // 전달받은 데이터를 순회하면서 동적으로 HTML 코드 생성
+                var rowCount = 0;
                 $.each(result, function(index, item){
-                    var html = "<div style=\"border: 1px solid black\">" +
-                    		     "<div>" + "이미지 들어가는 공간" + "</div>" +
-                    		     "<div>" + "제품명/가격" +
-                                   "<p>" + item.pro_name + "</p>" +
-                                   "<p>" + item.pro_sale_price + "</p>" +
-                                 "</div>" +
-                               "</div>";
+                    if (rowCount === 0) {
+                        // 새로운 row 시작
+                        var html = "<div class=\"row\">";
+                    }
+                    
+                    // 상품 정보 추가
+                    html += "<div class=\"col-sm-2\">" +
+                        "<a href=\"./proView\">" +
+                        "<div class=\"pro-img\">" +
+                        "<img src=\"${contextPath}/resource/images/thum_img.jpg\" alt=\"\">" +
+                        "</div>" +
+                        "<div class=\"pro-info\">" +
+                        "<p class=\"name\">" + item.pro_title + "</p>" +
+                        "<p class=\"price\">" +
+                        item.pro_sale_price + "<span class=\"won\">원</span>" +
+                        "</p>" +
+                        "</div>" +
+                        "</a>" +
+                        "</div>";
+                    
+                    rowCount++;
 
-                                
+                    if (rowCount === 5) {
+                        // row 종료
+                        html += "</div>";
+                        rowCount = 0;
+                    }
+
                     // 생성된 HTML 코드를 categoryList 영역에 추가
                     categoryList.append(html);
                 });
+
+                // row가 다 채워지지 않았을 경우, 마지막 row 닫아주기
+                if (rowCount > 0) {
+                    categoryList.append("</div>");
+                }
+                
+                categoryList.append("<div align=\"center\"><button>더보기</button></div>");
+
             },
             error: function(){
                 alert('데이터를 가져오는데 실패하였습니다.');
