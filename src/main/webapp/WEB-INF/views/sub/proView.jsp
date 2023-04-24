@@ -49,6 +49,10 @@ $(document).ready(function(){
     });
     
 });
+
+function chatSubmit() {
+		document.getElementById('chatSubmit_form').submit();
+	} 
 </script>
 
 
@@ -124,15 +128,22 @@ $(document).ready(function(){
             	<input id="productNum" type="hidden" name="pro_no" value="">
                 <input type="submit" value="찜하기" class="like-btn">
                 </form>
-                <form:form id="chatSubmit_form" action="/createChatRoom" method="GET" modelAttribute="chatRoom">
-				<a href="javascript:{}" onclick="chatSubmit()">
-				<form:input type="hidden" path="seller_mem_no" value="${vo.seller_mem_no}"/>
-				<form:input type="hidden" path="seller_mem_id" value="${vo.mem_id}"/>
-				<form:input type="hidden" path="pro_no" value="${vo.pro_no}"/>
-				<form:input type="hidden" path="pro_title" value="${vo.pro_title}"/>
-                <input type="button" id="cancelBtn" class="chat-btn" value="판매자에게 문의">
-			</a>
-		</form:form>
+                <c:if test="${!empty login}">
+                	<form:form id="chatSubmit_form" action="/createChatRoom" method="GET" modelAttribute="chatRoom">
+						<a href="javascript:{}" onclick="chatSubmit()">
+						<form:input type="hidden" path="seller_mem_no" value="${pro.seller_mem_no}"/>
+						<form:input type="hidden" path="seller_mem_id" value="${pro.mem_id}"/>
+						<form:input type="hidden" path="pro_no" value="${pro.pro_no}"/>
+						<form:input type="hidden" path="pro_title" value="${pro.pro_title}"/>
+                		<input type="button" id="chat_btn" class="chat-btn" value="판매자에게 문의">
+						</a>
+					</form:form>
+				</c:if>
+				<c:if test="${empty login}">
+					<a href="login">
+					<input type="button" id="chat_btn" class="chat-btn" value="판매자에게 문의">
+					</a>
+				</c:if>
               </div>
 
         </div>
