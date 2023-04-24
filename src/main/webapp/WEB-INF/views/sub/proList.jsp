@@ -19,32 +19,32 @@
 
 <!-- #container -->
 <div class="container">
-	<h2>중고 상품</h2>
+	<h2 class="pt80">중고 상품</h2>
 	<div class="pro-list">
 
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs row">
-		  <li class="nav-item col">
-			<a class="nav-link active" data-toggle="tab" href="#tab01">ALL</a>
-		  </li>
-		  <li class="nav-item col">
-			<a class="nav-link" data-toggle="tab" href="#tab02">에어프라이어</a>
-		  </li>
-		  <li class="nav-item col">
-			<a class="nav-link" data-toggle="tab" href="#tab03">전기포트</a>
-		  </li>
-		  <li class="nav-item col">
-			<a class="nav-link" data-toggle="tab" href="#tab04">전자렌지</a>
-		  </li>
-		  <li class="nav-item col">
-			<a class="nav-link" data-toggle="tab" href="#tab05">토스트기</a>
-		  </li>
-		  <li class="nav-item col">
-			<a class="nav-link" data-toggle="tab" href="#tab06">헤어드라이기</a>
-		  </li>
-		  <li class="nav-item col">
-			<a class="nav-link" data-toggle="tab" href="#tab07">공기청정기</a>
-		  </li>
+			<li class="nav-item col">
+				<a class="nav-link active" data-toggle="tab" href="#tab01">ALL</a>
+			</li>
+			<li class="nav-item col">
+				<a class="nav-link" data-toggle="tab" href="#tab02">에어프라이어</a>
+			</li>
+			<li class="nav-item col">
+				<a class="nav-link" data-toggle="tab" href="#tab03">전기포트</a>
+			</li>
+			<li class="nav-item col">
+				<a class="nav-link" data-toggle="tab" href="#tab04">전자렌지</a>
+			</li>
+			<li class="nav-item col">
+				<a class="nav-link" data-toggle="tab" href="#tab05">토스트기</a>
+			</li>
+			<li class="nav-item col">
+				<a class="nav-link" data-toggle="tab" href="#tab06">헤어드라이기</a>
+			</li>
+			<li class="nav-item col">
+				<a class="nav-link" data-toggle="tab" href="#tab07">공기청정기</a>
+			</li>
 		</ul>
 	  
 		<!-- Tab panes -->
@@ -54,77 +54,90 @@
 			<div id="tab01" class="pro-m tab-pane active">
 				<div class="row">
 					<c:forEach var="vo" items="${list}">
-					<div class="col-sm">
-						<a href="/proView?pro_no=${vo.pro_no}">
-							<div class="pro-img">
-								<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-							</div>
-							<div class="pro-info">
-								<p class="name">${vo.pro_title}</p>
-								<p class="price">
-									${vo.pro_sale_price}<span class="won">원</span>
-								</p>
-							</div>
-						</a>
-					</div>
+						<div class="col-sm">
+							<a href="/proView?pro_no=${vo.pro_no}">
+								<div class="pro-img">
+									<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
+								</div>
+								<div class="pro-info">
+									<p class="name">${vo.pro_title}</p>
+									<p class="price">
+										${vo.pro_sale_price}<span class="won">원</span>
+									</p>
+								</div>
+							</a>
+						</div>
 					</c:forEach>
-					<ul class="pagination justify-content-center"
-								style="margin: 20px 0">
-								<c:if test="${pm.prev}">
-									<li class="page-item"><a class="page-link"
-										href="${pm.startPage-1}">Previous</a></li>
-								</c:if>
-								<c:forEach var="pageNum" begin="${pm.startPage}"
-									end="${pm.endPage}">
-									<li class="page-item ${pm.cri.page==pageNum ? 'active':''}"><a
-										class="page-link" href="${pageNum}">${pageNum}</a></li>
-								</c:forEach>
-								<c:if test="${pm.next}">
-									<li class="page-item"><a class="page-link"
-										href="${pm.endPage+1}">Next</a></li>
-								</c:if>
-							</ul>
-							<form id="pageFrm" action="proList" method="get">
-								<input type="hidden" id="page" name="page" value="${pm.cri.page}">
-							</form>
 
-			<!-- 02. 에어프라이어 -->
-			<div id="tab02" class="container tab-pane fade"><br>
-				<h3>Menu 1</h3>
-				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					<!-- 02. 에어프라이어 -->
+					<div id="tab02" class="container tab-pane fade"><br>
+						<h3>Menu 1</h3>
+						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					</div>
+
+					<!-- 03. 전기포트 -->
+					<div id="tab03" class="container tab-pane fade"><br>
+						<h3>Menu 2</h3>
+						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+					</div>
+
+					<!-- 04. 전자렌지 -->
+					<div id="tab04" class="container tab-pane fade"><br>
+						<h3>Menu 2</h3>
+						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+					</div>
+
+					<!-- 05. 토스트기 -->
+					<div id="tab05" class="container tab-pane fade"><br>
+						<h3>Menu 2</h3>
+						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+					</div>
+
+					<!-- 06. 헤어드라이기 -->
+					<div id="tab06" class="container tab-pane fade"><br>
+						<h3>Menu 2</h3>
+						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+					</div>
+
+					<!-- 07. 공기청정기 -->
+					<div id="tab07" class="container tab-pane fade"><br>
+						<h3>Menu 2</h3>
+						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+					</div>
+				</div>
 			</div>
-
-			<!-- 03. 전기포트 -->
-			<div id="tab03" class="container tab-pane fade"><br>
-				<h3>Menu 2</h3>
-				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-			</div>
-
-			<!-- 04. 전자렌지 -->
-			<div id="tab04" class="container tab-pane fade"><br>
-				<h3>Menu 2</h3>
-				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-			</div>
-
-			<!-- 05. 토스트기 -->
-			<div id="tab05" class="container tab-pane fade"><br>
-				<h3>Menu 2</h3>
-				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-			</div>
-
-			<!-- 06. 헤어드라이기 -->
-			<div id="tab06" class="container tab-pane fade"><br>
-				<h3>Menu 2</h3>
-				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-			</div>
-
-			<!-- 07. 공기청정기 -->
-			<div id="tab07" class="container tab-pane fade"><br>
-				<h3>Menu 2</h3>
-				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-			</div>
-
 		</div>
+
+		
+		<div class="pageMaker_wrap">
+			<ul class="pagination justify-content-center">
+			  <!-- 이전버튼 -->
+			  <c:if test="${pm.prev}">
+				<li class="page-item page-prev">
+				  <a class="page-link" href="${pm.startPage-1}"></a>
+				</li>
+			  </c:if>
+				
+			  <!-- 페이지 번호 -->
+			  <c:forEach var="pageNum" begin="${pm.startPage}" end="${pm.endPage}">
+				<li class="page-item page-num ${pm.cri.page==pageNum ? 'active' : ''}">
+				  <a class="page-link" href="${pageNum}">${pageNum}</a>
+				</li>
+			  </c:forEach>
+				
+			  <!-- 다음 버튼 -->
+			  <c:if test="${pm.next}">
+				<li class="page-item page-next">
+				  <a class="page-link" href="${pm.endPage+1}"></a>
+				</li>
+			  </c:if>
+			</ul>
+		</div>
+
+		<form id="pageFrm" action="proList" method="get">
+			<input type="hidden" id="page" name="page" value="${pm.cri.page}">
+		</form>
+
 	</div>
 
 	<c:import url="${contextPath}/WEB-INF/views/inc/footer.jsp"/>
