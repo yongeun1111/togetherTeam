@@ -798,6 +798,74 @@ subpage
     box-sizing: border-box;
 }
 
+/* 상품 검색 ---------------------------------------------- */
+.search-wrap {
+    background-color: #1f79df;
+}
+
+.search-wrap .search-con {
+    padding: 100px 0;
+    background-image: url('../../images/search_img01.png'), url('../../images/search_img02.png');
+    background-position: 120px center, 1190px center;
+    background-repeat: no-repeat;
+
+}
+
+.search-wrap h2 {
+    color: #fff !important;
+}
+
+.search-wrap .search-con {
+    text-align: center;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+#searchProduct {
+    width: 800px;
+    padding: 35px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.search-input-wrap {
+    margin: 0 auto;
+    position: relative;
+    width: 800px;
+}
+
+.search-btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-right: 30px;
+    background: none;
+    transform: translateY(-50%);
+}
+
+.search-btn span {
+    display: block;
+    width: 40px;
+    height: 40px;
+}
+
+.search-con #searchProduct::placeholder {
+    font-family: 'Pretendard';
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1965bc;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

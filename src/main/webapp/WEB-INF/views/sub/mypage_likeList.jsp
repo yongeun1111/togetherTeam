@@ -42,7 +42,7 @@
         <table class="meminfo-table like-table">
           <!-- 리스트 내용 있을 경우 -->
           <c:if test="${!empty list}">
-            <c:forEach items="${list}" var="vo">
+            <c:forEach items="${list}" var="list">
               <tr>
                 <td class="meminfo-img" col="col" width="15%">
                   <img src="${contextPath}/resource/images/thum_img.jpg" alt="">
@@ -73,30 +73,41 @@
             </tr>
           </c:if>
         </table>
-       </form> 
 
+        <!-- 리스트 내용 있을 경우 -->
+        <c:if test="${!empty list}">
+          <div class="pageMaker_wrap">
+            <ul class="pagination justify-content-center">
+              <!-- 이전버튼 -->
+              <c:if test="${pm.prev}">
+                <li class="page-item page-prev">
+                  <a class="page-link" href="${pm.startPage-1}"></a>
+                </li>
+              </c:if>
+                
+              <!-- 페이지 번호 -->
+              <c:forEach var="pageNum" begin="${pm.startPage}" end="${pm.endPage}">
+                <li class="page-item page-num ${pm.cri.page==pageNum ? 'active' : ''}">
+                  <a class="page-link" href="${pageNum}">${pageNum}</a>
+                </li>
+              </c:forEach>
+                
+              <!-- 다음 버튼 -->
+              <c:if test="${pm.next}">
+                <li class="page-item page-next">
+                  <a class="page-link" href="${pm.endPage+1}"></a>
+                </li>
+              </c:if>
+            </ul>
+          </div>
+        </c:if>
+
+        <!-- 리스트 내용 없을 경우 -->
+        <c:if test="${empty list}">
         
-    
-      
-      <div class="page">
-        <ul class="pagination justify-content-center" style="margin: 20px 0">
-			    <c:if test="${pm.prev}">
-			      <li class="page-item"><a class="page-link" href="${pm.startPage-1}">Previous</a></li>
-			    </c:if>
-			    <c:forEach var="pageNum" begin="${pm.startPage}" end="${pm.endPage}">
-			      <li class="page-item ${pm.cri.page==pageNum ? 'active':''}"><a class="page-link" href="${pageNum}">${pageNum}</a></li>
-			    </c:forEach>
-			    <c:if test="${pm.next}">
-			      <li class="page-item"><a class="page-link" href="${pm.endPage+1}">Next</a></li>
-			    </c:if>
-		    </ul>
-
-          <form id="pageFrm" action="mypage_likeList" method="get">
-            <input type="hidden" id="page" name="page" value="${pm.cri.page}">
-          </form>
-      </div>
+        </c:if>
   
-      
+      </form>
     </div>
 
   </div>
