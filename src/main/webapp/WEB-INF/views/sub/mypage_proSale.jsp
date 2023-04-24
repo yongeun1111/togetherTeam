@@ -81,22 +81,22 @@
         <ul class="pagination justify-content-center">
          	<!-- 이전버튼 -->
          	<c:if test="${pm.prev}">
-				    <li class="page-item">
-					    <a class="page-link" href="${pm.startPage-1}">◁</a>
+				    <li class="page-item page-prev">
+					    <a class="page-link" href="${pm.startPage-1}"></a>
 				    </li>
 			    </c:if>
           	
           <!-- 페이지 번호 -->
           <c:forEach var="pageNum" begin="${pm.startPage}" end="${pm.endPage}">
-    			  <li class="page-item ${pm.cri.page==pageNum ? 'active' : ''}">
+    			  <li class="page-item page-num ${pm.cri.page==pageNum ? 'active' : ''}">
     				  <a class="page-link" href="${pageNum}">${pageNum}</a>
     			  </li>
   			  </c:forEach>
           	
           <!-- 다음 버튼 -->
 	        <c:if test="${pm.next}">
-  				  <li class="page-item">
-  					  <a class="page-link" href="${pm.endPage+1}">▷</a>
+  				  <li class="page-item page-next">
+  					  <a class="page-link" href="${pm.endPage+1}"></a>
   				  </li>
   			  </c:if>
         </ul>

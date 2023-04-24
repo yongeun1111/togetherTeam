@@ -38,8 +38,11 @@ public class PageSale {
 			endPage = tempEndPage;
 		}
 		
+		// // 5. 이전 페이지 버튼 존재 여부
+		// prev = (startPage == 1) ? false : true;
+
 		// 5. 이전 페이지 버튼 존재 여부
-		prev = (startPage == 1) ? false : true;
+		prev = (startPage == 0) ? false : true;
 		
 		// 6. 다음 페이지 존재 여부
 		next = (endPage<tempEndPage) ? true : false;

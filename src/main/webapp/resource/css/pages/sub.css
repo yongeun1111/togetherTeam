@@ -265,6 +265,11 @@ subpage
     display: block;
 }
 
+.mypage-wrap .tab-menu li a:hover {
+    color: #1f79df;
+
+}
+
 
 .mypage-wrap .tab-menu li.on {
     border-bottom: 2px solid #1f79df;
@@ -712,40 +717,86 @@ subpage
 /* 페이지 버튼(공통) */
 .pageMaker_wrap {
     margin-top: 70px;
-    border: 1px solid red;
-    box-sizing: border-box;
 }
 
-.pageMaker_wrap .pagination .pageNum li:not(:last-child) {
+.pageMaker_wrap .page-prev {
+    margin-right: 20px;
+}
+
+.pageMaker_wrap .pagination{
+    position: relative;
+}
+
+.pageMaker_wrap .page-prev a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    margin: -5px 0 0 17px;
+    border-top: 1px solid #999;
+    border-right: 1px solid #999;
+    transform: rotate(225deg);
+}
+
+.pageMaker_wrap .page-next a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    margin: -5px 0 0 12px;
+    border-top: 1px solid #999;
+    border-right: 1px solid #999;
+    transform: rotate(45deg);
+}
+
+.pageMaker_wrap .page-next {
+    margin-left: 10px;
+}
+
+.pageMaker_wrap .pagination .page-num:not(:last-child) {
     margin-right: 5px;
 }
 
 .page-item:first-child .page-link {
     margin-left: 0;
-    border-top-left-radius: 0rem !important;
-    border-bottom-left-radius: 0rem !important;
+    border-top-left-radius: 0rem;
+    border-bottom-left-radius: 0rem;
 }
 
-.pageMaker_wrap .pagination .page-item li a {
-    display: block;
+.page-item:last-child .page-link {
+    border-top-right-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+}
+
+.page-item .page-link {
+    padding: 0rem;
+    margin-left: -1px;
+}
+
+.pageMaker_wrap .page-num li:not(:last-child) {
+    margin-right: 5px;
+}
+
+.pageMaker_wrap .pagination a.page-link {
     width: 40px;
     height: 40px;
+    line-height: 40px;
     border-radius: 0;
     text-align: center;
+    color: #999;
+    border: 1px solid #ddd;
 }
 
-
-.pageMaker_wrap .pagination .page-item {
-    border-radius: 0;
-    text-align: center;
+.pageMaker_wrap .pagination li.active a.page-link {
+    color: #fff;
+    background-color: #1f79df;
+    border: 1px solid #1f79df;
+    box-sizing: border-box;
 }
-
-
-
-
-
-
-
 
 
 
