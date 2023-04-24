@@ -30,7 +30,7 @@
 
     <div class="info-box clearfix">
       <ul>
-        <li>아래 목록에서 내가 판매한 목록을 확인하실수 있습니다.</li>
+        <li>아래 목록에서 내가 찜한 상품의 목록을 확인하실수 있습니다.</li>
         <li>찜한 상품을 삭제하고 싶으시면 삭제 버튼을 클릭해 주세요.</li>
       </ul>
     </div>
@@ -68,7 +68,7 @@
             <tr>
               <td class="empty-area">
                 <p><img src="${contextPath}/resource/images/empty_icon.png" alt=""></p>
-                <p class="mt30">판매 내역 존재하지 않습니다.</p>
+                <p class="mt30">찜한 상품이 존재하지 않습니다.</p>
               </td>
             </tr>
           </c:if>
