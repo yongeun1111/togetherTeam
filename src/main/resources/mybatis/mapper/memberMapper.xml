@@ -71,8 +71,8 @@
 	 where mem_id = #{mem_id}
   </select>
   
-  <!-- 좋아요 목록 가져오기 sql -->
-  <select id="mypage_likeList" parameterType="com.togetherTeam.platform.entity.Member" 
+  <!-- 좋아요 카운트 sql -->
+  <select id="mypage_likeList_count" parameterType="com.togetherTeam.platform.entity.Member" 
   resultType="com.togetherTeam.platform.entity.Product">
     select B.*
       from like_list A
@@ -80,6 +80,19 @@
 	 where A.pro_no = B.pro_no
 	   and A.mem_no = #{mem_no}
 	   and pro_sale = 'N'
+  </select> 
+  
+  <!-- page 마다 좋아요 목록 가져오기 sql -->
+  <select id="mypage_likeList" parameterType="com.togetherTeam.platform.entity.MypageLikeList" 
+  resultType="com.togetherTeam.platform.entity.Product">
+    select *
+    from (select B.* , ROWNUM AS RN
+      		from like_list A
+         	   , product B
+	  	   where A.pro_no = B.pro_no
+	 	     and A.mem_no = #{mem_no}
+	  	  	 and pro_sale = 'N')
+	where RN BETWEEN #{startPage}+1 and #{endPage}
   </select> 
   
   <!-- 로그인 sql -->

@@ -47,7 +47,7 @@
             <td>
               <ul class="pro-info">
                 <li class="pro-cate">${vo.pro_category}</li>
-                <li class="pro-com">제조사</li>
+                <li class="pro-com">${vo.maker}</li>
               </ul>
               <p class="name">${vo.pro_title}</p>
             </td>
@@ -58,8 +58,11 @@
               <button class="del-btn">삭제</button>
             </td>
           </tr>
+        </table>
         </c:forEach> 
-        
+       </form>
+       
+         
         <div class="page">
           <ul class="pagination justify-content-center" style="margin: 20px 0">
 			<c:if test="${pm.prev}">
@@ -72,12 +75,12 @@
 			  <li class="page-item"><a class="page-link" href="${pm.endPage+1}">Next</a></li>
 			</c:if>
 		  </ul>
-		  <form id="pageFrm" action="proList" method="get">
+		  <form id="pageFrm" action="/mypage_likeList" method="get">
 			<input type="hidden" id="page" name="page" value="${pm.cri.page}">
 		  </form>
         </div>
   
-      </form>
+     
     </div>
 
   </div>

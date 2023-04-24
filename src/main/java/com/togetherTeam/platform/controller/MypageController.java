@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.togetherTeam.platform.entity.CriteriaList;
 import com.togetherTeam.platform.entity.CriteriaSale;
 import com.togetherTeam.platform.entity.Member;
+import com.togetherTeam.platform.entity.MypageLikeList;
 import com.togetherTeam.platform.entity.PageMakerList;
 import com.togetherTeam.platform.entity.PageSale;
 import com.togetherTeam.platform.entity.Product;
@@ -39,12 +40,15 @@ public class MypageController {
 	@GetMapping("/mypage_likeList") // 마이페이지(mypage_likeList.jsp)로 이동
     public String mypage_likeList(CriteriaList cri, HttpSession session, Model model){
 		Member vo = (Member)session.getAttribute("login");
-		List<Product> list = mapper.mypage_likeList(vo);
+		List<Product> cnt = mapper.mypage_likeList_count(vo);
+		int mem_no = vo.getMem_no();
+		MypageLikeList mll = new MypageLikeList(mem_no,cri.getPage(),cri.getPerPageNum());
+		List<Product> list = mapper.mypage_likeList(mll);
 		model.addAttribute("list", list);		
 		
 		PageMakerList pageMakerList = new PageMakerList();
 		pageMakerList.setCri(cri);
-		pageMakerList.setTotalCount(list.size());
+		pageMakerList.setTotalCount(cnt.size());
 		model.addAttribute("pm", pageMakerList);
 		
         return "sub/mypage_likeList";
