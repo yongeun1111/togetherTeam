@@ -29,23 +29,40 @@ $(document).ready(function(){
 	}
 	$(".txt").text(modifyTxt);
 	
-    $(".like-btn").on("click", function(e) {
-        var likeCount = $(".like-count").text();
-        var heartShape = $(".heart-shape");
-        var pro_no = $("#productNum").val();
-
-        $.ajax({
-            url: "/like",
-            type: "POST",
-            data: {pro_no : pro_no},
-            success: function(result) {
-                heartShape.text(result == 1 ? "♥" : "♡");
-            },
-            error: function(xhr, status, error) {
-                alert("데이터를 가져오지 못했습니다.");
-            }   
-        });
-        
+	$("#like-btn").on("click", function() {
+		var pro_no = $("#productNum").val();
+    	var heartShape = $(".heart-shape");
+    	var result = $("#result").val();
+    	
+    	if(typeof result !== "undefined" && result === "1"){
+    		$.ajax({
+    			url : '/likeDelete',
+    			type : 'POST',
+    			data : {pro_no : pro_no},
+    			success : function(){
+    				heartShape.text("♡");
+    				$("#result").val("0");
+    				alert("찜목록에서 제거되었습니다.");
+    			},
+    			error : function(){
+    				alert("좋아요 제거에 실패하였습니다.");
+    			}
+    		});
+    	} else {
+    		$.ajax({
+    			url : '/likeInsert',
+    			type : 'POST',
+    			data : {pro_no : pro_no},
+    			success : function(){
+    				heartShape.text("♥");
+    				$("#result").val("1");
+    				alert("찜목록에 추가되었습니다.");
+    			},
+    			error : function(){
+    				alert("좋아요 추가에 실패하였습니다.");
+    			}
+    		});
+    	}
     });
     
 });
@@ -124,10 +141,16 @@ function chatSubmit() {
             </table>
 
             <div class="btn">
-            	<form>
-            	<input id="productNum" type="hidden" name="pro_no" value="">
-                <input type="submit" value="찜하기" class="like-btn">
-                </form>
+            	<input id="result" type="hidden" value="${result}">
+            	<input id="productNum" type="hidden" name="pro_no" value="${pro.pro_no}">
+                <c:if test="${!empty login}">
+                  <input id="like-btn" type="button" value="찜하기" class="like-btn">
+                </c:if>
+                <c:if test="${empty login}">
+					<a href="login">
+					 <input type="button" value="찜하기" class="like-btn">
+					</a>
+				</c:if>
                 <c:if test="${!empty login}">
                 	<form:form id="chatSubmit_form" action="/createChatRoom" method="GET" modelAttribute="chatRoom">
 						<a href="javascript:{}" onclick="chatSubmit()">
