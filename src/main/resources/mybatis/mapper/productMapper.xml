@@ -136,14 +136,15 @@
   		select count(*) from product where seller_mem_no = #{mem_no}
 
   	</select>
+	
+	<!-- 상품 총 개수 -->
+  	<select id="likeCheck" parameterType="com.togetherTeam.platform.entity.LikeList" resultType="int">
   	
-  	<!-- 상품 상세 정보 -->
-  	<select id="getProductInfo" parameterType="int" resultType="com.togetherTeam.platform.entity.Product">
-  	
-  		select a.*, b.* 
-		from product a inner join image b on a.pro_no = b.pro_no
-		where a.pro_no = #{pro_no}
-  	
+  		select count(*) from like_list 
+  		where pro_no = #{pro_no}
+  		  and mem_no = #{mem_no}
+
   	</select>
+	
 	
 </mapper>

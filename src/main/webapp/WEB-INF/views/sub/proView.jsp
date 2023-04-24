@@ -16,6 +16,31 @@
 <script src="${contextPath}/resource/js/pages/sub.js"></script>
 <script src="${contextPath}/resource/js/com/common.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".like-btn").on("click", function(e) {
+        var likeCount = $(".like-count").text();
+        var heartShape = $(".heart-shape");
+        var pro_no = $("#productNum").val();
+
+        $.ajax({
+            url: "/like",
+            type: "POST",
+            data: {pro_no : pro_no},
+            success: function(result) {
+                heartShape.text(result == 1 ? "♥" : "♡");
+            },
+            error: function(xhr, status, error) {
+                alert("데이터를 가져오지 못했습니다.");
+            }   
+        });
+        
+    });
+    
+});
+</script>
+
+
 <!-- #container -->
 <div class="container">
     <div class="view-wrap">
@@ -72,7 +97,11 @@
                 </tr>
                 <tr>
                     <td>찜 횟수</td>
-                    <td>10</td>
+                    <td class="like-count">10</td>
+                    <td class="heart-shape">
+                      <c:if test="${result == '1'}">♥</c:if>
+                      <c:if test="${result != '1'}">♡</c:if>
+                    </td>
                 </tr>
                 <tr>
                     <td>사용 기간</td>
@@ -81,7 +110,10 @@
             </table>
 
             <div class="btn">
+            	<form>
+            	<input id="productNum" type="hidden" name="pro_no" value="">
                 <input type="submit" value="찜하기" class="like-btn">
+                </form>
                 <input type="button" id="cancelBtn" class="chat-btn" value="판매자에게 문의" onClick="location.href='#'">
               </div>
 

@@ -22,11 +22,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.togetherTeam.platform.entity.ChatRoom;
 import com.togetherTeam.platform.entity.CriteriaList;
 import com.togetherTeam.platform.entity.Image;
+import com.togetherTeam.platform.entity.LikeList;
 import com.togetherTeam.platform.entity.Member;
 import com.togetherTeam.platform.entity.PageMakerList;
 import com.togetherTeam.platform.entity.Product;
@@ -53,7 +55,18 @@ public class productController {
     }
 	
 	@GetMapping("/proView") // 중고 상품 페이지(proList.jsp)로 이동
-    public String proView(Model model){
+    public String proView(Model model, @RequestParam int pro_no, HttpSession session){
+		Member user = (Member)session.getAttribute("login");
+		if(user != null) {
+		LikeList vo = new LikeList();
+		vo.setPro_no(pro_no);
+		vo.setMem_no(user.getMem_no());
+		int result = mapper.likeCheck(vo);
+		model.addAttribute("result",result);
+		}
+		// 상품 정보 담아오기
+
+		// .....
 		
         return "sub/proView";
     }
@@ -251,4 +264,14 @@ public class productController {
     	model.addAttribute("pro", vo);
     	return "sub/testChat";
     }
+    
+    @PostMapping("/like")
+    public int like() {
+    	
+    	return 1;
+    }
+    
+
+    
+    
 }
