@@ -27,6 +27,9 @@ public interface productMapper {
 	public List<Product> getMemProductList(Map<String, Object> paramMap); // 회원이 등록한 상품 리스트
 	public int memProTotalCount(Member vo); // 상품 총 개수
 	public int likeCheck(LikeList vo); // 상품 총 개수
+	public Product getProduct(int pro_no); // 상품 1개 정보
+	public List<Image> getProductImage (int pro_no); // 상품 이미지
+	public void upViews(int pro_no); // 조회수 +1
 	
 	public Product test(); // 채팅 테스트
 	

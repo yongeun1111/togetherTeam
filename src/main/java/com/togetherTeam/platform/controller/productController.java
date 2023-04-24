@@ -65,8 +65,16 @@ public class productController {
 		model.addAttribute("result",result);
 		}
 		// 상품 정보 담아오기
-
-		// .....
+		Product product = mapper.getProduct(pro_no);
+		List<Image> image = mapper.getProductImage(pro_no);
+		model.addAttribute("pro", product);
+		model.addAttribute("image", image);
+		
+		// 조회수 +1
+		mapper.upViews(pro_no);
+		// 채팅방 정보를 담을 객체 초기화
+		ChatRoom chatRoom = new ChatRoom();
+		model.addAttribute("chatRoom", chatRoom);
 		
         return "sub/proView";
     }
