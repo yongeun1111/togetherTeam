@@ -27,8 +27,10 @@
 				<div class="profile-wrap">
 					<p><img src="${contextPath}/resource/images/profile_i_01.png" alt="사용자 프로필 이미지"> <span>${login.mem_id}</span></p>
 				</div>
+				
 				<!-- 대화 리스트 -->
-				<c:forEach var="chatList" items="${chatList}">
+				<div id="chatWrap">
+					<c:forEach var="chatList" items="${chatList}">
 					<div class="chatRoomList">
 						<p><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"></p>
 						<div>
@@ -38,6 +40,8 @@
 						<input type="hidden" value="${chatList.chat_room_no}"/>
 					</div>
 				</c:forEach>
+				</div>
+
 			</div>
 		</div>
 
