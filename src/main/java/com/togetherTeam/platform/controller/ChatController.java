@@ -46,6 +46,7 @@ public class ChatController {
 	@Autowired
 	private productMapper mapper;
 	
+	
 	// 채팅방 생성, 이전 채팅방 접속
 	@GetMapping("/createChatRoom")
 	public String getWebSocketWithSockJs(Model model, HttpSession session, @ModelAttribute("chatRoom") ChatRoom chatRoom) {
@@ -99,10 +100,26 @@ public class ChatController {
 		
 		Member member = (Member) session.getAttribute("login");
 		int memNo = member.getMem_no();
-
-		List<ChatRoom> chatRoom = chatRoomService.getChatList(memNo);
 		
-		model.addAttribute("chatList", chatRoom);
+		List<ChatRoom> chatList = chatRoomService.getChatList(memNo);
+		for (ChatRoom chatRoom : chatList) {
+			if (memNo != chatRoom.getBuyer_mem_no()) {
+				chatRoom.setSeller_mem_id(member.getMem_id());
+				String tempId = chatRoomService.getId(chatRoom.getBuyer_mem_no());
+				chatRoom.setBuyer_mem_id(tempId);
+			} else {
+				chatRoom.setBuyer_mem_id(member.getMem_id());
+				String tempId = chatRoomService.getId(chatRoom.getSeller_mem_no());
+				chatRoom.setSeller_mem_id(tempId);
+			}
+			
+			Chat recentChat = chatRoomService.getRecentChat(chatRoom.getChat_room_no());
+			if (recentChat != null){
+				chatRoom.setRecentChat(recentChat.getChat_content());
+			}
+		}
+		System.out.println(chatList);
+		model.addAttribute("chatList", chatList);
 		return "chat";
 	}
 	
