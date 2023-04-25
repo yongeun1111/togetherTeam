@@ -29,13 +29,19 @@
 				</div>
 				
 				<!-- 대화 리스트 -->
-				<div id="chatWrap">
-					<c:forEach var="chatList" items="${chatList}">
+				<c:forEach var="chatList" items="${chatList}">
 					<div class="chatRoomList">
 						<p><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"></p>
 						<div>
-							<p>${chatList.chat_room_no}</p>
-							<p>${chatList.pro_no}</p>
+							<c:if test="${login.mem_id eq chatList.buyer_mem_id}">
+								<p>${login.mem_id}</p>
+							</c:if>
+							<c:if test="${login.mem_id ne chatList.buyer_mem_id}">
+								<p>${chatList.buyer_mem_id}</p>
+							</c:if>
+							<c:if test="${!empty chatList.recentChat}">
+								<p>${chatList.recentChat}</p>
+							</c:if>
 						</div>
 						<input type="hidden" value="${chatList.chat_room_no}"/>
 					</div>

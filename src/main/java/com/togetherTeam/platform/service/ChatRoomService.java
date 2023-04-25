@@ -27,6 +27,7 @@ public class ChatRoomService implements chatRoomMapper {
 
 	@Autowired
 	chatRoomMapper chatRoomMapper;
+	
 		
 	@Override
 	public void createChatRoom(ChatRoom chatRoom) {
@@ -74,6 +75,16 @@ public class ChatRoomService implements chatRoomMapper {
 	public void updateChatRead(int chatRoomNo, int chatMemNo) {
 
 		chatRoomMapper.updateChatRead(chatRoomNo, chatMemNo);
+	}
+	
+	public Chat getRecentChat(int chatRoomNo) {
+		
+		return chatRoomMapper.getRecentChat(chatRoomNo);
+	}
+	
+	public String getId(int memNo) {
+	
+		return chatRoomMapper.getId(memNo);
 	}
 	
 }

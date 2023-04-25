@@ -15,4 +15,5 @@ public class ChatRoom {
 	private String buyer_mem_id;
 	private String seller_mem_id;
 	private String pro_title;
+	private String recentChat;
 }
