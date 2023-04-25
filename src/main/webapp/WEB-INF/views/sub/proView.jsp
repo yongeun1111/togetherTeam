@@ -136,7 +136,7 @@ function chatSubmit() {
                 </tr>
                 <tr>
                     <td>찜 횟수</td>
-                    <td class="like-count">10</td>
+                    <td class="like-count">${pro.pro_like}</td>
                     <td class="heart-shape">
                       <c:if test="${result == '1'}">♥</c:if>
                       <c:if test="${result != '1'}">♡</c:if>
