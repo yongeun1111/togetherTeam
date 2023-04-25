@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+
+/* * {
+	box-sizing: border-box;
+	font-family: 'Noto Sans KR', sans-serif;	
+} */
+
+#wrap {
+    font-family: 'Pretendard';
+}
+
+.chat-wrap {
+	background-color: #f6f6f6;
+	position: absolute;
+	top: 0;
+	width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.chat-wrap .chat-inner {
+	margin: 0 auto;
+    width: 1400px;
+	box-sizing: border-box;
+	display: flex;
+}
+
+.chatting-wrap {
+	margin: 110px 0 0 20px;
+	width: 70%;
+    height: 85vh;
+	background-color: #fff;
+	box-sizing: border-box;
+    box-shadow: 2px 4px 4px 1px rgba(0, 0, 0, 0.05);
+}
+
+.chat-list {
+    width: 30%;
+    height: 100%;
+	box-sizing: border-box;
+}
+
+.chat-list-wrap {
+	margin-top: 110px;
+    padding: 30px;
+    height: 85vh;
+    background-color: #fff;
+    box-sizing: border-box;
+    box-shadow: 2px 4px 4px 1px rgba(0, 0, 0, 0.05);
+}
+
+.chat-list-wrap .profile-wrap {
+	padding-bottom: 20px;
+	border-bottom: 1px solid #ddd;
+}
+
+.chat-list-wrap .profile-wrap p {
+	display: flex;
+}
+
+.chat-list-wrap .profile-wrap p span{
+	margin-left: 7px;
+	font-size: 1.4rem;
+	font-weight: 600;
+	line-height: 45px;
+}
+
+.chatRoomList {
+	padding: 20px;
+	border-bottom: 1px solid #ddd;
+	box-sizing: border-box;
+	display: flex;
+}
+
+.chatRoomList:hover {
+	background-color: #fafafa;
+	cursor: pointer;
+}
+
+.chatRoomList > p {
+	margin-right: 20px;
+}
+
+#content {
+	border: 1px solid red;
+	height: 70%;
+	box-sizing: border-box;
+}
+
+.chatting-wrap .pro-info {
+	border: 1px solid red;
+}
+
+.chatting-wrap .input_group {
+	height: 30%;
+	display: flex;
+	border: 1px solid green;
+	box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.form {
+	padding: 30px 40px;
+}
+
+
+.register_info {
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	position: relative;
+}
+
+.register_info label {
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+.register_info input {
+	border: 1.5px solid #535053;
+	border-radius: 3px;
+	display: block;
+	font-size: 11px;
+	padding: 5px;
+	width: 100%;
+}
+
+.errors {
+	color: red;
+	font-size: 11px;
+}
+
+.submit {
+	background-color: #70b8ff;
+	border: 2px solid #70b8ff;
+	width: 100%;
+	border-radius: 5px;
+	padding: 5px;
+	color: #ffffff;
+}
+

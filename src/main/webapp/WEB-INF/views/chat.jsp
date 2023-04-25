@@ -6,52 +6,74 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-
 <c:import url="inc/headerScript.jsp"/>
 <c:import url="inc/header.jsp"/>
 
 <link rel="stylesheet" href="${contextPath}/resource/css/pages/main.css">
 <link rel="stylesheet" href="${contextPath}/resource/css/pages/main_media.css">
+<link rel="stylesheet" href="${contextPath}/resource/css/pages/chat.css">
+
 <script src="${contextPath}/resource/js/jquery/gsap.min.js"></script>
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 <script src="${contextPath}/resource/js/pages/main.js"></script>
 
+<div class="chat-wrap">
 
-  <!-- main visual -->
-<div class="main">
-
-<h2>채팅 테스트</h2>
-	<div style="width:50%; float:left;">
-		<c:forEach var="chatList" items="${chatList}">
-			<div class="chatRoomList">
-				<h3>${chatList.chat_room_no}</h3>
-				<h5>${chatList.pro_no}</h5>
-				<input type="hidden" value="${chatList.chat_room_no}"/>
+	<div class="chat-inner">
+		<!-- 채팅 리스트 -->
+		<div class="chat-list">
+			<div class="chat-list-wrap">
+				<!-- 사용자 프로필 -->
+				<div class="profile-wrap">
+					<p><img src="${contextPath}/resource/images/profile_i_01.png" alt="사용자 프로필 이미지"> <span>ghy0302</span></p>
+				</div>
+				<!-- 대화 리스트 -->
+				<c:forEach var="chatList" items="${chatList}">
+					<div class="chatRoomList">
+						<p><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"></p>
+						<div>
+							<p>${chatList.chat_room_no}</p>
+							<p>${chatList.pro_no}</p>
+						</div>
+						<input type="hidden" value="${chatList.chat_room_no}"/>
+					</div>
+				</c:forEach>
 			</div>
-		</c:forEach>
-	</div>
-	<div style="width:50%; float:left;">
-	
-	
-		<!-- chatHistory와 사용자가 실시간으로 입력하는 메시지 출력 -->
-		<div id="content">
+		</div>
+
+		<!-- 채팅창 화면 -->
+		<div class="chatting-wrap">
 			
-		</div>	
-		<!-- 메시지 입력창, 보내기 버튼 -->
-		<div>
-			<div class="input_group" id="sendMessage">
-				<input type="text" id="message" class="form_control" placeholder="입력입력"/>	
-				<div class="input_group_append">
-					<button id="send" onclick="send()">보내기</button>
-					<input type="hidden" value="${login.mem_no}" id="senderNo"/>
-					<input type="hidden" value="${login.mem_id}" id="senderId"/>
-					<input type="hidden" id="chatRoomNo"/>
+			<!-- 상품 정보 불러오는 곳 -->
+			<div class="pro-info">
+				<p><img src="" alt=""></p>
+				<div class="info-txt">
+					<p>상품 판매 제목 영역입니다.</p>
+					<p>60,000 <span class="won">원</span></p>
+				</div>
+			</div>
+			
+			<!-- chatHistory와 사용자가 실시간으로 입력하는 메시지 출력 -->
+			<div id="content">
+				
+			</div>	
+
+			<!-- 메시지 입력창, 보내기 버튼 -->
+			<div>
+				<div class="input_group" id="sendMessage">
+					<input type="text" id="message" class="form_control" placeholder="입력입력"/>	
+					<div class="input_group_append">
+						<button id="send" onclick="send()">보내기</button>
+						<input type="hidden" value="${login.mem_no}" id="senderNo"/>
+						<input type="hidden" value="${login.mem_id}" id="senderId"/>
+						<input type="hidden" id="chatRoomNo"/>
+					</div>
 				</div>
 			</div>
 		</div>
-	
-	
-</div>
+	</div>
+
+
 </div>
 
 <script src="${contextPath}/webjars/stomp-websocket/2.3.3-1/stomp.js" type="text/javascript"></script>

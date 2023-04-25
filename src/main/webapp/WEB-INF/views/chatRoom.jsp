@@ -6,19 +6,17 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-
-
 <c:import url="${contextPath}/WEB-INF/views/inc/headerScript.jsp"/>
 <c:import url="${contextPath}/WEB-INF/views/inc/header.jsp"/>
 
 <link rel="stylesheet" href="${contextPath}/resource/css/pages/main.css">
+<link rel="stylesheet" href="${contextPath}/resource/css/pages/main_media.css">
+<link rel="stylesheet" href="${contextPath}/resource/css/pages/chat.css">
+
 <script src="${contextPath}/resource/js/jquery/gsap.min.js"></script>
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 
-
-<!-- #container -->
-<div class="main">
-	<h2>채팅 테스트</h2>
+<div class="chat-main">
 	<div class="title_text">
 		<p>${chatRoomInfo.pro_title}</p>
 	</div>
