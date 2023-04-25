@@ -138,38 +138,13 @@
 					<td><input type="text" readonly="readonly" value="${login.mem_no}" name="seller_mem_no" /></td>
 				</tr>
 				<tr>
-					<td><label for="buy_price">상품 구매 가격</label></td>
+					<td><label for="buy_price">상품 구매 시 가격</label></td>
 					<td><input type="text" id="pro_buy_price" name="pro_buy_price" /> <span>원</span></td>
 				</tr>
 				<tr>
 					<td><label for="buy_date">사용 기간</label></td>
 					<td>
-						<!-- 사용 년 수 -->
-						<select name="years">
-							<option value="">사용 년도 선택</option>
-							<option value="1년 이하">1년 이하</option>
-							<option value="1년">1</option>
-							<option value="2년">2</option>
-							<option value="3년">3</option>
-							<option value="4년">4</option>
-							<option value="5년 이상">5년 이상</option>
-						</select>
-						<span class="mr20">년</span>
-						<!-- 사용 개월 수 -->
-						<select name="months">
-							<option value="1개월">1</option>
-							<option value="2개월">2</option>
-							<option value="3개월">3</option>
-							<option value="4개월">4</option>
-							<option value="5개월">5</option>
-							<option value="6개월">6</option>
-							<option value="7개월">7</option>
-							<option value="8개월">8</option>
-							<option value="9개월">9</option>
-							<option value="10개월">10</option>
-							<option value="11개월">11</option>
-						</select>	
-						<span>개월</span>
+						<input type="text" placeholder="사용기간을 입력해주세요(ex:1년 2개월)">
 					</td>
 				</tr>
 				<tr>
