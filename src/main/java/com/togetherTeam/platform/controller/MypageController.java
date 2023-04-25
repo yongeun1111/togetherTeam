@@ -83,7 +83,7 @@ public class MypageController {
 	
 	@PostMapping("/likeInsert")
 	@ResponseBody
-	public Map<String, Object> likeInsert(LikeList vo, HttpSession session) {
+	public Map<String, Object> likeInsert(LikeList vo, HttpSession session, @RequestParam int pro_no) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Member user = (Member)session.getAttribute("login");
 		if (user == null) {
@@ -94,7 +94,10 @@ public class MypageController {
 		vo.setMem_no(mem_no);
 		try {
 			mapper.likeInsert(vo);
+			mapper_pro.likeCountSave(pro_no);
+			int cnt = mapper_pro.likeCount(pro_no);
 			map.put("result", "success");
+			map.put("likeCnt", cnt);
 		} catch(Exception e) {
 			e.printStackTrace();
 			map.put("result", "fail");
@@ -104,7 +107,7 @@ public class MypageController {
 		
 	@PostMapping("/likeDelete")
 	@ResponseBody
-	public Map<String, Object> likeDelete(LikeList vo, HttpSession session) {
+	public Map<String, Object> likeDelete(LikeList vo, HttpSession session, @RequestParam int pro_no) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Member user = (Member)session.getAttribute("login");
 		if (user == null) {
@@ -115,7 +118,11 @@ public class MypageController {
 		vo.setMem_no(mem_no);
 		try {
 			mapper.likeDelete(vo);
+			mapper_pro.likeCountSave(pro_no);
+			int cnt = mapper_pro.likeCount(pro_no);
+			System.out.println(cnt);
 			map.put("result", "success");
+			map.put("likeCnt", cnt);
 		} catch(Exception e) {
 			e.printStackTrace();
 			map.put("result", "fail");

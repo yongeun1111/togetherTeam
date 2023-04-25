@@ -33,14 +33,16 @@ $(document).ready(function(){
 		var pro_no = $("#productNum").val();
     	var heartShape = $(".heart-shape");
     	var result = $("#result").val();
+    	var like_count = $(".like-count");
     	
     	if(typeof result !== "undefined" && result === "1"){
     		$.ajax({
     			url : '/likeDelete',
     			type : 'POST',
     			data : {pro_no : pro_no},
-    			success : function(){
+    			success : function(map){
     				heartShape.text("♡");
+    				like_count.text(map.likeCnt);
     				$("#result").val("0");
     				alert("찜목록에서 제거되었습니다.");
     			},
@@ -53,8 +55,9 @@ $(document).ready(function(){
     			url : '/likeInsert',
     			type : 'POST',
     			data : {pro_no : pro_no},
-    			success : function(){
+    			success : function(map){
     				heartShape.text("♥");
+    				like_count.text(map.likeCnt);
     				$("#result").val("1");
     				alert("찜목록에 추가되었습니다.");
     			},

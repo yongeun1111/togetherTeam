@@ -30,6 +30,8 @@ public interface productMapper {
 	public Product getProduct(int pro_no); // 상품 1개 정보
 	public List<Image> getProductImage (int pro_no); // 상품 이미지
 	public List<Image> getProductOneImage(int pro_no); // 상품 이미지 하나 가져오기
+	public void likeCountSave(int pro_no);
+	public int likeCount(int pro_no); // 찜 카운트 조회
 	public void upViews(int pro_no); // 조회수 +1
 	
 	public Product test(); // 채팅 테스트

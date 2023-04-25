@@ -163,7 +163,7 @@
 		 
 	</select>
 	
-	<!-- 상품 총 개수 -->
+	<!-- 찜 눌렀는지 확인하기 -->
   	<select id="likeCheck" parameterType="com.togetherTeam.platform.entity.LikeList" resultType="int">
   	
   		select count(*) from like_list 
@@ -191,6 +191,22 @@
 			WHERE PRO_NO = #{pro_no})
 		WHERE rn = 1
   	
+  	</select>
+  	
+  	<!-- 찜 카운트 감소 -->
+  	<delete id="likeDown" parameterType="com.togetherTeam.platform.entity.LikeList">
+  		delete from like_list where pro_no = #{pro_no} and mem_no = #{mem_no}
+  	</delete>
+  	
+  	<!-- 찜 카운트 저장 -->
+  	<update id="likeCountSave" parameterType="int">
+  		update product set pro_like = (select count(pro_no) from like_list where pro_no = #{pro_no})
+		where pro_no = #{pro_no}
+  	</update>
+  	
+  	<!-- 찜 카운트 조회 -->
+  	<select id="likeCount" parameterType="int" resultType="int">
+  		select pro_like from product where pro_no = #{pro_no}
   	</select>
 	
 </mapper>
