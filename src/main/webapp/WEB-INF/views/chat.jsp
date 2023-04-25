@@ -48,8 +48,7 @@
 			<div class="pro-info">
 				<p><img src="${contextPath}/resource/images/chat_pro_thum.jpg" alt="상품 썸네일"></p>
 				<div class="info-txt">
-					<p>상품 판매 제목 영역입니다.</p>
-					<p>60,000 <span class="won">원</span></p>
+					
 				</div>
 			</div>
 			
@@ -87,7 +86,7 @@
 	var senderId = $("#senderId").val();
 	var senderNo = $("#senderNo").val();
 	var hisList = "";
-	
+	var infoList = "";
 	$(document).ready(function(){
 		
 		$(".chatRoomList").click(function(){
@@ -107,10 +106,14 @@
 		
 		stompClient = null;
 		console.log(data);
-		
+		infoList = "";
 		var chatRoomNo = data.chatRoomInfo.chat_room_no;
 		var proTitle = data.productInfo.pro_title;
 		var proSalePrice = data.productInfo.pro_sale_price;
+		
+		infoList += '<p>'+proTitle+'<p>'
+		infoList += '<p>'+proSalePrice+'<span class="won">원</span></p>'
+		$(".info-txt").html(infoList);
 		
 		$("#chatRoomNo").val(chatRoomNo);
 		$.each(data.chatHistory,function(index, obj){
