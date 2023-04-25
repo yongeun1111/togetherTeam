@@ -137,8 +137,8 @@ $(document).ready(function(){
         <c:forEach var="vo" items="${allList}" varStatus="status">
           <div class="col-sm">
 		    <a href="/proView?pro_no=${vo.pro_no}">
-			  <div class="pro-img">
-				<img src="${contextPath}/resource/images/thum_img.jpg" alt="">
+			  <div class="pro-img" data-pro_no="${vo.pro_no}" data-path="${vo.upload_path}" data-uuid="${vo.uuid}" data-file_name="${vo.file_name}">
+				<img alt="">
 			  </div>
 		      <div class="pro-info">
 		        <p class="name">${vo.pro_title}</p>
