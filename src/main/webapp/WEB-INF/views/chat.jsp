@@ -34,7 +34,7 @@
 						<p><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"></p>
 						<div>
 							<c:if test="${login.mem_id eq chatList.buyer_mem_id}">
-								<p>${login.mem_id}</p>
+								<p>${chatList.seller_mem_id}</p>
 							</c:if>
 							<c:if test="${login.mem_id ne chatList.buyer_mem_id}">
 								<p>${chatList.buyer_mem_id}</p>
