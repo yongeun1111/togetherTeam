@@ -28,7 +28,7 @@
   		  FROM CHAT a INNER JOIN MEMBER b
   		    ON a.CHAT_MEM_NO = b.MEM_NO
 		 WHERE CHAT_ROOM_NO = #{CHAT_ROOM_NO}
-		 ORDER BY CHAT_DATE DESC
+		 ORDER BY CHAT_DATE
 	</select>
 	
 	<insert id="insertChat" parameterType="com.togetherTeam.platform.entity.Chat">
