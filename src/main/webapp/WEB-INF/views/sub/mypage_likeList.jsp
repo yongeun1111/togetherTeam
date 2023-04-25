@@ -15,6 +15,27 @@
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 <script src="${contextPath}/resource/js/pages/sub.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function() {
+    $(".del-btn").on("click", function() {
+        var pro_no = $(this).data("pro-no");
+        var currentPage = parseInt($("#page").val());
+
+        $.ajax({
+            url: "/likeDelete_mypage",
+            type: "POST",
+            data: {pro_no : pro_no, page : currentPage},
+            success: function() {
+            	location.href = "/mypage_likeList?page=" + currentPage;
+            },
+            error: function() {
+                alert("좋아요 제거에 실패하였습니다.");
+            }
+        });
+    });
+});
+</script>
+
 <!-- #container -->
 <div class="con-inner mypage-wrap">
 
@@ -52,7 +73,7 @@
                 <a href="#">
                   <ul class="pro-info">
                     <li class="pro-cate">${vo.pro_category}</li>
-                    <li class="pro-com">제조사</li>
+                    <li class="pro-com">${vo.maker}</li>
                   </ul>
                   <p class="name">${vo.pro_title}</p>
                 </a>
@@ -61,7 +82,7 @@
                 <p class="price">${vo.pro_sale_price} <span class="won">원</span></p>
               </td>
               <td col="col" width="18%">
-                <button class="del-btn">삭제</button>
+                <button class="del-btn" data-pro-no="${vo.pro_no}">삭제</button>
               </td>
             </tr>
           </c:forEach> 

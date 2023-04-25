@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.togetherTeam.platform.entity.CriteriaList;
 import com.togetherTeam.platform.entity.CriteriaSale;
@@ -46,8 +48,20 @@ public class MypageController {
 		int mem_no = vo.getMem_no();
 		MypageLikeList mll = new MypageLikeList(mem_no,cri.getPage(),cri.getPerPageNum());
 		List<Product> list = mapper.mypage_likeList(mll);
+		
+		if (list.isEmpty()) {
+	        if (cri.getPage() >= 2) {
+	        	cri.setPage(cri.getPage()-1);
+	            // 감소된 currentPage를 기반으로 리스트 데이터 다시 받아오기
+	            mll = new MypageLikeList(mem_no, cri.getPage(), cri.getPerPageNum());
+	            list = mapper.mypage_likeList(mll);
+
+	        }
+	    }
+		
 		model.addAttribute("list", list);		
 		
+		System.out.println(cri.getPage());
 		PageMakerList pageMakerList = new PageMakerList();
 		pageMakerList.setCri(cri);
 		pageMakerList.setTotalCount(cnt.size());
@@ -96,6 +110,23 @@ public class MypageController {
 			map.put("result", "fail");
 		}
 		return map;
+	}
+	
+	@PostMapping("/likeDelete_mypage")
+	public String deleteLikeList(LikeList vo, HttpSession session, 
+			@RequestParam(defaultValue = "1") int page, RedirectAttributes rttr) {
+	    Member user = (Member) session.getAttribute("login");
+	    int mem_no = user.getMem_no();
+	    vo.setMem_no(mem_no);
+	    try {
+	        mapper.likeDelete(vo);
+	    } catch(Exception e) {
+	        e.printStackTrace();
+	        // 에러 처리
+	    }
+
+	    rttr.addAttribute("page", page);
+	    return "redirect:/mypage_likeList";
 	}
 	
 	@PostMapping("/change_info") // 회원정보수정
