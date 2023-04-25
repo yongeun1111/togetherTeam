@@ -71,4 +71,9 @@ public class ChatRoomService implements chatRoomMapper {
 		return chatRoomMapper.findChatRead(chatRoomNo, MemNo);
 	}
 	
+	public void updateChatRead(int chatRoomNo, int chatMemNo) {
+
+		chatRoomMapper.updateChatRead(chatRoomNo, chatMemNo);
+	}
+	
 }

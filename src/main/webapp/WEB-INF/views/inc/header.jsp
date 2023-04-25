@@ -7,6 +7,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		var memNo = $("#member").val()
+		var unReadCount = "";
 		if (memNo != null){
 			$.ajax({
 			      type: 'POST',
@@ -14,7 +15,10 @@
 			      data: {"memNo":memNo},
 			      dataType: 'json', 
 			      success: function(res){
-			    	  console.log(res)
+			    	  if (res>0){
+			    		  unReadCount += "<span>"+res+" 채팅리스트</span>"
+				    	  $("#chatList").html(unReadCount)	    		  
+			    	  }
 			      },
 			   	  error: function(){
 			   		  console.log("error")
@@ -52,7 +56,7 @@
 							<li><a href="join">회원가입</a></li>
 						</c:if>
 						<c:if test="${!empty login}">
-							<li class="after"><a href="chat">채팅리스트</a>
+							<li class="after"><a id="chatList" href="chat">채팅리스트</a>
 							<li class="after"><a href="mypage_memInfo">마이 페이지</a>
 							<li><a href="logout">로그아웃</a></li>
 							<input id="member" type=hidden value="${login.mem_no}"/>

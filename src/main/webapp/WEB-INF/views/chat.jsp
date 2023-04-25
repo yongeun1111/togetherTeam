@@ -82,31 +82,32 @@
 <script src="${contextPath}/webjars/sockjs-client/1.1.2/sockjs.js" type="text/javascript"></script>
 
 <script type="text/javascript">	
-	var	stompClient = null;
-	var senderId = $("#senderId").val();
-	var senderNo = $("#senderNo").val();
-	var hisList = "";
-	var infoList = "";
-	$(document).ready(function(){
-		
-		$(".chatRoomList").click(function(){
-			var listToChat = $(this).find('input').val()
-			$.ajax({
-				url : "/getChatHistory",
-				type : "post",
-				data : {"chatRoomNo" : listToChat},
-				dataType : "json",
-				success : chatRoom,
-				error : function(){ alert("error") }
-			});
-		})
+var	stompClient = null;
+var senderId = $("#senderId").val();
+var senderNo = $("#senderNo").val();
+var hisList = "";
+var infoList = "";
+$(document).ready(function(){
+	
+	$(".chatRoomList").click(function(){
+		var listToChat = $(this).find('input').val()
+		$.ajax({
+			url : "/getChatHistory",
+			type : "post",
+			data : {"chatRoomNo":listToChat, "senderNo":senderNo},
+			dataType : "json",
+			success : chatRoom,
+			error : function(){ alert("error") }
+		});
 	})
+})
 	
 	function chatRoom(data){
 		
 		stompClient = null;
 		console.log(data);
 		infoList = "";
+		hisList = "";
 		var chatRoomNo = data.chatRoomInfo.chat_room_no;
 		var proTitle = data.productInfo.pro_title;
 		var proSalePrice = data.productInfo.pro_sale_price;

@@ -109,12 +109,18 @@ public class ChatController {
 	// 채팅방 리스트에서 채팅방으로 접속
 	@PostMapping("/getChatHistory")
 	@ResponseBody
-	public Map getChatHistory(int chatRoomNo) {
-		
+	public Map getChatHistory(int chatRoomNo, int senderNo) {
+
 		List<Chat> chatHistory = chatRoomService.readChatHistory(chatRoomNo);
 		ChatRoom chatRoomInfo = chatRoomService.findChatRoom(chatRoomNo);
 		Product productInfo = mapper.getProduct(chatRoomInfo.getPro_no());
 		List<Image> imageInfo = mapper.getProductImage(chatRoomInfo.getPro_no());
+		
+		for (Chat chat : chatHistory) {
+			if (senderNo != chat.getChat_mem_no()) {
+				chatRoomService.updateChatRead(chatRoomNo, chat.getChat_mem_no());
+			}
+		}
 		
 		Map<String, Object> chat = new HashMap<>();
 		

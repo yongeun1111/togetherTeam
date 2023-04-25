@@ -18,4 +18,5 @@ public interface chatRoomMapper {
 	public List<Chat> readChatHistory(int chatRoomNo);
 	public void insertChat(Chat chat);
 	public int findChatRead(@Param("chatRoomNo") int chatRoomNo, @Param("memNo") int memNo);
+	public void updateChatRead(@Param("chatRoomNo") int chatRoomNo, @Param("chatMemNo") int chatMemNo);
 }
