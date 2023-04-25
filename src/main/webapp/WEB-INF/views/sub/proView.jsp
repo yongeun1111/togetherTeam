@@ -64,6 +64,33 @@ $(document).ready(function(){
     		});
     	}
     });
+	
+	// 이미지 리스트
+	let pro_no = '<c:out value="${pro.pro_no}"/>';
+	let represent_list = $(".represent-list");
+	console.log(pro_no)
+	
+	$.getJSON("/getProduceImageList", {pro_no : pro_no}, function(arr){	
+		
+		let obj = arr;
+		for(let i=0; i < ${fn:length(image)}; i++){
+			let fileCallPath = encodeURIComponent(obj[i].upload_path + "/s_" + obj[i].uuid + "_" + obj[i].file_name);
+
+			let str = "";
+		
+			str = "<li>";
+            str += "<a href='javascript:;' onMouseover='changeRepresentImage("+ i +");'";
+            str += "data-path='" + obj[i].upload_path + "' data-uuid='" + obj[i].uuid + "' data-file_name='" + obj.file_name + "'";
+            str += ">";
+            str += "<img class='imgServe' src='/display?file_name="+fileCallPath + "'/>";
+            str += "</a>";
+            str += "</li>";
+            
+            represent_list.append(str);
+		
+		}
+		
+	});	
     
 });
 
@@ -77,30 +104,11 @@ function chatSubmit() {
 <div class="container">
     <div class="view-wrap">
         <!-- 좌측 : 상품 이미지 -->
-        <div class="represent">
-            <img id="imgRepresent" src="${contextPath}/resource/images/thum_big.jpg"/>
+        <div class="represent" data-pro_no="${image[0].pro_no}" data-path="${image[0].upload_path}" data-uuid="${image[0].uuid}" data-file_name="${image[0].file_name}">
+            <img id="imgRepresent"/>
             <!-- 작은 썸네일 -->
             <ul class="represent-list">
-                <li>
-                    <a href="javascript:;" onMouseover="changeRepresentImage('0');">
-                        <img class="imgServe" src="${contextPath}/resource/images/thum_big.jpg"/>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;" onMouseover="changeRepresentImage('1');">
-                        <img class="imgServe" src="${contextPath}/resource/images/thum02.jpg"/>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;" onMouseover="changeRepresentImage('2');">
-                        <img class="imgServe" src="${contextPath}/resource/images/thum_big.jpg"/>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;" onMouseover="changeRepresentImage('3');">
-                        <img class="imgServe" src="${contextPath}/resource/images/thum02.jpg"/>
-                    </a>
-                </li>
+            
             </ul>
         </div>
 

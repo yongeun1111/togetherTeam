@@ -79,6 +79,13 @@ public class productController {
         return "sub/proView";
     }
 	
+	// 이미지 정보 반환
+	@GetMapping(value="/getProduceImageList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<Image>> getProduceImageList(int pro_no){
+		
+		return new ResponseEntity<List<Image>>(mapper.getProductImage(pro_no), HttpStatus.OK);
+	}
+	
 	
     @GetMapping("/registration") // 상품 등록하기 페이지(registration.jsp)로 이동
     public String registration(HttpSession session, Model model){
