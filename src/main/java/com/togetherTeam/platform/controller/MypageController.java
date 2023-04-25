@@ -50,7 +50,6 @@ public class MypageController {
 		int mem_no = vo.getMem_no();
 		MypageLikeList mll = new MypageLikeList(mem_no,cri.getPage(),cri.getPerPageNum());
 		List<Product> list = mapper.mypage_likeList(mll);
-		model.addAttribute("list", list);		
 		
 		if (list.isEmpty()) {
 	        if (cri.getPage() >= 2) {
@@ -61,6 +60,7 @@ public class MypageController {
 
 	        }
 	    }
+		model.addAttribute("list", list);		
 		
 		ArrayList<List<Image>> image = new ArrayList<>();
 		
