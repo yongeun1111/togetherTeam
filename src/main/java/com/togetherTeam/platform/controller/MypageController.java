@@ -61,7 +61,6 @@ public class MypageController {
 		
 		model.addAttribute("list", list);		
 		
-		System.out.println(cri.getPage());
 		PageMakerList pageMakerList = new PageMakerList();
 		pageMakerList.setCri(cri);
 		pageMakerList.setTotalCount(cnt.size());

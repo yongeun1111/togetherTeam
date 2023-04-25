@@ -65,12 +65,12 @@ $(document).ready(function() {
           <c:forEach items="${list}" var="vo">
             <tr class="trHover">
               <td class="meminfo-img" col="col" width="15%">
-                <a href="#">
+                <a href="/proView?pro_no=${vo.pro_no}">
                   <img src="${contextPath}/resource/images/thum_img.jpg" alt="">
                 </a>
               </td>
               <td>
-                <a href="#">
+                <a href="/proView?pro_no=${vo.pro_no}">
                   <ul class="pro-info">
                     <li class="pro-cate">${vo.pro_category}</li>
                     <li class="pro-com">${vo.maker}</li>
