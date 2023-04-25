@@ -16,6 +16,99 @@
 <script src="${contextPath}/resource/js/pages/sub.js"></script>
 <script src="${contextPath}/resource/js/com/common.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function() {
+	  var categoryBtn = $('.categoryBtn');
+	  var categoryList = $('.categoryList');
+	  var pageBtn = $('.pageBtn');
+
+	  // 카테고리 버튼 클릭시 데이터 처리하기
+	  categoryBtn.click(function() {
+	    var category = $(this).data('category');
+
+	    $.ajax({
+	      type: 'GET',
+	      url: '/get-proList',
+	      data: { category: category },
+	      success: function(result) {
+	        // categoryList 영역 초기화
+	        categoryList.empty();
+
+	        // 전달받은 데이터를 순회하면서 동적으로 HTML 코드 생성
+	        var html = ""; // html 변수 선언 추가
+	        $.each(result.list, function(index, item) {
+	          html += "<div class=\"col-sm-2\">" +
+	            "<a href=\"/proView?pro_no=" + item.pro_no + "\">" +
+	            "<div class=\"pro-img\">" +
+	            "<img src=\"${contextPath}/resource/images/thum_img.jpg\" alt=\"\">" +
+	            "</div>" +
+	            "<div class=\"pro-info\">" +
+	            "<p class=\"name\">" + item.pro_title + "</p>" +
+	            "<p class=\"price\">" +
+	            item.pro_sale_price + "<span class=\"won\">원</span>" +
+	            "</p>" +
+	            "</div>" +
+	            "</a>" +
+	            "</div>";
+	        });
+
+	        categoryList.append(html);
+
+	        // 페이지 버튼 생성
+	        pageBtn.empty();
+	        var pageMaker = result.pm;
+	        var pageHtml = "<ul class=\"pagination justify-content-center\">";
+
+	        if (pageMaker.prev) {
+	          pageHtml += "<li class=\"page-item page-prev\"><a class=\"page-link\" href=\"" + (pageMaker.startPage - 1) + "\"></a></li>";
+	        }
+
+	        for (var i = pageMaker.startPage; i <= pageMaker.endPage; i++) {
+	          var active = "";
+	          if (pageMaker.cri.page == i) {
+	            active = "active";
+	          }
+
+	          pageHtml += "<li class=\"page-item page-num " + active + "\"><a class=\"page-link\" href=\"#" + i + "\">" + i + "</a></li>";
+	        }
+
+	        if (pageMaker.next) {
+	          pageHtml += "<li class=\"page-item page-next\"><a class=\"page-link\" href=\"" + (pageMaker.endPage + 1) + "\"></a></li>";
+	        }
+
+	        var pageFormHtml = "<form id=\"pageFrm\" action=\"get-proList\" method=\"get\">" +
+	          "<input type=\"hidden\" id=\"page\" name=\"page\" value=\"" + pageMaker.cri.page + "\">" +
+	          "<input type=\"hidden\" id=\"category\" name=\"category\" value=\"" + category + "\">" +
+	          "</form>";
+	        pageHtml += pageFormHtml;
+	        pageHtml += "</ul>";
+	        pageBtn.append(pageHtml);
+	      },
+          error: function(){
+              alert('데이터를 가져오는데 실패하였습니다.');
+          }
+      });
+  });
+	        
+	        
+	        // 페이지 버튼 클릭 이벤트 처리
+	        $('.page-num a').on('click', function(e){
+	        	e.preventDefault(); // 기존 이벤트 방지
+
+	        	var page = $(this).attr('href');
+	        	var category = $('#category').val();
+
+	        	if(category === undefined){ // 카테고리 값이 없을 때
+	        	category = $('.categoryBtn.active').data('category'); // 활성화된 카테고리 값 가져오기
+	        	}
+
+	        	$('#page').val(page); // form에 페이지 정보 설정
+	        	$('#category').val(category); // form에 카테고리 정보 설정
+	        	$('#pageFrm').submit(); // form 전송
+	        	});
+    
+});
+</script>
 
 <!-- #container -->
 <div class="container">
@@ -28,22 +121,22 @@
 				<a class="nav-link active" data-toggle="tab" href="#tab01">ALL</a>
 			</li>
 			<li class="nav-item col">
-				<a class="nav-link" data-toggle="tab" href="#tab02">에어프라이어</a>
+				<a class="nav-link categoryBtn" data-category="에어프라이어" data-toggle="tab" href="#tab02">에어프라이어</a>
 			</li>
 			<li class="nav-item col">
-				<a class="nav-link" data-toggle="tab" href="#tab03">전기포트</a>
+				<a class="nav-link categoryBtn" data-category="전기포트" data-toggle="tab" href="#tab03">전기포트</a>
 			</li>
 			<li class="nav-item col">
-				<a class="nav-link" data-toggle="tab" href="#tab04">전자렌지</a>
+				<a class="nav-link categoryBtn" data-category="전자렌지" data-toggle="tab" href="#tab04">전자렌지</a>
 			</li>
 			<li class="nav-item col">
-				<a class="nav-link" data-toggle="tab" href="#tab05">토스트기</a>
+				<a class="nav-link categoryBtn" data-category="토스티기" data-toggle="tab" href="#tab05">토스트기</a>
 			</li>
 			<li class="nav-item col">
-				<a class="nav-link" data-toggle="tab" href="#tab06">헤어드라이기</a>
+				<a class="nav-link categoryBtn" data-category="헤어드라이기" data-toggle="tab" href="#tab06">헤어드라이기</a>
 			</li>
 			<li class="nav-item col">
-				<a class="nav-link" data-toggle="tab" href="#tab07">공기청정기</a>
+				<a class="nav-link categoryBtn" ata-category="공기청정기" data-toggle="tab" href="#tab07">공기청정기</a>
 			</li>
 		</ul>
 	  
@@ -68,75 +161,79 @@
 							</a>
 						</div>
 					</c:forEach>
-
+				</div>
+				<div class="pageMaker_wrap">
+					<ul class="pagination justify-content-center">
+					  <!-- 이전버튼 -->
+					  <c:if test="${pm.prev}">
+						<li class="page-item page-prev">
+						  <a class="page-link" href="${pm.startPage-1}"></a>
+						</li>
+					  </c:if>
+						
+					  <!-- 페이지 번호 -->
+					  <c:forEach var="pageNum" begin="${pm.startPage}" end="${pm.endPage}">
+						<li class="page-item page-num ${pm.cri.page==pageNum ? 'active' : ''}">
+						  <a class="page-link" href="${pageNum}">${pageNum}</a>
+						</li>
+					  </c:forEach>
+						
+					  <!-- 다음 버튼 -->
+					  <c:if test="${pm.next}">
+						<li class="page-item page-next">
+						  <a class="page-link" href="${pm.endPage+1}"></a>
+						</li>
+					  </c:if>
+					</ul>
+				</div>
+				
+				<form id="pageFrm" action="proList" method="get">
+					<input type="hidden" id="page" name="page" value="${pm.cri.page}">
+				</form>
+				
+			</div>
 					<!-- 02. 에어프라이어 -->
 					<div id="tab02" class="container tab-pane fade"><br>
-						<h3>Menu 1</h3>
-						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+						<div class="row categoryList"></div>
+						<div class="pageBtn pageMaker_wrap"></div>
 					</div>
 
 					<!-- 03. 전기포트 -->
 					<div id="tab03" class="container tab-pane fade"><br>
-						<h3>Menu 2</h3>
-						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+						<div class="row categoryList"></div>
+						<div class="pageBtn pageMaker_wrap"></div>
 					</div>
 
 					<!-- 04. 전자렌지 -->
 					<div id="tab04" class="container tab-pane fade"><br>
-						<h3>Menu 2</h3>
-						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+						<div class="row categoryList"></div>
+						<div class="pageBtn pageMaker_wrap"></div>
 					</div>
 
 					<!-- 05. 토스트기 -->
 					<div id="tab05" class="container tab-pane fade"><br>
-						<h3>Menu 2</h3>
-						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+						<div class="row categoryList"></div>
+						<div class="pageBtn pageMaker_wrap"></div>
 					</div>
 
 					<!-- 06. 헤어드라이기 -->
 					<div id="tab06" class="container tab-pane fade"><br>
-						<h3>Menu 2</h3>
-						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+						<div class="row categoryList"></div>
+						<div class="pageBtn pageMaker_wrap"></div>
 					</div>
 
 					<!-- 07. 공기청정기 -->
 					<div id="tab07" class="container tab-pane fade"><br>
-						<h3>Menu 2</h3>
-						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+						<div class="row categoryList"></div>
+						<div class="pageBtn pageMaker_wrap"></div>
 					</div>
-				</div>
-			</div>
+
 		</div>
 
 		
-		<div class="pageMaker_wrap">
-			<ul class="pagination justify-content-center">
-			  <!-- 이전버튼 -->
-			  <c:if test="${pm.prev}">
-				<li class="page-item page-prev">
-				  <a class="page-link" href="${pm.startPage-1}"></a>
-				</li>
-			  </c:if>
-				
-			  <!-- 페이지 번호 -->
-			  <c:forEach var="pageNum" begin="${pm.startPage}" end="${pm.endPage}">
-				<li class="page-item page-num ${pm.cri.page==pageNum ? 'active' : ''}">
-				  <a class="page-link" href="${pageNum}">${pageNum}</a>
-				</li>
-			  </c:forEach>
-				
-			  <!-- 다음 버튼 -->
-			  <c:if test="${pm.next}">
-				<li class="page-item page-next">
-				  <a class="page-link" href="${pm.endPage+1}"></a>
-				</li>
-			  </c:if>
-			</ul>
-		</div>
+		
 
-		<form id="pageFrm" action="proList" method="get">
-			<input type="hidden" id="page" name="page" value="${pm.cri.page}">
-		</form>
+
 
 	</div>
 

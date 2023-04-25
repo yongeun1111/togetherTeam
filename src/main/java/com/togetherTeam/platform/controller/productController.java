@@ -8,7 +8,9 @@ import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
@@ -23,6 +25,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.togetherTeam.platform.entity.ChatRoom;
@@ -53,6 +56,22 @@ public class productController {
 		
         return "sub/proList";
     }
+	
+	@GetMapping("/get-proList")
+	@ResponseBody
+	public Map<String, Object> getProducts(String category, CriteriaList cri) {
+	    List<Product> list = mapper.getCategoryListRecent(category);
+
+	    PageMakerList pageMakerList = new PageMakerList();
+	    pageMakerList.setCri(cri);
+	    pageMakerList.setTotalCount(list.size());
+
+	    Map<String, Object> resultMap = new HashMap<>();
+	    resultMap.put("list", list);
+	    resultMap.put("pm", pageMakerList);
+
+	    return resultMap;
+	}
 	
 	@GetMapping("/proView") // 중고 상품 페이지(proList.jsp)로 이동
     public String proView(Model model, @RequestParam int pro_no, HttpSession session){
