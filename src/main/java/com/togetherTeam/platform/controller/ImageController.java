@@ -31,8 +31,11 @@ public class ImageController {
 	public ResponseEntity<byte[]> getImage(String file_name){
 		
 		// System.out.println("getImage() : " + file_name);
+		// 절대 경로
+		// File file = new File("C:\\Users\\smhrd\\git\\togetherTeam\\src\\main\\webapp\\resource\\upload\\" + file_name);
+		// 상대경로 (File.separator는 파일 경로를 구성하는 구분자)
+		File file = new File("src/main/webapp" + File.separator + "resource" + File.separator + "upload" + File.separator + file_name);
 		
-		File file = new File("C:\\Users\\smhrd\\git\\togetherTeam\\src\\main\\webapp\\resource\\upload\\" + file_name);
 		
 		// 뷰로 반환할 ResponseEntity 객체의 주소를 저장할 참조 변수 선언
 		ResponseEntity<byte[]> result = null;
@@ -41,7 +44,8 @@ public class ImageController {
 			HttpHeaders header = new HttpHeaders();
 			
 			// header의 "Content-type"값에 Files.probeContentType(file.toPath()) 부여
-			header.add("Content-type", Files.probeContentType(file.toPath()));
+			// header.add("Content-type", Files.probeContentType(file.toPath())); -> 절대경로를 사용할 때
+			header.add("Content-type", "image/jpeg");
 			
 			// (출력시킬 대상 이미지 데이터 파일, header의 설정이 부여된 객체 추가, 상태 코드)
 			// FileCopyUtils.copyToByteArray(file) : 대상 파일을 복사하여 Byte 배열로 반환
@@ -63,7 +67,10 @@ public class ImageController {
 		
 		try {
 			// 대표 파일 삭제
-			file = new File("C:\\Users\\smhrd\\git\\togetherTeam\\src\\main\\webapp\\resource\\upload\\" + URLDecoder.decode(file_name, "UTF-8"));
+			// 절대경로
+			// file = new File("C:\\Users\\smhrd\\git\\togetherTeam\\src\\main\\webapp\\resource\\upload\\" + URLDecoder.decode(file_name, "UTF-8"));
+			// 상대경로
+			file = new File("src/main/webapp/resource/upload/" + URLDecoder.decode(file_name, "UTF-8"));
 			file.delete();
 			
 			// 원본 파일 삭제
