@@ -66,5 +66,9 @@ public class ChatRoomService implements chatRoomMapper {
 		return chatRoomMapper.checkChatRoom(proNo, buyerNo);
 	}
 	
+	public int findChatRead(int chatRoomNo, int MemNo) {
+		
+		return chatRoomMapper.findChatRead(chatRoomNo, MemNo);
+	}
 	
 }

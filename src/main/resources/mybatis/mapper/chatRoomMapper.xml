@@ -28,7 +28,7 @@
   		  FROM CHAT a INNER JOIN MEMBER b
   		    ON a.CHAT_MEM_NO = b.MEM_NO
 		 WHERE CHAT_ROOM_NO = #{CHAT_ROOM_NO}
-		 ORDER BY CHAT_DATE
+		 ORDER BY CHAT_DATE DESC
 	</select>
 	
 	<insert id="insertChat" parameterType="com.togetherTeam.platform.entity.Chat">
@@ -65,5 +65,13 @@
     	 WHERE CHAT_ROOM_NO = #{chatRoomNo}
     </select>
     
+    <select id="findChatRead" parameterType="int" resultType="int">
+    	SELECT COUNT(*)
+    	  FROM CHAT
+    	 WHERE CHAT_ROOM_NO = #{chatRoomNo}
+    	   AND CHAT_MEM_NO = #{memNo}
+    	   AND CHAT_READ = 0
+    
+    </select>
     
 </mapper>

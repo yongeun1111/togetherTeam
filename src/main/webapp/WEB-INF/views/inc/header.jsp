@@ -4,6 +4,28 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
+<script type="text/javascript">
+	$(document).ready(function(){
+		var memNo = $("#member").val()
+		if (memNo != null){
+			$.ajax({
+			      type: 'POST',
+			      url: '/chatReadCount',
+			      data: {"memNo":memNo},
+			      dataType: 'json', 
+			      success: function(res){
+			    	  console.log(res)
+			      },
+			   	  error: function(){
+			   		  console.log("error")
+			   	  }
+			    });
+		}
+		
+	})
+
+
+</script>
 <body>
 <!-- #wrap -->
 <div id="wrap">
@@ -33,6 +55,7 @@
 							<li class="after"><a href="chat">채팅리스트</a>
 							<li class="after"><a href="mypage_memInfo">마이 페이지</a>
 							<li><a href="logout">로그아웃</a></li>
+							<input id="member" type=hidden value="${login.mem_no}"/>
 						</c:if>
 					</ul>
 				</div>

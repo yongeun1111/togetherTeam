@@ -104,9 +104,14 @@
 	})
 	
 	function chatRoom(data){
+		
 		stompClient = null;
-		console.log(data)
-		var chatRoomNo = data.chatRoomInfo.chat_room_no
+		console.log(data);
+		
+		var chatRoomNo = data.chatRoomInfo.chat_room_no;
+		var proTitle = data.productInfo.pro_title;
+		var proSalePrice = data.productInfo.pro_sale_price;
+		
 		$("#chatRoomNo").val(chatRoomNo);
 		$.each(data.chatHistory,function(index, obj){
 			var chatHisId=obj.chat_mem_id;

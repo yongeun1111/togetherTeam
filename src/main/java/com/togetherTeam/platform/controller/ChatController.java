@@ -24,8 +24,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.togetherTeam.platform.entity.Chat;
 import com.togetherTeam.platform.entity.ChatRoom;
+import com.togetherTeam.platform.entity.Image;
 import com.togetherTeam.platform.entity.Member;
+import com.togetherTeam.platform.entity.Product;
 import com.togetherTeam.platform.mapper.chatRoomMapper;
+import com.togetherTeam.platform.mapper.productMapper;
 import com.togetherTeam.platform.service.ChatRoomService;
 
 import ch.qos.logback.core.util.TimeUtil;
@@ -40,7 +43,8 @@ public class ChatController {
 	@Autowired
 	private ChatRoomService chatRoomService;
 	
-	
+	@Autowired
+	private productMapper mapper;
 	
 	// 채팅방 생성, 이전 채팅방 접속
 	@GetMapping("/createChatRoom")
@@ -109,12 +113,36 @@ public class ChatController {
 		
 		List<Chat> chatHistory = chatRoomService.readChatHistory(chatRoomNo);
 		ChatRoom chatRoomInfo = chatRoomService.findChatRoom(chatRoomNo);
+		Product productInfo = mapper.getProduct(chatRoomInfo.getPro_no());
+		List<Image> imageInfo = mapper.getProductImage(chatRoomInfo.getPro_no());
 		
 		Map<String, Object> chat = new HashMap<>();
+		
 		chat.put("chatHistory", chatHistory);
 		chat.put("chatRoomInfo", chatRoomInfo);
-				
+		chat.put("productInfo", productInfo);
+		chat.put("imageInfo", imageInfo);
+		
 		return chat;
+	}
+	
+	@PostMapping("/chatReadCount")
+	@ResponseBody
+	public int chatReadCount(int memNo) {
+		int count = 0;
+		int tempNo = 0;
+		List<ChatRoom> chatList = chatRoomService.getChatList(memNo);
+		for (ChatRoom chatRoom : chatList) {
+			if (memNo != chatRoom.getBuyer_mem_no()) {
+				tempNo = chatRoom.getBuyer_mem_no();
+				count += chatRoomService.findChatRead(chatRoom.getChat_room_no(), tempNo);
+			} else {
+				tempNo = chatRoom.getSeller_mem_no();
+				count += chatRoomService.findChatRead(chatRoom.getChat_room_no(), tempNo);
+			}
+		}
+		
+		return count;
 	}
 	
 }
