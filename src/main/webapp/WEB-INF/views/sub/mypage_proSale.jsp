@@ -25,8 +25,8 @@
     <div class="tab-wrap">
       <ul class="tab-menu">
         <li><a href="/mypage_memInfo">회원정보 수정</a></li>
-        <li><a href="javascript:;">내가 찜한 목록</a></li>
-        <li class="on"><a href="/mypage_proSale">판매 내역</a></li>
+        <li><a href="/mypage_likeList">내가 찜한 목록</a></li>
+        <li class="on"><a href="#">판매 내역</a></li>
       </ul>
     </div>
 
@@ -42,19 +42,23 @@
         <!-- 리스트 내용 있을 경우 -->
         <c:if test="${!empty list}">
           <c:forEach items="${list}" var="list">
-            <tr>
+            <tr class="trHover">
               <td col="col" width="13%" class="memSaleImage">
+              <a href="/proView?pro_no=${list.pro_no}">
                 <div class="image_wrap" data-pro_no="${list.pro_no}" data-path="${list.upload_path}" data-uuid="${list.uuid}" data-file_name="${list.file_name}">
                   <img>
                 </div>
+              </a>
               </td>
               <td>
+              <a href="/proView?pro_no=${list.pro_no}">
                 <!-- 상품 카테고리, 제조사, 제목 -->
                 <ul class="pro-info">
                   <li class="pro-cate">${list.pro_category}</li\>
                   <li class="pro-com">${list.maker}</span>
                 </ul>
                 <p class="name">${list.pro_title}</p>
+              </a>
               </td>
               <td col="col" width="15%">
                 <p class="price">${list.pro_sale_price} <span class="won">원</span></p>
