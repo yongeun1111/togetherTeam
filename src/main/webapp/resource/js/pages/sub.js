@@ -175,7 +175,7 @@ $(document).ready(function(){
 	})
 	
 	// 이미지 삽입
-	$(".image_wrap").each(function(i, obj){
+	$(".image_wrap, .pro-img, .represent").each(function(i, obj){
 		
 		const bobj = $(obj);
 		
@@ -186,23 +186,6 @@ $(document).ready(function(){
 		const fileCallPath = encodeURIComponent(upload_path + "/s_" + uuid + "_" + file_name);
 		console.log(fileCallPath)
 		$(this).find("img").attr('src', '/display?file_name=' + fileCallPath);
-		
-	})
-	
-	
-	// 상세페이지 이미지
-	$(".represent").each(function(i, obj){
-		
-		const view_bobj = $(obj);
-		
-		const view_upload_path = view_bobj.data("path");
-		const view_uuid = view_bobj.data("uuid");
-		const view_file_name = view_bobj.data("file_name");
-		
-		// console.log("path : " + view_upload_path + ", uuid : " + view_uuid + ", file_name : " + view_file_name);
-		
-		const view_fileCallPath = encodeURIComponent(view_upload_path + "/s_" + view_uuid + "_" + view_file_name);
-		$(this).find("#imgRepresent").attr('src', '/display?file_name=' + view_fileCallPath);
 		
 	})
 	
