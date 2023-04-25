@@ -17,6 +17,10 @@ html::-webkit-scrollbar {
     display: none;
 }
 
+.mv-wrap {
+    margin-bottom: 100px;
+}
+
 .more-btn {
     display: block;
     text-align: center;
@@ -36,4 +40,63 @@ html::-webkit-scrollbar {
     color: #fff;
     background-color: #1f79df;
     transition: all 0.2s;
+}
+
+/* 중간 배너 */
+.banner-wrap {
+    margin: 100px 0;
+    width: 1400px;
+    box-sizing: border-box;
+}
+
+/* 테마별 인기 상품 */
+.thema-list {
+    display: flex;
+    border: 1px solid red;
+    box-sizing: border-box;
+}
+
+.thema-list .tabnav {
+    padding-right: 74px;
+    border: 1px solid green;
+    box-sizing: border-box;
+}
+
+.thema-list .tabnav li {
+    margin-bottom: 15px;
+}
+
+.thema-list .tabnav li a {
+    margin-bottom: 15px;
+    display: block;
+    width: 266px;
+    height: 64px;
+    line-height: 64px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    color: #222;
+    border-radius: 32px;
+    background-color: #fff;
+    box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, .1);
+}
+
+.thema-list .tabnav li a.active {
+    color: #fff;
+    background-color: #1f79df;
+}
+
+.thema-list .tabcontent .thema-img {
+
+}
+
+.thema-list .tabcontent .thema-img li {}
+
+.thema-list .tabcontent .thema-img li:nth-child(1) {
+    float: left;
+}
+
+.thema-list .tabcontent .thema-img li:not(:first-child) {
+    width: 340px;
+    height: 340px;
 }

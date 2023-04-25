@@ -35,7 +35,7 @@ public class MainController  {
 	@RequestMapping("/")
     public String main(Model model){
         int page = 1;
-        int perPageNum = 10;
+        int perPageNum = 8;
         CriteriaList cri = new CriteriaList(page,perPageNum);
 		List<Product> list = mapper_pro.getAllList(cri);
         model.addAttribute("allList", list);

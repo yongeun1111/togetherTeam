@@ -173,6 +173,10 @@ header .gnb-wrap ul.gnb li a {
     font-weight: 600;
 }
 
+header nav {
+    width: 1400px;
+}
+
 header nav .nav-wrap {
     position: relative;
 }
