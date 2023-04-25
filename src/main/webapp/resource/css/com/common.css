@@ -242,6 +242,16 @@ footer .info_contact .info-wrap p {
     color: #ccc;
 }
 
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+
 /* 상품 리스트------------------------------------------------------ */
 
 /*tab menu*/
@@ -303,6 +313,12 @@ footer .info_contact .info-wrap p {
 .pro-list .tab-content a .pro-img {
     overflow: hidden;
     border: 1px solid #ddd;
+}
+
+.pro-list .pro-img img {
+    width: 319px;
+    height: 319px;
+    object-fit: cover;
 }
 
 .pro-list .tab-content a .pro-img img{
