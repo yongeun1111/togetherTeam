@@ -167,4 +167,3 @@
 	}
 	
 </script>
-<c:import url="${contextPath}/WEB-INF/views/inc/footer.jsp"/>

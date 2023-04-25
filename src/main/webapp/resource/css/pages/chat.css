@@ -26,6 +26,7 @@
 }
 
 .chatting-wrap {
+	position: relative;
 	margin: 110px 0 0 20px;
 	width: 70%;
     height: 85vh;
@@ -83,19 +84,98 @@
 
 #content {
 	border: 1px solid red;
-	height: 70%;
+	height: 68%;
 	box-sizing: border-box;
+}
+
+.chatting-wrap .chat-info {
+	margin: 35px auto 0;
+	width: 90%;
+	padding: 15px 0;
+	background-color: #f5f5f5;
+	font-size: 1.0rem;
+	color: #666;
+	text-align: center;
+	border-radius: 5px;
 }
 
 .chatting-wrap .pro-info {
-	border: 1px solid red;
+	padding: 20px 30px;
+	height: 12%;
+	display: flex;
+	border-bottom: 1px solid #ddd;
+	box-sizing: border-box;
 }
 
-.chatting-wrap .input_group {
-	height: 30%;
-	display: flex;
+.chatting-wrap .pro-info img {
+	border: 1px solid #ddd;
+}
+
+.chatting-wrap .pro-info .info-txt {
+	padding: 7px 0 0 20px;
+}
+
+.chatting-wrap .pro-info .info-txt p:nth-child(1) {
+	font-size: 1rem;
+	font-weight: 500;
+	color: #666;
+}
+
+.chatting-wrap .pro-info .info-txt p:nth-child(2) {
+	font-size: 1.1rem;
+	font-weight: 800;
+	color: #222;
+}
+
+.chatting-wrap .pro-info .info-txt p:nth-child(2) span {
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+/* 메시지 입력창, 보내기 버튼 */
+.message-wrap {
 	border: 1px solid green;
 	box-sizing: border-box;
+}
+
+.message-wrap .input_group {
+	position: absolute;
+    bottom: 0;
+	width: 100%;
+	height: 20%;
+	display: flex;
+    border: 1px solid green;
+    box-sizing: border-box;
+}
+
+#sendMessage {
+	position: relative;
+    padding: 20px 50px;
+    width: 100%;
+    border: 1px solid pink;
+    box-sizing: border-box;
+}
+
+#message {
+	position: absolute;
+    padding: 20px 50px;
+	height: 70px;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+	font-size: 1.0rem;
+	color: #666;
+}
+
+#send {
+	padding: 7px 25px;
+    position: absolute;
+    border-radius: 3px;
+    font-family: 'Pretendard';
+    font-size: 1.0rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #999;
+	
 }
 
 

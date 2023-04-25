@@ -46,7 +46,7 @@
 			
 			<!-- 상품 정보 불러오는 곳 -->
 			<div class="pro-info">
-				<p><img src="" alt=""></p>
+				<p><img src="${contextPath}/resource/images/chat_pro_thum.jpg" alt="상품 썸네일"></p>
 				<div class="info-txt">
 					<p>상품 판매 제목 영역입니다.</p>
 					<p>60,000 <span class="won">원</span></p>
@@ -55,15 +55,18 @@
 			
 			<!-- chatHistory와 사용자가 실시간으로 입력하는 메시지 출력 -->
 			<div id="content">
-				
-			</div>	
+				<!-- 채팅창 설명 -->
+				<div class="chat-info">
+					<p>채팅을 통해 판매자와 소통할 수 있습니다. </p>
+				</div>
+			</div>
 
 			<!-- 메시지 입력창, 보내기 버튼 -->
-			<div>
+			<div class="message-wrap">
 				<div class="input_group" id="sendMessage">
-					<input type="text" id="message" class="form_control" placeholder="입력입력"/>	
+					<input type="text" id="message" class="form_control" placeholder="메세지를 입력해 주세요."/>	
 					<div class="input_group_append">
-						<button id="send" onclick="send()">보내기</button>
+						<button id="send" onclick="send()">전송</button>
 						<input type="hidden" value="${login.mem_no}" id="senderNo"/>
 						<input type="hidden" value="${login.mem_id}" id="senderId"/>
 						<input type="hidden" id="chatRoomNo"/>
@@ -213,4 +216,3 @@
 		
 	</script>
 
-<c:import url="inc/footer.jsp"/>
