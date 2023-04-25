@@ -25,7 +25,7 @@
 			<div class="chat-list-wrap">
 				<!-- 사용자 프로필 -->
 				<div class="profile-wrap">
-					<p><img src="${contextPath}/resource/images/profile_i_01.png" alt="사용자 프로필 이미지"> <span>ghy0302</span></p>
+					<p><img src="${contextPath}/resource/images/profile_i_01.png" alt="사용자 프로필 이미지"> <span>${login.mem_id}</span></p>
 				</div>
 				<!-- 대화 리스트 -->
 				<c:forEach var="chatList" items="${chatList}">
