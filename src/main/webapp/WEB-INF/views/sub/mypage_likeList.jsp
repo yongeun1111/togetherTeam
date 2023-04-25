@@ -64,11 +64,17 @@ $(document).ready(function() {
         <c:if test="${!empty list}">
           <c:forEach items="${list}" var="vo">
             <tr class="trHover">
-              <td class="meminfo-img" col="col" width="15%">
-                <a href="/proView?pro_no=${vo.pro_no}">
-                  <img src="${contextPath}/resource/images/thum_img.jpg" alt="">
-                </a>
-              </td>
+             <c:forEach var="i" begin="0" end="${fn:length(image)}">
+               <c:forEach items="${image[i]}" var="image">
+                <c:if test="${vo.pro_no == image.pro_no}">
+                 <td class="meminfo-img" col="col" width="15%" data-pro_no="${vo.pro_no}" data-path="${image.upload_path}" data-uuid="${image.uuid}" data-file_name="${image.file_name}">
+                  <a href="/proView?pro_no=${vo.pro_no}">
+                  <img alt="">
+                  </a>
+                 </td>
+                </c:if>
+               </c:forEach>
+              </c:forEach>
               <td>
                 <a href="/proView?pro_no=${vo.pro_no}">
                   <ul class="pro-info">

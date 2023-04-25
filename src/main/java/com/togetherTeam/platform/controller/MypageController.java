@@ -1,5 +1,6 @@
 package com.togetherTeam.platform.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.togetherTeam.platform.entity.CriteriaList;
 import com.togetherTeam.platform.entity.CriteriaSale;
+import com.togetherTeam.platform.entity.Image;
 import com.togetherTeam.platform.entity.LikeList;
 import com.togetherTeam.platform.entity.Member;
 import com.togetherTeam.platform.entity.MypageLikeList;
@@ -48,6 +50,7 @@ public class MypageController {
 		int mem_no = vo.getMem_no();
 		MypageLikeList mll = new MypageLikeList(mem_no,cri.getPage(),cri.getPerPageNum());
 		List<Product> list = mapper.mypage_likeList(mll);
+		model.addAttribute("list", list);		
 		
 		if (list.isEmpty()) {
 	        if (cri.getPage() >= 2) {
@@ -59,7 +62,16 @@ public class MypageController {
 	        }
 	    }
 		
-		model.addAttribute("list", list);		
+		ArrayList<List<Image>> image = new ArrayList<>();
+		
+		for(Product p : list) {
+			int pro_no = p.getPro_no();
+			List<Image> im = mapper_pro.getProductOneImage(pro_no);
+			image.add(im);
+		}
+		// System.out.println(image);
+		model.addAttribute("image", image);
+		
 		
 		PageMakerList pageMakerList = new PageMakerList();
 		pageMakerList.setCri(cri);

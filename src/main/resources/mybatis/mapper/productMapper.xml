@@ -180,5 +180,17 @@
   		 WHERE PRO_NO = #{pro_no}
   	
   	</update>
+  	
+  	<!-- 이미지 하나만 가져오기 -->
+  	<select id="getProductOneImage" resultType="com.togetherTeam.platform.entity.Image">
+  	
+  		SELECT * 
+		FROM (
+			SELECT a.*, ROWNUM as rn
+			FROM image a
+			WHERE PRO_NO = #{pro_no})
+		WHERE rn = 1
+  	
+  	</select>
 	
 </mapper>

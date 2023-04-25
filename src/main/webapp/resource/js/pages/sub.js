@@ -175,7 +175,7 @@ $(document).ready(function(){
 	})
 	
 	// 이미지 삽입
-	$(".image_wrap, .pro-img, .represent").each(function(i, obj){
+	$(".image_wrap, .pro-img, .represent, .meminfo-img").each(function(i, obj){
 		
 		const bobj = $(obj);
 		
