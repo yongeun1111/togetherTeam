@@ -33,6 +33,7 @@ public interface productMapper {
 	public void likeCountSave(int pro_no);
 	public int likeCount(int pro_no); // 찜 카운트 조회
 	public void upViews(int pro_no); // 조회수 +1
+	public void proSaleCh(int pro_no); // 판매 상태
 	
 	public Product test(); // 채팅 테스트
 	

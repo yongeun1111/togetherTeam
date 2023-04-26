@@ -187,4 +187,18 @@ public class MypageController {
 		return "sub/mypage_proSale";
 	}
 	
+	@PostMapping("/proSaleChange")
+	@ResponseBody
+	public Map<String, Object> proSaleChange(@RequestParam int pro_no){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		mapper_pro.proSaleCh(pro_no);
+		Product pro_sale = mapper_pro.getProduct(pro_no);
+		
+		map.put("pro", pro_sale);
+		
+		return map;
+	}
+	
 }

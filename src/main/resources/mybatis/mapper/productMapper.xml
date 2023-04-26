@@ -242,5 +242,10 @@
   	<select id="likeCount" parameterType="int" resultType="int">
   		select pro_like from product where pro_no = #{pro_no}
   	</select>
+  	
+  	<!-- 상품 판매 상태 -->
+	<update id="proSaleCh" parameterType="int">
+		update product set pro_sale = 'Y' where pro_no = #{pro_no}
+	</update>
 	
 </mapper>

@@ -15,7 +15,46 @@
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 <script src="${contextPath}/resource/js/pages/sub.js"></script>
 
+<script>
 
+  $(document).ready(function(){
+		$(".del-btn").each(function(){
+			if ($(this).val() === 'Y'){
+				$(this).prop('disabled', true);
+				$(this).html('거래 완료');
+			}
+		})
+	})
+	
+	function conf(pro_no){
+		if(confirm("거래완료로 변경하시겠습니까? \n다시 거래중으로 되돌릴 수 없습니다. \n수락 하시겠습니까?")){
+			// console.log(pro_no);
+			
+			$.ajax({
+				url : '/proSaleChange',
+				type : 'POST',
+				data : {"pro_no" : pro_no},
+				dataType : 'json',
+				success : function(result){
+					if(result.pro.pro_sale == 'Y'){
+						$(".del-btn[value='"+pro_no+"']").prop('disabled', true);
+						$(".del-btn[value='"+pro_no+"']").html('거래 완료');
+						alert("거래가 완료되었습니다.");
+						location.reload(); // 새로고침
+					}
+				},
+				error : function(e){
+					console.log(e);
+					alert("거래 완료에 실패하였습니다.");
+				}
+						
+			});
+		}else{
+			return;
+		}
+	}
+
+</script>
 
 <!-- #container -->
 <div class="con-inner mypage-wrap">
@@ -65,7 +104,7 @@
               </td>
               <td col="col" width="18%">
                 <!-- 버튼 n이면 활성화, y면 비활성화/${list.pro_sale} -->
-                <button class="del-btn">삭제</button>
+                <button class="del-btn" value="${list.pro_sale}" onclick="conf(${list.pro_no})">거래 중</button>
               </td>
             </tr>
           </c:forEach>
