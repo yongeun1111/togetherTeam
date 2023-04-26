@@ -39,9 +39,9 @@ $(document).ready(function() {
 	        var html = ""; // html 변수 선언 추가
 	        $.each(result.list, function(index, item) {
 	        	if (rowCount === 0) {
-                    // 새로운 row 시작
-                    var html = "<div class=\"row\">";
-                }
+                  // 새로운 row 시작
+                  html += "<div class=\"row\">";
+              }
 	          html += "<div class=\"col-sm-2\">" +
 	            "<a href=\"/proView?pro_no=" + item.pro_no + "\">" +
 	            "<div class=\"pro-img\">" +
@@ -58,19 +58,20 @@ $(document).ready(function() {
 	            
 	            rowCount++;
 
-                if (rowCount === 4) {
-                    // row 종료
-                    html += "</div>";
-                    rowCount = 0;
-                }
+              if (rowCount === 4) {
+                  // row 종료
+                  html += "</div>";
+                  rowCount = 0;
+              }
 	            
-		        categoryList.append(html);
 	
 	        });
 
-	        if (rowCount > 0) {
-                categoryList.append("</div>");
-            }
+		    categoryList.append(html);
+	        
+		    if (rowCount > 0) {
+              categoryList.append("</div>");
+          }
 	        
 
 	        // 페이지 버튼 생성

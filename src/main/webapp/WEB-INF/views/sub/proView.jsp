@@ -162,7 +162,7 @@ function chatSubmit() {
 					 <input type="button" value="찜하기" class="like-btn">
 					</a>
 				</c:if>
-                <c:if test="${!empty login}">
+                <c:if test="${!empty login && pro.seller_mem_no ne login.mem_no}">
                 	<form:form id="chatSubmit_form" action="/createChatRoom" method="GET" modelAttribute="chatRoom">
 						<a href="javascript:{}" onclick="chatSubmit()">
 						<form:input type="hidden" path="seller_mem_no" value="${pro.seller_mem_no}"/>
@@ -172,6 +172,9 @@ function chatSubmit() {
                 		<input type="button" id="chat_btn" class="chat-btn" value="판매자에게 문의">
 						</a>
 					</form:form>
+				</c:if>
+				<c:if test="${!empty login && pro.seller_mem_no eq login.mem_no}">
+					<input type="button" id="chat_btn" class="chat-btn" value="내 상품">
 				</c:if>
 				<c:if test="${empty login}">
 					<a href="login">
