@@ -151,6 +151,7 @@ $(document).ready(function(){
 	        }})
 			$("#content").html(hisList);
 			connect(chatRoomNo);
+			scrollDown();
 		}
 	// STOMP 설정 및 메시지 전송
 	// url : /user 로 시작
@@ -249,8 +250,12 @@ $(document).ready(function(){
 	// message가 추가된 내용으로 갱신
 	function showBroadcastMessage(message) {
 		$("#content").html($("#content").html() + message);
+		scrollDown();
 	}
 	
-		
+	// 채팅방에 입장하거나 메시지를 수신받으면 스크롤 자동 최하단
+	function scrollDown(){
+		$('#content').scrollTop($('#content')[0].scrollHeight);
+	}
 	</script>
 
