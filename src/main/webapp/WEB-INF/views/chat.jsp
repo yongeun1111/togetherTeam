@@ -43,7 +43,7 @@
 								<span>${chatRoom.recentChat}</span>
 							</c:if>
 							<c:if test="${chatRoom.unReadChat>0}">
-								<span>${chatRoom.unReadChat}</span>
+								<span style="color:red; font-weight:bold;">${chatRoom.unReadChat}</span>
 							</c:if>
 						</div>
 						<input type="hidden" value="${chatRoom.chat_room_no}"/>

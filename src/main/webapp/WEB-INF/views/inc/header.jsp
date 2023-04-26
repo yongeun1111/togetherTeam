@@ -16,7 +16,7 @@
 			      dataType: 'json', 
 			      success: function(res){
 			    	  if (res>0){
-			    		  unReadCount += "<span>"+res+" 채팅리스트</span>"
+			    		  unReadCount += '<span style="color:red; font-weight:bold;">'+res+' 채팅리스트</span>'
 				    	  $("#chatList").html(unReadCount)	    		  
 			    	  }
 			      },
