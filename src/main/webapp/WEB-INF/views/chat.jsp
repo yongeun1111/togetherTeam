@@ -110,6 +110,8 @@ $(document).ready(function(){
 			error : function(){ alert("error") }
 		});
 	})
+	// 채팅화면이 나오면 바로 가장 최근 방 클릭 상태
+	$(".chatRoomList:first").click(); 
 })
 	
 	function chatRoom(data){
