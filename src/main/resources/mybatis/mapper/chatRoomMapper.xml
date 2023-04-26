@@ -85,6 +85,7 @@
     	  FROM CHAT
     	 WHERE CHAT_ROOM_NO = #{chatRoomNo}
     	   AND ROWNUM = 1
+    	 ORDER BY CHAT_DATE DESC
     </select>
     
     <!-- 아이디 바인딩용 확인 -->
