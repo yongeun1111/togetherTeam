@@ -33,6 +33,7 @@ import com.togetherTeam.platform.entity.CriteriaList;
 import com.togetherTeam.platform.entity.Image;
 import com.togetherTeam.platform.entity.LikeList;
 import com.togetherTeam.platform.entity.Member;
+import com.togetherTeam.platform.entity.MypageLikeList;
 import com.togetherTeam.platform.entity.PageMakerList;
 import com.togetherTeam.platform.entity.Product;
 import com.togetherTeam.platform.mapper.productMapper;
@@ -57,14 +58,16 @@ public class productController {
         return "sub/proList";
     }
 	
-	@GetMapping("/get-proList")
+	@GetMapping("/getProList")
 	@ResponseBody
-	public Map<String, Object> getProducts(String category, CriteriaList cri) {
-	    List<Product> list = mapper.getCategoryListRecent(category);
-
+	public Map<String, Object> getProducts(MypageLikeList mll) {
+	    List<Product> cnt = mapper.getCategoryListCount(mll);
+	    List<Product> list = mapper.getCategoryList2(mll);
+	    CriteriaList cri = new CriteriaList(mll.getPage(), mll.getPerPageNum());
+	    
 	    PageMakerList pageMakerList = new PageMakerList();
 	    pageMakerList.setCri(cri);
-	    pageMakerList.setTotalCount(list.size());
+	    pageMakerList.setTotalCount(cnt.size());
 
 	    Map<String, Object> resultMap = new HashMap<>();
 	    resultMap.put("list", list);

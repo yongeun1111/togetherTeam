@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class MypageLikeList {
 
+	private String category;
 	private int mem_no;
 	private int page; // 현재 페이지 번호 page=4, page=2
 	private int perPageNum; // 한 페이지에 출력할 게시물 개수
