@@ -100,25 +100,33 @@ public class ChatController {
 		
 		Member member = (Member) session.getAttribute("login");
 		int memNo = member.getMem_no();
+		int count = 0;
 		
 		List<ChatRoom> chatList = chatRoomService.getChatList(memNo);
+		
 		for (ChatRoom chatRoom : chatList) {
 			if (memNo != chatRoom.getBuyer_mem_no()) {
+			
 				chatRoom.setSeller_mem_id(member.getMem_id());
 				String tempId = chatRoomService.getId(chatRoom.getBuyer_mem_no());
 				chatRoom.setBuyer_mem_id(tempId);
+				count = chatRoomService.findChatRead(chatRoom.getChat_room_no(), chatRoom.getBuyer_mem_no());
+		
 			} else {
+				
 				chatRoom.setBuyer_mem_id(member.getMem_id());
 				String tempId = chatRoomService.getId(chatRoom.getSeller_mem_no());
 				chatRoom.setSeller_mem_id(tempId);
+				count = chatRoomService.findChatRead(chatRoom.getChat_room_no(), chatRoom.getSeller_mem_no());
 			}
 			
 			Chat recentChat = chatRoomService.getRecentChat(chatRoom.getChat_room_no());
 			if (recentChat != null){
 				chatRoom.setRecentChat(recentChat.getChat_content());
 			}
+			chatRoom.setUnReadChat(count);
 		}
-		System.out.println(chatList);
+		
 		model.addAttribute("chatList", chatList);
 		return "chat";
 	}
