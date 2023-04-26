@@ -119,7 +119,9 @@ $(document).ready(function(){
 	
 	function chatRoom(data){
 		
-		stompClient = null;
+		if(stompClient != null){
+			stompClient.disconnect();
+		}
 		console.log(data);
 		infoList = "";
 		hisList = "";
