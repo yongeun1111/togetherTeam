@@ -125,15 +125,15 @@ public class productController {
     	
     	// System.out.println("vo.getImageList()"+vo.getImageList());
     	
-    	System.out.println(vo);
-    	// mapper.productRegister(vo);
+    	// System.out.println(vo);
+    	mapper.productRegister(vo);
     	
     	// 이미지 없을 경우
 //    	if(vo.getImageList() == null || vo.getImageList().size() <= 0) {
 //    		
 //    	}
     	
-    	//System.out.println(vo.getImageList());
+    	// System.out.println(vo.getImageList());
     	//[Image(pro_no=0, img_no=0, img_date=null, upload_path=2023\04\20,2023\04\20, uuid=fee84e61-63c2-4abd-95e3-d36544d1a901,072f3cd7-5b9f-4509-b5b6-4103858e2b36, file_name=1123.jpg,3333.jfif)]
     	
     	// imageList 각 요소 하나씩 넘겨주기

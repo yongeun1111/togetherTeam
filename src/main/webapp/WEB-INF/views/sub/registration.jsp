@@ -15,6 +15,21 @@
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 <script src="${contextPath}/resource/js/pages/sub.js"></script>
 
+<script>
+$(document).ready(function(){
+	
+	// 확인 버튼 활성화
+	$("#agree").change(function(){
+		if($("#agree").is(":checked")==true){
+			$('#register_Btn').prop('disabled', false);
+		}else{
+			$('#register_Btn').prop('disabled', true);
+		}
+	})
+
+});
+</script>
+
 <!-- #container -->
 <div class="sub-inner">
 	<h2>상품 등록</h2>
@@ -112,7 +127,7 @@
 								<option value="공기청정기">공기청정기</option>
 							</select>
 							<!-- 제조사 선택 -->
-							<select name="category">
+							<select name="maker">
 								<option value="">제조사</option>
 								<option value="422">422</option>
 								<option value="아이닉">아이닉</option>
@@ -144,7 +159,7 @@
 				<tr>
 					<td><label for="buy_date">사용 기간</label></td>
 					<td>
-						<input type="text" placeholder="사용기간을 입력해주세요(ex:1년 2개월)">
+						<input type="text" id="buy_date" name="buy_date" placeholder="사용기간을 입력해주세요(ex:1년 2개월)">
 					</td>
 				</tr>
 				<tr>
@@ -156,18 +171,18 @@
 					<td class="regi-tit"><input type="text" id="pro_title" name="pro_title" placeholder="제목을 입력해 주세요."/></td>
 				</tr>
 				<tr>
-					<td><label for="pro_category">상품 정보</label></td>
-					<td><textarea rows="5" cols="50" id="pro_category" name="pro_category"></textarea></td>
+					<td><label for="pro_detail">상품 정보</label></td>
+					<td><textarea rows="5" cols="50" id="pro_detail" name="pro_detail"></textarea></td>
 				</tr>
 				<tr>
 					<td><label for="pro_content">판매자 설명</label></td>
-					<td><textarea rows="5" cols="50" id="gdsDes" name="pro_content"></textarea></td>
+					<td><textarea rows="5" cols="50" id="pro_content" name="pro_content"></textarea></td>
 				</tr>
 			</table>
 
 			
 			<div class="inputArea btn mt70">
-				<input type="submit" value="확인">
+				<input type="submit" id="register_Btn" disabled value="확인">
 				<input type="button" id="cancelBtn" value="취소" onclick="location.href='/'">
 			  </div>
 		</div>
