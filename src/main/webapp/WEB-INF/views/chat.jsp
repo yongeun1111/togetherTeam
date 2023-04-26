@@ -139,10 +139,10 @@ $(document).ready(function(){
 	        	hisList += '<p><div class="row alert alert-info"><div class="col_8"><span id="MessageSenderID">'+ chatHisId + '</span></div>'
 		        hisList += '<div class="col_4 text-right"><span id="MessageContent">' + chatHisContent + '</span></div>' 
 	    	    hisList += '<span id="MessageSendTime">[' + chatHisDate.substring(11, 16)+ ']</span></div></div></p>'
-	        }
+	        }})
 			$("#content").html(hisList);
-		connect(chatRoomNo);
-	}
+			connect(chatRoomNo);
+		}
 	// STOMP 설정 및 메시지 전송
 	// url : /user 로 시작
 	// send : /app 으로 시작
@@ -241,12 +241,6 @@ $(document).ready(function(){
 		$("#content").html($("#content").html() + message);
 	}
 	
-	function clearBoardcast() {
-		$("#content").val("");
-	}
-
-		
-		
 		
 	</script>
 
