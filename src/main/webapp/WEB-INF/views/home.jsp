@@ -13,62 +13,64 @@
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 <script src="${contextPath}/resource/js/pages/main.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        var categoryBtn = $('.categoryBtn');
-        var categoryList = $('.categoryList');
+$(document).ready(function () {
+    var categoryBtn = $('.categoryBtn');
+    var categoryList = $('.categoryList');
 
-        // 카테고리 버튼 클릭시 데이터 처리하기
-        categoryBtn.click(function () {
-            var category = $(this).data('category');
+    // 카테고리 버튼 클릭시 데이터 처리하기
+    categoryBtn.click(function () {
+        var category = $(this).data('category');
 
-            $.ajax({
-                type: 'GET',
-                url: '/get-products',
-                data: {
-                    category: category
-                },
-                success: function (result) {
-                    // categoryList 영역 초기화
-                    categoryList.empty();
+        $.ajax({
+            type: 'GET',
+            url: '/get-products',
+            data: {
+                category: category
+            },
+            success: function (result) {
+                // categoryList 영역 초기화
+                categoryList.empty();
 
-                    // 전달받은 데이터를 순회하면서 동적으로 HTML 코드 생성
-                    var rowCount = 0;
-                    $.each(result, function (index, item) {
-                        if (rowCount === 0) {
-                            // 새로운 row 시작
-                            var html = "<div class=\"row\">";
-                        }
-
-                        // 상품 정보 추가
-                        html += "<div class=\"col-sm-2\"><a href=\"/proView?pro_no=" + item.pro_no + "\"><div c" +
-                                "lass=\"pro-img\"><img src=\"${contextPath}/resource/images/thum_img.jpg\" alt=" +
-                                "\"\"></div><div class=\"pro-info\"><p class=\"name\">" + item.pro_title + "</p" +
-                                "><p class=\"price\">" + item.pro_sale_price + "<span class=\"won\">원</span></p" +
-                                "></div></a></div>";
-
-                        rowCount++;
-
-                        if (rowCount === 4) {
-                            // row 종료
-                            html += "</div>";
-                            rowCount = 0;
-                        }
-
-                        // 생성된 HTML 코드를 categoryList 영역에 추가
-                        categoryList.append(html);
-                    });
-
-                    // row가 다 채워지지 않았을 경우, 마지막 row 닫아주기
-                    if (rowCount > 0) {
-                        categoryList.append("</div>");
+                // 전달받은 데이터를 순회하면서 동적으로 HTML 코드 생성
+                var rowCount = 0;
+                var html = "";
+                $.each(result, function (index, item) {
+                    if (rowCount === 0) {
+                        // 새로운 row 시작
+                        html += "<div class=\"row\">";
                     }
 
-                    categoryList.append("<div class=\"more-btn\"><button>더보기</button></div>");
+                    // 상품 정보 추가
+                    html += "<div class=\"col-sm-2\"><a href=\"/proView?pro_no=" + item.pro_no + "\"><div c" +
+                            "lass=\"pro-img\"><img src=\"${contextPath}/resource/images/thum_img.jpg\" alt=" +
+                            "\"\"></div><div class=\"pro-info\"><p class=\"name\">" + item.pro_title + "</p" +
+                            "><p class=\"price\">" + item.pro_sale_price + "<span class=\"won\">원</span></p" +
+                            "></div></a></div>";
 
-                },
-                error: function () {
-                    alert('데이터를 가져오는데 실패하였습니다.');
+                    rowCount++;
+
+                    if (rowCount === 4) {
+                        // row 종료
+                        html += "</div>";
+                        rowCount = 0;
+                    }
+
+                    // 생성된 HTML 코드를 categoryList 영역에 추가
+                });
+                
+                categoryList.append(html);
+
+                // row가 다 채워지지 않았을 경우, 마지막 row 닫아주기
+                if (rowCount > 0) {
+                    categoryList.append("</div>");
                 }
+
+                categoryList.append("<div class=\"more-btn\"><button>더보기</button></div>");
+
+            },
+            error: function () {
+                alert('데이터를 가져오는데 실패하였습니다.');
+            }
             });
         });
         
