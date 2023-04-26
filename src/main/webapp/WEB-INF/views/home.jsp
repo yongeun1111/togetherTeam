@@ -208,128 +208,212 @@ $(document).ready(function () {
     </div>
   </section>
 
-  <!-- 테마별 인기 상품 영역 -->
-  <section>
+   <!-- 테마별 인기 상품 -->
+   <section>
     <h2>테마별 인기 상품</h2>
-    <div class="thema-list">
-      <!-- tab menu -->
-      <ul class="tabnav">
-        <li><a href="#thema01"># 슬기로운 자취 생활</a></li>
-        <li><a href="#thema02"># 사회초년생 추천 상품</a></li>
-        <li><a href="#thema03"># 나만의 싱글 라이프</a></li>
-        <li><a href="#thema04"># N년차 자취생 꿀템</a></li>
-      </ul>
-      <!-- tab menu // -->
-      
-      <!-- tab content -->
-      <div class="tabcontent">
-        <!-- thema01 : # 슬기로운 자취 생활 -->
-        <div id="thema01">
-          <ul class="thema-img">
-            <li>
+
+  <div class="thema-list">
+    <ul class="tabnav">
+      <li><a href="#thema01"># 슬기로운 자취 생활</a></li>
+      <li><a href="#thema02"># 사회초년생 추천 상품</a></li>
+      <li><a href="#thema03"># 나만의 싱글 라이프</a></li>
+      <li><a href="#thema04"># N년차 자취생 꿀템</a></li>
+    </ul>
+    
+    <div class="tabcontent">
+
+      <!-- thema01 : # 슬기로운 자취 생활 -->
+      <div id="thema01">
+
+        <div class="thema-img">
+
+          <div class="lg-wrap">
+            <a href="#">
+              <div class="img-box">
+                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
+                <span class="over-box">
+                  <p>제조사</p>
+                  <p>판매 시 제목 영역입니다</p>
+                  <p>15,000 <span class="won">원</span></p>
+                </span>
+              </div>
+            </a>
+          </div>
+
+          <div class="sm-wrap">
+            <div class="sm-pro">
               <a href="#">
-                <div>
+                <div class="img-box">
                   <img src="${contextPath}/resource/images/pro01.jpg" alt="">
+                  <span class="over-box">
+                    <p>제조사</p>
+                    <p>판매 시 제목 영역입니다</p>
+                    <p>15,000 <span class="won">원</span></p>
+                  </span>
                 </div>
               </a>
-            </li>
-            <li>
+            </div>
+            <div class="sm-pro">
               <a href="#">
-                <div>
+                <div class="img-box">
                   <img src="${contextPath}/resource/images/pro01.jpg" alt="">
+                  <span class="over-box">
+                    <p>제조사</p>
+                    <p>판매 시 제목 영역입니다</p>
+                    <p>15,000 <span class="won">원</span></p>
+                  </span>
                 </div>
               </a>
-            </li>
-            <li>
-              <a href="#">
-                <div>
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                </div>
-              </a>
-            </li>
-          </ul>
+            </div>         
+          </div>
+
         </div>
-        <!-- thema02 : # 사회초년생 추천 상품 -->
-        <div id="thema02">
-          <ul class="thema-img">
-            <li>
+
+      </div>
+
+      <!-- thema02 : # 사회초년생 추천 상품 -->
+      <div id="thema02">
+        <div class="thema-img">
+
+          <div class="lg-wrap">
+            <a href="#">
+              <div class="img-box">
+                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
+                <span class="over-box">
+                  <p>제조사</p>
+                  <p>판매 시 제목 영역입니다</p>
+                  <p>15,000 <span class="won">원</span></p>
+                </span>
+              </div>
+            </a>
+          </div>
+
+          <div class="sm-wrap">
+            <div class="sm-pro">
               <a href="#">
-                <div>
+                <div class="img-box">
                   <img src="${contextPath}/resource/images/pro01.jpg" alt="">
+                  <span class="over-box">
+                    <p>제조사</p>
+                    <p>판매 시 제목 영역입니다</p>
+                    <p>15,000 <span class="won">원</span></p>
+                  </span>
                 </div>
               </a>
-            </li>
-            <li>
+            </div>
+            <div class="sm-pro">
               <a href="#">
-                <div>
+                <div class="img-box">
                   <img src="${contextPath}/resource/images/pro01.jpg" alt="">
+                  <span class="over-box">
+                    <p>제조사</p>
+                    <p>판매 시 제목 영역입니다</p>
+                    <p>15,000 <span class="won">원</span></p>
+                  </span>
                 </div>
               </a>
-            </li>
-            <li>
-              <a href="#">
-                <div>
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <!-- thema03 : # 나만의 싱글 라이프 -->
-        <div id="thema03">
-          <ul class="thema-img">
-            <li>
-              <a href="#">
-                <div>
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <div>
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <div>
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <!-- thema04 : # N년차 자취생 꿀템 -->
-        <div id="thema04">
-          <ul class="thema-img">
-            <li>
-              <a href="#">
-                <div>
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <div>
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <div>
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                </div>
-              </a>
-            </li>
-          </ul>
+            </div>         
+          </div>
+
         </div>
       </div>
-      <!-- tab content // -->
+
+      <!-- thema03 : # 나만의 싱글 라이프 -->
+      <div id="thema03">
+        <div class="thema-img">
+
+          <div class="lg-wrap">
+            <a href="#">
+              <div class="img-box">
+                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
+                <span class="over-box">
+                  <p>제조사</p>
+                  <p>판매 시 제목 영역입니다</p>
+                  <p>15,000 <span class="won">원</span></p>
+                </span>
+              </div>
+            </a>
+          </div>
+
+          <div class="sm-wrap">
+            <div class="sm-pro">
+              <a href="#">
+                <div class="img-box">
+                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
+                  <span class="over-box">
+                    <p>제조사</p>
+                    <p>판매 시 제목 영역입니다</p>
+                    <p>15,000 <span class="won">원</span></p>
+                  </span>
+                </div>
+              </a>
+            </div>
+            <div class="sm-pro">
+              <a href="#">
+                <div class="img-box">
+                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
+                  <span class="over-box">
+                    <p>제조사</p>
+                    <p>판매 시 제목 영역입니다</p>
+                    <p>15,000 <span class="won">원</span></p>
+                  </span>
+                </div>
+              </a>
+            </div>         
+          </div>
+
+        </div>
+      </div>
+
+      <!-- thema04 : # N년차 자취생 꿀템 -->
+      <div id="thema04">
+        <div class="thema-img">
+
+          <div class="lg-wrap">
+            <a href="#">
+              <div class="img-box">
+                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
+                <span class="over-box">
+                  <p>제조사</p>
+                  <p>판매 시 제목 영역입니다</p>
+                  <p>15,000 <span class="won">원</span></p>
+                </span>
+              </div>
+            </a>
+          </div>
+
+          <div class="sm-wrap">
+            <div class="sm-pro">
+              <a href="#">
+                <div class="img-box">
+                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
+                  <span class="over-box">
+                    <p>제조사</p>
+                    <p>판매 시 제목 영역입니다</p>
+                    <p>15,000 <span class="won">원</span></p>
+                  </span>
+                </div>
+              </a>
+            </div>
+            <div class="sm-pro">
+              <a href="#">
+                <div class="img-box">
+                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
+                  <span class="over-box">
+                    <p>제조사</p>
+                    <p>판매 시 제목 영역입니다</p>
+                    <p>15,000 <span class="won">원</span></p>
+                  </span>
+                </div>
+              </a>
+            </div>         
+          </div>
+
+        </div>
+      </div>
+
     </div>
+  </div>
   </section>
 
 </div>
