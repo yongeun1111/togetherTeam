@@ -142,138 +142,33 @@
         </c:forEach>
       </div><!-- row // -->
 
+    
       <div class="more-btn">
         <button>더보기</button>
       </div>
 
     </div>
 
+    <div id="tab02" class="pro-m tab-pane fade">tab2 content
+      <div class="categoryList"></div>
+    </div>
+    <div id="tab03" class="pro-m tab-pane fade">tab3 content
+      <div class="categoryList"></div>      
+    </div>
+    <div id="tab04" class="pro-m tab-pane fade">tab4 content
+      <div class="categoryList"></div>      
+    </div>
+    <div id="tab05" class="pro-m tab-pane fade">tab5 content
+      <div class="categoryList"></div>      
+    </div>
+    <div id="tab06" class="pro-m tab-pane fade">tab6 content
+      <div class="categoryList"></div>      
+    </div>
+    <div id="tab07" class="pro-m tab-pane fade">tab7 content
+      <div class="categoryList"></div>      
+    </div>
     
   </div><!--tab-content-->
-
-  <!-- 중간 배너 -->
-  <div class="banner-wrap">
-    <img src="${contextPath}/resource/images/mid_banner.png" alt="제품을 중고로 저렴하게 구매하고 싶은데
-    중고 거래 사기가 걱정되사나요? 이제 그런 걱정은 NO!">
-  </div>
-
-  <!-- 테마별 인기 상품 -->
-  <h2>테마별 인기 상품</h2>
-
-  <div class="thema-list">
-    <ul class="tabnav">
-      <li><a href="#thema01"># 슬기로운 자취 생활</a></li>
-      <li><a href="#thema02"># 사회초년생 추천 상품</a></li>
-      <li><a href="#thema03"># 나만의 싱글 라이프</a></li>
-      <li><a href="#thema04"># N년차 자취생 꿀템</a></li>
-    </ul>
-    
-    <div class="tabcontent">
-      <div id="thema01">
-        <ul class="thema-img">
-          <li>
-            <a href="#">
-              <div>
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div>
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div>
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div id="thema02">
-        <ul class="thema-img">
-          <li>
-            <a href="#">
-              <div>
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div>
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div>
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div id="thema03">
-        <ul class="thema-img">
-          <li>
-            <a href="#">
-              <div>
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div>
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div>
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div id="thema04">
-        <ul class="thema-img">
-          <li>
-            <a href="#">
-              <div>
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div>
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div>
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  
-  
 
 </div>
 
