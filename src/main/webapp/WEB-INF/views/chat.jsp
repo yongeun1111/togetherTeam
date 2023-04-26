@@ -131,10 +131,15 @@ $(document).ready(function(){
 			var chatHisId=obj.chat_mem_id;
 	        var chatHisContent=obj.chat_content;
 	        var chatHisDate=obj.chat_date;
-	        hisList += '<p><div class="row alert alert-info"><div class="col_8"><span id="MessageSenderID">'+ chatHisId + '</span></div>'
-	        hisList += '<div class="col_4 text-right"><span id="MessageContent">' + chatHisContent + '</span></div>' 
-	        hisList += '<span id="MessageSendTime">[' + chatHisDate.substring(11, 16) + ']</span></div></div></p>' 
-		})
+	        if (obj.chat_mem_id == senderId){
+		        hisList += '<p><div class="row alert alert-info"><div class="col_8"><span id="MessageSenderID">'+ chatHisId + '</span></div>'
+		        hisList += '<div class="col_4 text-right"><span id="MessageContent">' + chatHisContent + '</span></div>' 
+	    	    hisList += '<span id="MessageSendTime">[' + chatHisDate.substring(11, 16) + ']</span></div></div></p>' 	
+	        } else {
+	        	hisList += '<p><div class="row alert alert-info"><div class="col_8"><span id="MessageSenderID">'+ chatHisId + '</span></div>'
+		        hisList += '<div class="col_4 text-right"><span id="MessageContent">' + chatHisContent + '</span></div>' 
+	    	    hisList += '<span id="MessageSendTime">[' + chatHisDate.substring(11, 16)+ ']</span></div></div></p>'
+	        }
 			$("#content").html(hisList);
 		connect(chatRoomNo);
 	}
@@ -210,13 +215,23 @@ $(document).ready(function(){
 	function createTextNode(messageObj) {
 		console.log("createTextNode");
 		console.log("messageObj: "+ messageObj.chat_content);
-		return '<p><div class="row alert alert-info"><div class="col_8">' +
-		messageObj.chat_mem_id +
-		'</div><div class="col_4 text-right">' +
-		messageObj.chat_content +
-		"</div><div>[" +
-		messageObj.chat_date.substring(11, 16) +
-		"]</div></p>";
+		if (messageObj.chat_mem_id == senderId){
+			return '<p><div class="row alert alert-info"><div class="col_8">' +
+			messageObj.chat_mem_id +
+			'</div><div class="col_4 text-right">' +
+			messageObj.chat_content +
+			"</div><div>[" +
+			messageObj.chat_date.substring(11, 16) +
+			"]</div></p>";
+		} else {
+			return '<p><div class="row alert alert-info"><div class="col_8">' +
+			messageObj.chat_mem_id +
+			'</div><div class="col_4 text-right">' +
+			messageObj.chat_content +
+			"</div><div>[" +
+			messageObj.chat_date +
+			"]</div></p>";
+		}
 	}
 	
 	// HTML 형태의 메시지를 화면에 출력
