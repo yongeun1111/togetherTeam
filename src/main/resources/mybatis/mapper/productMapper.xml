@@ -9,34 +9,33 @@
 	<!-- proList.jsp 진입 전체 상품 불러오기  -->
 	<select id="getAllList" parameterType="com.togetherTeam.platform.entity.PageMakerList" resultType="com.togetherTeam.platform.entity.Product">
 		SELECT *
-		FROM(
-			SELECT T.*, ROWNUM as RNUM
-			FROM(
-    			SELECT S.*
-    			FROM (SELECT a.PRO_NO,
-             			a.SELLER_MEM_NO,
-             			a.PRO_TITLE,
-             			a.PRO_CATEGORY,
-             			a.PRO_NAME,
-             			a.PRO_THEME,
-             			a.BUY_DATE,
-             			a.PRO_BUY_PRICE,
-             			a.PRO_SALE_PRICE,
-             			a.PRO_CONTENT,
-             			a.PRO_DATE,
-            			a.PRO_SALE,
-             			a.BUYER,
-             			a.DEAL_DATE,
-             			a.PRO_LIKE,
-             			b.UPLOAD_PATH,
-             			b.UUID,
-             			b.FILE_NAME,
-             			ROW_NUMBER() OVER(PARTITION BY a.pro_no ORDER BY a.pro_no DESC) AS rn
-        		  	FROM (SELECT *
-            		    	FROM PRODUCT) a LEFT JOIN IMAGE b ON a.PRO_NO = b.PRO_NO) S    
-    			WHERE rn=1
-    			ORDER BY PRO_NO DESC) T
-		) WHERE RNUM BETWEEN #{startPage}+1 and #{endPage}
+		  FROM (SELECT T.*, 
+			           ROWNUM as RNUM
+			      FROM (SELECT S.*
+    			          FROM (SELECT a.PRO_NO,
+             			               a.SELLER_MEM_NO,
+             						   a.PRO_TITLE,
+             						   a.PRO_CATEGORY,
+             						   a.PRO_NAME,
+             						   a.PRO_THEME,
+             						   a.BUY_DATE,
+             						   a.PRO_BUY_PRICE,
+             						   a.PRO_SALE_PRICE,
+             						   a.PRO_CONTENT,
+             						   a.PRO_DATE,
+            						   a.PRO_SALE,
+             						   a.BUYER,
+             						   a.DEAL_DATE,
+             						   a.PRO_LIKE,
+             						   b.UPLOAD_PATH,
+             						   b.UUID,
+             					       b.FILE_NAME,
+             					       ROW_NUMBER() OVER(PARTITION BY a.pro_no ORDER BY a.pro_no DESC) AS rn
+        		  		          FROM (SELECT * FROM PRODUCT) a LEFT JOIN IMAGE b 
+            		    		    ON a.PRO_NO = b.PRO_NO) S    
+    					WHERE rn=1
+    			        ORDER BY PRO_NO DESC) T
+	  ) WHERE RNUM BETWEEN #{startPage}+1 and #{endPage}
 	</select>
 
 	<!-- proList.jsp 카테고리별 상품 불러오기 -->
@@ -162,12 +161,47 @@
 	
 	</insert>
 	
-	<select id="searchProduct" parameterType="String" resultType="com.togetherTeam.platform.entity.Product">
-		SELECT *
-		  FROM product
+	<select id="searchProduct" parameterType="hashmap" resultType="com.togetherTeam.platform.entity.Product">
+			SELECT *
+		  FROM (SELECT T.*, 
+			           ROWNUM as RNUM
+			      FROM (SELECT S.*
+    			          FROM (SELECT a.PRO_NO,
+             			               a.SELLER_MEM_NO,
+             						   a.PRO_TITLE,
+             						   a.PRO_CATEGORY,
+             						   a.PRO_NAME,
+             						   a.PRO_THEME,
+             						   a.BUY_DATE,
+             						   a.PRO_BUY_PRICE,
+             						   a.PRO_SALE_PRICE,
+             						   a.PRO_CONTENT,
+             						   a.PRO_DATE,
+            						   a.PRO_SALE,
+             						   a.BUYER,
+             						   a.DEAL_DATE,
+             						   a.PRO_LIKE,
+             						   b.UPLOAD_PATH,
+             						   b.UUID,
+             					       b.FILE_NAME,
+             					       ROW_NUMBER() OVER(PARTITION BY a.pro_no ORDER BY a.pro_no DESC) AS rn
+        		  		          FROM (SELECT * FROM PRODUCT) a LEFT JOIN IMAGE b 
+            		    		    ON a.PRO_NO = b.PRO_NO) S    
+    					WHERE rn=1
+    					  AND (pro_title like '%'||#{query}||'%'
+		    			   OR pro_name like '%'||#{query}||'%'
+		    	           OR pro_category like '%'||#{query}||'%')
+    			        ORDER BY PRO_NO DESC) T
+	  ) WHERE RNUM BETWEEN #{cri.startPage}+1 and #{cri.endPage}
+	</select>
+	
+	<select id="totalSearchCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM PRODUCT
 		 WHERE pro_title like '%'||#{query}||'%'
 		    OR pro_name like '%'||#{query}||'%'
-		    OR pro_category like '%'||#{query}||'%'
+		   	OR pro_category like '%'||#{query}||'%'
+	
 	</select>
 	
 	<select id="totalCount" resultType="int">
@@ -180,14 +214,6 @@
 		insert into image(pro_no, upload_path, uuid, file_name)
 		values (#{pro_no}, #{upload_path}, #{uuid}, #{file_name})
 	</insert>
-
-	<!-- 채팅 테스트 -->
-	<select id='test' resultType="com.togetherTeam.platform.entity.Product">
-		SELECT a.*, b.mem_id
-  		  FROM product a INNER JOIN member b
-    	    ON a.seller_mem_no = b.mem_no
- 		 WHERE a.pro_no = 30
-	</select>
 	
 	<!-- 회원이 등록한 상품 리스트, 이미지 하나씩 가져오기 -->
 	<!-- ROW_NUMBER() OVER (PARTITION BY a.pro_no ORDER BY a.pro_no DESC) AS RN

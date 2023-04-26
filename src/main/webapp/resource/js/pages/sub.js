@@ -33,9 +33,7 @@ $(document).ready(function(){
 				type : "post",
 				data : {"query" : query},
 				dataType : "json",
-				success : function(data){
-					console.log(data)
-				},
+				success : searchProduct,
 				error : function(){ alert("error") }
 			});
 	});
@@ -189,11 +187,23 @@ $(document).ready(function(){
 		
 	})
 	
+// proSearch.jsp에서 검색버튼 엔터키 가능	
+	var clickSearch = document.getElementById("searchProduct");
+		clickSearch.addEventListener("keyup", function enterSend(event){
+			if (event.keyCode === null){
+				event.preventDeault();
+			}
+			if (event.keyCode === 13){
+				$("#search").click();
+				$("#searchProduct").val("");
+			}
+		});	
 	
 	
 	
 	
 });
+
 
 // 취소 버튼 처리
 $(function(){
@@ -201,3 +211,13 @@ $(function(){
 		alert("회원정보 변경이 취소되었습니다.");
 	})
 })
+
+function searchProduct(data){
+	$.each(data,function(index, obj){
+			var proCategory=obj.pro_category;
+	        var proTitle=obj.pro_title;
+	        var proSalePrice=obj.pro_sale_price;
+	        console.log(obj)
+	        
+	        })
+}

@@ -23,10 +23,11 @@ public interface productMapper {
 	public List<Product> getCategoryListCount(MypageLikeList mll);
 	public List<Product> getCategoryList2(MypageLikeList mll);
 	public List<Product> getCategoryListLike(String category);
-	public List<Product> searchProduct(String query); // 상품 검색
+	public List<Product> searchProduct(Map<String, Object> map); // 상품 검색
 	public void productRegister(Product vo); // insert SQL
 	public void imageEnroll(Image vo); // 이미지 등록 insert
 	public int totalCount(); // 총 상품 카운트
+	public int totalSearchCount(String query); // 상품 검색 카운트
 	public List<Product> getMemProductList(Map<String, Object> paramMap); // 회원이 등록한 상품 리스트
 	public int memProTotalCount(Member vo); // 상품 총 개수
 	public int likeCheck(LikeList vo); // 상품 총 개수

@@ -47,13 +47,13 @@
                             </td>
                             <td>
                                 <ul class="pro-info">
-                                <li class="pro-cate">${vo.pro_category}</li>
+                                <li class="pro-cate">${list.pro_category}</li>
                                 <li class="pro-com">제조사</li>
                                 </ul>
-                                <p class="name">${vo.pro_title}</p>
+                                <p class="name">${list.pro_title}</p>
                             </td>
                             <td col="col" width="15%">
-                                <p class="price">${vo.pro_sale_price} <span class="won">원</span></p>
+                                <p class="price">${list.pro_sale_price} <span class="won">원</span></p>
                             </td>
                             <td col="col" width="18%">
                                 <button class="del-btn">삭제</button>
@@ -114,4 +114,5 @@
     </div> 
 
 </div>
+
 <c:import url="${contextPath}/WEB-INF/views/inc/footer.jsp"/>
