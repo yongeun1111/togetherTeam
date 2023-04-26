@@ -235,13 +235,13 @@ $(document).ready(function(){
 			'</div></div>';
 		} else {
 			// 상대방이 보낸 메세지
-			return '<div class="your-message-wrap"><div class="chat-your-profile"><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"><span id="MessageSenderID">'+ chatHisId +'</span></div><div class="row alert alert-info"><div class="col_8">' +
+			return '<div class="your-message-wrap"><div class="chat-your-profile"><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"><span id="MessageSenderID">'+
 			messageObj.chat_mem_id +
-			'</div><div class="col_4 text-right">' +
-			messageObj.chat_content +
-			"</div><div>[" +
-			messageObj.chat_date +
-			"]</div></div>";
+			'</span></div><div class="row alert alert-info your-message"><div class="col_8"></div><div class="col_4 text-right"><span id="MessageContent">'+
+			messageObj.chat_content + 
+			'</span></div></div><span class="send-time" id="MessageSendTime">'+
+			messageObj.chat_date.substring(11, 16) +
+			'</span></div></div>';
 		}
 	}
 	
