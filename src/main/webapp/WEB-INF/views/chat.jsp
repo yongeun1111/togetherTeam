@@ -229,7 +229,7 @@ $(document).ready(function(){
 			'</div><div class="col_4 text-right">' +
 			messageObj.chat_content +
 			"</div><div>[" +
-			messageObj.chat_date +
+			messageObj.chat_date.substring(11, 16) +
 			"]</div></p>";
 		}
 	}
