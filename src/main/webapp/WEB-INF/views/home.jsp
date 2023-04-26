@@ -48,7 +48,7 @@
 
                         rowCount++;
 
-                        if (rowCount === 5) {
+                        if (rowCount === 4) {
                             // row 종료
                             html += "</div>";
                             rowCount = 0;
@@ -63,7 +63,7 @@
                         categoryList.append("</div>");
                     }
 
-                    categoryList.append("<div align=\"center\"><button>더보기</button></div>");
+                    categoryList.append("<div class=\"more-btn\"><button>더보기</button></div>");
 
                 },
                 error: function () {
@@ -71,6 +71,15 @@
                 }
             });
         });
+        
+        $('.more-btn button').click(function() {
+            window.location.href = '/proList';
+          });
+        
+        $('.categoryList').on('click', '.more-btn button', function() {
+        	  window.location.href = '/proList';
+        	});
+        
     });
 </script>
 
@@ -149,22 +158,22 @@
 
     </div>
 
-    <div id="tab02" class="pro-m tab-pane fade">tab2 content
+    <div id="tab02" class="pro-m tab-pane fade">
       <div class="categoryList"></div>
     </div>
-    <div id="tab03" class="pro-m tab-pane fade">tab3 content
+    <div id="tab03" class="pro-m tab-pane fade">
       <div class="categoryList"></div>      
     </div>
-    <div id="tab04" class="pro-m tab-pane fade">tab4 content
+    <div id="tab04" class="pro-m tab-pane fade">
       <div class="categoryList"></div>      
     </div>
-    <div id="tab05" class="pro-m tab-pane fade">tab5 content
+    <div id="tab05" class="pro-m tab-pane fade">
       <div class="categoryList"></div>      
     </div>
-    <div id="tab06" class="pro-m tab-pane fade">tab6 content
+    <div id="tab06" class="pro-m tab-pane fade">
       <div class="categoryList"></div>      
     </div>
-    <div id="tab07" class="pro-m tab-pane fade">tab7 content
+    <div id="tab07" class="pro-m tab-pane fade">
       <div class="categoryList"></div>      
     </div>
     
