@@ -35,8 +35,13 @@ $(document).ready(function() {
 	        categoryList.empty();
 
 	        // 전달받은 데이터를 순회하면서 동적으로 HTML 코드 생성
+	        var rowCount = 0;
 	        var html = ""; // html 변수 선언 추가
 	        $.each(result.list, function(index, item) {
+	        	if (rowCount === 0) {
+                    // 새로운 row 시작
+                    var html = "<div class=\"row\">";
+                }
 	          html += "<div class=\"col-sm-2\">" +
 	            "<a href=\"/proView?pro_no=" + item.pro_no + "\">" +
 	            "<div class=\"pro-img\">" +
@@ -50,9 +55,23 @@ $(document).ready(function() {
 	            "</div>" +
 	            "</a>" +
 	            "</div>";
+	            
+	            rowCount++;
+
+                if (rowCount === 4) {
+                    // row 종료
+                    html += "</div>";
+                    rowCount = 0;
+                }
+	            
+		        categoryList.append(html);
+	
 	        });
 
-	        categoryList.append(html);
+	        if (rowCount > 0) {
+                categoryList.append("</div>");
+            }
+	        
 
 	        // 페이지 버튼 생성
 	        pageBtn.empty();
@@ -138,15 +157,14 @@ $(document).ready(function() {
 			<li class="nav-item col">
 				<a class="nav-link categoryBtn" ata-category="공기청정기" data-toggle="tab" href="#tab07">공기청정기</a>
 			</li>
-		</ul>
-	  
+		</ul> 
 		<!-- Tab panes -->
 		<div class="tab-content">
-
+		
 			<!-- 01. ALL -->
 			<div id="tab01" class="pro-m tab-pane active">
 				<div class="row">
-					<c:forEach var="vo" items="${list}">
+					<c:forEach var="vo" items="${list}" varStatus="status">
 						<div class="col-sm">
 							<a href="/proView?pro_no=${vo.pro_no}">
 								<div class="pro-img" data-pro_no="${vo.pro_no}" data-path="${vo.upload_path}" data-uuid="${vo.uuid}" data-file_name="${vo.file_name}">
@@ -160,6 +178,9 @@ $(document).ready(function() {
 								</div>
 							</a>
 						</div>
+						<c:if test="${status.index % 4 == 3}">
+				          </div><div class="row">
+				        </c:if>
 					</c:forEach>
 				</div>
 				<div class="pageMaker_wrap">
@@ -194,37 +215,37 @@ $(document).ready(function() {
 			</div>
 					<!-- 02. 에어프라이어 -->
 					<div id="tab02" class="container tab-pane fade"><br>
-						<div class="row categoryList"></div>
+						<div class="categoryList"></div>
 						<div class="pageBtn pageMaker_wrap"></div>
 					</div>
 
 					<!-- 03. 전기포트 -->
 					<div id="tab03" class="container tab-pane fade"><br>
-						<div class="row categoryList"></div>
+						<div class="categoryList"></div>
 						<div class="pageBtn pageMaker_wrap"></div>
 					</div>
 
 					<!-- 04. 전자렌지 -->
 					<div id="tab04" class="container tab-pane fade"><br>
-						<div class="row categoryList"></div>
+						<div class="categoryList"></div>
 						<div class="pageBtn pageMaker_wrap"></div>
 					</div>
 
 					<!-- 05. 토스트기 -->
 					<div id="tab05" class="container tab-pane fade"><br>
-						<div class="row categoryList"></div>
+						<div class="categoryList"></div>
 						<div class="pageBtn pageMaker_wrap"></div>
 					</div>
 
 					<!-- 06. 헤어드라이기 -->
 					<div id="tab06" class="container tab-pane fade"><br>
-						<div class="row categoryList"></div>
+						<div class="categoryList"></div>
 						<div class="pageBtn pageMaker_wrap"></div>
 					</div>
 
 					<!-- 07. 공기청정기 -->
 					<div id="tab07" class="container tab-pane fade"><br>
-						<div class="row categoryList"></div>
+						<div class="categoryList"></div>
 						<div class="pageBtn pageMaker_wrap"></div>
 					</div>
 
