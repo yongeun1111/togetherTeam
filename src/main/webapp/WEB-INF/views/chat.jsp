@@ -137,13 +137,17 @@ $(document).ready(function(){
 	        var chatHisContent=obj.chat_content;
 	        var chatHisDate=obj.chat_date;
 	        if (obj.chat_mem_id == senderId){
-		        hisList += '<p><div class="row alert alert-info"><div class="col_8"><span id="MessageSenderID">'+ chatHisId + '</span></div>'
+		      	// 내가 보낸 메세지
+				hisList += '<div class="my-message-wrap"><span class="send-time" id="MessageSendTime">' + chatHisDate.substring(11, 16) + '</span>'
+		        hisList += '<div class="row alert alert-info my-message"><div class="col_8"><span id="MessageSenderID">' + '</span></div>'
 		        hisList += '<div class="col_4 text-right"><span id="MessageContent">' + chatHisContent + '</span></div>' 
-	    	    hisList += '<span id="MessageSendTime">[' + chatHisDate.substring(11, 16) + ']</span></div></div></p>' 	
+	    	    hisList += '</div></div></div>' 	
 	        } else {
-	        	hisList += '<p><div class="row alert alert-info"><div class="col_8"><span id="MessageSenderID">'+ chatHisId + '</span></div>'
+	        		// 상대방이 보낸 메세지
+				hisList += '<div class="your-message-wrap"><div class="chat-your-profile"><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"><span id="MessageSenderID">'+ chatHisId +'</span></div>'
+	        	hisList += '<div class="row alert alert-info your-message"><div class="col_8"></div>'
 		        hisList += '<div class="col_4 text-right"><span id="MessageContent">' + chatHisContent + '</span></div>' 
-	    	    hisList += '<span id="MessageSendTime">[' + chatHisDate.substring(11, 16)+ ']</span></div></div></p>'
+	    	    hisList += '</div><span class="send-time" id="MessageSendTime">' + chatHisDate.substring(11, 16)+ '</span></div></div>'
 	        }})
 			$("#content").html(hisList);
 			connect(chatRoomNo);
@@ -221,21 +225,22 @@ $(document).ready(function(){
 		console.log("createTextNode");
 		console.log("messageObj: "+ messageObj.chat_content);
 		if (messageObj.chat_mem_id == senderId){
-			return '<p><div class="row alert alert-info"><div class="col_8">' +
-			messageObj.chat_mem_id +
+			// 내가 보낸 메세지
+			return '<div class="my-message-wrap"><span class="send-time" id="MessageSendTime">' + 
+			messageObj.chat_date.substring(11, 16) + 
+			'</span><div class="row alert alert-info my-message"><div class="col_8">' +
 			'</div><div class="col_4 text-right">' +
 			messageObj.chat_content +
-			"</div><div>[" +
-			messageObj.chat_date.substring(11, 16) +
-			"]</div></p>";
+			'</div></div>';
 		} else {
-			return '<p><div class="row alert alert-info"><div class="col_8">' +
+			// 상대방이 보낸 메세지
+			return '<div class="your-message-wrap"><div class="chat-your-profile"><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"><span id="MessageSenderID">'+ chatHisId +'</span></div><div class="row alert alert-info"><div class="col_8">' +
 			messageObj.chat_mem_id +
 			'</div><div class="col_4 text-right">' +
 			messageObj.chat_content +
 			"</div><div>[" +
-			messageObj.chat_date.substring(11, 16) +
-			"]</div></p>";
+			messageObj.chat_date +
+			"]</div></div>";
 		}
 	}
 	
