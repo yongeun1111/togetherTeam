@@ -17,7 +17,7 @@ public interface productMapper {
 	public List<Product> getAllList(CriteriaList cri); // proList 페이지 전체 물품 리스트
 	public List<Product> getAllListRecent(); // proList 페이지 전체 물품 리스트
 	public List<Product> getAllListLike(); // proList 페이지 전체 물품 리스트
-	public List<Product> getCategoryList(String category);
+	public List<Product> getCategoryListMain(String category);
 	public List<Product> getCategoryListRecent(String category);
 	public List<Product> getCategoryListLike(String category);
 	public List<Product> searchProduct(String query); // 상품 검색

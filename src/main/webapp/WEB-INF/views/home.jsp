@@ -23,7 +23,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'GET',
-            url: '/get-products',
+            url: '/getProductsMain',
             data: {
                 category: category
             },
@@ -35,17 +35,30 @@ $(document).ready(function () {
                 var rowCount = 0;
                 var html = "";
                 $.each(result, function (index, item) {
+                    var fileCallPath = encodeURIComponent(item.upload_path + "/s_" + item.uuid + "_" + item.file_name);
+
                     if (rowCount === 0) {
                         // 새로운 row 시작
                         html += "<div class=\"row\">";
                     }
 
                     // 상품 정보 추가
-                    html += "<div class=\"col-sm-2\"><a href=\"/proView?pro_no=" + item.pro_no + "\"><div c" +
-                            "lass=\"pro-img\"><img src=\"${contextPath}/resource/images/thum_img.jpg\" alt=" +
-                            "\"\"></div><div class=\"pro-info\"><p class=\"name\">" + item.pro_title + "</p" +
-                            "><p class=\"price\">" + item.pro_sale_price + "<span class=\"won\">원</span></p" +
-                            "></div></a></div>";
+                    html += "<div class=\"col-lg pro-list mb50\">" +
+                                "<a href=\"/proView?pro_no=" + item.pro_no + "\">" +
+                                    "<div class=\"pro-img\"" + 
+                                        "data-pro_no=\"" + item.pro_no + 
+                                        "\" data-path=\"" + item.upload_path + 
+                                        "\" data-uuid=\"" + item.uuid + 
+                                        "\" data-file_name=\"" + item.file_name + "\">" +
+                                        "<img alt=\"\"" + 
+                                        "src=\"/display?file_name=" + fileCallPath + "\">" + 
+                                    "</div>" + 
+                                    "<div class=\"pro-info\">" + 
+                                        "<p class=\"name\">" + item.pro_title + "</p>" + 
+                                        "<p class=\"price\">" + item.pro_sale_price + "<span class=\"won\">원</span></p>" + 
+                                    "</div>" + 
+                                "</a>" + 
+                            "</div>";
 
                     rowCount++;
 
@@ -54,24 +67,21 @@ $(document).ready(function () {
                         html += "</div>";
                         rowCount = 0;
                     }
-
-                    // 생성된 HTML 코드를 categoryList 영역에 추가
                 });
-                
-                categoryList.append(html);
 
                 // row가 다 채워지지 않았을 경우, 마지막 row 닫아주기
                 if (rowCount > 0) {
-                    categoryList.append("</div>");
+                    html += "</div>";
                 }
 
+                // 생성된 HTML 코드를 categoryList 영역에 추가
+                categoryList.append(html);
                 categoryList.append("<div class=\"more-btn\"><button>더보기</button></div>");
-
             },
             error: function () {
                 alert('데이터를 가져오는데 실패하였습니다.');
             }
-            });
+        });
         });
         
         $('.more-btn button').click(function() {

@@ -72,6 +72,14 @@ public class productController {
 
 	    return resultMap;
 	}
+
+	@GetMapping("/getProductsMain")
+	@ResponseBody
+	public List<Product> getProductsMain(String category) {
+	    List<Product> list = mapper.getCategoryListMain(category);
+
+	    return list;
+	}	
 	
 	@GetMapping("/proView") // 중고 상품 페이지(proList.jsp)로 이동
     public String proView(Model model, @RequestParam int pro_no, HttpSession session){
