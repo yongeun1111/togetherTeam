@@ -49,24 +49,49 @@ public class ChatController {
 	
 	// 채팅방 생성, 이전 채팅방 접속
 	@GetMapping("/createChatRoom")
-	public String getWebSocketWithSockJs(Model model, HttpSession session, @ModelAttribute("chatRoom") ChatRoom chatRoom) {
+	public String getWebSocketWithSockJs(Model model, HttpSession session, @ModelAttribute("chatRoom") ChatRoom addChatRoom) {
 		
 		// 채팅 화면에 전달할 parameter 설정
 		Member member = (Member) session.getAttribute("login");
-		int buyerNo = member.getMem_no(); 
-		String buyerId = member.getMem_id();
-		chatRoom.setBuyer_mem_no(buyerNo);
-		chatRoom.setBuyer_mem_id(buyerId);
+		int memNo = member.getMem_no(); 
+		String memId = member.getMem_id();
+		addChatRoom.setBuyer_mem_no(memNo);
+		addChatRoom.setBuyer_mem_id(memId);
 		
 		// 채팅방이 이미 만들어져있는지 확인하고 이전 기록 불러오기
-		ChatRoom tempChatRoom = chatRoomService.checkChatRoom(chatRoom.getPro_no(), chatRoom.getBuyer_mem_no());
+		ChatRoom tempChatRoom = chatRoomService.checkChatRoom(addChatRoom.getPro_no(), addChatRoom.getBuyer_mem_no());
 		if (tempChatRoom == null) {
 			// 이전 채팅방이 없다면 채팅방 생성하고 채팅방번호 할당
-			chatRoomService.createChatRoom(chatRoom);
+			chatRoomService.createChatRoom(addChatRoom);
 		}
 		
+		
 		// chatRoom 객체를 view로 전달
-		List<ChatRoom> chatRoomList = chatRoomService.getChatList(buyerNo);
+		List<ChatRoom> chatRoomList = chatRoomService.getChatList(memNo);
+		int count = 0;
+		for (ChatRoom chatRoom : chatRoomList) {
+			
+			if ( memNo != chatRoom.getBuyer_mem_no()) {
+				
+				chatRoom.setSeller_mem_id(member.getMem_id());
+				String tempId = chatRoomService.getId(chatRoom.getBuyer_mem_no());
+				chatRoom.setBuyer_mem_id(tempId);
+				count = chatRoomService.findChatRead(chatRoom.getChat_room_no(), chatRoom.getBuyer_mem_no());
+		
+			} else {
+				
+				chatRoom.setBuyer_mem_id(member.getMem_id());
+				String tempId = chatRoomService.getId(chatRoom.getSeller_mem_no());
+				chatRoom.setSeller_mem_id(tempId);
+				count = chatRoomService.findChatRead(chatRoom.getChat_room_no(), chatRoom.getSeller_mem_no());
+			}
+			
+			Chat recentChat = chatRoomService.getRecentChat(chatRoom.getChat_room_no());
+			if (recentChat != null){
+				chatRoom.setRecentChat(recentChat.getChat_content());
+			}
+			chatRoom.setUnReadChat(count);
+		}
 		
 		model.addAttribute("chatList", chatRoomList);
 		
