@@ -20,7 +20,9 @@ spring:
   devtools:
     livereload:
       enabled: true
-    
+  servlet:
+    multipart:
+      location: src/main/webapp/resourse/upload 
 mybatis:
   mapper-locations: mybatis/mapper/**/*.xml
   configuration:
