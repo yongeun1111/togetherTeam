@@ -150,7 +150,10 @@ $(document).ready(function(){
 
 				<tr>
 					<td><label for="seller_mem_no">회원 정보</label></td>
-					<td><input type="text" readonly="readonly" value="${login.mem_no}" name="seller_mem_no" /></td>
+					<td>
+					  <input type="hidden" readonly="readonly" value="${login.mem_no}" name="seller_mem_no" />
+					  <input type="text" readonly="readonly" value="${login.mem_id}"/>
+					</td>
 				</tr>
 				<tr>
 					<td><label for="buy_price">상품 구매 시 가격</label></td>
