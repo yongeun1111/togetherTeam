@@ -297,21 +297,6 @@ public class productController {
     	return result;
     }
     
-    @GetMapping("/test")
-	public String test(Model model) {
-		ChatRoom chatRoom = new ChatRoom();
-		model.addAttribute("chatRoom", chatRoom);
-		Product vo = mapper.test();
-		model.addAttribute("vo", vo);
-		return "test";		
-	}
-    
-    @PostMapping("/testChat") // 채팅 테스트
-    public String testChat(Model model, Product vo) {
-    	
-    	model.addAttribute("pro", vo);
-    	return "sub/testChat";
-    }
     
     @PostMapping("/like")
     public int like() {
