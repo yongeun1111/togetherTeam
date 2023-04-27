@@ -290,51 +290,42 @@ $(document).ready(function () {
 
       <!-- thema01 : # 슬기로운 자취 생활 -->
       <div class="themeList" id="thema01">
-
         <div class="thema-img">
-
-          <div class="lg-wrap">
-            <a href="#">
-              <div class="img-box">
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
+		  <c:if test="${!empty themeList}">
+          <c:forEach var="vo" items="${themeList}" varStatus="status">
+          <c:if test="${status.index == 0}">
+            <div class="lg-wrap">
+              <a href="/proView?pro_no=${vo.pro_no}">
+              <div class="img-box pro-img" data-pro_no="${vo.pro_no}" data-path="${vo.upload_path}" data-uuid="${vo.uuid}" data-file_name="${vo.file_name}">
+                <img alt="">
                 <span class="over-box">
-                  <p>제조사</p>
-                  <p>판매 시 제목 영역입니다</p>
-                  <p>15,000 <span class="won">원</span></p>
+                  <p>${vo.maker}</p>
+                  <p>${vo.pro_title}</p>
+                  <p>${vo.pro_sale_price}<span class="won">원</span></p>
                 </span>
               </div>
-            </a>
-          </div>
-
-          <div class="sm-wrap">
-            <div class="sm-pro">
-              <a href="#">
-                <div class="img-box">
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                  <span class="over-box">
-                    <p>제조사</p>
-                    <p>판매 시 제목 영역입니다</p>
-                    <p>15,000 <span class="won">원</span></p>
-                  </span>
-                </div>
               </a>
             </div>
-            <div class="sm-pro">
-              <a href="#">
-                <div class="img-box">
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
+            <div class="sm-wrap">
+          </c:if>
+            <c:if test="${status.index == 1 || status.index == 2}">
+              <div class="sm-pro">
+                <a href="/proView?pro_no=${vo.pro_no}">
+                <div class="img-box pro-img" data-pro_no="${vo.pro_no}" data-path="${vo.upload_path}" data-uuid="${vo.uuid}" data-file_name="${vo.file_name}">
+                  <img alt="">
                   <span class="over-box">
-                    <p>제조사</p>
-                    <p>판매 시 제목 영역입니다</p>
-                    <p>15,000 <span class="won">원</span></p>
+                    <p>${vo.maker}</p>
+                    <p>${vo.pro_title}</p>
+                    <p>${vo.pro_sale_price}<span class="won">원</span></p>
                   </span>
                 </div>
-              </a>
-            </div>         
-          </div>
-
+                </a>
+              </div>
+            </c:if>
+          </c:forEach>
+            </div>
+		  </c:if>
         </div>
-
       </div>
 
       <!-- thema02 : # 사회초년생 추천 상품 -->

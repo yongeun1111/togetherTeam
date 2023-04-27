@@ -40,6 +40,10 @@ public class MainController  {
 		List<Product> list = mapper_pro.getAllList(cri);
         model.addAttribute("allList", list);
         
+        String theme = "#슬기로운 자취 생활";
+        List<Product> theme_list = mapper_pro.getThemeListMain(theme);
+        model.addAttribute("themeList", theme_list);
+        
         return "home";
     }
 
