@@ -48,6 +48,7 @@ public class MypageController {
 		Member vo = (Member)session.getAttribute("login");
 		List<Product> cnt = mapper.mypage_likeList_count(vo);
 		int mem_no = vo.getMem_no();
+		cri.setPerPageNum(5);
 		MypageLikeList mll = new MypageLikeList(mem_no,cri.getPage(),cri.getPerPageNum());
 		List<Product> list = mapper.mypage_likeList(mll);
 		
