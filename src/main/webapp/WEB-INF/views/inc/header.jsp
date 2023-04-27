@@ -34,8 +34,13 @@
 <!-- #wrap -->
 <div id="wrap">
 	<!--header-->
+	
 	<header>
+		<div class="top-banner">
+			<img src="${contextPath}/resource/images/top_banner.jpg" alt="">
+		</div>
 		<div class="container">
+			
 			<nav>
 				<div class="nav-wrap">
 					<h1>

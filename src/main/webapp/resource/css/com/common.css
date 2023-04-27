@@ -86,6 +86,13 @@ common - header / footer
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'BMDOHYEON';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* 색상 설정 */
 .main-color {
     color: #1f79df;
@@ -135,15 +142,25 @@ h2 {
 }
 
 /* header */
+
+
+
 header {
     position: fixed;
     top: 0;
-    padding: 30px 0;
     width: 100%;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
     background-color: #fff;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
     z-index: 999;
 }
+
+
+/* 상단 배너 */
+header .top-banner {
+
+}
+
 
 header h1 {
     position: relative;
@@ -174,6 +191,7 @@ header .gnb-wrap ul.gnb li a {
 }
 
 header nav {
+    padding: 30px 0;
     width: 1400px;
 }
 

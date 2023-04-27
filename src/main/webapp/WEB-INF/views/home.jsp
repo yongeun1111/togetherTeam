@@ -12,6 +12,11 @@
 <script src="${contextPath}/resource/js/jquery/gsap.min.js"></script>
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 <script src="${contextPath}/resource/js/pages/main.js"></script>
+
+<!-- in HEAD -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollToPlugin.min.js" integrity="sha512-nTHzMQK7lwWt8nL4KF6DhwLHluv6dVq/hNnj2PBN0xMl2KaMm1PM02csx57mmToPAodHmPsipoERRNn4pG7f+Q==" crossorigin="anonymous"></script>
+
 <script type="text/javascript">
 $(document).ready(function () {
     var categoryBtn = $('.categoryBtn');
@@ -161,21 +166,79 @@ $(document).ready(function () {
     
 </script>
 
+<!-- main visual -->
+<div id="mvWrap">
+
+  <div class="mv-txt">
+    <p>쉽고, 편리하게!</p>
+    <p>안전한 중고 거래</p>
+    <p>
+        <span class="bold">믿을 수 있는 중고 거래 서비스 플랫폼</span>을 지금 바로 경험해 보세요!
+    </p>
+
+    <div class="nav-wrap">
+      <div class="mv-controller">
+        <div class="pro-bar pro-ani"></div>    
+       
+      </div>
+      <ul class="nav">
+        <li class="on">01</li>
+        <li>02</li>
+        <li>03</li>
+        <li>04</li>
+    </ul>
+    </div>
+   
+  </div>
+
+  <div class="slide-wrap">
+      <!-- 이전, 다음 버튼 -->
+    <div class="pager-wrap">
+      <div id="pager">
+        <div class="pager-wrap">
+          <div class="prev">
+            <span></span>
+          </div>
+          <div class="next">
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- main visual images -->
+    <div class="slide">
+      <div class="item">
+        <div class="img" style="background-image:url(${contextPath}/resource/images/mv01.png)"></div>
+      </div>
+      <div class="item">
+        <div class="img" style="background-image:url(${contextPath}/resource/images/mv01.png)"></div>
+      </div>
+      <div class="item">
+        <div class="img" style="background-image:url(${contextPath}/resource/images/mv01.png)"></div>
+      </div>
+      <div class="item">
+        <div class="img" style="background-image:url(${contextPath}/resource/images/mv01.png)"></div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <div class="wrap">
+    <span class="floating c1"></span>
+    <span class="floating c2"></span>
+    <span class="floating c3"></span>
+    <span class="floating c4"></span>
+
+</div>
+
+
+</div>
+<!-- main visual // -->
+
 <!-- #container -->
 <div class="container">
-
-  <!-- main visual -->
-  <div class="mv-wrap">
-    <div class="mv-txt">
-        <p class="sm-txt">쉽고, 편리하게!</p>
-        <p class="lg-txt">안전한 중고 거래</p>
-        <p class="mv-txt">
-            <span class="bold">믿을 수 있는 중고 거래 서비스 플랫폼</span>을 지금 바로 경험해 보세요!
-        </p>
-    </div>
-
-    <div class="mv-img"></div>
-  </div>
 
   <!-- 최근 등록 상품 영역 -->
   <section>
@@ -343,7 +406,17 @@ $(document).ready(function () {
     </div>
   </div>
   </section>
+  <!-- 테마별 인기 상품 // -->
 
 </div>
+<!-- #container -->
 
 <c:import url="inc/footer.jsp"/>
+
+<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="${contextPath}/resource/js/jquery/slick.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+  
+  
+</script>
