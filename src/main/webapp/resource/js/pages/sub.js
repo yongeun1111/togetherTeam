@@ -225,7 +225,7 @@ function searchProduct(data){
         
         var fileCallPath = encodeURIComponent(obj.upload_path + "/s_" + obj.uuid + "_" + obj.file_name);
         // 상품 정보 추가
-        searchHtml += '<div class="col-lg pro-list mb50">'
+        searchHtml += '<div class="col-lg-3 pro-list mb50">'
         searchHtml += '<a href="/proView?pro_no=' + obj.pro_no + '">'
 		searchHtml += '<div class="pro-img" "data-pro_no=' + obj.pro_no + '" data-path="' + obj.upload_path + '" data-uuid="' + data.list.uuid + '" data-file_name="' + obj.file_name + '">'
         searchHtml += '<img alt="" src="/display?file_name=' + fileCallPath + '"></div>' 
