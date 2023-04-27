@@ -212,12 +212,38 @@ $(function(){
 	})
 })
 
+// proSearch.jsp 검색 결과
 function searchProduct(data){
-	$.each(data,function(index, obj){
-			var proCategory=obj.pro_category;
-	        var proTitle=obj.pro_title;
-	        var proSalePrice=obj.pro_sale_price;
-	        console.log(obj)
-	        
-	        })
+	var searchHtml = "";
+	var rowCount = 0;
+	$.each(data.list,function(index, obj){
+		console.log(obj)
+		
+		if (rowCount === 0) {
+        	searchHtml += '<div class="row">';
+        }
+        
+        var fileCallPath = encodeURIComponent(obj.upload_path + "/s_" + obj.uuid + "_" + obj.file_name);
+        // 상품 정보 추가
+        searchHtml += '<div class="col-lg pro-list mb50">'
+        searchHtml += '<a href="/proView?pro_no=' + obj.pro_no + '">'
+		searchHtml += '<div class="pro-img" "data-pro_no=' + obj.pro_no + '" data-path="' + obj.upload_path + '" data-uuid="' + data.list.uuid + '" data-file_name="' + obj.file_name + '">'
+        searchHtml += '<img alt="" src="/display?file_name=' + fileCallPath + '"></div>' 
+        searchHtml += '<div class="pro-info">' 
+        searchHtml += '<p class="name">' + obj.pro_title + '</p>' 
+        searchHtml += '<p class="price">' + obj.pro_sale_price + '<span class="won">원</span></p></div></a></div>' 
+		
+		rowCount++;
+
+        if (rowCount === 4) {
+            // row 종료
+            searchHtml += '</div>';
+            rowCount = 0;
+        }
+    });
+    if (rowCount < 4) {
+    	searchHtml += '</div>';
+    };
+
+    $(".search-result").html(searchHtml);    
 }
