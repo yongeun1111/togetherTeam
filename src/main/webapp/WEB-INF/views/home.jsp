@@ -82,17 +82,83 @@ $(document).ready(function () {
                 alert('데이터를 가져오는데 실패하였습니다.');
             }
         });
-        });
-        
-        $('.more-btn button').click(function() {
-            window.location.href = '/proList';
-          });
-        
-        $('.categoryList').on('click', '.more-btn button', function() {
-        	  window.location.href = '/proList';
-        	});
-        
     });
+        
+    $('.more-btn button').click(function() {
+            window.location.href = '/proList';
+    });
+        
+    $('.categoryList').on('click', '.more-btn button', function() {
+        	  window.location.href = '/proList';
+    });
+    
+	var themeBtn = $('.themeBtn');
+	var themeList = $('.themeList');
+    
+    themeBtn.click(function () {
+    	var theme = $(this).data('theme');
+    	
+    	$.ajax({
+    		url : "/getProductsTheme",
+    		type : 'GET',
+    		data : {theme : theme},
+    		success : function (result) {
+                themeList.empty();
+
+                var rowCount = 0;
+                var html = "<div class=\"thema-img\">";
+                $.each(result, function (index, item) {
+                    var fileCallPath = encodeURIComponent(item.upload_path + "/s_" + item.uuid + "_" + item.file_name);
+
+                    if (rowCount === 0) {
+                        html +=	"<div class=\"lg-wrap\">" +
+                        		  "<a href=\"/proView?pro_no=" + item.pro_no + "\">" +
+                        		    "<div class=\"img-box\">" +
+                        		      "<img src=\"/display?file_name=" + fileCallPath + "\" alt=\"\">" +
+                        		      "<span class=\"over-box\">" +
+                        		        "<p>" + item.maker + "</p>" +
+                        		        "<p>" + item.pro_title + "</p>" +
+                        		        "<p>" + item.pro_sale_price + "<span class=\"won\">원</span></p>" +
+                        		      "</span>" +
+                        		    "</div>" +
+                        		  "</a>" +
+                        		"</div>" +
+                        		"<div class=\"sm-wrap\">";
+                    }
+                    
+                    if (rowCount === 1 || rowCount === 2) {
+                    	html += "<div class=\"sm-pro\">" +
+			               		  "<a href=\"/proView?pro_no=" + item.pro_no + "\">" +
+			               		    "<div class=\"img-box\">" +
+			               		      "<img src=\"/display?file_name=" + fileCallPath + "\" alt=\"\">" +
+			               		      "<span class=\"over-box\">" +
+			               		  		"<p>" + item.maker + "</p>" +
+                   		        		"<p>" + item.pro_title + "</p>" +
+                   		        		"<p>" + item.pro_sale_price + "<span class=\"won\">원</span></p>" +
+			               		      "</span>" +
+			               		    "</div>" +
+			               		  "</a>" +
+			               		"</div>";
+                    }       		
+	                rowCount++;
+                }); // 데이터 html로 추가
+                
+                if(rowCount > 0){
+                	html += "</div>"; // sm-wrap
+                }
+                
+                html += "</div>"; // theme-img
+                themeList.append(html);
+                
+            }, // success
+            error: function () {
+                alert('데이터를 가져오는데 실패하였습니다.');
+            }
+    	});
+    });
+
+});   
+    
 </script>
 
 <!-- #container -->
@@ -214,16 +280,16 @@ $(document).ready(function () {
 
   <div class="thema-list">
     <ul class="tabnav">
-      <li><a href="#thema01"># 슬기로운 자취 생활</a></li>
-      <li><a href="#thema02"># 사회초년생 추천 상품</a></li>
-      <li><a href="#thema03"># 나만의 싱글 라이프</a></li>
-      <li><a href="#thema04"># N년차 자취생 꿀템</a></li>
+      <li><a class="themeBtn" data-theme="#슬기로운 자취 생활" href="#thema01"># 슬기로운 자취 생활</a></li>
+      <li><a class="themeBtn" data-theme="#사회초년생 추천 상품" href="#thema02"># 사회초년생 추천 상품</a></li>
+      <li><a class="themeBtn" data-theme="#나만의 싱글 라이프" href="#thema03"># 나만의 싱글 라이프</a></li>
+      <li><a class="themeBtn" data-theme="#N년차 자취생 꿀템" href="#thema04"># N년차 자취생 꿀템</a></li>
     </ul>
     
     <div class="tabcontent">
 
       <!-- thema01 : # 슬기로운 자취 생활 -->
-      <div id="thema01">
+      <div class="themeList" id="thema01">
 
         <div class="thema-img">
 
@@ -272,144 +338,15 @@ $(document).ready(function () {
       </div>
 
       <!-- thema02 : # 사회초년생 추천 상품 -->
-      <div id="thema02">
-        <div class="thema-img">
-
-          <div class="lg-wrap">
-            <a href="#">
-              <div class="img-box">
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                <span class="over-box">
-                  <p>제조사</p>
-                  <p>판매 시 제목 영역입니다</p>
-                  <p>15,000 <span class="won">원</span></p>
-                </span>
-              </div>
-            </a>
-          </div>
-
-          <div class="sm-wrap">
-            <div class="sm-pro">
-              <a href="#">
-                <div class="img-box">
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                  <span class="over-box">
-                    <p>제조사</p>
-                    <p>판매 시 제목 영역입니다</p>
-                    <p>15,000 <span class="won">원</span></p>
-                  </span>
-                </div>
-              </a>
-            </div>
-            <div class="sm-pro">
-              <a href="#">
-                <div class="img-box">
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                  <span class="over-box">
-                    <p>제조사</p>
-                    <p>판매 시 제목 영역입니다</p>
-                    <p>15,000 <span class="won">원</span></p>
-                  </span>
-                </div>
-              </a>
-            </div>         
-          </div>
-
-        </div>
+      <div class="themeList" id="thema02">
       </div>
 
       <!-- thema03 : # 나만의 싱글 라이프 -->
-      <div id="thema03">
-        <div class="thema-img">
-
-          <div class="lg-wrap">
-            <a href="#">
-              <div class="img-box">
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                <span class="over-box">
-                  <p>제조사</p>
-                  <p>판매 시 제목 영역입니다</p>
-                  <p>15,000 <span class="won">원</span></p>
-                </span>
-              </div>
-            </a>
-          </div>
-
-          <div class="sm-wrap">
-            <div class="sm-pro">
-              <a href="#">
-                <div class="img-box">
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                  <span class="over-box">
-                    <p>제조사</p>
-                    <p>판매 시 제목 영역입니다</p>
-                    <p>15,000 <span class="won">원</span></p>
-                  </span>
-                </div>
-              </a>
-            </div>
-            <div class="sm-pro">
-              <a href="#">
-                <div class="img-box">
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                  <span class="over-box">
-                    <p>제조사</p>
-                    <p>판매 시 제목 영역입니다</p>
-                    <p>15,000 <span class="won">원</span></p>
-                  </span>
-                </div>
-              </a>
-            </div>         
-          </div>
-
-        </div>
+      <div class="themeList" id="thema03">
       </div>
 
       <!-- thema04 : # N년차 자취생 꿀템 -->
-      <div id="thema04">
-        <div class="thema-img">
-
-          <div class="lg-wrap">
-            <a href="#">
-              <div class="img-box">
-                <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                <span class="over-box">
-                  <p>제조사</p>
-                  <p>판매 시 제목 영역입니다</p>
-                  <p>15,000 <span class="won">원</span></p>
-                </span>
-              </div>
-            </a>
-          </div>
-
-          <div class="sm-wrap">
-            <div class="sm-pro">
-              <a href="#">
-                <div class="img-box">
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                  <span class="over-box">
-                    <p>제조사</p>
-                    <p>판매 시 제목 영역입니다</p>
-                    <p>15,000 <span class="won">원</span></p>
-                  </span>
-                </div>
-              </a>
-            </div>
-            <div class="sm-pro">
-              <a href="#">
-                <div class="img-box">
-                  <img src="${contextPath}/resource/images/pro01.jpg" alt="">
-                  <span class="over-box">
-                    <p>제조사</p>
-                    <p>판매 시 제목 영역입니다</p>
-                    <p>15,000 <span class="won">원</span></p>
-                  </span>
-                </div>
-              </a>
-            </div>         
-          </div>
-
-        </div>
+      <div class="themeList" id="thema04">
       </div>
 
     </div>

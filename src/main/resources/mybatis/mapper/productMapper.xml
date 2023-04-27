@@ -113,6 +113,40 @@
 		) WHERE RNUM BETWEEN #{startPage}+1 and #{endPage}
 	</select>
 	
+	<!-- home.jsp 테마별 상품 불러오기 -->
+	<select id="getThemeListMain" parameterType="String" resultType="com.togetherTeam.platform.entity.Product">
+		SELECT *
+		FROM(
+			SELECT T.*, ROWNUM as RNUM
+			FROM(
+    			SELECT S.*
+    			FROM (SELECT a.PRO_NO,
+             			a.SELLER_MEM_NO,
+             			a.PRO_TITLE,
+             			a.PRO_CATEGORY,
+             			a.PRO_NAME,
+             			a.PRO_THEME,
+             			a.BUY_DATE,
+             			a.PRO_BUY_PRICE,
+             			a.PRO_SALE_PRICE,
+             			a.PRO_CONTENT,
+             			a.PRO_DATE,
+            			a.PRO_SALE,
+             			a.BUYER,
+             			a.DEAL_DATE,
+             			a.PRO_LIKE,
+             			b.UPLOAD_PATH,
+             			b.UUID,
+             			b.FILE_NAME,
+             			ROW_NUMBER() OVER(PARTITION BY a.pro_no ORDER BY a.pro_no DESC) AS rn
+        		  	FROM (SELECT *
+            		    	FROM PRODUCT) a LEFT JOIN IMAGE b ON a.PRO_NO = b.PRO_NO) S    
+    			WHERE rn=1
+    			  AND pro_theme = #{theme}
+    			ORDER BY pro_like DESC) T
+		) WHERE RNUM BETWEEN 1 and 3
+	</select>	
+	
 	<!-- proList.jsp 진입 전체 상품 불러오기 (최신순)  -->
 	<select id="getAllListRecent" resultType="com.togetherTeam.platform.entity.Product">
 		SELECT *

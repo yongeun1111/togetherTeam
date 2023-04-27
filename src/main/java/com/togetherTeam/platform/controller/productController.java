@@ -84,6 +84,14 @@ public class productController {
 	    return list;
 	}	
 	
+	@GetMapping("/getProductsTheme")
+	@ResponseBody
+	public List<Product> getProductsTheme(String theme) {
+	    List<Product> list = mapper.getThemeListMain(theme);
+	    System.out.println(list.size());
+	    return list;
+	}	
+	
 	@GetMapping("/proView") // 중고 상품 페이지(proList.jsp)로 이동
     public String proView(Model model, @RequestParam int pro_no, HttpSession session){
 		Member user = (Member)session.getAttribute("login");
