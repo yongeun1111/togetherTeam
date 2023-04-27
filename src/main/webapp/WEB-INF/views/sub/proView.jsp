@@ -119,7 +119,7 @@ function chatSubmit() {
         <div class="view-info">
             <p class="category">${pro.pro_category}</p>
             <p class="name pro-name">${pro.pro_title}</p>
-            <p class="tag"># ${pro.pro_theme}</p>
+            <p class="tag">${pro.pro_theme}</p>
             <p class="txt"></p>
 
             <div class="pro-price">
