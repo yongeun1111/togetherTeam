@@ -161,7 +161,7 @@ $(document).ready(function() {
 				<a class="nav-link categoryBtn" data-category="헤어드라이기" data-toggle="tab" href="#tab06">헤어드라이기</a>
 			</li>
 			<li class="nav-item col">
-				<a class="nav-link categoryBtn" ata-category="공기청정기" data-toggle="tab" href="#tab07">공기청정기</a>
+				<a class="nav-link categoryBtn" data-category="공기청정기" data-toggle="tab" href="#tab07">공기청정기</a>
 			</li>
 		</ul> 
 		<!-- Tab panes -->

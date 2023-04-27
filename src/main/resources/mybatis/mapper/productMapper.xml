@@ -113,6 +113,14 @@
 		) WHERE RNUM BETWEEN #{startPage}+1 and #{endPage}
 	</select>
 	
+	<!-- home.jsp 테마별 상품 불러오기 -->
+	<select id="getThemeListMain" parameterType="String" resultType="com.togetherTeam.platform.entity.Product">
+		SELECT *
+		  FROM product
+		 WHERE pro_theme = #{theme}
+		 ORDER BY pro_like DESC
+	</select>	
+	
 	<!-- proList.jsp 진입 전체 상품 불러오기 (최신순)  -->
 	<select id="getAllListRecent" resultType="com.togetherTeam.platform.entity.Product">
 		SELECT *

@@ -23,6 +23,7 @@ public interface productMapper {
 	public List<Product> getCategoryListCount(MypageLikeList mll);
 	public List<Product> getCategoryList2(MypageLikeList mll);
 	public List<Product> getCategoryListLike(String category);
+	public List<Product> getThemeListMain(String theme);
 	public List<Product> searchProduct(Map<String, Object> map); // 상품 검색
 	public void productRegister(Product vo); // insert SQL
 	public void imageEnroll(Image vo); // 이미지 등록 insert
