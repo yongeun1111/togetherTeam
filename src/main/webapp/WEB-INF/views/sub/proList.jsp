@@ -46,7 +46,7 @@ $(document).ready(function() {
 	            }
 
 	            // 상품 정보 추가
-	            html += "<div class=\"col-lg pro-list mb50\">" +
+	            html += "<div class=\"col-lg-3 pro-list mb50\">" +
 	                        "<a href=\"/proView?pro_no=" + item.pro_no + "\">" +
 	                            "<div class=\"pro-img\"" + 
 	                                "data-pro_no=\"" + item.pro_no + 
@@ -171,7 +171,7 @@ $(document).ready(function() {
 			<div id="tab01" class="pro-m tab-pane active">
 				<div class="row">
 					<c:forEach var="vo" items="${list}" varStatus="status">
-						<div class="col-sm">
+						<div class="col-lg-3">
 							<a href="/proView?pro_no=${vo.pro_no}">
 								<div class="pro-img" data-pro_no="${vo.pro_no}" data-path="${vo.upload_path}" data-uuid="${vo.uuid}" data-file_name="${vo.file_name}">
 									<img alt="">
