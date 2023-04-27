@@ -10,7 +10,7 @@ public class CriteriaList {
 	
 	public CriteriaList() {
 		this.page = 1;
-		this.perPageNum = 5; // 조정 가능
+		this.perPageNum = 12; // 조정 가능
 		
 	}
 
