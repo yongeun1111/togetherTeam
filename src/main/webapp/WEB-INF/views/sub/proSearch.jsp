@@ -13,7 +13,9 @@
 <script src="${contextPath}/resource/js/jquery/gsap.min.js"></script>
 <script src="${contextPath}/resource/js/jquery/ScrollTrigger.min.js"></script>
 <script src="${contextPath}/resource/js/pages/sub.js"></script>
-
+<script type="text/javascript">
+sessionStorage.setItem("contextPath", "${pageContext.request.contextPath}");
+</script>
 
 <!-- #container -->
 <div class="con-inner mypage-wrap">

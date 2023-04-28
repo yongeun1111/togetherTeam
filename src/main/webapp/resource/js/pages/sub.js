@@ -212,13 +212,20 @@ $(function(){
 	})
 })
 
+// contextPath 가져오기
+function getContextPath() {
+    return sessionStorage.getItem("contextPath");
+}
 // proSearch.jsp 검색 결과
 function searchProduct(data){
 	var searchHtml = "";
 	var rowCount = 0;
+	var contextPath = getContextPath();
 
 	if(data.list.length == 0){
-		searchHtml += '<p>검색 결과가 없습니다.</p>';
+		searchHtml += '<div class="empty-area">'
+		searchHtml += '<p><img src="'+ contextPath +'/resource/images/empty_icon.png" alt=""></p>'
+		searchHtml += '<p class="mt30">검색한 상품이 존재하지 않습니다.</p></div>'
 	} else {
 		
 	$.each(data.list,function(index, obj){
