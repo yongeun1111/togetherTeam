@@ -337,12 +337,6 @@ footer .info_contact .info-wrap p {
     border: 1px solid #ddd;
 }
 
-.pro-list .pro-img img {
-    width: 319px;
-    height: 319px;
-    object-fit: cover;
-}
-
 .pro-list .tab-content a .pro-img img{
     transform: scale(1);
     -webkit-transform: scale(1);
@@ -350,6 +344,9 @@ footer .info_contact .info-wrap p {
     -ms-transform: scale(1);
     -o-transform: scale(1);
     transition: all 0.3s ease-in-out;   /* 부드러운 모션을 위해 추가*/
+    width: 330px;
+    height: 330px;
+    object-fit: cover;
 }
 
 .pro-list .tab-content a:hover .pro-img img{
