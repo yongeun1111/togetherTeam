@@ -6,12 +6,13 @@ common media screen tab and mobile
 	/* header*/
 	.con-inner {
 		margin: 0 auto;
-		width: 1430px;
-		min-width: 1400px;
+		max-width: 1400px;
+		min-width: 1200px;
 	}
 
 	.sub-inner {
-		width: 1430px;
+		max-width: 1400px;
+		min-width: 1200px;
     	margin: 0 auto;
 	}
 
@@ -25,13 +26,15 @@ common media screen tab and mobile
 
 @media (min-width: 1460px) {
 	.container, .container-lg, .container-md, .container-sm, .container-xl {
-    max-width: 1430px;
+		max-width: 1400px;
+		min-width: 1200px;
 	}
 }
 
 @media (min-width: 1460px) {
 	.sub-inner {
-		width: 1430px;
+		max-width: 1400px;
+		min-width: 1200px;
 		padding-top: 70px;
 		margin: 0 auto;
 	}

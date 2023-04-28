@@ -157,22 +157,13 @@ header {
 
 
 /* 상단 배너 */
-header .top-banner {
-
-}
-
 
 header h1 {
-    position: relative;
-    z-index: 999;
-    width: 81px;
-    height: 21px;
+    left: 0;
+    position: absolute;
 }
 
 header .gnb-wrap {
-    width: 100%;
-    position: absolute;
-    top: 0;
 }
 
 header .gnb-wrap ul.gnb {
@@ -192,23 +183,33 @@ header .gnb-wrap ul.gnb li a {
 
 header nav {
     padding: 30px 0;
-    width: 1400px;
 }
 
 header nav .nav-wrap {
+    display: flex;
     position: relative;
+    flex-direction: row;
+    justify-content: center;
 }
 
 header nav .nav-wrap .util-menu {
+    margin-top: 2px;
+    display: flex;
     position: absolute;
-    top: 0;
     right: 0;
-    margin-top: 3px;
 }
 
-header nav .nav-wrap .util-menu li {
-    float: left;
+header nav .nav-wrap .util-menu li:not(:first-child) {
+    padding-left: 7px;
 }
+
+
+header nav .nav-wrap .util-menu li:not(:last-child) {
+    padding-right: 7px;
+}
+
+
+
 
 header nav .nav-wrap .util-menu li a {
     font-size: 1.0rem;
@@ -216,11 +217,12 @@ header nav .nav-wrap .util-menu li a {
 }
 
 .after::after {
-    margin: 0 15px;
+    position: absolute;
+    margin: 4px 7px;
     content: "";
     background-color: #ddd;
     width: 1px;
-    height: 10px;
+    height: 12px;
     display: inline-block;
 }
 
@@ -246,6 +248,7 @@ footer .info_contact .info-wrap {
 footer .info_contact ul li {
     float: left;
     color: #999;
+    line-height: 1.4rem;
     font-size: 0.9rem;
 }
 
@@ -260,6 +263,7 @@ footer .info_contact ul li:not(:last-child)::after {
 
 
 footer .info_contact .info-wrap p {
+    padding-top: 10px;
     font-size: 0.9rem;
     color: #ccc;
 }
