@@ -166,7 +166,7 @@ public class productController {
     		
     	}
     	
-    	return "home";
+    	return "redirect:/";
     }
     
     // 첨부 파일 업로드
