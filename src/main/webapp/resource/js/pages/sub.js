@@ -216,10 +216,12 @@ $(function(){
 function getContextPath() {
     return sessionStorage.getItem("contextPath");
 }
+
 // proSearch.jsp 검색 결과
 function searchProduct(data){
 	var searchHtml = "";
 	var rowCount = 0;
+	var loadCount = 0;
 	var contextPath = getContextPath();
 
 	if(data.list.length == 0){
@@ -231,33 +233,71 @@ function searchProduct(data){
 	$.each(data.list,function(index, obj){
 		if (rowCount === 0) {
         	searchHtml += '<div class="row">';
-        }
+        };
         
-        var fileCallPath = encodeURIComponent(obj.upload_path + "/s_" + obj.uuid + "_" + obj.file_name);
-        // 상품 정보 추가
-        searchHtml += '<div class="col-lg-3 pro-list mb50">'
-        searchHtml += '<a href="/proView?pro_no=' + obj.pro_no + '">'
-		searchHtml += '<div class="pro-img" "data-pro_no=' + obj.pro_no + '" data-path="' + obj.upload_path + '" data-uuid="' + data.list.uuid + '" data-file_name="' + obj.file_name + '">'
-        searchHtml += '<img alt="" src="/display?file_name=' + fileCallPath + '"></div>' 
-        searchHtml += '<div class="pro-info">' 
-        searchHtml += '<p class="name">' + obj.pro_title + '</p>' 
-        searchHtml += '<p class="price">' + obj.pro_sale_price + '<span class="won">원</span></p></div></a></div>' 
+	    var fileCallPath = encodeURIComponent(obj.upload_path + "/s_" + obj.uuid + "_" + obj.file_name);
+	    
+        if (loadCount < 4) {
+	        // 상품 정보 추가
+	        
+	        searchHtml += '<div class="col-lg-3 pro-list mb50">'
+	        searchHtml += '<a href="/proView?pro_no=' + obj.pro_no + '">'
+			searchHtml += '<div class="pro-img" "data-pro_no=' + obj.pro_no + '" data-path="' + obj.upload_path + '" data-uuid="' + data.list.uuid + '" data-file_name="' + obj.file_name + '">'
+	        searchHtml += '<img alt="" src="/display?file_name=' + fileCallPath + '"></div>' 
+	        searchHtml += '<div class="pro-info">' 
+	        searchHtml += '<p class="name">' + obj.pro_title + '</p>' 
+	        searchHtml += '<p class="price">' + obj.pro_sale_price + '<span class="won">원</span></p></div></a></div>' 
+			
+			rowCount++;
+			loadCount++;
+	
+	        if (rowCount === 4) {
+	            // row 종료
+	            searchHtml += '</div>';
+	            rowCount = 0;
+	        };
+	        		
+		} else {
+			searchHtml += '<div class="col-lg-3 pro-list mb50" style="display:none;">'
+	        searchHtml += '<a href="/proView?pro_no=' + obj.pro_no + '">'
+			searchHtml += '<div class="pro-img" "data-pro_no=' + obj.pro_no + '" data-path="' + obj.upload_path + '" data-uuid="' + data.list.uuid + '" data-file_name="' + obj.file_name + '">'
+	        searchHtml += '<img alt="" src="/display?file_name=' + fileCallPath + '"></div>' 
+	        searchHtml += '<div class="pro-info">' 
+	        searchHtml += '<p class="name">' + obj.pro_title + '</p>' 
+	        searchHtml += '<p class="price">' + obj.pro_sale_price + '<span class="won">원</span></p></div></a></div>'
+	        
+	        rowCount++;
+	        loadCount++;
+	        if (rowCount === 4) {
+	            // row 종료
+	            searchHtml += '</div>';
+	            rowCount = 0;
+	        };
+	  
+		};
 		
-		rowCount++;
-
-        if (rowCount === 4) {
-            // row 종료
-            searchHtml += '</div>';
-            rowCount = 0;
-        }
-    });
+			
+		})
+        
+    
     
     if (rowCount < 4) {
     	searchHtml += '</div>';
     };
-		
-	}
 	
-
+	
+	}
+	if (loadCount > 4){	
+		searchHtml += '</div><button id="load" onclick="moreInfo()">더 보기</button>'
+	};
     $(".search-result").html(searchHtml);    
-}
+};
+
+// 더보기 버튼 
+function moreInfo(e){
+	$("div:hidden").slice(0,10).show();
+	if ($("div:hidden").length == 0) {
+		$("#load").fadeOut(100);
+	};
+    
+};
