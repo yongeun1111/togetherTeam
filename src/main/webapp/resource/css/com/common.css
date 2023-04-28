@@ -301,14 +301,6 @@ footer .info_contact .info-wrap p {
     font-weight: 500;
 }
 
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-    color: #1f79df;
-    border-bottom: 2px solid #1f79df;
-}
-
-.pro-list .pro-m>div:not(:last-child){
-    margin-bottom: 50px;
-}
 
 .pro-list .pro-info {
     text-align: center;
@@ -316,7 +308,7 @@ footer .info_contact .info-wrap p {
 
 .pro-list .pro-info .name {
     margin: 30px 0 3px;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 500;
     color: #222;
 }
@@ -332,12 +324,22 @@ footer .info_contact .info-wrap p {
     color: #666;
 }
 
-.pro-list .tab-content a .pro-img {
+.pro-list a .pro-img {
     overflow: hidden;
     border: 1px solid #ddd;
 }
 
-.pro-list .tab-content a .pro-img img{
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #1f79df;
+    border-bottom: 2px solid #1f79df;
+}
+
+.pro-list .pro-m>div:not(:last-child){
+    margin-bottom: 50px;
+}
+
+
+.pro-img img{
     transform: scale(1);
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
@@ -349,7 +351,12 @@ footer .info_contact .info-wrap p {
     object-fit: cover;
 }
 
-.pro-list .tab-content a:hover .pro-img img{
+.pro-list a .won {
+    padding-left: 5px;
+}
+
+
+.pro-list a:hover .pro-img img{
     transform: scale(1.2);
     -webkit-transform: scale(1.2);
     -moz-transform: scale(1.2);
@@ -357,10 +364,11 @@ footer .info_contact .info-wrap p {
     -o-transform: scale(1.2);
 }
 
-.pro-list .tab-content a:hover .pro-info p, 
-.pro-list .tab-content a:hover .pro-info span{
-    color: #1f79df;
+.pro-list a:hover .pro-info p, 
+.pro-list a:hover .won {
+    color: #1f79df !important;
 }
+
 
 .represent {
     float: left;
