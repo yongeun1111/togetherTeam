@@ -349,4 +349,15 @@
 		update product set pro_sale = 'Y' where pro_no = #{pro_no}
 	</update>
 	
+	<!-- 채팅방 productInfo -->
+	<select id="chatRoomProduct" parameterType="int" resultType="com.togetherTeam.platform.entity.Product">
+	
+			SELECT a.*, b.*
+  			  FROM PRODUCT a LEFT OUTER JOIN IMAGE b
+    		    ON a.PRO_NO = b.PRO_NO
+ 	         WHERE a.PRO_NO = #{pro_no}
+   			   AND ROWNUM = 1
+
+	</select>
+	
 </mapper>

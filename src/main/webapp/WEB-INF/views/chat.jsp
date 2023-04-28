@@ -89,8 +89,6 @@
 	</div>
 
 
-</div>
-
 <script src="${contextPath}/webjars/stomp-websocket/2.3.3-1/stomp.js" type="text/javascript"></script>
 <script src="${contextPath}/webjars/sockjs-client/1.1.2/sockjs.js" type="text/javascript"></script>
 
@@ -123,14 +121,20 @@ $(document).ready(function(){
 			stompClient.disconnect();
 		}
 		console.log(data);
+		proList = "";
 		infoList = "";
 		hisList = "";
+		
 		var chatRoomNo = data.chatRoomInfo.chat_room_no;
 		var proTitle = data.productInfo.pro_title;
 		var proSalePrice = data.productInfo.pro_sale_price;
+		var fileCallPath = encodeURIComponent(data.productInfo.upload_path + "/s_" + data.productInfo.uuid + "_" + data.productInfo.file_name);
 		
+		proList += '<p><img src="/display?file_name=' + fileCallPath + '"></p>'
+		proList += '<div class="info-txt"></div>'
 		infoList += '<p>'+proTitle+'<p>'
 		infoList += '<p>'+proSalePrice+'<span class="won">원</span></p>'
+		$(".pro-info").html(proList);
 		$(".info-txt").html(infoList);
 		
 		$("#chatRoomNo").val(chatRoomNo);
