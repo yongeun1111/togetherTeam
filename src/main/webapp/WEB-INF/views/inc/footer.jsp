@@ -10,8 +10,8 @@
 						<img src="${contextPath}/resource/images/logo.png" alt="사이트 이름"><span class="ally-hidden">메인페이지 이동</span>
 						<div class="info-wrap">
 							<ul>   
-								<li>(주)중고나라 사업자 정보 (주)중고나라</li>
-								<li>대표자 : 홍준</li>
+								<li>(주)SHOPPLE</li>
+								<li>대표자 : 이소정</li>
 								<li>사업자 등록번호 : 123-45-67890</li>
 								<li>통신판매신고번호 : 제1234-광주송암-1234호</li>
 								<li>주소 : 광주광역시 남구 송암로 60 광주CGI센터 2층</li>
