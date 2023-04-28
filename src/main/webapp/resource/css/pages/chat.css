@@ -5,6 +5,10 @@
 	font-family: 'Noto Sans KR', sans-serif;	
 } */
 
+.top-banner {
+    display: none !important;
+}
+
 #wrap {
     font-family: 'Pretendard';
 }

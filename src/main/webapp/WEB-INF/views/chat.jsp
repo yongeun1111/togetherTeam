@@ -49,7 +49,6 @@
 						<input type="hidden" value="${chatRoom.chat_room_no}"/>
 					</div>
 				</c:forEach>
-				</div>
 
 			</div>
 		</div>
