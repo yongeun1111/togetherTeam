@@ -130,7 +130,7 @@ $(document).ready(function(){
 		var proSalePrice = data.productInfo.pro_sale_price;
 		var fileCallPath = encodeURIComponent(data.productInfo.upload_path + "/s_" + data.productInfo.uuid + "_" + data.productInfo.file_name);
 		
-		proList += '<p><img src="/display?file_name=' + fileCallPath + '"></p>'
+		proList += '<p><img style="width:58px; height:58px;" alt="상품 썸네일" src="/display?file_name=' + fileCallPath + '"></p>'
 		proList += '<div class="info-txt"></div>'
 		infoList += '<p>'+proTitle+'<p>'
 		infoList += '<p>'+proSalePrice+'<span class="won">원</span></p>'
