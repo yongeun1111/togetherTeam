@@ -216,9 +216,12 @@ $(function(){
 function searchProduct(data){
 	var searchHtml = "";
 	var rowCount = 0;
-	$.each(data.list,function(index, obj){
-		console.log(obj)
+
+	if(data.list.length == 0){
+		searchHtml += '<p>검색 결과가 없습니다.</p>';
+	} else {
 		
+	$.each(data.list,function(index, obj){
 		if (rowCount === 0) {
         	searchHtml += '<div class="row">';
         }
@@ -241,9 +244,13 @@ function searchProduct(data){
             rowCount = 0;
         }
     });
+    
     if (rowCount < 4) {
     	searchHtml += '</div>';
     };
+		
+	}
+	
 
     $(".search-result").html(searchHtml);    
 }
