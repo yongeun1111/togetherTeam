@@ -383,8 +383,8 @@ footer .info_contact .info-wrap p {
 }
 
 .represent ul.represent-list {
+    width: 130px;
     height: 580px;
-    display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -392,22 +392,26 @@ footer .info_contact .info-wrap p {
 }
 
 .represent ul.represent-list li {
-    width: 130px;
-    height: 130px;
-    border: 1px solid #ddd;
-
+    height: 25%;
+    box-sizing: border-box;
 }
 
 #imgRepresent {
+    width: 580px;
     height: 580px;
     position: absolute;
     right: 0;
+    object-fit: cover;
     border: 1px solid #ddd;
     box-sizing: border-box;
 }
 
 .represent ul.represent-list li img {
-    width:100%;
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
 }
 
 

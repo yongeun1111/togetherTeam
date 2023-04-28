@@ -73,4 +73,4 @@
 	</header>
 
 	<!-- start :container-->
-	<div id="container" class="">
+	<div id="container">
