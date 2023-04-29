@@ -25,13 +25,29 @@
 			<div class="chat-list-wrap">
 				<!-- 사용자 프로필 -->
 				<div class="profile-wrap">
-					<p><img src="${contextPath}/resource/images/profile_i_01.png" alt="사용자 프로필 이미지"> <span>${login.mem_id}</span></p>
+					<c:if test="${!empty login.mem_upload_path}">
+						<c:url var="url" value="/display?">
+							<c:param name="file_name" value="${login.mem_upload_path}/s_${login.mem_uuid}_${login.mem_file_name}"/>
+						</c:url>	
+						<p><img style="width:57px; height:57px;"src="${url}"/><span>${login.mem_id}</span></p>
+					</c:if>
+					<c:if test="${empty login.mem_upload_path}">
+						<p><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"><span>${login.mem_id}</span></p>
+					</c:if>
 				</div>
 				
 				<!-- 대화 리스트 -->
 				<c:forEach var="chatRoom" items="${chatList}">
 					<div class="chatRoomList">
-						<p><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"></p>
+						<c:if test="${!empty chatRoom.opp_upload_path}">
+							<c:url var="url" value="/display?">
+							<c:param name="file_name" value="${chatRoom.opp_upload_path}/s_${chatRoom.opp_uuid}_${chatRoom.opp_file_name}"/>
+							</c:url>	
+							<p><img style="width:57px; height:57px;"src="${url}"/></p>
+						</c:if>
+						<c:if test="${empty chatRoom.opp_upload_path}">
+							<p><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"></p>				
+						</c:if>
 						<div>
 							<c:if test="${login.mem_id eq chatRoom.buyer_mem_id}">
 								<p>${chatRoom.seller_mem_id}</p>

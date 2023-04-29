@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 
 import com.togetherTeam.platform.entity.Chat;
 import com.togetherTeam.platform.entity.ChatRoom;
+import com.togetherTeam.platform.entity.ProfileImage;
 import com.togetherTeam.platform.mapper.chatRoomMapper;
 
 @Service
@@ -85,6 +86,11 @@ public class ChatRoomService implements chatRoomMapper {
 	public String getId(int memNo) {
 	
 		return chatRoomMapper.getId(memNo);
+	}
+	
+	public ProfileImage getProfile(int memNo) {
+		
+		return chatRoomMapper.getProfile(memNo);
 	}
 	
 }

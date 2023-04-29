@@ -88,11 +88,19 @@
     	 ORDER BY CHAT_DATE DESC
     </select>
     
-    <!-- 아이디 바인딩용 확인 -->
-  <select id="getId" resultType="String">
-  	SELECT MEM_ID
-  	  FROM MEMBER
-  	 WHERE MEM_NO = #{memNO}
-  </select>
+	<!-- 아이디 바인딩용 확인 -->
+  	<select id="getId" resultType="String">
+  		SELECT MEM_ID
+  	  	FROM MEMBER
+  	 	WHERE MEM_NO = #{memNO}
+  	</select>
   
+  	<!-- 채팅 상대자 프로필 이미지 검색 -->
+  	<select id="getProfile" resultType="com.togetherTeam.platform.entity.ProfileImage">
+  		SELECT MEM_UPLOAD_PATH, MEM_UUID, MEM_FILE_NAME
+  		  FROM PROFILE_IMAGE
+  	     WHERE MEM_NO = ${memNo}
+  	</select>
+  	
+  	
 </mapper>

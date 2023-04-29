@@ -27,6 +27,7 @@ import com.togetherTeam.platform.entity.ChatRoom;
 import com.togetherTeam.platform.entity.Image;
 import com.togetherTeam.platform.entity.Member;
 import com.togetherTeam.platform.entity.Product;
+import com.togetherTeam.platform.entity.ProfileImage;
 import com.togetherTeam.platform.mapper.chatRoomMapper;
 import com.togetherTeam.platform.mapper.productMapper;
 import com.togetherTeam.platform.service.ChatRoomService;
@@ -47,7 +48,7 @@ public class ChatController {
 	private productMapper mapper;
 	
 	
-	// 채팅방 생성, 이전 채팅방 접속
+	// 판매자 문의 버튼을 통해 채팅방 생성하거나 채팅리스트로 접속
 	@GetMapping("/createChatRoom")
 	public String getWebSocketWithSockJs(Model model, HttpSession session, @ModelAttribute("chatRoom") ChatRoom addChatRoom) {
 		
@@ -119,7 +120,7 @@ public class ChatController {
 		simpMessage.convertAndSend(url, message);
 	}
 	
-	// 채팅방 리스트
+	// 헤더에서 채팅리스트 접속
 	@RequestMapping("/chat")
 	public String getUserChatList(HttpSession session, Model model) {
 		
@@ -128,13 +129,23 @@ public class ChatController {
 		int count = 0;
 		
 		List<ChatRoom> chatList = chatRoomService.getChatList(memNo);
-		
+		ProfileImage image = new ProfileImage();
 		for (ChatRoom chatRoom : chatList) {
+			// 접속 로그인 사용자가 판매자, 구매자 판단
 			if (memNo != chatRoom.getBuyer_mem_no()) {
 			
 				chatRoom.setSeller_mem_id(member.getMem_id());
 				String tempId = chatRoomService.getId(chatRoom.getBuyer_mem_no());
 				chatRoom.setBuyer_mem_id(tempId);
+				
+				// 반대쪽 사용자 프로필 이미지 바인딩
+				image = chatRoomService.getProfile(chatRoom.getBuyer_mem_no());
+				if (image != null) {
+					chatRoom.setOpp_upload_path(image.getMem_upload_path());
+					chatRoom.setOpp_uuid(image.getMem_uuid());
+					chatRoom.setOpp_file_name(image.getMem_file_name());
+				}
+				// 읽지 않은 메시지 카운트
 				count = chatRoomService.findChatRead(chatRoom.getChat_room_no(), chatRoom.getBuyer_mem_no());
 		
 			} else {
@@ -142,6 +153,14 @@ public class ChatController {
 				chatRoom.setBuyer_mem_id(member.getMem_id());
 				String tempId = chatRoomService.getId(chatRoom.getSeller_mem_no());
 				chatRoom.setSeller_mem_id(tempId);
+				
+				image = chatRoomService.getProfile(chatRoom.getSeller_mem_no());
+				if (image != null) {
+					chatRoom.setOpp_upload_path(image.getMem_upload_path());
+					chatRoom.setOpp_uuid(image.getMem_uuid());
+					chatRoom.setOpp_file_name(image.getMem_file_name());					
+				}
+				
 				count = chatRoomService.findChatRead(chatRoom.getChat_room_no(), chatRoom.getSeller_mem_no());
 			}
 			
@@ -151,7 +170,7 @@ public class ChatController {
 			}
 			chatRoom.setUnReadChat(count);
 		}
-		
+		System.out.println(chatList);
 		model.addAttribute("chatList", chatList);
 		return "chat";
 	}

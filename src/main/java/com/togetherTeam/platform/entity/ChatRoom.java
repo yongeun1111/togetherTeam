@@ -19,4 +19,7 @@ public class ChatRoom {
 	private String pro_title;
 	private String recentChat;
 	private int unReadChat;
+	private String opp_upload_path;
+	private String opp_uuid;
+	private String opp_file_name;
 }

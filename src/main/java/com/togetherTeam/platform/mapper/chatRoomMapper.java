@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.togetherTeam.platform.entity.Chat;
 import com.togetherTeam.platform.entity.ChatRoom;
+import com.togetherTeam.platform.entity.ProfileImage;
 
 @Mapper
 public interface chatRoomMapper {
@@ -21,4 +22,5 @@ public interface chatRoomMapper {
 	public void updateChatRead(@Param("chatRoomNo") int chatRoomNo, @Param("chatMemNo") int chatMemNo);
 	public Chat getRecentChat(int chatRoomNo);
 	public String getId(int memNo);
+	public ProfileImage getProfile(int memNo);
 }
