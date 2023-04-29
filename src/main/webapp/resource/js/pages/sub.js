@@ -225,6 +225,7 @@ function searchProduct(data){
 	var contextPath = getContextPath();
 
 	if(data.list.length == 0){
+		searchHtml += '<p class="mypage-tit mb10">검색 결과</p>'
 		searchHtml += '<div class="empty-area">'
 		searchHtml += '<p><img src="'+ contextPath +'/resource/images/empty_icon.png" alt=""></p>'
 		searchHtml += '<p class="mt30">검색한 상품이 존재하지 않습니다.</p></div>'

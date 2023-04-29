@@ -305,9 +305,9 @@ subpage
 
 
 .mypage-wrap p {
-    font-size: 1.05rem;
+    font-size: 1.3rem;
+    font-weight: 800;
     color: #222;
-    font-weight: 600;
 }
 
 .mypage-wrap .meminfo-table {
@@ -855,6 +855,33 @@ subpage
     font-weight: 700;
     color: #1965bc;
 }
+
+/* 상품 검색 - 검색 결과 없을 시 */
+
+.empty-area {
+    padding: 180px 0;
+    border-top: 2px solid #222;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.empty-area p {
+    text-align: center;
+    color: #999;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.empty-area p img {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+
+
+
+
+
 
 
 

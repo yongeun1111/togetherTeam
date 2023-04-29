@@ -136,8 +136,8 @@ $(document).ready(function() {
 </script>
 
 <!-- #container -->
-<div class="container">
-	<h2 class="pt80">중고 상품</h2>
+<div class="sub-inner">
+	<h2>중고 상품</h2>
 	<div class="pro-list">
 
 		<!-- Nav tabs -->

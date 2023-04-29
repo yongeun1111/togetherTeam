@@ -91,7 +91,7 @@ $(document).ready(function(){
     </div>
 
     <div class="meminfo-wrap">
-      <p class="mb20">※ 변경하시려는 정보를 입력해 주세요.</p>
+      <p class="mb10">※ 변경하시려는 정보를 입력해 주세요.</p>
       <form action="/change_info" method="post">
         <input type="hidden" name="mem_id" value="${login.mem_id}">
         <table class="meminfo-table">

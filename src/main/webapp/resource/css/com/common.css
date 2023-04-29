@@ -200,12 +200,12 @@ header nav .nav-wrap .util-menu {
 }
 
 header nav .nav-wrap .util-menu li:not(:first-child) {
-    padding-left: 7px;
+    padding-left: 15px;
 }
 
 
 header nav .nav-wrap .util-menu li:not(:last-child) {
-    padding-right: 7px;
+    padding-right: 15px;
 }
 
 
@@ -218,11 +218,11 @@ header nav .nav-wrap .util-menu li a {
 
 .after::after {
     position: absolute;
-    margin: 4px 7px;
+    margin: 5px 15px;
     content: "";
     background-color: #ddd;
     width: 1px;
-    height: 12px;
+    height: 13px;
     display: inline-block;
 }
 
@@ -312,9 +312,13 @@ footer .info_contact .info-wrap p {
 
 .pro-list .pro-info .name {
     margin: 30px 0 3px;
+    padding: 0 20px;
     font-size: 1.4rem;
     font-weight: 500;
     color: #222;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .pro-list .pro-info .price {
@@ -356,7 +360,7 @@ footer .info_contact .info-wrap p {
 }
 
 .pro-list a .won {
-    padding-left: 5px;
+    padding-left: 3px;
 }
 
 
