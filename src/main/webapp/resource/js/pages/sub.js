@@ -187,8 +187,10 @@ $(document).ready(function(){
 		
 	})
 	
-// proSearch.jsp에서 검색버튼 엔터키 가능	
-	var clickSearch = document.getElementById("searchProduct");
+	//proSearch.jsp에서 검색버튼 엔터키 가능
+	if (document.getElementById("searchProduct") != null){
+		
+		var clickSearch = document.getElementById("searchProduct")
 		clickSearch.addEventListener("keyup", function enterSend(event){
 			if (event.keyCode === null){
 				event.preventDeault();
@@ -198,6 +200,10 @@ $(document).ready(function(){
 				$("#searchProduct").val("");
 			}
 		});	
+		
+		
+	}
+
 	
 	
 	
