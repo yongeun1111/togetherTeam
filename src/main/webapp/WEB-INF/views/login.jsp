@@ -23,6 +23,9 @@
       <form class="login-form" action="/login" method="post">
           <div class="mb10"><input type="text" name="mem_id" placeholder="아이디"></div>
           <div><input type="password" name="mem_pwd" placeholder="비밀번호"></div>
+          <c:if test="${!empty error}">
+          	<span>${error}</span>
+          </c:if>
           <div>
             <ul class="mt20">
               <li>
