@@ -14,4 +14,7 @@ public class Chat {
 	private int chat_read;
 	// not in DB
 	private String chat_mem_id;
+	private String opp_upload_path;
+	private String opp_uuid;
+	private String opp_file_name;
 }

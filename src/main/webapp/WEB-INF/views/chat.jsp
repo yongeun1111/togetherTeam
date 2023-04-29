@@ -43,7 +43,7 @@
 							<c:url var="url" value="/display?">
 							<c:param name="file_name" value="${chatRoom.opp_upload_path}/s_${chatRoom.opp_uuid}_${chatRoom.opp_file_name}"/>
 							</c:url>	
-							<p><img style="width:57px; height:57px;"src="${url}"/></p>
+							<p><img style="width:50px; height:50px;"src="${url}"/></p>
 						</c:if>
 						<c:if test="${empty chatRoom.opp_upload_path}">
 							<p><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"></p>				
@@ -157,6 +157,7 @@ $(document).ready(function(){
 			var chatHisId=obj.chat_mem_id;
 	        var chatHisContent=obj.chat_content;
 	        var chatHisDate=obj.chat_date;
+	        var fileCallPath = encodeURIComponent(obj.opp_upload_path + "/s_" + obj.opp_uuid + "_" + obj.opp_file_name);
 	        if (obj.chat_mem_id == senderId){
 		      	// 내가 보낸 메세지
 				hisList += '<div class="my-message-wrap"><span class="send-time" id="MessageSendTime">' + chatHisDate.substring(11, 16) + '</span>'
@@ -164,11 +165,20 @@ $(document).ready(function(){
 		        hisList += '<div class="col_4 text-right"><span id="MessageContent">' + chatHisContent + '</span></div>' 
 	    	    hisList += '</div></div></div>' 	
 	        } else {
-	        		// 상대방이 보낸 메세지
-				hisList += '<div class="your-message-wrap"><div class="chat-your-profile"><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"><span id="MessageSenderID">'+ chatHisId +'</span></div>'
-	        	hisList += '<div class="row alert alert-info your-message"><div class="col_8"></div>'
-		        hisList += '<div class="col_4 text-right"><span id="MessageContent">' + chatHisContent + '</span></div>' 
-	    	    hisList += '</div><span class="send-time" id="MessageSendTime">' + chatHisDate.substring(11, 16)+ '</span></div></div>'
+	        	// 상대방이 보낸 메세지
+	        	if (obj.opp_upload_path != null){
+	        		hisList += '<div class="your-message-wrap"><div class="chat-your-profile"><img style="width:50px; height:50px;" src="display?file_name='+fileCallPath+'"alt="사용자 프로필 이미지"><span id="MessageSenderID"/>'+ chatHisId +'</span></div>'
+		        	hisList += '<div class="row alert alert-info your-message"><div class="col_8"></div>'
+			        hisList += '<div class="col_4 text-right"><span id="MessageContent">' + chatHisContent + '</span></div>' 
+		    	    hisList += '</div><span class="send-time" id="MessageSendTime">' + chatHisDate.substring(11, 16)+ '</span></div></div>'
+	        		
+	        	} else {
+				// 상대편 프로필 이미지가 없을 경우	        		
+					hisList += '<div class="your-message-wrap"><div class="chat-your-profile"><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"><span id="MessageSenderID">'+ chatHisId +'</span></div>'
+		        	hisList += '<div class="row alert alert-info your-message"><div class="col_8"></div>'
+			        hisList += '<div class="col_4 text-right"><span id="MessageContent">' + chatHisContent + '</span></div>' 
+		    	    hisList += '</div><span class="send-time" id="MessageSendTime">' + chatHisDate.substring(11, 16)+ '</span></div></div>'
+	        	}
 	        }})
 			$("#content").html(hisList);
 			connect(chatRoomNo);
@@ -246,6 +256,7 @@ $(document).ready(function(){
 	function createTextNode(messageObj) {
 		console.log("createTextNode");
 		console.log("messageObj: "+ messageObj.chat_content);
+		var fileCallPath = encodeURIComponent(messageObj.opp_upload_path + "/s_" + messageObj.opp_uuid + "_" + messageObj.opp_file_name);
 		if (messageObj.chat_mem_id == senderId){
 			// 내가 보낸 메세지
 			return '<div class="my-message-wrap"><span class="send-time" id="MessageSendTime">' + 
@@ -256,13 +267,25 @@ $(document).ready(function(){
 			'</div></div>';
 		} else {
 			// 상대방이 보낸 메세지
-			return '<div class="your-message-wrap"><div class="chat-your-profile"><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"><span id="MessageSenderID">'+
-			messageObj.chat_mem_id +
-			'</span></div><div class="row alert alert-info your-message"><div class="col_8"></div><div class="col_4 text-right"><span id="MessageContent">'+
-			messageObj.chat_content + 
-			'</span></div></div><span class="send-time" id="MessageSendTime">'+
-			messageObj.chat_date.substring(11, 16) +
-			'</span></div></div>';
+			if (messageObj.opp_upload_path != null){
+				// 상대방 프로필 이미지가 있을 경우
+				return '<div class="your-message-wrap"><div class="chat-your-profile"><img style="width:50px; height:50px;" src="display?file_name='+fileCallPath+'" alt="사용자 프로필 이미지"/><span id="MessageSenderID">'+
+				messageObj.chat_mem_id +
+				'</span></div><div class="row alert alert-info your-message"><div class="col_8"></div><div class="col_4 text-right"><span id="MessageContent">'+
+				messageObj.chat_content + 
+				'</span></div></div><span class="send-time" id="MessageSendTime">'+
+				messageObj.chat_date.substring(11, 16) +
+				'</span></div></div>';				
+			} else {
+				// 상대방 프로필 이미지가 없을 경우
+				return '<div class="your-message-wrap"><div class="chat-your-profile"><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"><span id="MessageSenderID">'+
+				messageObj.chat_mem_id +
+				'</span></div><div class="row alert alert-info your-message"><div class="col_8"></div><div class="col_4 text-right"><span id="MessageContent">'+
+				messageObj.chat_content + 
+				'</span></div></div><span class="send-time" id="MessageSendTime">'+
+				messageObj.chat_date.substring(11, 16) +
+				'</span></div></div>';
+			}
 		}
 	}
 	

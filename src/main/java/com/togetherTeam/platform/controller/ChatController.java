@@ -70,13 +70,23 @@ public class ChatController {
 		// chatRoom 객체를 view로 전달
 		List<ChatRoom> chatRoomList = chatRoomService.getChatList(memNo);
 		int count = 0;
+		ProfileImage image = new ProfileImage();
 		for (ChatRoom chatRoom : chatRoomList) {
+			// 접속 로그인 사용자가 판매자, 구매자 판단
+			if (memNo != chatRoom.getBuyer_mem_no()) {
 			
-			if ( memNo != chatRoom.getBuyer_mem_no()) {
-				
 				chatRoom.setSeller_mem_id(member.getMem_id());
 				String tempId = chatRoomService.getId(chatRoom.getBuyer_mem_no());
 				chatRoom.setBuyer_mem_id(tempId);
+				
+				// 반대쪽 사용자 프로필 이미지 바인딩
+				image = chatRoomService.getProfile(chatRoom.getBuyer_mem_no());
+				if (image != null) {
+					chatRoom.setOpp_upload_path(image.getMem_upload_path());
+					chatRoom.setOpp_uuid(image.getMem_uuid());
+					chatRoom.setOpp_file_name(image.getMem_file_name());
+				}
+				// 읽지 않은 메시지 카운트
 				count = chatRoomService.findChatRead(chatRoom.getChat_room_no(), chatRoom.getBuyer_mem_no());
 		
 			} else {
@@ -84,6 +94,14 @@ public class ChatController {
 				chatRoom.setBuyer_mem_id(member.getMem_id());
 				String tempId = chatRoomService.getId(chatRoom.getSeller_mem_no());
 				chatRoom.setSeller_mem_id(tempId);
+				
+				image = chatRoomService.getProfile(chatRoom.getSeller_mem_no());
+				if (image != null) {
+					chatRoom.setOpp_upload_path(image.getMem_upload_path());
+					chatRoom.setOpp_uuid(image.getMem_uuid());
+					chatRoom.setOpp_file_name(image.getMem_file_name());					
+				}
+				
 				count = chatRoomService.findChatRead(chatRoom.getChat_room_no(), chatRoom.getSeller_mem_no());
 			}
 			
@@ -102,7 +120,18 @@ public class ChatController {
 	// 채팅 메시지
 	@MessageMapping("/broadcast")
 	public void send(Chat chat) throws IOException {
-		System.out.println(chat);
+		ChatRoom chatRoom = chatRoomService.findChatRoom(chat.getChat_room_no());
+		ProfileImage image = new ProfileImage();
+		if (chatRoom.getBuyer_mem_no() != chat.getChat_mem_no()) {
+			if (chatRoomService.getProfile(chatRoom.getSeller_mem_no()) != null){
+				image = chatRoomService.getProfile(chatRoom.getSeller_mem_no());				
+			}
+		} else {
+			if (chatRoomService.getProfile(chatRoom.getBuyer_mem_no()) != null) {
+				image = chatRoomService.getProfile(chatRoom.getBuyer_mem_no());				
+			}
+		}
+		
 		LocalDateTime now = LocalDateTime.now();
         chat.setChat_date(now);
 		
@@ -116,7 +145,10 @@ public class ChatController {
 		message.setChat_mem_id(chat.getChat_mem_id());
 		message.setChat_content(chat.getChat_content());
 		message.setChat_date(chat.getChat_date());
-		
+		message.setOpp_upload_path(image.getMem_upload_path());
+		message.setOpp_uuid(image.getMem_uuid());
+		message.setOpp_file_name(image.getMem_file_name());
+				
 		simpMessage.convertAndSend(url, message);
 	}
 	
@@ -170,7 +202,6 @@ public class ChatController {
 			}
 			chatRoom.setUnReadChat(count);
 		}
-		System.out.println(chatList);
 		model.addAttribute("chatList", chatList);
 		return "chat";
 	}
@@ -180,17 +211,23 @@ public class ChatController {
 	@ResponseBody
 	public Map getChatHistory(int chatRoomNo, int senderNo) {
 		
-		
 		List<Chat> chatHistory = chatRoomService.readChatHistory(chatRoomNo);
 		ChatRoom chatRoomInfo = chatRoomService.findChatRoom(chatRoomNo);
 		Product productInfo = mapper.chatRoomProduct(chatRoomInfo.getPro_no());
 		
+		ProfileImage image = new ProfileImage(); 
 		for (Chat chat : chatHistory) {
 			if (senderNo != chat.getChat_mem_no()) {
 				chatRoomService.updateChatRead(chatRoomNo, chat.getChat_mem_no());
-			}
-		}
-		
+				if (chatRoomService.getProfile(chat.getChat_mem_no()) != null) {
+					image = chatRoomService.getProfile(chat.getChat_mem_no());
+					chat.setOpp_upload_path(image.getMem_upload_path());
+					chat.setOpp_uuid(image.getMem_uuid());
+					chat.setOpp_file_name(image.getMem_file_name());
+										
+				};
+			};
+		};
 		Map<String, Object> chat = new HashMap<>();
 		
 		chat.put("chatHistory", chatHistory);
