@@ -107,7 +107,42 @@ $(document).ready(function(){
   <div class="con-wrap center">
     <h2>회원가입</h2>
     <form class="join-form" action="/join" method="post" required>
+      <!-- 프로필 이미지 -->
+      <div class="field">
+
+		<div class="filebox"> 
+			<label>
+				<input class="file_real" id="fileItem" name="uploadFile" multiple="multiple" type="file" accept="image/jpg, image/png, image/gif" />
+				<input class="file_fake" type="text" placeholder="프로필 이미지 등록 *.jpg/png/gif Only" readonly tabindex="-1" />
+				<input type="button" class="button" value="파일 찾기" />
+			</label>
+
+			<script>
+				$('.file_real').on('change', function() {
+					var files = $(this)[0].files[0];
+					var fake = $('.file_fake');
+					
+					fake.val('');
+					if ( files !== undefined ) {
+						fake.val(files.name);
+					}
+				});
+			</script>
+		</div>
+		
+		<div id="uploadResult">
+			<!-- 
+				<div id = "result_card">
+					<div class="imgDeleteBtn">x</div>
+					<img src="/display?file_name=fried.jpg">
+				</div>
+			 -->
+		</div>
+		<div class="img-info">
+		</div>
+
       
+      </div>
       <!-- 1. 아이디 -->
       <div class="field">
         <p><input id="id" type="text" name="mem_id" required placeholder="아이디"></p>

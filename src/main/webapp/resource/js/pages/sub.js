@@ -106,7 +106,7 @@ $(document).ready(function(){
 	
 	// 이미지 출력 함수
 	function showUploadImage(uploadResultArr){
-		
+		console.log(uploadResultArr)
 		// 전달받은 데이터 검증
 		if(!uploadResultArr || uploadResultArr.length == 0){return}
 		
@@ -187,10 +187,8 @@ $(document).ready(function(){
 		
 	})
 	
-	//proSearch.jsp에서 검색버튼 엔터키 가능
-	if (document.getElementById("searchProduct") != null){
-		
-		var clickSearch = document.getElementById("searchProduct")
+// proSearch.jsp에서 검색버튼 엔터키 가능	
+	var clickSearch = document.getElementById("searchProduct");
 		clickSearch.addEventListener("keyup", function enterSend(event){
 			if (event.keyCode === null){
 				event.preventDeault();
@@ -200,10 +198,6 @@ $(document).ready(function(){
 				$("#searchProduct").val("");
 			}
 		});	
-		
-		
-	}
-
 	
 	
 	

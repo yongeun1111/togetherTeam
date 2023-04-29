@@ -8,6 +8,7 @@ import com.togetherTeam.platform.entity.LikeList;
 import com.togetherTeam.platform.entity.Member;
 import com.togetherTeam.platform.entity.MypageLikeList;
 import com.togetherTeam.platform.entity.Product;
+import com.togetherTeam.platform.entity.ProfileImage;
 
 @Mapper
 public interface memberMapper {
@@ -24,5 +25,6 @@ public interface memberMapper {
 	public int likeInsert(LikeList vo);
 	public int likeDelete(LikeList vo);
 	public int join(Member vo);
+	public void insertProfileImage(ProfileImage image);
 	
 }

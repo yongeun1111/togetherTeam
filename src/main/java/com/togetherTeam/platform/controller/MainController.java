@@ -1,12 +1,24 @@
 package com.togetherTeam.platform.controller;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +26,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.togetherTeam.platform.entity.CriteriaList;
 import com.togetherTeam.platform.entity.Member;
 import com.togetherTeam.platform.entity.PageMakerList;
 import com.togetherTeam.platform.entity.Product;
+import com.togetherTeam.platform.entity.ProfileImage;
 import com.togetherTeam.platform.mapper.memberMapper;
 import com.togetherTeam.platform.mapper.productMapper;
 
@@ -118,11 +132,20 @@ public class MainController  {
 	
 	@PostMapping("/join") // 회원가입진행
     public String joinPost(Member vo, RedirectAttributes rttr, String mem_id){
+		System.out.println(vo);
 		int result = mapper.join(vo);
+		
 		if(result == 0) { // 회원가입실패
 	        rttr.addFlashAttribute("error", "회원가입이 실패하였습니다.");
 	        return "join"; // 회원가입 페이지로 이동
 	    } else { // 회원가입성공
+	    	ProfileImage profileImage = new ProfileImage();
+	    	profileImage.setMem_no(vo.getMem_no());
+	    	profileImage.setMem_upload_path(vo.getMem_upload_path());
+	    	profileImage.setMem_uuid(vo.getMem_uuid());
+	    	profileImage.setMem_file_name(vo.getMem_file_name());
+	    	mapper.insertProfileImage(profileImage);
+	    	System.out.println(profileImage);
 	        rttr.addFlashAttribute("join", mem_id); // 입력한 회원아이디
 	        return "redirect:join_success"; // 로그인페이지로 이동
 	    }
@@ -173,4 +196,129 @@ public class MainController  {
 		
 		return "redirect:";
 	}
+	
+	 // 첨부 파일 업로드
+    // ResponseEntity : Http body에 뷰로 전달하고 싶은 데이터를 포함시켜서 보냄 + status(상태 코드) 조작 가능
+    @PostMapping(value="/uploadProfileImage", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity uploadProfileImage(MultipartFile uploadFile) {
+    	
+    	// 이미지 파일인지 체크하기
+    		
+    		// System.out.println("파일이름 : " + multipartFile.getOriginalFilename());
+    		// System.out.println("파일타입 : " + multipartFile.getContentType());
+    		
+    		
+    		// 전달받은 uploadFile을 File 객체로 만들고 변수에 대입
+    		File checkfile = new File(uploadFile.getOriginalFilename());
+    		
+    		// MIME TYPE : 어떤 종류의 파일인지에 대한 정보가 담긴 라벨
+    		// MIME TYPE을 저장할 변수
+    		String type = null;
+    		
+    		try {
+    			
+    			type = Files.probeContentType(checkfile.toPath());
+    			// System.out.println("MIME TYPE : " + type);
+    		
+    		} catch(IOException e) {
+    			e.printStackTrace();
+    		}
+    		
+    		// srstsWith("image") : String 타입의 데이터를 파라미터로 전달받고 체크 대상인 image와 같으면 true, 아니면 false 반환
+    		if(!type.startsWith("image")) {
+    			
+    			// 이미지 타입이 아니므로 null 값으로 만들어준다
+    			ProfileImage image = null;
+    			
+    			return new ResponseEntity(image, HttpStatus.BAD_REQUEST);
+    			
+    		}
+    	
+    	
+    	// 저장 경로 설정
+    	// String uploadFolder = "C:\\Users\\smhrd\\git\\togetherTeam\\src\\main\\webapp\\resource\\upload";
+    	// 상대 경로로 변경
+    	String uploadFolder = "src/main/webapp/resource/upload";
+    	
+    	
+    	// 날짜 폴더 경로
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date date = new Date();
+		
+		String str = sdf.format(date);
+		
+		// -를 기준으로 분리하여 폴더 생성
+		String datePath = str.replace("-", File.separator);
+		
+		/* 폴더 생성 */
+		File uploadPath = new File(uploadFolder, datePath);
+		
+		if(uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
+	
+		ProfileImage vo = new ProfileImage();
+		
+		/* 파일 이름 */
+		String uploadFileName = uploadFile.getOriginalFilename();
+		// 정보를 객체에 저장
+		vo.setMem_file_name(uploadFileName);
+		vo.setMem_upload_path(datePath);
+		
+		/* uuid 적용 파일 이름 */
+		String uuid = UUID.randomUUID().toString();
+		vo.setMem_uuid(uuid);
+		
+		uploadFileName = uuid + "_" + uploadFileName;
+		
+		/* 파일 위치, 파일 이름을 합친 File 객체 */
+		File saveFile = new File(uploadPath, uploadFileName);
+		
+		/* 파일 저장 */
+		try {
+			
+			uploadFile.transferTo(saveFile);
+			
+			// 대표 이미지 이름
+			File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);
+			
+			// BufferedImage : 데이터 처리, 조작
+			// 원본 이미지를 BufferedImage 타입으로 변경
+			BufferedImage bo_image = ImageIO.read(saveFile);
+			
+			
+			// 비율
+			double ratio = 3;
+			// 넓이 높이
+			int width = (int) (bo_image.getWidth() / ratio);
+			int height = (int) (bo_image.getHeight() / ratio);
+			
+			
+			// 넓이, 높이, 생성될 이미지 타입 지정
+			BufferedImage bt_image = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
+			
+			// Graphics2D : 그림을 그리는데 필요로 한 설정값과 메서드 제공
+			// Grapghics2D 객체 생성
+			Graphics2D graphic = bt_image.createGraphics();
+			
+			// 그리고자 하는 이미지, 그리기 시작하는 x좌표, 그리기 시작하는 y좌표, 넓이, 높이, 이미지 업데이트
+			graphic.drawImage(bo_image, 0, 0, width, height, null);
+			
+			// 이미지 저장 (저장할 이미지, 이미지형식, 이미지 이름)
+			ImageIO.write(bt_image, "jpg", thumbnailFile);
+			
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+			
+			
+    	
+    	ResponseEntity<ProfileImage> result = new ResponseEntity<ProfileImage>(vo, HttpStatus.OK);
+    
+    	return result;
+    }
 }

@@ -8,6 +8,11 @@
 
   <!-- 회원가입 sql -->
   <insert id="join" parameterType="com.togetherTeam.platform.entity.Member">
+  		<selectKey resultType="int" keyProperty="mem_no" order="AFTER">
+			select max(mem_no) 
+			  from member
+		</selectKey>
+  
   	insert into member(
   		mem_id,
   		mem_pwd,
@@ -111,10 +116,18 @@
   <!-- 로그인 sql -->
   <select id="login" parameterType="com.togetherTeam.platform.entity.Member" 
   resultType="com.togetherTeam.platform.entity.Member">
-    select * from member
+    select a.*, b.mem_upload_path, b.mem_uuid, b.mem_file_name  
+      from member a LEFT OUTER JOIN profile_image b
+        on a.mem_no = b.mem_no
 	 where mem_id = #{mem_id}
        and mem_pwd = #{mem_pwd}
   </select>
+  
+  <!-- 프로필 이미지 추가 -->
+  <insert id="insertProfileImage" parameterType="com.togetherTeam.platform.entity.ProfileImage">
+  	INSERT INTO PROFILE_IMAGE (mem_no, mem_upload_path, mem_uuid, mem_file_name)
+  	 VALUES (#{mem_no}, #{mem_upload_path}, #{mem_uuid}, #{mem_file_name})
+  </insert>
 
 
 </mapper>
