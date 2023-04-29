@@ -22,6 +22,11 @@ subpage
     display: flex;
 }
 
+.con-inner {
+    margin-top: 139px;
+}
+
+
 /* 로그인 -------------------------------------------------------------- */
 .login-wrap {
     width: 100%;

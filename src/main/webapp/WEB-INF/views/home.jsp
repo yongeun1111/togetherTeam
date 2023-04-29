@@ -165,75 +165,42 @@ $(document).ready(function () {
 });   
     
 </script>
-
 <!-- main visual -->
 <div id="mvWrap">
 
   <div class="mv-txt">
-    <p>쉽고, 편리하게!</p>
+    <p>쉽고하게, 편리하게!</p>
     <p>안전한 중고 거래</p>
-    <p>
-        <span class="bold">믿을 수 있는 중고 거래 서비스 플랫폼</span>을 지금 바로 경험해 보세요!
-    </p>
-
-    <div class="nav-wrap">
-      <div class="mv-controller">
-        <div class="pro-bar pro-ani"></div>    
-       
-      </div>
-      <ul class="nav">
-        <li class="on">01</li>
-        <li>02</li>
-        <li>03</li>
-        <li>04</li>
-    </ul>
-    </div>
-   
+    <p>자동 물품 등록이 가능한 중고 판매 서비스,<br>
+      지금 바로 경험해 보세요!   </p>
   </div>
 
-  <div class="slide-wrap">
-      <!-- 이전, 다음 버튼 -->
-    <div class="pager-wrap">
-      <div id="pager">
-        <div class="pager-wrap">
-          <div class="prev">
-            <span></span>
-          </div>
-          <div class="next">
-            <span></span>
+  <div class="slide">
+    <!-- slick을 적용시킬 요소 -->
+    <div class="slider-div">
+        <!-- 슬라이드 되어야할 아이템들 -->
+        <div class="item">
+          <div class="mv-img">
+            <img src="${contextPath}/resource/images/mv01.png" alt="">
           </div>
         </div>
-      </div>
+        <div class="item">
+          <div class="mv-img">
+            <img src="${contextPath}/resource/images/mv01.png" alt="">
+          </div>
+        </div>
+        <div class="item">
+          <div class="mv-img">
+            <img src="${contextPath}/resource/images/mv01.png" alt="">
+          </div>
+        </div>
     </div>
-  
-    <!-- main visual images -->
-    <div class="slide">
-      <div class="item">
-        <div class="img" style="background-image:url(${contextPath}/resource/images/mv01.png)"></div>
-      </div>
-      <div class="item">
-        <div class="img" style="background-image:url(${contextPath}/resource/images/mv01.png)"></div>
-      </div>
-      <div class="item">
-        <div class="img" style="background-image:url(${contextPath}/resource/images/mv01.png)"></div>
-      </div>
-      <div class="item">
-        <div class="img" style="background-image:url(${contextPath}/resource/images/mv01.png)"></div>
-      </div>
+    <!-- button 커스텀을 위한 요소 --> 
+    <div class="button">
+        <div class="next">ss</div>
+        <div class="prev">ll</div>
     </div>
   </div>
-
-
-  
-  <div class="wrap">
-    <span class="floating c1"></span>
-    <span class="floating c2"></span>
-    <span class="floating c3"></span>
-    <span class="floating c4"></span>
-
-</div>
-
-
 </div>
 <!-- main visual // -->
 
@@ -442,4 +409,24 @@ $(document).ready(function () {
   floatingCircle('.c1', .5, 25)
   floatingCircle('.c2', 1, 20)
   floatingCircle('.c3', 1.5, 10)
+</script>
+
+
+<script>
+    console.clear();
+  $('.visual').slick({
+      autoplay: true,
+      autoplaySpeed: 10000,
+      dots:true,
+  });
+
+
+  /* 슬릭 - setting에서 추가기능을 찾아서 넣을 수 있습니다. */
+    $('.play').click(function(){
+        $('.visual').slick('slickPlay');
+    });
+
+    $('.stop').click(function(){
+        $('.visual').slick('slickPause');
+    });
 </script>
