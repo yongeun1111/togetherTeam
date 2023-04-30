@@ -200,8 +200,7 @@ $(document).ready(function(){
 		stompClient = Stomp.over(socket);
 		
 		// connect(header, connectCallback(연결 성공 메소드))
-		stompClient.connect({}, function(){
-			
+		stompClient.connect({"chatRoomNo":chatRoomNo}, function(){
 			console.log("connected STOMP")
 			// url : 채팅방 참여자에게 공유 경로
 			// callback(function())

@@ -9,6 +9,7 @@
 		var memNo = $("#member").val()
 		var unReadCount = "";
 		if (memNo != null){
+
 			$.ajax({
 			      type: 'POST',
 			      url: '/chatReadCount',

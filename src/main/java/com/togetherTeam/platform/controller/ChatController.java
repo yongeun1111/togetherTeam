@@ -3,6 +3,7 @@ package com.togetherTeam.platform.controller;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,9 +12,14 @@ import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.spi.LoggerFactoryBinder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +27,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.messaging.SessionConnectEvent;
+import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
 import com.togetherTeam.platform.entity.Chat;
 import com.togetherTeam.platform.entity.ChatRoom;
@@ -120,7 +129,11 @@ public class ChatController {
 	// 채팅 메시지
 	@MessageMapping("/broadcast")
 	public void send(Chat chat) throws IOException {
+		
+		// DB에서 채팅방 가져오기
 		ChatRoom chatRoom = chatRoomService.findChatRoom(chat.getChat_room_no());
+		
+		// 상대방 프로필 이미지 바인딩
 		ProfileImage image = new ProfileImage();
 		if (chatRoom.getBuyer_mem_no() != chat.getChat_mem_no()) {
 			if (chatRoomService.getProfile(chatRoom.getSeller_mem_no()) != null){
@@ -132,11 +145,19 @@ public class ChatController {
 			}
 		}
 		
+		// 채팅시각 바인딩
 		LocalDateTime now = LocalDateTime.now();
         chat.setChat_date(now);
 		
+        // 채팅방에 상대편이 지금 있다면 채팅메시지 바로 읽음 처리
+        if (chatRoom.getUser_count() > 1) {
+        	chat.setChat_read(1);
+        }
+        
+        // 채팅메시지 DB 저장
         chatRoomService.insertChat(chat);
 		
+        // 채팅메시지 view로 보내기
 		int chatRoomNo = chat.getChat_room_no();
 		String url = "/user/" + chatRoomNo + "/queue/messages";
 		
@@ -257,4 +278,24 @@ public class ChatController {
 		return count;
 	}
 	
+	
+	// 채팅방 접속했을 때 DB 채팅방 유저카운트+1
+	@EventListener
+	public void webSocketConnectListener(SessionConnectEvent event) {
+		
+		StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
+		headerAccessor.getSessionAttributes().put("chatRoomNo", headerAccessor.getNativeHeader("chatRoomNo").get(0));
+		
+		int chatRoomNo = Integer.parseInt(headerAccessor.getNativeHeader("chatRoomNo").get(0));
+		chatRoomService.connectUser(chatRoomNo);
+		
+	}
+	
+	// 채팅방 접속해제했을 때 DB 채팅방 유저카운트-1
+	@EventListener
+	public void webSocketDisconnectListener(SessionDisconnectEvent event) {
+		StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
+		int chatRoomNo = Integer.parseInt(headerAccessor.getSessionAttributes().get("chatRoomNo").toString());
+		chatRoomService.disconnectUser(chatRoomNo);
+	}
 }

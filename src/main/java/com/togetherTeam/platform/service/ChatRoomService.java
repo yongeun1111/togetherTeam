@@ -93,4 +93,13 @@ public class ChatRoomService implements chatRoomMapper {
 		return chatRoomMapper.getProfile(memNo);
 	}
 	
+	public void connectUser(int chatRoomNo) {
+		
+		chatRoomMapper.connectUser(chatRoomNo);
+	}
+	
+	public void disconnectUser(int chatRoomNo) {
+		
+		chatRoomMapper.disconnectUser(chatRoomNo);
+	}
 }

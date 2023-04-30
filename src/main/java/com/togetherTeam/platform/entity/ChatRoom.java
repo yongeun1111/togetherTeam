@@ -12,6 +12,7 @@ public class ChatRoom {
 	private int seller_mem_no;
 	private int buyer_mem_no;
 	private LocalDateTime room_date;
+	private int user_count;
 	
 	// not in DB
 	private String buyer_mem_id;

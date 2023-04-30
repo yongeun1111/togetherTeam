@@ -23,4 +23,6 @@ public interface chatRoomMapper {
 	public Chat getRecentChat(int chatRoomNo);
 	public String getId(int memNo);
 	public ProfileImage getProfile(int memNo);
+	public void connectUser(int chatRoomNo);
+	public void disconnectUser(int chatRoomNo);
 }

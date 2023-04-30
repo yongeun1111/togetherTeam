@@ -36,12 +36,14 @@
 			CHAT_ROOM_NO,
 			CHAT_MEM_NO,
 			CHAT_CONTENT,
-			CHAT_DATE
+			CHAT_DATE,
+			CHAT_READ
 		) VALUES (
 			#{chat_room_no},
 			#{chat_mem_no},
 			#{chat_content},
-			#{chat_date}
+			#{chat_date},
+			#{chat_read}
 		)
 	</insert>
 	
@@ -102,5 +104,17 @@
   	     WHERE MEM_NO = ${memNo}
   	</select>
   	
+  	<!-- 채팅방에 접속하면 채팅방 유저카운트+1 -->
+  	<update id="connectUser">
+  		UPDATE CHAT_ROOM
+  		   SET USER_COUNT = USER_COUNT+1
+  		 WHERE CHAT_ROOM_NO = #{chatRoomNo}
+  	</update>
   	
+  	<!-- 채팅방 접속해제 채팅방 유저카운트-1 -->
+  	<update id="disconnectUser">
+  		UPDATE CHAT_ROOM
+  		   SET USER_COUNT = USER_COUNT-1
+  		 WHERE CHAT_ROOM_NO = #{chatRoomNo}
+  	</update>
 </mapper>
