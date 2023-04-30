@@ -4,6 +4,8 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<!-- \n을 <br>태그로 바꿔서 개행 설정 부분 -->
+<% pageContext.setAttribute("newLineChar", "\n"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 
@@ -209,7 +211,7 @@ function chatSubmit() {
                 <div class="seller-info">
                     <p class="de-tit">판매자 설명</p>
                     <div class="sell-wrap">
-                        <p class="seller-txt">${pro.pro_content}</p>
+                        <p class="seller-txt">${fn:replace(pro.pro_content, newLineChar, "<br/>")}</p>
                     </div>
                 </div>
             </div>
