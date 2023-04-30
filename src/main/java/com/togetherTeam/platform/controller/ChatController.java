@@ -2,22 +2,15 @@ package com.togetherTeam.platform.controller;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.print.attribute.standard.DateTimeAtCompleted;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.spi.LoggerFactoryBinder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Controller;
@@ -27,21 +20,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.messaging.SessionConnectEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
 import com.togetherTeam.platform.entity.Chat;
 import com.togetherTeam.platform.entity.ChatRoom;
-import com.togetherTeam.platform.entity.Image;
 import com.togetherTeam.platform.entity.Member;
 import com.togetherTeam.platform.entity.Product;
 import com.togetherTeam.platform.entity.ProfileImage;
-import com.togetherTeam.platform.mapper.chatRoomMapper;
 import com.togetherTeam.platform.mapper.productMapper;
 import com.togetherTeam.platform.service.ChatRoomService;
 
-import ch.qos.logback.core.util.TimeUtil;
 
 
 @Controller
@@ -129,7 +118,6 @@ public class ChatController {
 	// 채팅 메시지
 	@MessageMapping("/broadcast")
 	public void send(Chat chat) throws IOException {
-		
 		// DB에서 채팅방 가져오기
 		ChatRoom chatRoom = chatRoomService.findChatRoom(chat.getChat_room_no());
 		
