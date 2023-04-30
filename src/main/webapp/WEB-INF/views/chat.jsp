@@ -29,7 +29,7 @@
 						<c:url var="url" value="/display?">
 							<c:param name="file_name" value="${login.mem_upload_path}/s_${login.mem_uuid}_${login.mem_file_name}"/>
 						</c:url>	
-						<p><img style="width:57px; height:57px;"src="${url}"/><span>${login.mem_id}</span></p>
+						<p><img class="profile_image" src="${url}"/><span>${login.mem_id}</span></p>
 					</c:if>
 					<c:if test="${empty login.mem_upload_path}">
 						<p><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"><span>${login.mem_id}</span></p>
@@ -43,7 +43,7 @@
 							<c:url var="url" value="/display?">
 							<c:param name="file_name" value="${chatRoom.opp_upload_path}/s_${chatRoom.opp_uuid}_${chatRoom.opp_file_name}"/>
 							</c:url>	
-							<p><img style="width:50px; height:50px;"src="${url}"/></p>
+							<p><img class="profile_image" src="${url}"/></p>
 						</c:if>
 						<c:if test="${empty chatRoom.opp_upload_path}">
 							<p><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"></p>				
@@ -167,7 +167,7 @@ $(document).ready(function(){
 	        } else {
 	        	// 상대방이 보낸 메세지
 	        	if (obj.opp_upload_path != null){
-	        		hisList += '<div class="your-message-wrap"><div class="chat-your-profile"><img style="width:50px; height:50px;" src="display?file_name='+fileCallPath+'"alt="사용자 프로필 이미지"><span id="MessageSenderID"/>'+ chatHisId +'</span></div>'
+	        		hisList += '<div class="your-message-wrap"><div class="chat-your-profile"><img class="profile_image" src="display?file_name='+fileCallPath+'"alt="사용자 프로필 이미지"><span id="MessageSenderID"/>'+ chatHisId +'</span></div>'
 		        	hisList += '<div class="row alert alert-info your-message"><div class="col_8"></div>'
 			        hisList += '<div class="col_4 text-right"><span id="MessageContent">' + chatHisContent + '</span></div>' 
 		    	    hisList += '</div><span class="send-time" id="MessageSendTime">' + chatHisDate.substring(11, 16)+ '</span></div></div>'
@@ -268,7 +268,7 @@ $(document).ready(function(){
 			// 상대방이 보낸 메세지
 			if (messageObj.opp_upload_path != null){
 				// 상대방 프로필 이미지가 있을 경우
-				return '<div class="your-message-wrap"><div class="chat-your-profile"><img style="width:50px; height:50px;" src="display?file_name='+fileCallPath+'" alt="사용자 프로필 이미지"/><span id="MessageSenderID">'+
+				return '<div class="your-message-wrap"><div class="chat-your-profile"><img class="profile_image" src="display?file_name='+fileCallPath+'" alt="사용자 프로필 이미지"/><span id="MessageSenderID">'+
 				messageObj.chat_mem_id +
 				'</span></div><div class="row alert alert-info your-message"><div class="col_8"></div><div class="col_4 text-right"><span id="MessageContent">'+
 				messageObj.chat_content + 

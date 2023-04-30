@@ -323,3 +323,9 @@
 	color: #ffffff;
 }
 
+/* 프로필 이미지 */
+.profile_image {
+	width: 45px;
+	height: 45px;
+	border-radius: 100%;
+}
