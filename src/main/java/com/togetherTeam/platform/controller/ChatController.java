@@ -227,7 +227,7 @@ public class ChatController {
 		return "chat";
 	}
 	
-	// 채팅방 리스트에서 채팅방으로 접속
+	// 채팅방 리스트에서 채팅방으로 접속 (채팅 기록 불러오기)
 	@PostMapping("/getChatHistory")
 	@ResponseBody
 	public Map getChatHistory(int chatRoomNo, int senderNo) {

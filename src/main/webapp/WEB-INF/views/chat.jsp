@@ -135,7 +135,6 @@ $(document).ready(function(){
 		if(stompClient != null){
 			stompClient.disconnect();
 		}
-		console.log(data);
 		proList = "";
 		infoList = "";
 		hisList = "";
@@ -153,11 +152,19 @@ $(document).ready(function(){
 		$(".info-txt").html(infoList);
 		
 		$("#chatRoomNo").val(chatRoomNo);
+		
+		// 채팅 히스토리
+	    var tempHisDate="";
 		$.each(data.chatHistory,function(index, obj){
 			var chatHisId=obj.chat_mem_id;
 	        var chatHisContent=obj.chat_content;
 	        var chatHisDate=obj.chat_date;
 	        var fileCallPath = encodeURIComponent(obj.opp_upload_path + "/s_" + obj.opp_uuid + "_" + obj.opp_file_name);
+	        var formattedDate = dateFormat(chatHisDate);
+	        if (tempHisDate != formattedDate){
+	        	hisList += '<div class="chat-info"><p>'+formattedDate+'</p></div>'
+	        	tempHisDate = formattedDate
+	        }
 	        if (obj.chat_mem_id == senderId){
 		      	// 내가 보낸 메세지
 				hisList += '<div class="my-message-wrap"><span class="send-time" id="MessageSendTime">' + chatHisDate.substring(11, 16) + '</span>'
@@ -191,24 +198,20 @@ $(document).ready(function(){
 	// 메시지를 다이렉트로 전달 받는 경로는 subscribe로 설정
 	function connect(chatRoomNo) {
 		// map URL using SockJS
-		console.log("connected");
 		var socket = new SockJS('/broadcast');
 		var url = '/user/' + chatRoomNo + '/queue/messages';
-		console.log("url:",url)
 		// webSocket 대신 SockJS를 사용
 		// Stomp.client()가 아닌 Stomp.over()를 사용
 		stompClient = Stomp.over(socket);
-		
+		stompClient.debug = null
 		// connect(header, connectCallback(연결 성공 메소드))
 		stompClient.connect({"chatRoomNo":chatRoomNo}, function(){
-			console.log("connected STOMP")
 			// url : 채팅방 참여자에게 공유 경로
 			// callback(function())
 			// 클라이언트가 서버(Controller broker)로부터 메시지를 수신했을 때 실행
 			// (STOMP send()가 실행되었을 때)
 			stompClient.subscribe(url, function(output){
 				// JSP <body>에 append 할 메시지 내용
-				console.log("broadcastMessage working");
 				showBroadcastMessage(createTextNode(JSON.parse(output.body)));
 				
 			});	
@@ -221,7 +224,6 @@ $(document).ready(function(){
 	
 	// WebSocket broker 경로로 JSON 타입 메시지 데이터를 전송
 	function sendBroadcast(json) {
-		console.log("sendBoradcast 성공")
 		stompClient.send("/app/broadcast", {}, JSON.stringify(json));
 	}
 	
@@ -253,8 +255,6 @@ $(document).ready(function(){
 	
 	// 입력 메시지를 HTML 형태로 가공
 	function createTextNode(messageObj) {
-		console.log("createTextNode");
-		console.log("messageObj: "+ messageObj.chat_content);
 		var fileCallPath = encodeURIComponent(messageObj.opp_upload_path + "/s_" + messageObj.opp_uuid + "_" + messageObj.opp_file_name);
 		if (messageObj.chat_mem_id == senderId){
 			// 내가 보낸 메세지
@@ -299,6 +299,14 @@ $(document).ready(function(){
 	// 채팅방에 입장하거나 메시지를 수신받으면 스크롤 자동 최하단
 	function scrollDown(){
 		$('#content').scrollTop($('#content')[0].scrollHeight);
+	}
+	
+	// 날짜 문자열 년, 월, 일 처리
+	function dateFormat(date){
+		var year = date.substr(0, 4)
+		var month = date.substr(5, 2)
+		var day = date.substr(8, 2)
+		return year+"년 "+month+"월 "+day+"일"
 	}
 	</script>
 
