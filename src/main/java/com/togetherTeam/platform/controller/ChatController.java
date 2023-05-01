@@ -161,6 +161,7 @@ public class ChatController {
 		message.setChat_mem_id(chat.getChat_mem_id());
 		message.setChat_content(chat.getChat_content());
 		message.setChat_date(chat.getChat_date());
+		message.setChat_read(chat.getChat_read());
 		message.setOpp_upload_path(image.getMem_upload_path());
 		message.setOpp_uuid(image.getMem_uuid());
 		message.setOpp_file_name(image.getMem_file_name());
@@ -227,7 +228,7 @@ public class ChatController {
 		return "chat";
 	}
 	
-	// 채팅방 리스트에서 채팅방으로 접속 (채팅 기록 불러오기)
+	// 채팅방 리스트에서 채팅방으로 접속 (채팅 기록 히스토리 불러오기)
 	@PostMapping("/getChatHistory")
 	@ResponseBody
 	public Map getChatHistory(int chatRoomNo, int senderNo) {
