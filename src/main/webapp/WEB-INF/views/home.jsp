@@ -165,8 +165,9 @@ $(document).ready(function () {
 });   
     
 </script>
+
 <!-- main visual -->
-<section id="mvWrap">
+<section id="mvWrap" class="slider-box">
 
   <div class="txt-wrap">
     <div class="mv-txt">
@@ -184,12 +185,15 @@ $(document).ready(function () {
       </div>
 
     </div>
+
+   
   </div>
 
  
-  <div class="regular slider">
+  <div class="regular slick-slider">
     <div>
       <img src="${contextPath}/resource/images/mv_img01.png">
+      
     </div>
     <div>
       <img src="${contextPath}/resource/images/mv_img01.png">
@@ -197,6 +201,12 @@ $(document).ready(function () {
     <div>
       <img src="${contextPath}/resource/images/mv_img01.png">
     </div>
+  </div>
+  <div class="wrapper">
+    <span class="floating1"></span>
+    <span class="floating2"></span>
+    <span class="floating3"></span>
+   
   </div>
 </section>
 <!-- main visual // -->
@@ -380,92 +390,69 @@ $(document).ready(function () {
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="${contextPath}/resource/js/jquery/slick.js" type="text/javascript" charset="utf-8"></script>
 
-
-<script>
-  //범위 랜덤 함수(소수점 2자리까지)
-  function random(min, max) { //min~max 범위
-      //toFixed()를 통해 반환된 문자 데이터를,
-      //parseFloat()을 통해 소수점을 가지는 숫자 데이터로 변환
-      return parseFloat((Math.random() * (max - min) + min).toFixed(2))
-  }
-
-  function floatingCircle(item, delayAfter, size) {
-      gsap.to(
-          item, //선택자
-          random(1.5, 2.5), //1.5~2.5초 사이의 랜덤한 애니메이션 동작 시간
-          {
-              delay: random(0, delayAfter), //몇초 뒤에 애니메이션을 실행, 지연 시간 설정
-              y: size, //transform: translateY(수치)와 같음. 수직으로 움직이는 크기
-              repeat: -1, //몇 번 반복하는지를 설정, -1은 무한 반복.
-              yoyo: true, //한번 재생된 애니메이션을 다시 뒤로 재생-위아래 움직임
-              ease: Power1.easeInOut //easing 함수 적용
-          }
-      );
-  }
-  
-  floatingCircle('.c1', .5, 25)
-  floatingCircle('.c2', 1, 20)
-  floatingCircle('.c3', 1.5, 10)
-</script>
-
-
-<script>
-    console.clear();
-  $('.visual').slick({
-      autoplay: true,
-      autoplaySpeed: 10000,
-      dots:true,
-  });
-
-
-  /* 슬릭 - setting에서 추가기능을 찾아서 넣을 수 있습니다. */
-    $('.play').click(function(){
-        $('.visual').slick('slickPlay');
-    });
-
-    $('.stop').click(function(){
-        $('.visual').slick('slickPause');
-    });
-</script>
-
 <script type="text/javascript">
-  $(document).on('ready', function() {
-   
-    $(".regular").slick({
-      dots: true,
-      infinite: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      speed: 300, // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
-      arrows: true, // 옆으로 이동하는 화살표 표시 여부
-      dots: true, // 스크롤바 아래 점으로 페이지네이션 여부
-      autoplay: false, // 자동 스크롤 사용 여부
-       autoplay: false, // 자동 스크롤 사용 여부
-       autoplaySpeed: 500, // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
-        pauseOnHover: true, // 슬라이드 이동 시 마우스 호버하면 슬라이더 멈추게 설정
-        vertical: false, // 세로 방향 슬라이드 옵션
-        prevArrow: ".prev", // 이전 화살표 모양 설정
-        nextArrow: ".next", // 다음 화살표 모양 설정
-                responsive: [
-            { // 반응형 웹 구현 옵션
-                breakpoint: 1024, //화면 사이즈 960px
-                settings: {
-                    //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
-                    slidesToShow: 1
-                }
-            }, {
-                breakpoint: 768, //화면 사이즈 768px
-                settings: {
-                    //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
-                    slidesToShow: 1                }
-            }
-        ]
-    });
+  // 메인비주얼
+  $(document).on('ready', function () {
+
+      $(".regular").slick({
+          dots: true,
+          infinite: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          speed: 800, // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+          arrows: true, // 옆으로 이동하는 화살표 표시 여부
+          dots: true, // 스크롤바 아래 점으로 페이지네이션 여부
+          autoplay: true, // 자동 스크롤 사용 여부
+          autoplaySpeed: 4000, // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+          pauseOnHover: false, // 슬라이드 이동 시 마우스 호버하면 슬라이더 멈추게 설정
+          vertical: false, // 세로 방향 슬라이드 옵션
+          prevArrow: ".prev", // 이전 화살표 모양 설정
+          nextArrow: ".next", // 다음 화살표 모양 설정
+          responsive: [
+              { // 반응형 웹 구현 옵션
+                  breakpoint: 1024, //화면 사이즈 960px
+                  settings: {
+                      //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                      slidesToShow: 1
+                  }
+              }, {
+                  breakpoint: 768, //화면 사이즈 768px
+                  settings: {
+                      //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                      slidesToShow: 1
+                  }
+              }
+          ]
+      });
+
+
   });
 
 
 
+</script>
 
 
+<script>
 
+  // 범위 랜덤 함수(소수점 2자리까지)
+function random(min, max) {
+  // `.toFixed()`를 통해 반환된 문자 데이터를,
+  // `parseFloat()`을 통해 소수점을 가지는 숫자 데이터로 변환
+  return parseFloat((Math.random() * (max - min) + min).toFixed(2))
+}
+
+function floatingObject(selector,delay,size){
+  // gsap.to(요소, 시간, 옵션)
+  gsap.to(selector, random(1.5,2.5), {
+    y: size,
+    repeat: -1, // -1 무한반복
+    yoyo: true, // 애니메이션 되돌아오기(설정안할 시 끈킴)
+    ease: Power1.easeInOut, // 타이밍함수
+    delay: random(0,delay) // 지연시간
+  })
+}
+floatingObject('.floating1',1,15)
+floatingObject('.floating2',.5,15)
+floatingObject('.floating3',1.5,20)
 </script>
