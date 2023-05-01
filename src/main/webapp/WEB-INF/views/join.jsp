@@ -129,7 +129,7 @@ $(document).ready(function(){
 				});
 			</script>
 		</div>
-		
+		<p class="join-txt">프로필 이미지 등록이 없으면 기본 프로필 이미지로 등록됩니다.</p>
 		<div id="uploadResult">
 			<!-- 
 				<div id = "result_card">

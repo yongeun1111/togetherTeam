@@ -70,6 +70,9 @@
 									</c:url>
 									<img style="width:35px; height:35px;" src="${url}"/>
 								</c:if>
+								<c:if test="${empty login.mem_upload_path}">
+									<img style="width:35px; height:35px;" src="${contextPath}/resource/images/profile_i_01.png"/>
+								</c:if>
 								${login.mem_id}
 								</a>
 							</li>	

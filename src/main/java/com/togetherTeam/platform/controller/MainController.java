@@ -91,6 +91,7 @@ public class MainController  {
 	        // 로그인페이지에서 {error}를 열어봤을때, 오류 문장이 있으면 모덜창으로 보여주기?
 	        return "login"; // 로그인 페이지로 이동
 	    } else { // 로그인 성공 시
+	    	
 	        session.setAttribute("login", result); // 로그인 정보를 세션에 저장
 	        return "redirect:"; // 홈 페이지로 이동
 	    }
