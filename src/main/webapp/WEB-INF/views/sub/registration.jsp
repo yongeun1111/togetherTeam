@@ -117,7 +117,7 @@ $(document).ready(function(){
 					<td>
 						<div class="pro-infor-wrap">
 							<!-- 상품 테마 선택 -->
-							<select name="pro_category">
+							<select id="pro_category" name="pro_category">
 								<option value="">상품 카테고리</option>
 								<option value="에어프라이어">에어프라이어</option>
 								<option value="전기포트">전기포트</option>
@@ -127,7 +127,7 @@ $(document).ready(function(){
 								<option value="공기청정기">공기청정기</option>
 							</select>
 							<!-- 제조사 선택 -->
-							<select name="maker">
+							<select id="maker" name="maker">
 								<option value="">제조사</option>
 								<option value="422">422</option>
 								<option value="아이닉">아이닉</option>

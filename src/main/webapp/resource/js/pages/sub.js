@@ -77,6 +77,7 @@ $(document).ready(function(){
 		});
 
 		formDataImage.append("image", fileObj);
+		
 		$.ajax({
 			url: "http://localhost:5000/predict",
 			type: "POST",
@@ -84,13 +85,50 @@ $(document).ready(function(){
 			processData: false,
 			contentType: false,
 			success: function(response){
-				console.log("predict", response);
+				// console.log("predict", response);
+				let class_id = response.class_id[0];
+				let findDex = class_id.indexOf('_');
+				const cate = class_id.slice(0, findDex);
+				const productName = class_id.slice(findDex+1);
+				console.log(productName);
+				console.log(cate);
+				
+				$.ajax({
+				    url: "./resource/json/"+cate+".json", // json 파일 경로
+				    dataType: "json",
+   					success: function(data) {
+						let proEx = [];
+						for(let i = 0; i < data.length; i++){
+							if(data[i].title.includes(productName)){
+								// console.log(productName);
+								proEx.push(data[i]);
+								// console.log(proEx);
+								if(data[i].title == productName){
+									proEx = [];
+									proEx.push(data[i]);
+								}
+							}
+						}
+						console.log(proEx[0]);
+						$("#pro_category").val(cate).prop("selected", true);
+						$("#maker").val(proEx[0].company).prop("selected", true);
+						$("#pro_name").val(proEx[0].title)
+						$("#pro_detail")
+						
+    				},
+    				error: function(xhr, status, error){
+        				console.log(xhr);
+    				}
+				});
+				
+				
 			},
 			error: function(xhr, status, error){
 				console.log(xhr);
 			}
 			
 		});
+		
 		
 	});
 	
