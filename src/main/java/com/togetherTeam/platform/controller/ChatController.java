@@ -105,7 +105,12 @@ public class ChatController {
 			
 			Chat recentChat = chatRoomService.getRecentChat(chatRoom.getChat_room_no());
 			if (recentChat != null){
-				chatRoom.setRecentChat(recentChat.getChat_content());
+				if (recentChat.getChat_content().length() <= 10) {
+					chatRoom.setRecentChat(recentChat.getChat_content());					
+				} else {
+					String tempChat = recentChat.getChat_content().substring(0, 9)+"...";
+					chatRoom.setRecentChat(tempChat);
+				}
 			}
 			chatRoom.setUnReadChat(count);
 		}
@@ -206,8 +211,11 @@ public class ChatController {
 			}
 			
 			Chat recentChat = chatRoomService.getRecentChat(chatRoom.getChat_room_no());
-			if (recentChat != null){
-				chatRoom.setRecentChat(recentChat.getChat_content());
+			if (recentChat.getChat_content().length() <= 10) {
+				chatRoom.setRecentChat(recentChat.getChat_content());					
+			} else {
+				String tempChat = recentChat.getChat_content().substring(0, 9)+"...";
+				chatRoom.setRecentChat(tempChat);
 			}
 			chatRoom.setUnReadChat(count);
 		}
