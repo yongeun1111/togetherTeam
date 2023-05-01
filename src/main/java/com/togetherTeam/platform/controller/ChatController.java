@@ -85,7 +85,7 @@ public class ChatController {
 					chatRoom.setOpp_file_name(image.getMem_file_name());
 				}
 				// 읽지 않은 메시지 카운트
-				count = chatRoomService.findChatRead(chatRoom.getChat_room_no(), chatRoom.getBuyer_mem_no());
+				count = chatRoomService.findUnReadChat(chatRoom.getChat_room_no(), chatRoom.getBuyer_mem_no());
 		
 			} else {
 				
@@ -100,7 +100,7 @@ public class ChatController {
 					chatRoom.setOpp_file_name(image.getMem_file_name());					
 				}
 				
-				count = chatRoomService.findChatRead(chatRoom.getChat_room_no(), chatRoom.getSeller_mem_no());
+				count = chatRoomService.findUnReadChat(chatRoom.getChat_room_no(), chatRoom.getSeller_mem_no());
 			}
 			
 			Chat recentChat = chatRoomService.getRecentChat(chatRoom.getChat_room_no());
@@ -144,6 +144,8 @@ public class ChatController {
 		
         // 채팅방에 상대편이 지금 있다면 채팅메시지 바로 읽음 처리
         if (chatRoom.getUser_count() > 1) {
+        	chat.setChat_read(0);
+        } else {
         	chat.setChat_read(1);
         }
         
@@ -192,7 +194,7 @@ public class ChatController {
 					chatRoom.setOpp_file_name(image.getMem_file_name());
 				}
 				// 읽지 않은 메시지 카운트
-				count = chatRoomService.findChatRead(chatRoom.getChat_room_no(), chatRoom.getBuyer_mem_no());
+				count = chatRoomService.findUnReadChat(chatRoom.getChat_room_no(), chatRoom.getBuyer_mem_no());
 		
 			} else {
 				
@@ -207,15 +209,17 @@ public class ChatController {
 					chatRoom.setOpp_file_name(image.getMem_file_name());					
 				}
 				
-				count = chatRoomService.findChatRead(chatRoom.getChat_room_no(), chatRoom.getSeller_mem_no());
+				count = chatRoomService.findUnReadChat(chatRoom.getChat_room_no(), chatRoom.getSeller_mem_no());
 			}
 			
 			Chat recentChat = chatRoomService.getRecentChat(chatRoom.getChat_room_no());
-			if (recentChat.getChat_content().length() <= 10) {
-				chatRoom.setRecentChat(recentChat.getChat_content());					
-			} else {
-				String tempChat = recentChat.getChat_content().substring(0, 9)+"...";
-				chatRoom.setRecentChat(tempChat);
+			if (recentChat != null){
+				if (recentChat.getChat_content().length() <= 10) {
+					chatRoom.setRecentChat(recentChat.getChat_content());					
+				} else {
+					String tempChat = recentChat.getChat_content().substring(0, 9)+"...";
+					chatRoom.setRecentChat(tempChat);
+				}
 			}
 			chatRoom.setUnReadChat(count);
 		}
@@ -264,10 +268,10 @@ public class ChatController {
 		for (ChatRoom chatRoom : chatList) {
 			if (memNo != chatRoom.getBuyer_mem_no()) {
 				tempNo = chatRoom.getBuyer_mem_no();
-				count += chatRoomService.findChatRead(chatRoom.getChat_room_no(), tempNo);
+				count += chatRoomService.findUnReadChat(chatRoom.getChat_room_no(), tempNo);
 			} else {
 				tempNo = chatRoom.getSeller_mem_no();
-				count += chatRoomService.findChatRead(chatRoom.getChat_room_no(), tempNo);
+				count += chatRoomService.findUnReadChat(chatRoom.getChat_room_no(), tempNo);
 			}
 		}
 		

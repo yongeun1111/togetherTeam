@@ -59,6 +59,7 @@
     	  FROM CHAT_ROOM
     	 WHERE SELLER_MEM_NO = #{memNo}
     	    OR BUYER_MEM_NO = #{memNo}
+    	 ORDER BY ROOM_DATE DESC
     </select>
     
     <select id="findChatRoom" resultType="com.togetherTeam.platform.entity.ChatRoom">
@@ -67,17 +68,17 @@
     	 WHERE CHAT_ROOM_NO = #{chatRoomNo}
     </select>
     
-    <select id="findChatRead" parameterType="int" resultType="int">
+    <select id="findUnReadChat" parameterType="int" resultType="int">
     	SELECT COUNT(*)
     	  FROM CHAT
     	 WHERE CHAT_ROOM_NO = #{chatRoomNo}
     	   AND CHAT_MEM_NO = #{memNo}
-    	   AND CHAT_READ = 0
+    	   AND CHAT_READ = 1
     </select>
     
     <update id="updateChatRead">
     	UPDATE CHAT 
-    	   SET CHAT_READ = 1
+    	   SET CHAT_READ = 0
     	 WHERE CHAT_MEM_NO = #{chatMemNo}
     	   AND CHAT_ROOM_NO = #{chatRoomNo}
     </update>
