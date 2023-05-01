@@ -50,7 +50,10 @@ $(document).ready(function(){
 			var chatHisId=obj.chat_mem_id;
 	        var chatHisContent=obj.chat_content;
 	        var chatHisDate=obj.chat_date;
-	        var chatHisRead=obj.chat_read;
+	        var chatHisRead = "";
+	        if (obj.chat_read == 1){
+		        chatHisRead=obj.chat_read;			
+			}
 	        var fileCallPath = encodeURIComponent(obj.opp_upload_path + "/s_" + obj.opp_uuid + "_" + obj.opp_file_name);
 	        var formattedDate = dateFormat(chatHisDate);
 	        if (tempHisDate != formattedDate){
@@ -148,7 +151,10 @@ $(document).ready(function(){
 	
 	// 입력 메시지를 HTML 형태로 가공
 	function createTextNode(messageObj) {
-		console.log(messageObj)
+		if (messageObj.chat_read == 0){
+			messageObj.chat_read = "";
+		}
+		var contextPath = getContextPath();
 		var fileCallPath = encodeURIComponent(messageObj.opp_upload_path + "/s_" + messageObj.opp_uuid + "_" + messageObj.opp_file_name);
 		if (messageObj.chat_mem_id == senderId){
 			// 내가 보낸 메세지
@@ -173,7 +179,7 @@ $(document).ready(function(){
 				'</span></div></div>';				
 			} else {
 				// 상대방 프로필 이미지가 없을 경우
-				return '<div class="your-message-wrap"><div class="chat-your-profile"><img src="${contextPath}/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"><span id="MessageSenderID">'+
+				return '<div class="your-message-wrap"><div class="chat-your-profile"><img src="'+contextPath+'/resource/images/profile_i_02.png" alt="사용자 프로필 이미지"><span id="MessageSenderID">'+
 				messageObj.chat_mem_id +
 				'</span></div><div class="row alert alert-info your-message"><div class="col_8"></div><div class="col_4 text-right"><span id="MessageContent">'+
 				messageObj.chat_content + 
