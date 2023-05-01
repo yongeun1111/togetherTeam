@@ -882,7 +882,28 @@ subpage
     margin: 0 auto;
 }
 
+/* 상품 검색 더보기 버튼 */
 
+.more-btn {
+    display: block;
+    text-align: center;
+}
+
+.more-btn button {
+    padding: 17px 120px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1f79df;
+    border: 1px solid #1f79df;
+    border-radius: 100px;
+    background: none;
+}
+
+.more-btn button:hover {
+    color: #fff;
+    background-color: #1f79df;
+    transition: all 0.2s;
+}
 
 
 

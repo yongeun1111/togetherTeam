@@ -238,7 +238,7 @@ function searchProduct(data){
         
 	    var fileCallPath = encodeURIComponent(obj.upload_path + "/s_" + obj.uuid + "_" + obj.file_name);
 	    
-        if (loadCount < 4) {
+        if (loadCount < 8) {
 	        // 상품 정보 추가
 	        
 	        searchHtml += '<div class="col-lg-3 pro-list mb50">'
@@ -289,14 +289,14 @@ function searchProduct(data){
 	
 	}
 	if (loadCount > 4){	
-		searchHtml += '</div><button id="load" onclick="moreInfo()">더 보기</button>'
+		searchHtml += '</div><div class="more-btn"><button id="load" onclick="moreInfo()">더 보기</button></div>'
 	};
     $(".search-result").html(searchHtml);    
 };
 
 // 더보기 버튼 
 function moreInfo(e){
-	$("div:hidden").slice(0,10).show();
+	$("div:hidden").slice(0,20).show();
 	if ($("div:hidden").length == 0) {
 		$("#load").fadeOut(100);
 	};
