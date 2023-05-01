@@ -139,13 +139,14 @@ public class MainController  {
 	        rttr.addFlashAttribute("error", "회원가입이 실패하였습니다.");
 	        return "join"; // 회원가입 페이지로 이동
 	    } else { // 회원가입성공
-	    	ProfileImage profileImage = new ProfileImage();
-	    	profileImage.setMem_no(vo.getMem_no());
-	    	profileImage.setMem_upload_path(vo.getMem_upload_path());
-	    	profileImage.setMem_uuid(vo.getMem_uuid());
-	    	profileImage.setMem_file_name(vo.getMem_file_name());
-	    	mapper.insertProfileImage(profileImage);
-	    	System.out.println(profileImage);
+	    	if (vo.getMem_upload_path() != null) {
+	    		ProfileImage profileImage = new ProfileImage();
+	    		profileImage.setMem_no(vo.getMem_no());
+	    		profileImage.setMem_upload_path(vo.getMem_upload_path());
+	    		profileImage.setMem_uuid(vo.getMem_uuid());
+	    		profileImage.setMem_file_name(vo.getMem_file_name());
+	    		mapper.insertProfileImage(profileImage);	    		
+	    	}
 	        rttr.addFlashAttribute("join", mem_id); // 입력한 회원아이디
 	        return "redirect:join_success"; // 로그인페이지로 이동
 	    }
