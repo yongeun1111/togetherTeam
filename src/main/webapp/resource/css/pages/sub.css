@@ -510,12 +510,18 @@ subpage
     width: 333px;
 }
 
-.inputArea tr td textarea {
+.inputArea tr td textarea, .inputArea .fake_textarea {
     padding-right: 30px;
     width: 100%;
     box-sizing: border-box;
     border: 1px solid #ddd;
     border-radius: 5px;
+}
+
+.inputArea .fake_textarea {
+    line-height: 30px;
+    height: 160px;
+    overflow: auto;
 }
 
 .inputArea tr td input, .inputArea tr td select {

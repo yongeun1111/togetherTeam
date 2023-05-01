@@ -175,7 +175,9 @@ $(document).ready(function(){
 				</tr>
 				<tr>
 					<td><label for="pro_detail">상품 정보</label></td>
-					<td><textarea rows="5" cols="50" id="pro_detail" name="pro_detail" readonly="readonly"></textarea></td>
+					<td>
+						<div id="pro_detail" name="pro_detail" class="fake_textarea"></div>
+					</td>
 				</tr>
 				<tr>
 					<td><label for="pro_content">판매자 설명</label></td>

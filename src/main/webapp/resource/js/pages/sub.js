@@ -113,7 +113,9 @@ $(document).ready(function(){
 						$("#pro_category").val(cate).prop("selected", true);
 						$("#maker").val(proEx[0].company).prop("selected", true);
 						$("#pro_name").val(proEx[0].title)
-						$("#pro_detail")
+						// $("#pro_detail")
+						
+						proDetail();
 						
     				},
     				error: function(xhr, status, error){
@@ -254,7 +256,373 @@ $(document).ready(function(){
 			}
 		});	
 	
-	
+// 상품 정보
+function proDetail(){
+
+	let pro_cate = $("#pro_category").val();
+	let pro_name = $("#pro_name").val();
+	let pro_detail = $("#pro_detail")
+	let proDetailInfo = "";
+
+	$.ajax({
+		url: "./resource/json/"+pro_cate+".json", // json 파일 경로
+		dataType: "json",
+   		success: function(data) {
+			let pro_Ex = [];
+			for(let i = 0; i < data.length; i++){
+				if(data[i].title.includes(pro_name)){
+					pro_Ex.push(data[i]);
+					if(data[i].title == pro_name){
+						pro_Ex = [];
+						pro_Ex.push(data[i]);
+					}
+				}
+			}
+			console.log(pro_Ex[0]);
+			$("#detailInformation").remove();
+			if(pro_cate == '공기청정기'){
+				proDetailInfo += "<table id='detailInformation'>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 제조사 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].company +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 제품명 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].title +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 상품 카테고리 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].품목 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 용도 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].용도 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 공기청정방식 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].공기청정방식 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 사용면적 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].사용면적 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 인증 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].인증 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 필터단계 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].필터단계 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 필터 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].필터 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 이온 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].이온 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 센서 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].센서 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 주요기능 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].주요기능 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 미세먼지 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].미세먼지 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 풍량조절 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].풍량조절 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 모드 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].모드 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 청정도표시 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].청정도표시 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 부가기능 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].부가기능 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 에너지효율 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].에너지효율 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 소비전력 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].소비전력 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 크기 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].크기 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 무게 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].무게 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 소음 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].소음 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 필터등급 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].필터등급 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "</table>";
+				pro_detail.append(proDetailInfo);
+			}else if(pro_cate == '에어프라이어'){
+				proDetailInfo += "<table id='detailInformation'>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 제조사 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].company +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 제품명 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].title +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 상품 카테고리 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].품목 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 용량 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].용량 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 조작부 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].조작부 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 코팅 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].코팅 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 자동요리메뉴 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].자동요리메뉴 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 온도조절 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].온도조절 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 타이머 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].타이머 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 부가기능 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].부가기능 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 소비전력 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].소비전력 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 색상 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].색상 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 크기 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].크기 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 기름받이 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].기름받이 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 무게 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].무게 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 안전기능 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].안전기능 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "</table>";
+				pro_detail.append(proDetailInfo);
+			}else if(pro_cate == '전기포트'){
+				proDetailInfo += "<table id='detailInformation'>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 제조사 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].company +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 제품명 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].title +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 상품 카테고리 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].품목 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 용량 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].용량 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 수위표시창 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].수위표시창 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 받침대 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].받침대 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 거름망 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].거름망 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 부가기능 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].부가기능 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 안전기능 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].안전기능 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 소비전력 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].소비전력 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 크기 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].크기 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 형태 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].형태 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 재질 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].재질 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 온도조절 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].온도조절 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 온도범위 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].온도범위 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "</table>";
+				pro_detail.append(proDetailInfo);
+			}else if(pro_cate == '전자렌지'){
+				proDetailInfo += "<table id='detailInformation'>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 제조사 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].company +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 제품명 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].title +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 상품 카테고리 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].품목 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 용량 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].용량 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 조작부 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].조작부 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 조리실코팅 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].조리실코팅 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 자동요리 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].자동요리 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 조리기능 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].조리기능 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 온도조절 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].온도조절 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 스마트인버터 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].스마트인버터 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 부가기능 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].부가기능 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 유리 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].유리 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 안전기능 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].안전기능 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 절전 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].절전 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 출력 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].출력 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 소비전력 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].소비전력 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 색상 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].색상 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 크기 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].크기 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 도어열림 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].도어열림 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 무게 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].무게 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "</table>";
+				pro_detail.append(proDetailInfo);
+			}else if(pro_cate == '토스트기'){
+				proDetailInfo += "<table id='detailInformation'>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 제조사 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].company +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 제품명 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].title +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 상품 카테고리 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].품목 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 투입구 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].투입구 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 주요기능 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].주요기능 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 굽기조절 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].굽기조절 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 받침대 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].받침대 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 구성 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].구성 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 소비전력 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].소비전력 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 색상 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].색상 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 안전기능 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].안전기능 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 부가기능 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].부가기능 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 뚜껑기능 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].뚜껑기능 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "</table>";
+				pro_detail.append(proDetailInfo);
+			}else if(pro_cate == '헤어드라이기'){
+				proDetailInfo += "<table id='detailInformation'>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 제조사 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].company +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 제품명 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].title +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 상품 카테고리 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].품목 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 손잡이 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].손잡이 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 방식 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].방식 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 풍량조절 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].풍량조절 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 조작부 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].조작부 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 온도조절 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].온도조절 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 발생성분 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].발생성분 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 노즐 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].노즐 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 부가기능 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].부가기능 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 안전기능 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].안전기능 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 코드길이 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].코드길이 +"</td>";
+				proDetailInfo += "<td col='col' width='20%'> 무게 </td>";
+				proDetailInfo += "<td>" + pro_Ex[0].무게 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "<tr>";
+				proDetailInfo += "<td col='col' width='20%'> 소비전력 </td>";
+				proDetailInfo += "<td width='25%'>" + pro_Ex[0].소비전력 +"</td>";
+				proDetailInfo += "</tr>";
+				proDetailInfo += "</table>";
+				pro_detail.append(proDetailInfo);
+			}
+						
+    	},
+    	error: function(xhr, status, error){
+        	console.log(xhr);
+    	}
+	})
+
+};	
 	
 	
 });
