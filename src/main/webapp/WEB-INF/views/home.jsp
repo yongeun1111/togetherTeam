@@ -166,42 +166,39 @@ $(document).ready(function () {
     
 </script>
 <!-- main visual -->
-<div id="mvWrap">
+<section id="mvWrap">
 
-  <div class="mv-txt">
-    <p>쉽고하게, 편리하게!</p>
-    <p>안전한 중고 거래</p>
-    <p>자동 물품 등록이 가능한 중고 판매 서비스,<br>
-      지금 바로 경험해 보세요!   </p>
-  </div>
+  <div class="txt-wrap">
+    <div class="mv-txt">
+      <p>쉽고하게, 편리하게!</p>
+      <p>안전한 중고 거래</p>
+      <p><span class="bold">자동 물품 등록</span>이 가능한 <span class="bold">중고 판매 서비스</span>,<br>
+        지금 바로 경험해 보세요!   </p>
 
-  <div class="slide">
-    <!-- slick을 적용시킬 요소 -->
-    <div class="slider-div">
-        <!-- 슬라이드 되어야할 아이템들 -->
-        <div class="item">
-          <div class="mv-img">
-            <img src="${contextPath}/resource/images/mv01.png" alt="">
-          </div>
+      <!-- button 커스텀을 위한 요소 --> 
+      <div class="mv-page">
+        <div id="mvBtn" class="button">
+          <div class="prev"></div>
+          <div class="next"></div>
         </div>
-        <div class="item">
-          <div class="mv-img">
-            <img src="${contextPath}/resource/images/mv01.png" alt="">
-          </div>
-        </div>
-        <div class="item">
-          <div class="mv-img">
-            <img src="${contextPath}/resource/images/mv01.png" alt="">
-          </div>
-        </div>
-    </div>
-    <!-- button 커스텀을 위한 요소 --> 
-    <div class="button">
-        <div class="next">ss</div>
-        <div class="prev">ll</div>
+      </div>
+
     </div>
   </div>
-</div>
+
+ 
+  <div class="regular slider">
+    <div>
+      <img src="${contextPath}/resource/images/mv_img01.png">
+    </div>
+    <div>
+      <img src="${contextPath}/resource/images/mv_img01.png">
+    </div>
+    <div>
+      <img src="${contextPath}/resource/images/mv_img01.png">
+    </div>
+  </div>
+</section>
 <!-- main visual // -->
 
 <!-- #container -->
@@ -429,4 +426,46 @@ $(document).ready(function () {
     $('.stop').click(function(){
         $('.visual').slick('slickPause');
     });
+</script>
+
+<script type="text/javascript">
+  $(document).on('ready', function() {
+   
+    $(".regular").slick({
+      dots: true,
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      speed: 300, // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+      arrows: true, // 옆으로 이동하는 화살표 표시 여부
+      dots: true, // 스크롤바 아래 점으로 페이지네이션 여부
+      autoplay: false, // 자동 스크롤 사용 여부
+       autoplay: false, // 자동 스크롤 사용 여부
+       autoplaySpeed: 500, // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+        pauseOnHover: true, // 슬라이드 이동 시 마우스 호버하면 슬라이더 멈추게 설정
+        vertical: false, // 세로 방향 슬라이드 옵션
+        prevArrow: ".prev", // 이전 화살표 모양 설정
+        nextArrow: ".next", // 다음 화살표 모양 설정
+                responsive: [
+            { // 반응형 웹 구현 옵션
+                breakpoint: 1024, //화면 사이즈 960px
+                settings: {
+                    //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                    slidesToShow: 1
+                }
+            }, {
+                breakpoint: 768, //화면 사이즈 768px
+                settings: {
+                    //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                    slidesToShow: 1                }
+            }
+        ]
+    });
+  });
+
+
+
+
+
+
 </script>

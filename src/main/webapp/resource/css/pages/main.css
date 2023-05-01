@@ -175,54 +175,51 @@ html::-webkit-scrollbar {
 #mvWrap {
     width: 1400px;
     margin: 0 auto;
-}
-
-.slide {
-    margin-top: 140px; 
-    /* 전체적인 요소를 감싸고 있는 앨리먼트 */
-    position:relative;
-    /* 커스텀 버튼 위치를 잡기 위해 relative를 줌 */
-    width:100%;
-    height: 545px;
-}
-.slider-div {
-    /* slick을 적용시킬 요소 */
-    border:1px solid blue;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#mvWrap .item .mv-img {
     border: 1px solid red;
-    text-align: right;
+    box-sizing: border-box;
 }
 
-.item {
-    /* 슬라이드 되어야 할 아이템 */
-    width:calc(100%/3);
-    height:100%;
+.slider {
+    width: 100%;
+    margin: 100px auto;
 }
 
-.item img {
-    display: inline-block;
-    text-align: right;
+.slick-slide {
+    margin: 0 20px;
 }
 
-.next,.prev {
-    /* 커스텀 버튼. 위치를 잡기위해 absolute 를 준다 */
-    position:absolute;
-    top:20%;
+.slick-slide img {
+    width: 100%;
 }
-.next {
-    right:5%;
+
+.slick-next:before,
+.slick-prev:before {
+    color: black;
 }
-.prev {
-    left: 5%;
+
+.slick-slide {
+    transition: all ease-in-out 0.3s;
+    opacity: 0.2;
+}
+
+.slick-active {
+    opacity: 0.5;
+}
+
+.slick-current {
+    opacity: 1;
 }
 
 .mv-txt {
     position: absolute;
-    border: 10px solid red;
+    border: 1px solid yellow;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+    /* height: 100%; */
+    height: 517px;
+    z-index: 1;
 }
 
 .mv-txt p:nth-child(1) {
@@ -236,3 +233,86 @@ html::-webkit-scrollbar {
     font-family: 'BMDOHYEON';
     color: #222;
 }
+
+.mv-txt p:nth-child(3) {
+    font-size: 1.4rem;
+    font-family: 'Pretendard';
+    color: #666;
+}
+
+
+
+
+.mv-page {
+    position: relative;
+    z-index: 50;
+}
+
+#mvBtn {
+    display: flex;
+    cursor: pointer;
+
+}
+
+#mvBtn .next {
+    content: '';
+    width: 7px; /* 사이즈 */
+    height: 7px; /* 사이즈 */
+    border-top: 2px solid #000; /* 선 두께 */
+    border-right: 2px solid #000; /* 선 두께 */
+    transform: rotate(45deg); /* 각도 */
+}
+
+#mvBtn .prev {
+    content: '';
+    width: 7px; /* 사이즈 */
+    height: 7px; /* 사이즈 */
+    border-top: 2px solid #000; /* 선 두께 */
+    border-right: 2px solid #000; /* 선 두께 */
+    transform: rotate(225deg); /* 각도 */
+}
+
+
+.next,.prev {
+    /* 커스텀 버튼. 위치를 잡기위해 absolute 를 준다 */
+    position:absolute;
+    top:20%;
+}
+
+.next {
+    margin-left: 20px;
+}
+
+.slick-slide{ 
+    width: 1400px;
+}
+
+.slick-dots {
+    bottom: 0;
+}
+
+.slick-dots li {
+    padding: 0 10px;
+    width: 0;
+    height: 0;
+}
+
+.slick-dots li button {
+    font-family: 'Pretendard';
+    font-size: 0.9rem;
+    color: #cecece;
+    font-weight: 600;
+    width: 0;
+    height: 0;
+}
+
+.slick-dots li button:before {
+    width: 0;
+    height: 0;
+    content: "";
+}
+
+.slick-dots li.slick-active button {
+    color: #222 !important;
+}
+
