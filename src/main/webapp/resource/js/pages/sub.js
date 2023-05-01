@@ -47,9 +47,11 @@ $(document).ready(function(){
 		}
 		
 		let formData = new FormData();
+		let formDataImage = new FormData();
 		let fileInput = $('input[name="uploadFile"]');
 		let fileList = fileInput[0].files;
-		// let fileObj = fileList[0];
+		let fileObj = fileList[0];
+		// console.log(fileObj)
 		
 		// formData.append("uploadFile", fileObj);
 		
@@ -73,7 +75,22 @@ $(document).ready(function(){
 				alert("이미지 파일이 아닙니다.");
 			}
 		});
-		
+
+		formDataImage.append("image", fileObj);
+		$.ajax({
+			url: "http://localhost:5000/predict",
+			type: "POST",
+			data: formDataImage,
+			processData: false,
+			contentType: false,
+			success: function(response){
+				console.log("predict", response);
+			},
+			error: function(xhr, status, error){
+				console.log(xhr);
+			}
+			
+		});
 		
 	});
 	
