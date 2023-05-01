@@ -72,7 +72,7 @@ $(document).ready(function(){
 						<div class="filebox"> 
 							
 							<label>
-								<input class="file_real" id="fileItem" name="uploadFile" multiple="multiple" type="file" accept="image/jpg, image/png, image/gif" />
+								<input class="file_real" id="fileItem" name="uploadFile" multiple="multiple" type="file" accept="image/jpeg, image/png, image/gif" />
 								<input class="file_fake" type="text" placeholder="*.jpg/png/gif Only" readonly tabindex="-1" />
 							  
 								<input type="button" class="button" value="파일 찾기" />
