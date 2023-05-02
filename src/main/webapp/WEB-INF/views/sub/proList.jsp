@@ -136,7 +136,7 @@ $(document).ready(function() {
 </script>
 
 <!-- #container -->
-<div class="sub-inner">
+<div class="sub-inner container">
 	<h2>중고 상품</h2>
 	<div class="pro-list">
 

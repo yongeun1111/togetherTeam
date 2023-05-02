@@ -44,11 +44,14 @@
 			
 			<nav>
 				<div class="nav-wrap">
-					<h1>
-						<a href="/">
-							<img src="${contextPath}/resource/images/logo.png" alt="사이트 이름"><span class="ally-hidden">메인페이지 이동</span>
-						</a>
-					</h1>
+					<div class="logo-wrap">
+						<h1 id="logo">
+							<a href="/">
+								<img src="${contextPath}/resource/images/logo.png" alt="사이트 이름"><span class="ally-hidden">메인페이지 이동</span>
+							</a>
+						</h1>
+					</div>
+					
 					<div class="gnb-wrap">
 						<ul class="gnb">
 							<li><a href="/proList">중고 상품</a></li>

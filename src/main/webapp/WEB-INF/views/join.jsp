@@ -102,9 +102,9 @@ $(document).ready(function(){
 </script>
 
 <!-- #container -->
-<div class="container join-wrap">
+<div class="container sub-inner">
 
-  <div class="con-wrap center">
+  <div class="center">
     <h2>회원가입</h2>
     <form class="join-form" action="/join" method="post" required>
       <!-- 프로필 이미지 -->
@@ -146,12 +146,11 @@ $(document).ready(function(){
       <!-- 1. 아이디 -->
       <div class="field">
         <p><input id="id" type="text" name="mem_id" required placeholder="아이디"></p>
-        <p class="join-txt">사용할 아이디를 입력해 주세요.</p>
+        <div class="check">
+          <p><span id="check_id"></span></p>
+        </div>
       </div>
 
-      <div class="field">
-        <p><span id="check_id"></span></p>
-      </div>
       
       <!-- 2. 비밀번호 -->
       <div class="field">
@@ -162,10 +161,9 @@ $(document).ready(function(){
       <!-- 3. 비밀번호 재확인 -->
       <div class="field">
         <p><input id="pw2" type="password" name="mem_pwd_confirm" required placeholder="비밀번호 확인"></p>
-      </div>
-      
-      <div class="field">
-        <p><span id="check"></span></p>
+        <div class="check">
+          <p><span id="check"></span></p>
+        </div>
       </div>
       
       <!-- 4. 이름 -->

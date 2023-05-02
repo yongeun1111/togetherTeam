@@ -15,7 +15,7 @@ body {overflow-x:hidden;}
 /*::-moz-selection { background: #b3d4fc; text-shadow: none;overflow-y: scroll;}
 ::selection {background: #aaa; text-shadow: none;}*/
 hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0;}
-img {vertical-align:middle;border:none;max-width:100%;display:block;}
+img {vertical-align:middle;border:none;display:block;}
 fieldset {border: 0; margin: 0; padding: 0;}
 
 input::placeholder {

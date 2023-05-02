@@ -134,6 +134,16 @@ common - header / footer
     text-align: center;
 }
 
+.logo-wrap {
+    top: 0;
+    position: absolute;
+    margin-top: 18px;
+}
+
+#logo a img {
+    height: 40px;
+}
+
 h2 {
     padding-bottom: 40px;
     font-size: 2.7rem;
@@ -158,14 +168,6 @@ header {
 
 /* 상단 배너 */
 
-header h1 {
-    left: 0;
-    position: absolute;
-}
-
-header .gnb-wrap {
-}
-
 header .gnb-wrap ul.gnb {
     display: flex;
     justify-content: center;
@@ -181,22 +183,18 @@ header .gnb-wrap ul.gnb li a {
     font-weight: 600;
 }
 
-header nav {
-    padding: 30px 0;
-}
-
 header nav .nav-wrap {
-    display: flex;
     position: relative;
+    padding: 25px 0;
     flex-direction: row;
-    justify-content: center;
 }
 
 header nav .nav-wrap .util-menu {
-    margin-top: 2px;
     display: flex;
     position: absolute;
     right: 0;
+    top: 0;
+    margin-top: 27px;
 }
 
 header nav .nav-wrap .util-menu li:not(:first-child) {
@@ -236,6 +234,7 @@ footer {
 }
 
 footer .info_contact img {
+    height: 40px;
     position: absolute;
 }
 
