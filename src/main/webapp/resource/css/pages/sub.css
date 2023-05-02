@@ -295,7 +295,6 @@ subpage
 
 }
 
-
 .mypage-wrap .tab-menu li.on {
     border-bottom: 2px solid #1f79df;
 }
@@ -329,10 +328,18 @@ subpage
 }
 
 
-.mypage-wrap p {
+.mypage-wrap p, .mypage-wrap span {
     font-size: 1.3rem;
     font-weight: 800;
     color: #222;
+}
+
+.mem-out form input {
+    width: 55px;
+    border-radius: 5px;
+    height: 35px;
+    border: 1px solid #666;
+    text-align: center;
 }
 
 .mypage-wrap .meminfo-table {
@@ -371,6 +378,13 @@ subpage
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+
+.memSaleImage img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+}
+
 
 /* 버튼 공통 */
 
@@ -428,6 +442,11 @@ subpage
     display: inline-block;
 }
 
+div.mem-out {
+    display: inline-block;
+    float: right;
+
+}
 
 /* 상품 등록하기--------------------------------------------- */
 .agree-wrap {

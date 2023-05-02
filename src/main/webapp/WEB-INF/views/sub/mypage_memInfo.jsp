@@ -91,7 +91,12 @@ $(document).ready(function(){
     </div>
 
     <div class="meminfo-wrap">
-      <p class="mb10">※ 변경하시려는 정보를 입력해 주세요.</p>
+      <span class="mb10">※ 변경하시려는 정보를 입력해 주세요</span>
+      <div class="mem-out">  
+        <form action="/memberDelete">
+          <input type="submit" value="회원탈퇴">
+        </form>
+      </div> 
       <form action="/change_info" method="post">
         <input type="hidden" name="mem_id" value="${login.mem_id}">
         <table class="meminfo-table">
@@ -133,11 +138,7 @@ $(document).ready(function(){
         </div>
   
       </form>
-      <div class="btn mt70">
-        <form action="/memberDelete">
-          <input type="submit" value="회원탈퇴">
-        </form>
-      </div>
+  
     </div>
 
   </div>
