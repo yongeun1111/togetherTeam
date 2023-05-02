@@ -55,11 +55,12 @@
     </select>
     
     <select id="getChatList" resultType="com.togetherTeam.platform.entity.ChatRoom">
-    	SELECT *
-    	  FROM CHAT_ROOM
-    	 WHERE SELLER_MEM_NO = #{memNo}
-    	    OR BUYER_MEM_NO = #{memNo}
-    	 ORDER BY ROOM_DATE DESC
+    	SELECT a.*
+  		  FROM CHAT_ROOM a INNER JOIN PRODUCT b
+    		ON a.PRO_NO = b.PRO_NO
+ 	     WHERE (a.SELLER_MEM_NO = #{memNo}
+    		OR a.BUYER_MEM_NO = #{memNo})
+   		   AND b.PRO_DELETE = 'N'
     </select>
     
     <select id="findChatRoom" resultType="com.togetherTeam.platform.entity.ChatRoom">
