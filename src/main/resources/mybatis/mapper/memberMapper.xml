@@ -85,6 +85,7 @@
 	 where A.pro_no = B.pro_no
 	   and A.mem_no = #{mem_no}
 	   and pro_sale = 'N'
+	   and pro_delete = 'N'
   </select> 
   
   <!-- page 마다 좋아요 목록 가져오기 sql -->
@@ -96,7 +97,8 @@
          	   , product B
 	  	   where A.pro_no = B.pro_no
 	 	     and A.mem_no = #{mem_no}
-	  	  	 and pro_sale = 'N')
+	  	  	 and pro_sale = 'N'
+	  	  	 and pro_delete = 'N')
 	where RN BETWEEN #{startPage}+1 and #{endPage}
   </select> 
   
@@ -121,6 +123,7 @@
         on a.mem_no = b.mem_no
 	 where mem_id = #{mem_id}
        and mem_pwd = #{mem_pwd}
+       and mem_delete = 'N'
   </select>
   
   <!-- 프로필 이미지 추가 -->
@@ -129,5 +132,11 @@
   	 VALUES (#{mem_no}, #{mem_upload_path}, #{mem_uuid}, #{mem_file_name})
   </insert>
 
+  <!-- 회원탈퇴 -->
+  <update id="memberDelete" parameterType="com.togetherTeam.platform.entity.Member">
+    update member
+	   set mem_delete = 'Y'
+	 where mem_no = #{mem_no}
+  </update>
 
 </mapper>

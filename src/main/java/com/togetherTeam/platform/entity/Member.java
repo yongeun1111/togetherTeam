@@ -19,6 +19,7 @@ public class Member {
     private String mem_birth; // 회원생년월일
     private String mem_email; // 회원이메일
     private LocalDateTime mem_date; // 회원가입일자
+    private String mem_delete; // 회원가입일자
 
     // 프로필 이미지
     private int mem_img_no; // 이미지 번호

@@ -26,5 +26,6 @@ public interface memberMapper {
 	public int likeDelete(LikeList vo);
 	public int join(Member vo);
 	public void insertProfileImage(ProfileImage image);
+	public void memberDelete(Member vo);
 	
 }

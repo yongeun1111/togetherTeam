@@ -40,6 +40,7 @@ public interface productMapper {
 	public void upViews(int pro_no); // 조회수 +1
 	public void proSaleCh(int pro_no); // 판매 상태
 	public Product chatRoomProduct(int pro_no); // 채팅방 productInfo
+	public void productDelete(Member vo); // 상품 삭제
 	
 	
 }

@@ -15,7 +15,7 @@ public class Product {
     private String pro_name; // 물품이름
     private String maker;
     private String pro_theme; // 물품테마
-    private String buy_date; // 구매일시/사용기간
+    private String pro_period; // 사용기간
     private int pro_buy_price; // 구매금액
     private int pro_sale_price; // 판매금액
     private String pro_content; // 물품내용
@@ -25,6 +25,7 @@ public class Product {
     private String deal_date; // 구매완료일
     private int pro_like; // 찜카운트
     private int views; // 조회수
+    private String pro_delete; // 상품삭제
     
     private List<Image> imageList; // 이미지 정보
 	

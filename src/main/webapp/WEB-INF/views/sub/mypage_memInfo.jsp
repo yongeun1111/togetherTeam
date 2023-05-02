@@ -133,6 +133,11 @@ $(document).ready(function(){
         </div>
   
       </form>
+      <div class="btn mt70">
+        <form action="/memberDelete">
+          <input type="submit" value="회원탈퇴">
+        </form>
+      </div>
     </div>
 
   </div>

@@ -323,4 +323,26 @@ public class MainController  {
     
     	return result;
     }
+    
+    @GetMapping("/memberDelete")
+    public String memberDeleteGET(Member vo, HttpSession session) {
+    	Member user = (Member)session.getAttribute("login");
+    	int mem_no = user.getMem_no();
+    	vo.setMem_no(mem_no);
+    	// member 테이블에서 컬럼 변경
+    	mapper.memberDelete(vo);
+    	// prroduct 테이블에서 컬럼 변경
+    	mapper_pro.productDelete(vo);
+    	
+    	session.invalidate();
+    	
+    	
+    	return "redirect:/";
+    }
+    
+    
+    
+    
+    
+    
 }

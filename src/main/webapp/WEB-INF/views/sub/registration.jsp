@@ -162,7 +162,7 @@ $(document).ready(function(){
 				<tr>
 					<td><label for="buy_date">사용 기간</label></td>
 					<td>
-						<input type="text" id="buy_date" name="buy_date" placeholder="사용기간을 입력해주세요(ex:1년 2개월)">
+						<input type="text" id="buy_date" name="pro_period" placeholder="사용기간을 입력해주세요(ex:1년 2개월)">
 					</td>
 				</tr>
 				<tr>

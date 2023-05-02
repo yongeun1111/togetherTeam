@@ -25,6 +25,7 @@
              						   a.PRO_DATE,
             						   a.PRO_SALE,
              						   a.PRO_LIKE,
+             						   a.PRO_DELETE,
              						   b.UPLOAD_PATH,
              						   b.UUID,
              					       b.FILE_NAME,
@@ -33,6 +34,7 @@
             		    		    ON a.PRO_NO = b.PRO_NO) S    
     					WHERE rn=1
     					  AND pro_sale = 'N'
+    					  AND pro_delete = 'N'
     			        ORDER BY PRO_NO DESC) T
 	  ) WHERE RNUM BETWEEN #{startPage}+1 and #{endPage}
 	</select>
@@ -57,6 +59,7 @@
              			a.PRO_DATE,
             			a.PRO_SALE,
              			a.PRO_LIKE,
+             			a.PRO_DELETE,
              			b.UPLOAD_PATH,
              			b.UUID,
              			b.FILE_NAME,
@@ -66,6 +69,7 @@
     			WHERE rn=1
     			  AND pro_category = #{category}
     			  AND pro_sale = 'N'
+    			  AND pro_delete = 'N'
     			ORDER BY PRO_NO DESC) T
 		) WHERE RNUM BETWEEN 1 and 8
 	</select>
@@ -76,6 +80,7 @@
 		  FROM product
 		 WHERE pro_category = #{category}
 		   AND pro_sale = 'N'
+		   AND pro_delete = 'N'
 	</select>
 	
 	<!-- proList.jsp 카테고리별 상품 불러오기 -->
@@ -98,6 +103,7 @@
              			a.PRO_DATE,
             			a.PRO_SALE,
              			a.PRO_LIKE,
+             			a.PRO_DELETE,
              			b.UPLOAD_PATH,
              			b.UUID,
              			b.FILE_NAME,
@@ -107,6 +113,7 @@
     			WHERE rn=1
     			  AND pro_category = #{category}
     			  AND pro_sale = 'N'
+    			  AND pro_delete = 'N'
     			ORDER BY PRO_NO DESC) T
 		) WHERE RNUM BETWEEN #{startPage}+1 and #{endPage}
 	</select>
@@ -131,6 +138,7 @@
              			a.PRO_DATE,
             			a.PRO_SALE,
              			a.PRO_LIKE,
+             			a.PRO_DELETE,
              			b.UPLOAD_PATH,
              			b.UUID,
              			b.FILE_NAME,
@@ -140,6 +148,7 @@
     			WHERE rn=1
     			  AND pro_theme = #{theme}
     			  AND pro_sale = 'N'
+    			  AND pro_delete = 'N'
     			ORDER BY pro_like DESC) T
 		) WHERE RNUM BETWEEN 1 and 3
 	</select>	
@@ -210,6 +219,7 @@
              						   a.PRO_DATE,
             						   a.PRO_SALE,
              						   a.PRO_LIKE,
+             						   a.PRO_DELETE,
              						   b.UPLOAD_PATH,
              						   b.UUID,
              					       b.FILE_NAME,
@@ -218,6 +228,7 @@
             		    		    ON a.PRO_NO = b.PRO_NO) S    
     					WHERE rn=1
     					  AND pro_sale = 'N'
+    					  AND pro_delete = 'N'
     					  AND (pro_title like '%'||#{query}||'%'
 		    			   OR pro_name like '%'||#{query}||'%'
 		    	           OR pro_category like '%'||#{query}||'%')
@@ -238,6 +249,7 @@
     	SELECT COUNT(*)
     	  FROM product
     	 WHERE pro_sale = 'N'
+    	   AND pro_delete = 'N'
     </select> 
 	
 	<!-- 이미지 정보 등록하기 -->
@@ -356,5 +368,12 @@
    			   AND ROWNUM = 1
 
 	</select>
+	
+  <!-- 상품삭제 -->
+  <update id="productDelete" parameterType="com.togetherTeam.platform.entity.Member">
+    update product
+	   set pro_delete = 'Y'
+	 where seller_mem_no = #{mem_no}
+  </update>
 	
 </mapper>
