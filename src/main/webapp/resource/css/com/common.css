@@ -600,11 +600,15 @@ footer .info_contact .info-wrap p {
     padding: 15px 0 15px 20px; 
 }
 
-.info-wrap .de-table td:first-child {
+.info-wrap .de-table td:nth-child(2n-1) {
     background-color: #f8f8f8;
     border-right: 1px solid #ddd;
     color: #222;
     font-weight: 600;
+}
+
+.info-wrap .de-table td:nth-child(2){
+	border-right: 1px solid #ddd;
 }
 
 .info-wrap .de-table td:last-child {
