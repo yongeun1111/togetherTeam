@@ -34,6 +34,7 @@
         		  		          FROM (SELECT * FROM PRODUCT) a LEFT JOIN IMAGE b 
             		    		    ON a.PRO_NO = b.PRO_NO) S    
     					WHERE rn=1
+    					  AND pro_sale = 'N'
     			        ORDER BY PRO_NO DESC) T
 	  ) WHERE RNUM BETWEEN #{startPage}+1 and #{endPage}
 	</select>
@@ -68,6 +69,7 @@
             		    	FROM PRODUCT) a LEFT JOIN IMAGE b ON a.PRO_NO = b.PRO_NO) S    
     			WHERE rn=1
     			  AND pro_category = #{category}
+    			  AND pro_sale = 'N'
     			ORDER BY PRO_NO DESC) T
 		) WHERE RNUM BETWEEN 1 and 8
 	</select>
@@ -77,6 +79,7 @@
 		SELECT *
 		  FROM product
 		 WHERE pro_category = #{category}
+		   AND pro_sale = 'N'
 	</select>
 	
 	<!-- proList.jsp 카테고리별 상품 불러오기 -->
@@ -109,6 +112,7 @@
             		    	FROM PRODUCT) a LEFT JOIN IMAGE b ON a.PRO_NO = b.PRO_NO) S    
     			WHERE rn=1
     			  AND pro_category = #{category}
+    			  AND pro_sale = 'N'
     			ORDER BY PRO_NO DESC) T
 		) WHERE RNUM BETWEEN #{startPage}+1 and #{endPage}
 	</select>
@@ -143,6 +147,7 @@
             		    	FROM PRODUCT) a LEFT JOIN IMAGE b ON a.PRO_NO = b.PRO_NO) S    
     			WHERE rn=1
     			  AND pro_theme = #{theme}
+    			  AND pro_sale = 'N'
     			ORDER BY pro_like DESC) T
 		) WHERE RNUM BETWEEN 1 and 3
 	</select>	
@@ -222,6 +227,7 @@
         		  		          FROM (SELECT * FROM PRODUCT) a LEFT JOIN IMAGE b 
             		    		    ON a.PRO_NO = b.PRO_NO) S    
     					WHERE rn=1
+    					  AND pro_sale = 'N'
     					  AND (pro_title like '%'||#{query}||'%'
 		    			   OR pro_name like '%'||#{query}||'%'
 		    	           OR pro_category like '%'||#{query}||'%')
@@ -241,6 +247,7 @@
 	<select id="totalCount" resultType="int">
     	SELECT COUNT(*)
     	  FROM product
+    	 WHERE pro_sale = 'N'
     </select> 
 	
 	<!-- 이미지 정보 등록하기 -->
