@@ -41,6 +41,17 @@ $(document).ready(function(){
 	/* 이미지 업로드 */
 	$("input[type='file']").on("change", function(e){
 		
+		var selectedFiles = $(this).get(0).files; // 선택된 파일 리스트 가져오기
+	    var maxFileCount = 4; // 최대 파일 개수 설정
+	    console.log("selectedFiles", selectedFiles);
+	    
+	 	// 선택된 파일 개수 체크
+	    if (selectedFiles.length > maxFileCount) {
+	      alert("최대 4개까지 선택할 수 있습니다."); // 메시지 출력
+	      $(this).val(''); // 선택된 파일 초기화
+	      return false; // 업로드 버튼 비활성화
+	    }else{
+		
 		/* 이미지 존재시 삭제 */
 		if($(".imgDeleteBtn").length > 0){
 			deleteFile();
@@ -131,7 +142,7 @@ $(document).ready(function(){
 			
 		});
 		
-		
+		}
 	});
 	
 	// 이미지 삭제 버튼 동작
@@ -203,7 +214,7 @@ $(document).ready(function(){
 				console.log(result);
 				
 				// 미리 보기 이미지 삭제, input 태그 초기화
-				targetDiv.remove();
+				$("#uploadResult").empty();
 				$("input[type='file']").val("");
 			},
 			error : function(result){
