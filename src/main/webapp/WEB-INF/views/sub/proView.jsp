@@ -514,7 +514,7 @@ function chatSubmit() {
                 </tr>
                 <tr>
                     <td>사용 기간</td>
-                    <td>${pro.buy_date}</td>
+                    <td>${pro.pro_period}</td>
                 </tr>
             </table>
 
