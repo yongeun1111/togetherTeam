@@ -523,7 +523,14 @@ function chatSubmit() {
             	<input id="productNum" type="hidden" name="pro_no" value="${pro.pro_no}">
             	<input id="pro_name" type="hidden" name="pro_name" value="${pro.pro_name}">
                 <c:if test="${!empty login}">
-                  <input id="like-btn" type="button" value="찜하기" class="like-btn">
+                  <c:if test="${login.mem_no != pro.seller_mem_no}">
+					 <input id="like-btn" type="button" value="찜하기" class="like-btn">
+				  </c:if>
+                  <c:if test="${login.mem_no == pro.seller_mem_no}">
+					 <a href="#">
+					   <input type="button" value="수정하기" class="like-btn">
+					 </a>
+				  </c:if>
                 </c:if>
                 <c:if test="${empty login}">
 					<a href="login">
@@ -542,7 +549,9 @@ function chatSubmit() {
 					</form:form>
 				</c:if>
 				<c:if test="${!empty login && pro.seller_mem_no eq login.mem_no}">
-					<input type="button" id="chat_btn" class="chat-btn" value="내 상품">
+				  <a href="#">
+					<input type="button" id="delete_btn" class="delete-btn" value="삭제하기">
+				  </a>
 				</c:if>
 				<c:if test="${empty login}">
 					<a href="login">
