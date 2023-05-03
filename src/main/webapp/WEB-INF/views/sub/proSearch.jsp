@@ -35,7 +35,10 @@
     <!-- 검색 결과 -->
     <div class="sub-inner">
         <div class="search-result">
-            
+        <p class="mypage-tit mb10">검색 결과</p>
+        	<div class="empty-area">
+				<p><img src="'+ contextPath +'/resource/images/empty_icon.png" alt=""></p>
+			<p class="mt30">검색한 상품이 존재하지 않습니다.</p></div>
         </div>
     </div> 
 

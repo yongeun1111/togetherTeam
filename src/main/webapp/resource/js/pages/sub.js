@@ -27,15 +27,16 @@ $(document).ready(function(){
 	
 	$("#search").on('click', function(){
 			var query = $("#searchProduct").val();
-			console.log(query)
-			$.ajax({
-				url : "/searchProduct",
-				type : "post",
-				data : {"query" : query},
-				dataType : "json",
-				success : searchProduct,
-				error : function(){ alert("error") }
-			});
+			if (query != ""){
+				$.ajax({
+					url : "/searchProduct",
+					type : "post",
+					data : {"query" : query},
+					dataType : "json",
+					success : searchProduct,
+					error : function(){ alert("error") }
+				});
+			}
 	});
 	
 	/* 이미지 업로드 */
