@@ -45,35 +45,22 @@ public class productController {
 	private productMapper mapper;
 	
 	@GetMapping("/proList") // 중고 상품 페이지(proList.jsp)로 이동
-    public String proList(CriteriaList cri, Model model){
-
-		List<Product> list = mapper.getAllList(cri);
-		model.addAttribute("list", list);
-		
-		PageMakerList pageMakerList = new PageMakerList();
-		pageMakerList.setCri(cri);
-		pageMakerList.setTotalCount(mapper.totalCount());
-		model.addAttribute("pm", pageMakerList);
+    public String proList(){
 		
         return "sub/proList";
     }
 	
 	@GetMapping("/getProList")
 	@ResponseBody
-	public Map<String, Object> getProducts(MypageLikeList mll) {
-	    List<Product> cnt = mapper.getCategoryListCount(mll);
-	    List<Product> list = mapper.getCategoryList2(mll);
-	    CriteriaList cri = new CriteriaList(mll.getPage(), mll.getPerPageNum());
+	public List<Product> getProducts(String category) {
+		List<Product> list = null;
 	    
-	    PageMakerList pageMakerList = new PageMakerList();
-	    pageMakerList.setCri(cri);
-	    pageMakerList.setTotalCount(cnt.size());
-
-	    Map<String, Object> resultMap = new HashMap<>();
-	    resultMap.put("list", list);
-	    resultMap.put("pm", pageMakerList);
-
-	    return resultMap;
+		if (category.equals("ALL")){
+			list = mapper.getCategoryAll();
+		} else {
+			list = mapper.getCategoryList(category);
+		}
+		return list;
 	}
 
 	@GetMapping("/getProductsMain")

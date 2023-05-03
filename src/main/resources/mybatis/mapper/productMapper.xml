@@ -74,17 +74,41 @@
 		) WHERE RNUM BETWEEN 1 and 8
 	</select>
 	
-	<!-- proList.jsp 카테고리별 상품 개수확인 -->
-	<select id="getCategoryListCount" parameterType="com.togetherTeam.platform.entity.MypageLikeList" resultType="com.togetherTeam.platform.entity.Product">
+	<!-- proList.jsp All 상품 개수확인 -->
+	<select id="getCategoryAll" resultType="com.togetherTeam.platform.entity.Product">
 		SELECT *
-		  FROM product
-		 WHERE pro_category = #{category}
-		   AND pro_sale = 'N'
-		   AND pro_delete = 'N'
+		FROM(
+			SELECT T.*, ROWNUM as RNUM
+			FROM(
+    			SELECT S.*
+    			FROM (SELECT a.PRO_NO,
+             			a.SELLER_MEM_NO,
+             			a.PRO_TITLE,
+             			a.PRO_CATEGORY,
+             			a.PRO_NAME,
+             			a.PRO_THEME,
+             			a.pro_period,
+             			a.PRO_BUY_PRICE,
+             			a.PRO_SALE_PRICE,
+             			a.PRO_CONTENT,
+             			a.PRO_DATE,
+            			a.PRO_SALE,
+             			a.PRO_LIKE,
+             			a.PRO_DELETE,
+             			b.UPLOAD_PATH,
+             			b.UUID,
+             			b.FILE_NAME,
+             			ROW_NUMBER() OVER(PARTITION BY a.pro_no ORDER BY a.pro_no DESC) AS rn
+        		  	FROM (SELECT *
+            		    	FROM PRODUCT) a LEFT JOIN IMAGE b ON a.PRO_NO = b.PRO_NO) S    
+    			WHERE rn=1
+    			  AND pro_sale = 'N'
+    			  AND pro_delete = 'N'
+    			ORDER BY PRO_NO DESC) T)
 	</select>
 	
 	<!-- proList.jsp 카테고리별 상품 불러오기 -->
-	<select id="getCategoryList2" parameterType="com.togetherTeam.platform.entity.MypageLikeList" resultType="com.togetherTeam.platform.entity.Product">
+	<select id="getCategoryList" parameterType="String" resultType="com.togetherTeam.platform.entity.Product">
 		SELECT *
 		FROM(
 			SELECT T.*, ROWNUM as RNUM
@@ -114,8 +138,7 @@
     			  AND pro_category = #{category}
     			  AND pro_sale = 'N'
     			  AND pro_delete = 'N'
-    			ORDER BY PRO_NO DESC) T
-		) WHERE RNUM BETWEEN #{startPage}+1 and #{endPage}
+    			ORDER BY PRO_NO DESC) T)
 	</select>
 	
 	<!-- home.jsp 테마별 상품 불러오기 -->
@@ -167,12 +190,6 @@
 		 ORDER BY pro_like DESC
 	</select>
 	
-	<!-- proList.jsp 카테고리별 상품 불러오기 -->
-	<select id="getCategoryList" parameterType="String" resultType="com.togetherTeam.platform.entity.Product">
-		SELECT *
-		  FROM product
-		 WHERE pro_category = #{category}
-	</select>
 	
 	<!-- proList.jsp 카테고리별 상품 불러오기 (최신순) -->
 	<select id="getCategoryListRecent" parameterType="String" resultType="com.togetherTeam.platform.entity.Product">

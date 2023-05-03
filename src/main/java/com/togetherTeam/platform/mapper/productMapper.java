@@ -20,8 +20,8 @@ public interface productMapper {
 	public List<Product> getAllListLike(); // proList 페이지 전체 물품 리스트
 	public List<Product> getCategoryListMain(String category);
 	public List<Product> getCategoryListRecent(String category);
-	public List<Product> getCategoryListCount(MypageLikeList mll);
-	public List<Product> getCategoryList2(MypageLikeList mll);
+	public List<Product> getCategoryAll();
+	public List<Product> getCategoryList(String category);
 	public List<Product> getCategoryListLike(String category);
 	public List<Product> getThemeListMain(String theme);
 	public List<Product> searchProduct(Map<String, Object> map); // 상품 검색
