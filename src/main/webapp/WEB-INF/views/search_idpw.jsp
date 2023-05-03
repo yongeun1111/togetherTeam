@@ -16,7 +16,7 @@
 <script src="${contextPath}/resource/js/pages/main.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    var searchBtn = $('.search-btn');
+    var searchBtn = $('.search-btn2');
 
     // 검색 버튼 클릭시 데이터 처리하기
     searchBtn.click(function(){
@@ -107,7 +107,7 @@ $(document).ready(function(){
               <!-- 2. 핸드폰 번호 -->
               <div class="field mt10"><input id="id-search-phone" type="text" name="mem_phone" placeholder="휴대폰 번호(- 없이 입력)"></div>
               <!-- 아이디 찾기 버튼 -->
-              <div class="btn mt50"><input class="search-btn" data-search="아이디" type="reset" value="아이디 찾기"></div>
+              <div class="btn mt50"><input class="search-btn2" data-search="아이디" type="reset" value="아이디 찾기"></div>
             </form>
           </div>
 
@@ -121,7 +121,7 @@ $(document).ready(function(){
               <!-- 3. 이메일-->
               <div class="field mt10"><input id="pwd-search-email" type="text" placeholder="이메일"></div>
               <!-- 비밀번호 찾기 버튼 -->
-              <div class="btn mt50"><input class="search-btn" data-search="비밀번호" type="button" value="비밀번호 찾기"></div>
+              <div class="btn mt50"><input class="search-btn2" data-search="비밀번호" type="button" value="비밀번호 찾기"></div>
             </form>
 
           </div>
