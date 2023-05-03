@@ -438,7 +438,7 @@ footer .info_contact .info-wrap p {
 /* 우측 상품 정보 */
 .view-wrap {
     position: relative;
-    padding-top: 150px;
+    padding-top: 130px;
 }
 
 .view-wrap .view-info {
@@ -484,7 +484,7 @@ footer .info_contact .info-wrap p {
 }
 
 .view-wrap .view-info .pro-price {
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
 .view-wrap .view-info .pro-price span {

@@ -780,12 +780,25 @@ div.mem-out {
 }
 
 .meminfo-wrap button.del-btn {
-    padding: 10px 60px;
+    padding: 10px 0;
+    width: 170px;
     font-size: 1.2rem;
     font-weight: 600;
     color: #666;
     border: 1px solid #666;
-    border-radius: 100px;
+    border-radius: 31px;
+    background: none;
+}
+
+
+.meminfo-wrap button.del-btn {
+    padding: 10px 0;
+    width: 170px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #666;
+    border: 1px solid #666;
+    border-radius: 31px;
     background: none;
 }
 
@@ -796,19 +809,19 @@ div.mem-out {
 }
 
 /* 페이지 버튼(공통) */
-.pageMaker_wrap {
+.page {
     margin-top: 70px;
 }
 
-.pageMaker_wrap .page-prev {
+.page .page-prev {
     margin-right: 20px;
 }
 
-.pageMaker_wrap .pagination{
+.page .pagination{
     position: relative;
 }
 
-.pageMaker_wrap .page-prev a::after {
+.page .page-prev a::after {
     content: '';
     position: absolute;
     left: 0;
@@ -821,7 +834,7 @@ div.mem-out {
     transform: rotate(225deg);
 }
 
-.pageMaker_wrap .page-next a::after {
+.page .page-next a::after {
     content: '';
     position: absolute;
     left: 0;
@@ -834,11 +847,11 @@ div.mem-out {
     transform: rotate(45deg);
 }
 
-.pageMaker_wrap .page-next {
+.page .page-next {
     margin-left: 10px;
 }
 
-.pageMaker_wrap .pagination .page-num:not(:last-child) {
+.page .pagination .page-num:not(:last-child) {
     margin-right: 5px;
 }
 
@@ -858,11 +871,11 @@ div.mem-out {
     margin-left: -1px;
 }
 
-.pageMaker_wrap .page-num li:not(:last-child) {
+.page .page-num li:not(:last-child) {
     margin-right: 5px;
 }
 
-.pageMaker_wrap .pagination a.page-link {
+.page .pagination a.page-link {
     width: 40px;
     height: 40px;
     line-height: 40px;
@@ -872,7 +885,7 @@ div.mem-out {
     border: 1px solid #ddd;
 }
 
-.pageMaker_wrap .pagination li.active a.page-link {
+.page .pagination li.active a.page-link {
     color: #fff;
     background-color: #1f79df;
     border: 1px solid #1f79df;

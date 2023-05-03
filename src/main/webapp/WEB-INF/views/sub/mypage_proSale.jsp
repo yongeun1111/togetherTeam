@@ -22,6 +22,8 @@
 			if ($(this).val() === 'Y'){
 				$(this).prop('disabled', true);
 				$(this).html('거래 완료');
+        $(this).css('background-color', '#666');
+        $(this).css('color', '#fff');
 			}
 		})
 		
@@ -140,7 +142,7 @@
         </c:if>
       </table>
 
-      <div class="pageMaker_wrap">
+      <div class="page pageMaker_wrap">
         <ul class="pagination justify-content-center">
          	<!-- 이전버튼 -->
 			<li class="page-item page-prev">
@@ -172,4 +174,3 @@
 
 <c:import url="../inc/footer.jsp"/>
 
-                    

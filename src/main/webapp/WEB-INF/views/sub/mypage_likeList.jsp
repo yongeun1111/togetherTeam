@@ -106,16 +106,16 @@ $(document).ready(function() {
 
 	  
 	  
-       <div class="page">
+      <div class="page">
         <ul class="pagination justify-content-center" style="margin: 20px 0">
 			    <c:if test="${pm.prev}">
-			      <li class="page-item"><a class="page-link" href="${pm.startPage-1}">Previous</a></li>
+			      <li class="page-item page-prev"><a class="page-link" href="${pm.startPage-1}">Previous</a></li>
 			    </c:if>
 			    <c:forEach var="pageNum" begin="${pm.startPage}" end="${pm.endPage}">
 			      <li class="page-item ${pm.cri.page==pageNum ? 'active':''}"><a class="page-link" href="${pageNum}">${pageNum}</a></li>
 			    </c:forEach>
 			    <c:if test="${pm.next}">
-			      <li class="page-item"><a class="page-link" href="${pm.endPage+1}">Next</a></li>
+			      <li class="page-item page-next"><a class="page-link" href="${pm.endPage+1}">Next</a></li>
 			    </c:if>
 		    </ul>
 
