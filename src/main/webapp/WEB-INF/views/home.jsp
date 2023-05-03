@@ -109,16 +109,13 @@ $(document).ready(function () {
     		data : {theme : theme},
     		success : function (result) {
                 themeList.empty();
-
-                var rowCount = 0;
                 var html = "<div class=\"thema-img\">";
+                    html += "<div class=\"row\">"
                 $.each(result, function (index, item) {
                     var fileCallPath = encodeURIComponent(item.upload_path + "/s_" + item.uuid + "_" + item.file_name);
 
-                    if (rowCount === 0) {
-                        html +=	"<div class=\"lg-wrap\">" +
-                        		  "<a href=\"/proView?pro_no=" + item.pro_no + "\">" +
-                        		    "<div class=\"img-box\">" +
+                        html +=	  "<a href=\"/proView?pro_no=" + item.pro_no + "\">" +
+                        		    "<div class=\"img-box pro-img\">" +
                         		      "<img src=\"/display?file_name=" + fileCallPath + "\" alt=\"\">" +
                         		      "<span class=\"over-box\">" +
                         		        "<p>" + item.maker + "</p>" +
@@ -126,33 +123,11 @@ $(document).ready(function () {
                         		        "<p>" + item.pro_sale_price + "<span class=\"won\">원</span></p>" +
                         		      "</span>" +
                         		    "</div>" +
-                        		  "</a>" +
-                        		"</div>" +
-                        		"<div class=\"sm-wrap\">";
-                    }
-                    
-                    if (rowCount === 1 || rowCount === 2) {
-                    	html += "<div class=\"sm-pro\">" +
-			               		  "<a href=\"/proView?pro_no=" + item.pro_no + "\">" +
-			               		    "<div class=\"img-box\">" +
-			               		      "<img src=\"/display?file_name=" + fileCallPath + "\" alt=\"\">" +
-			               		      "<span class=\"over-box\">" +
-			               		  		"<p>" + item.maker + "</p>" +
-                   		        		"<p>" + item.pro_title + "</p>" +
-                   		        		"<p>" + item.pro_sale_price + "<span class=\"won\">원</span></p>" +
-			               		      "</span>" +
-			               		    "</div>" +
-			               		  "</a>" +
-			               		"</div>";
-                    }       		
-	                rowCount++;
+                        		  "</a>";
+
                 }); // 데이터 html로 추가
-                
-                if(rowCount > 0){
-                	html += "</div>"; // sm-wrap
-                }
-                
-                html += "</div>"; // theme-img
+
+                html += "</div></div>"; // row, theme-img
                 themeList.append(html);
                 
             }, // success
@@ -318,9 +293,9 @@ $(document).ready(function () {
   <div class="thema-list">
     <ul class="tabnav">
       <li><a class="themeBtn" data-theme="#슬기로운 자취 생활" href="#thema01"># 슬기로운 자취 생활</a></li>
-      <li><a class="themeBtn" data-theme="#사회초년생 추천 상품" href="#thema02"># 사회초년생 추천 상품</a></li>
-      <li><a class="themeBtn" data-theme="#나만의 싱글 라이프" href="#thema03"># 나만의 싱글 라이프</a></li>
-      <li><a class="themeBtn" data-theme="#N년차 자취생 꿀템" href="#thema04"># N년차 자취생 꿀템</a></li>
+      <li><a class="themeBtn" data-theme="#사회초년생 추천 상품" href="#thema01"># 사회초년생 추천 상품</a></li>
+      <li><a class="themeBtn" data-theme="#나만의 싱글 라이프" href="#thema01"># 나만의 싱글 라이프</a></li>
+      <li><a class="themeBtn" data-theme="#N년차 자취생 꿀템" href="#thema01"># N년차 자취생 꿀템</a></li>
     </ul>
     
     <div class="tabcontent">
@@ -328,11 +303,9 @@ $(document).ready(function () {
       <!-- thema01 : # 슬기로운 자취 생활 -->
       <div class="themeList" id="thema01">
         <div class="thema-img">
-		  <c:if test="${!empty themeList}">
+		  <div class="row">
           <c:forEach var="vo" items="${themeList}" varStatus="status">
-          <c:if test="${status.index == 0}">
-            <div class="lg-wrap">
-              <a href="/proView?pro_no=${vo.pro_no}">
+            <a href="/proView?pro_no=${vo.pro_no}">
               <div class="img-box pro-img" data-pro_no="${vo.pro_no}" data-path="${vo.upload_path}" data-uuid="${vo.uuid}" data-file_name="${vo.file_name}">
                 <img alt="">
                 <span class="over-box">
@@ -341,43 +314,12 @@ $(document).ready(function () {
                   <p>${vo.pro_sale_price}<span class="won">원</span></p>
                 </span>
               </div>
-              </a>
-            </div>
-            <div class="sm-wrap">
-          </c:if>
-            <c:if test="${status.index == 1 || status.index == 2}">
-              <div class="sm-pro">
-                <a href="/proView?pro_no=${vo.pro_no}">
-                <div class="img-box pro-img" data-pro_no="${vo.pro_no}" data-path="${vo.upload_path}" data-uuid="${vo.uuid}" data-file_name="${vo.file_name}">
-                  <img alt="">
-                  <span class="over-box">
-                    <p>${vo.maker}</p>
-                    <p>${vo.pro_title}</p>
-                    <p>${vo.pro_sale_price}<span class="won">원</span></p>
-                  </span>
-                </div>
-                </a>
-              </div>
-            </c:if>
+            </a>
           </c:forEach>
-            </div>
-		  </c:if>
+          </div>
         </div>
-      </div>
-
-      <!-- thema02 : # 사회초년생 추천 상품 -->
-      <div class="themeList" id="thema02">
-      </div>
-
-      <!-- thema03 : # 나만의 싱글 라이프 -->
-      <div class="themeList" id="thema03">
-      </div>
-
-      <!-- thema04 : # N년차 자취생 꿀템 -->
-      <div class="themeList" id="thema04">
-      </div>
-
     </div>
+  </div>
   </div>
   </section>
   <!-- 테마별 인기 상품 // -->
