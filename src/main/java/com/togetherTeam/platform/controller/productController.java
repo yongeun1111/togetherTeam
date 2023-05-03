@@ -101,6 +101,9 @@ public class productController {
 		// 채팅방 정보를 담을 객체 초기화
 		ChatRoom chatRoom = new ChatRoom();
 		model.addAttribute("chatRoom", chatRoom);
+		// 수정 정보 담을 객체 초기화
+		Product modifyPro = new Product();
+		model.addAttribute("modifyPro", modifyPro);
 		
         return "sub/proView";
     }
