@@ -438,7 +438,7 @@ footer .info_contact .info-wrap p {
 /* 우측 상품 정보 */
 .view-wrap {
     position: relative;
-    padding-top: 70px;
+    padding-top: 150px;
 }
 
 .view-wrap .view-info {
@@ -458,14 +458,15 @@ footer .info_contact .info-wrap p {
 }
 
 .view-wrap .view-info .pro-name {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 2rem;
     font-weight: 800;
+    line-height: 2.4rem;
     color: #222;
 }
 
 .view-wrap .view-info .tag {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     display: inline-block;
     padding: 5px 15px;
     border-radius: 3px;
@@ -483,7 +484,7 @@ footer .info_contact .info-wrap p {
 }
 
 .view-wrap .view-info .pro-price {
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .view-wrap .view-info .pro-price span {

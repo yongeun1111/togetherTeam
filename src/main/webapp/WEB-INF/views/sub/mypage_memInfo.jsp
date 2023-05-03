@@ -74,7 +74,7 @@ $(document).ready(function(){
 <div class="con-inner mypage-wrap">
 
   <div class="sub-inner">
-    <h2 class="center">마이페이지</h2>
+    <h2 class="center">My 페이지</h2>
     <div class="tab-wrap">
       <ul class="tab-menu">
         <li class="on"><a href="#">회원정보 수정</a></li>

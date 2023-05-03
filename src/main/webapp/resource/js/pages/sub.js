@@ -675,6 +675,10 @@ function searchProduct(data){
 		
 	$.each(data.list,function(index, obj){
 		if (rowCount === 0) {
+
+			searchHtml += '<p class="mypage-tit mb10">검색 결과</p>'
+			searchHtml += '<div class="result-area">'
+			
         	searchHtml += '<div class="row">';
         };
         

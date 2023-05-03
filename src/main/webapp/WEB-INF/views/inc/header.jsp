@@ -66,7 +66,9 @@
 						</c:if>
 						<c:if test="${!empty login}">
 							<li class="after"><a id="chatList" href="chat">채팅리스트</a>
-							<li class="after"><a href="mypage_memInfo">
+							<li class="after"><a href="mypage_memInfo">My 페이지</a>
+							
+								<!-- <li class="after"><a href="mypage_memInfo">
 								<c:if test="${!empty login.mem_upload_path}">
 									<c:url var="url" value="/display?">
 										<c:param name="file_name" value="${login.mem_upload_path}/s_${login.mem_uuid}_${login.mem_file_name}"/>
@@ -78,7 +80,7 @@
 								</c:if>
 								${login.mem_id}
 								</a>
-							</li>	
+							</li>	 -->
 							<li><a href="logout">로그아웃</a></li>
 							<input id="member" type=hidden value="${login.mem_no}"/>
 						</c:if>

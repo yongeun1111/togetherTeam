@@ -10,11 +10,14 @@ subpage
 }
 
 .common-wrap {
+    height: 100%;
+    display: flex;
+    border: 10px solid red;
     position: absolute;
     width: 100%;
-    top: 50%;
-    margin-top: -15%;
-    padding: 70px 0;
+    align-content: stretch;
+    align-items: center;
+    border-bottom: 2px solid #1f79df;
 }
 
 .common-inner {
@@ -95,12 +98,18 @@ subpage
 }
 
 /* 아이디/비밀번호 찾기 ------------------------------------------ */
+.search-tit {
+    margin-top: 100px;
+}
+
 .search_idpw p {
     color: #666;
 }
 
 .search_idpw .tabnav {
     margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .search_idpw .tabnav li a {
@@ -116,7 +125,8 @@ subpage
 }
 
 .search_idpw .tabnav li a.active {
-    color: #1a69c3;
+    color: #1f79df;
+    border-bottom: 2px solid #1f79df;
 }
 
 .search_idpw .field input {
@@ -138,6 +148,24 @@ subpage
     color: #fff;
 
 }
+
+.search-wrapper input {
+    width: 560px;
+    height: 60px;
+    background-color: #1f79df;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+
+.search-wrapper input:hover {
+    background-color: #0059bf;
+    transition: all 0.2s;
+}
+
 
 /* 회원가입 -------------------------------------------------------------- */
 .join-form {
@@ -888,12 +916,8 @@ div.mem-out {
 }
 
 .search-btn {
-    position: absolute;
-    top: 50%;
-    right: 0;
     margin-right: 30px;
     background: none;
-    transform: translateY(-50%);
 }
 
 .search-btn span {
@@ -917,6 +941,14 @@ div.mem-out {
     border-bottom: 1px solid #ddd;
     box-sizing: border-box;
 }
+
+.result-area {
+    padding-top: 40px;
+    border-top: 2px solid #222;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
 
 .empty-area p {
     text-align: center;

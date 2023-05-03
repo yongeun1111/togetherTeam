@@ -85,51 +85,51 @@ $(document).ready(function(){
 
 
 <!-- #container -->
-<div class="common-wrap">
-    <div class="center">
+<div class="fix-wrap">
+  <div class="center">
 
-      <h2>아이디/비밀번호 찾기</h2>
-      <div class="tab search_idpw">
-        <ul class="tabnav">
-          <li><a href="#tab01">아이디 찾기</a></li>
-          <li><a href="#tab02">비밀번호 찾기</a></li>
-        </ul>
+    <h2 class="search-tit">아이디/비밀번호 찾기</h2>
+    <div class="tab search_idpw">
+      <ul class="tabnav">
+        <li><a href="#tab01">아이디 찾기</a></li>
+        <li><a href="#tab02">비밀번호 찾기</a></li>
+      </ul>
 
-        <p class="mb30">회원정보에 등록되어 있는 정보를 입력해 주세요. </p>
-        
-        <!-- 폼 입력 -->
-        <div class="tabcontent">
-          <!-- tab01 아이디 찾기 -->
-          <div id="tab01">
-            <form action="/search_id" method="post">         
-              <!-- 1. 이름 -->
-              <div class="field"><input id="id-search-name" type="text" name="mem_name" placeholder="이름"></div>
-              <!-- 2. 핸드폰 번호 -->
-              <div class="field mt10"><input id="id-search-phone" type="text" name="mem_phone" placeholder="휴대폰 번호(- 없이 입력)"></div>
-              <!-- 아이디 찾기 버튼 -->
-              <div class="btn mt50"><input class="search-btn2" data-search="아이디" type="reset" value="아이디 찾기"></div>
-            </form>
-          </div>
-
-          <!-- tab02 비밀번호 찾기 -->
-          <div id="tab02">
-            <form action="/change_pwd" method="get">
-              <!-- 1. 아이디 -->
-              <div class="field"><input id="pwd-search-id" type="text" name="mem_id" placeholder="아이디"></div>
-              <!-- 2. 핸드폰 번호 -->
-              <div class="field mt10"><input id="pwd-search-phone" type="text" placeholder="휴대폰 번호(- 없이 입력)"></div>
-              <!-- 3. 이메일-->
-              <div class="field mt10"><input id="pwd-search-email" type="text" placeholder="이메일"></div>
-              <!-- 비밀번호 찾기 버튼 -->
-              <div class="btn mt50"><input class="search-btn2" data-search="비밀번호" type="button" value="비밀번호 찾기"></div>
-            </form>
-
-          </div>
-        </div>
-      </div><!--아이디/비밀번호 tab // -->
+      <p class="mb30">회원정보에 등록되어 있는 정보를 입력해 주세요. </p>
       
-    </div>
+      <!-- 폼 입력 -->
+      <div class="tabcontent">
+        <!-- tab01 아이디 찾기 -->
+        <div id="tab01">
+          <form action="/search_id" method="post">         
+            <!-- 1. 이름 -->
+            <div class="field"><input id="id-search-name" type="text" name="mem_name" placeholder="이름"></div>
+            <!-- 2. 핸드폰 번호 -->
+            <div class="field mt10"><input id="id-search-phone" type="text" name="mem_phone" placeholder="휴대폰 번호(- 없이 입력)"></div>
+            <!-- 아이디 찾기 버튼 -->
+            <div class="search-wrapper mt50"><input class="search-btn" data-search="아이디" type="reset" value="아이디 찾기"></div>
+          </form>
+        </div>
+
+        <!-- tab02 비밀번호 찾기 -->
+        <div id="tab02">
+          <form action="/change_pwd" method="get">
+            <!-- 1. 아이디 -->
+            <div class="field"><input id="pwd-search-id" type="text" name="mem_id" placeholder="아이디"></div>
+            <!-- 2. 핸드폰 번호 -->
+            <div class="field mt10"><input id="pwd-search-phone" type="text" placeholder="휴대폰 번호(- 없이 입력)"></div>
+            <!-- 3. 이메일-->
+            <div class="field mt10"><input id="pwd-search-email" type="text" placeholder="이메일"></div>
+            <!-- 비밀번호 찾기 버튼 -->
+            <div class="search-wrapper mt50"><input class="search-btn" data-search="비밀번호" type="button" value="비밀번호 찾기"></div>
+          </form>
+
+        </div>
+      </div>
+    </div><!--아이디/비밀번호 tab // -->
+    
+  </div>
 </div>
-                    
+                  
 
 
