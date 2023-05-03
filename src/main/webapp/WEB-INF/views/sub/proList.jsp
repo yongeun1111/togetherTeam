@@ -37,11 +37,11 @@ $(document).ready(function() {
 	        $.each(result, function (index, item) { // result.list에 대해서만 처리
 	            var fileCallPath = encodeURIComponent(item.upload_path + "/s_" + item.uuid + "_" + item.file_name);
 
-	            if (rowCount === 0) {
+				if (loadCount < 8) {
+		            if (rowCount === 0) {
 	                // 새로운 row 시작
 	                html += "<div class=\"row\">";
-	            }
-				if (loadCount < 8) {
+		            }
 		            // 상품 정보 추가
 		            html += "<div class=\"col-lg-3 pro-list mb50\">" +
 		                        "<a href=\"/proView?pro_no=" + item.pro_no + "\">" +
@@ -69,8 +69,11 @@ $(document).ready(function() {
 		                rowCount = 0;
 		            };		            
 				} else {
-					
-					html += "<div class=\"col-lg-3 pro-list mb50\" style='display:none;'>" +
+					if (rowCount === 0) {
+		                // 새로운 row 시작
+		                html += "<div class=\"row\" style='display:none;'>";
+			            }
+					html += "<div class=\"col-lg-3 pro-list mb50\">" +
                     "<a href=\"/proView?pro_no=" + item.pro_no + "\">" +
                         "<div class=\"pro-img\"" + 
                             "data-pro_no=\"" + item.pro_no + 
@@ -118,14 +121,7 @@ $(document).ready(function() {
     
 });
 
-//더보기 버튼 
-function moreInfo(e){
-	$("div:hidden").slice(0,24).show();
-	if ($("div:hidden").length == 0) {
-		$("#load").fadeOut(100);
-	};
-    
-};
+
 </script>
 
 <!-- #container -->
@@ -170,6 +166,15 @@ function moreInfo(e){
 		
 </div>
 
-
+<script type="text/javascript">
+//더보기 버튼 
+function moreInfo(e){
+	$("div:hidden").slice(0,16).show();
+	if ($("div:hidden").length == 0) {
+		$("#load").fadeOut(100);
+	};
+    
+};
+</script>
 
 	<c:import url="${contextPath}/WEB-INF/views/inc/footer.jsp"/>
