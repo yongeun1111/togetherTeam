@@ -256,8 +256,11 @@ $(document).ready(function(){
 		
 	})
 	
-// proSearch.jsp에서 검색버튼 엔터키 가능	
+// proSearch.jsp에서 검색버튼 엔터키 가능
+	
 	var clickSearch = document.getElementById("searchProduct");
+	if (clickSearch != null){
+		
 		clickSearch.addEventListener("keyup", function enterSend(event){
 			if (event.keyCode === null){
 				event.preventDeault();
@@ -267,6 +270,9 @@ $(document).ready(function(){
 				$("#searchProduct").val("");
 			}
 		});	
+		
+		
+	}
 	
 // 상품 정보
 function proDetail(){
