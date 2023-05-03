@@ -167,17 +167,17 @@ $(document).ready(function () {
 </script>
 
 <!-- main visual -->
-<section id="mvWrap" class="slider-box">
+<section id="mvWrap" class="slider-box wow fadeInUp">
 
   <div class="txt-wrap">
     <div class="mv-txt">
-      <p>쉽고하게, 편리하게!</p>
-      <p>안전한 중고 거래</p>
+      <p>쉽고, 편리하게!</p>
+      <p>간편한 중고 거래</p>
       <p><span class="bold">자동 물품 등록</span>이 가능한 <span class="bold">중고 판매 서비스</span>,<br>
         지금 바로 경험해 보세요!   </p>
 
       <!-- button 커스텀을 위한 요소 --> 
-      <div class="mv-page">
+      <div class="mv-page wow fadeInUp">
         <div id="mvBtn" class="button">
           <div class="prev"></div>
           <div class="next"></div>
@@ -196,10 +196,10 @@ $(document).ready(function () {
       
     </div>
     <div>
-      <img src="${contextPath}/resource/images/mv_img01.png">
+      <img src="${contextPath}/resource/images/mv_img02.png">
     </div>
     <div>
-      <img src="${contextPath}/resource/images/mv_img01.png">
+      <img src="${contextPath}/resource/images/mv_img03.png">
     </div>
   </div>
   <div class="wrapper">

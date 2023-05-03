@@ -12,10 +12,7 @@ html {
     overscroll-behavior: contain;
     /*새로고침 막기*/
 }
-body::-webkit-scrollbar,
-html::-webkit-scrollbar {
-    display: none;
-}
+
 
 .mv-wrap {
     margin-bottom: 100px;
@@ -174,7 +171,7 @@ html::-webkit-scrollbar {
 
 #mvWrap {
     width: 1400px;
-    margin: 170px auto 0;
+    margin: 180px auto 0;
     box-sizing: border-box;
 }
 
@@ -223,7 +220,7 @@ html::-webkit-scrollbar {
 .mv-txt p:nth-child(1) {
     font-size: 3.2rem;
     font-family: 'BMDOHYEON';
-    color: #1a72e7;
+    color: #717171;
 }
 
 .mv-txt p:nth-child(2) {
@@ -360,36 +357,34 @@ html::-webkit-scrollbar {
     left: 41%;
 }
   
-  .floating1 {
+
+.floating1 {
     position: absolute;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    top: 83px;
-    left: 87px;
+    top: 80px;
+    left: 27px;
     background-color: #425bcc;
-  }
-  .floating2 {
+}
+
+.floating2 {
     margin-top: 250px;
     position: absolute;
     bottom: 10;
-    left: 190px;
+    left: 150px;
     width: 107px;
     height: 107px;
     border-radius: 50%;
     background-color: #5dffe6;
+}
 
-  }
-  .floating3 {
+.floating3 {
     position: absolute;
     top: 118px;
-    left: 326px;
+    left: 305px;
     width: 80px;
     height: 80px;
-
     border-radius: 50%;
-
     background-color: #ededed;
-
-
-  }
+}
