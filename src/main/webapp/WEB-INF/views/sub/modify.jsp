@@ -25,8 +25,37 @@ $(document).ready(function(){
 	$("#pro_sale_price").val("${pro.pro_sale_price}");
 	$("#pro_title").val("${pro.pro_title}");
 	$("#pro_content").val("${pro.pro_content}");
+
+	// 이미지 리스트
+	let pro_no = ${pro.pro_no};
+	let uploadResult = $("#uploadResult");
+	console.log(pro_no);
+	
+	$.getJSON("/getProduceImageList", {pro_no : pro_no}, function(arr){	
+		let obj = arr;
+		console.log(obj);
+		console.log(${fn:length(image)});
+		
+		for(let i=0; i < ${fn:length(image)}; i++){
+			
+			let fileCallPath = encodeURIComponent(obj[i].upload_path + "/s_" + obj[i].uuid + "_" + obj[i].file_name);
+			let str = "";
+		
+			str += "<div id='result_card'";
+            str += "data-path='" + obj[i].upload_path + "' data-uuid='" + obj[i].uuid + "' data-file_name='" + obj.file_name + "'";
+            str += ">";
+            str += "<img class='imgServe' src='/display?file_name="+fileCallPath + "'/>";
+			str += "</div>";
+            
+			uploadResult.append(str);
+		
+		}
+		
+	});
+	
 	proDetail();
 });
+
 </script>
 
 <!-- #container -->

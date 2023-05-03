@@ -310,8 +310,10 @@ public class productController {
     	
     	// System.out.println(pro.getPro_no());
     	Product product = mapper.getProduct(pro.getPro_no());
+    	List<Image> image = mapper.getProductImage(pro.getPro_no());
     	model.addAttribute("pro", product);
     	model.addAttribute("login", loginMember);
+    	model.addAttribute("image", image);
     	
     	return "sub/modify";
     }
