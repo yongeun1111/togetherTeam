@@ -274,6 +274,10 @@ $(document).ready(function(){
 		
 	}
 	
+	
+	
+});
+
 // 상품 정보
 function proDetail(){
 
@@ -641,9 +645,6 @@ function proDetail(){
 	})
 
 };	
-	
-	
-});
 
 
 // 취소 버튼 처리

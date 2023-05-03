@@ -393,4 +393,11 @@
 	 where seller_mem_no = #{mem_no}
   </update>
 	
+  <!-- 상품 수정 -->
+  <update id="productModify" parameterType="com.togetherTeam.platform.entity.Product">
+  	update product
+  	   set pro_theme=#{pro_theme}, pro_buy_price=#{pro_buy_price}, pro_period=#{pro_period}, pro_sale_price=#{pro_sale_price}, pro_title=#{pro_title}, pro_content=#{pro_content}
+  	where pro_no = #{pro_no}
+  </update>
+  
 </mapper>

@@ -23,6 +23,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -297,6 +298,27 @@ public class productController {
     public int like() {
     	
     	return 1;
+    }
+    
+    @GetMapping("/modifyPage")
+    public String modifyPage(@ModelAttribute("product") Product pro, Model model, HttpSession session) {
+    	
+    	Member loginMember = (Member)session.getAttribute("login");
+    	
+    	// System.out.println(pro.getPro_no());
+    	Product product = mapper.getProduct(pro.getPro_no());
+    	model.addAttribute("pro", product);
+    	model.addAttribute("login", loginMember);
+    	
+    	return "sub/modify";
+    }
+    
+    @PostMapping("/modify")
+    public String modify(Product vo) {
+    	
+    	mapper.productModify(vo);
+    	
+    	return "redirect:/";
     }
     
 

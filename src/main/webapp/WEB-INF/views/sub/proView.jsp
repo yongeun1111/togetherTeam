@@ -467,6 +467,11 @@ $(document).ready(function(){
 function chatSubmit() {
 		document.getElementById('chatSubmit_form').submit();
 	} 
+	
+function modifySubmit(){
+	$("#modify_form").submit();
+} 
+
 </script>
 
 
@@ -527,9 +532,12 @@ function chatSubmit() {
 					 <input id="like-btn" type="button" value="찜하기" class="like-btn">
 				  </c:if>
                   <c:if test="${login.mem_no == pro.seller_mem_no}">
-					 <a href="#">
-					   <input type="button" value="수정하기" class="like-btn">
-					 </a>
+                  	<form:form id="modify_form" action="/modifyPage" method="GET" modelAttribute="modifyPro">
+                  	   <a href="javascript:{}" onclick="modifySubmit()">
+                  	   <form:input type="hidden" path="pro_no" value="${pro.pro_no}"/>
+					   <input type="button" value="수정하기" class="modify-btn">
+					   </a>
+					</form:form>
 				  </c:if>
                 </c:if>
                 <c:if test="${empty login}">

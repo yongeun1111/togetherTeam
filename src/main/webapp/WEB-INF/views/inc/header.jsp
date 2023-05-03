@@ -55,7 +55,7 @@
 					<div class="gnb-wrap">
 						<ul class="gnb">
 							<li><a href="/proList">중고 상품</a></li>
-							<li><a href="/registration">상품 등록하기</a></li>
+							<li><a href="/registration">상품 등록</a></li>
 							<li><a href="/proSearch">상품 검색</a></li>
 						</ul>
 					</div>

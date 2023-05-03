@@ -41,6 +41,7 @@ public interface productMapper {
 	public void proSaleCh(int pro_no); // 판매 상태
 	public Product chatRoomProduct(int pro_no); // 채팅방 productInfo
 	public void productDelete(Member vo); // 상품 삭제
+	public void productModify(Product vo); // 상품 수정 
 	
 	
 }
