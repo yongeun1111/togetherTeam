@@ -1035,7 +1035,28 @@ div.mem-out {
 }
 
 
+.search-button {
+	position: absolute;
+    right: 30px;
+    top: 15px;
+    background: white;
+}
 
+.suggestions > div {
+    text-align: left;
+    padding: 5px;
+    padding-left: 30px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.suggestions > div:last-child {
+	border-radius: 0 0 12px 12px;
+}
+
+.suggestions > div:hover {
+    background-color: rgb(207, 204, 204);
+}
 
 
 
