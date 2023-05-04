@@ -33,6 +33,23 @@ $(document).ready(function() {
             }
         });
     });
+    if($("#next").data("value") == false){
+		$("#next").click(function(e){
+			// console.log(${pm.endPage});
+			// e.preventDefault();
+			$("#next").attr('href', '${pm.endPage}');
+			$("#page").val(${pm.endPage});
+			$("#pageForm").submit();
+			})
+		}
+	
+	if($("#prev").data("value") == false){
+		$("#prev").click(function(e){
+			$("#prev").attr('href', '${pm.startPage}');
+			$("#page").val(${pm.startPage});
+			$("#pageForm").submit();
+		})
+	}
 });
 </script>
 
@@ -107,19 +124,33 @@ $(document).ready(function() {
 	  
 	  
       <div class="page">
-        <ul class="pagination justify-content-center" style="margin: 20px 0">
-			    <c:if test="${pm.prev}">
-			      <li class="page-item page-prev"><a class="page-link" href="${pm.startPage-1}">Previous</a></li>
-			    </c:if>
-			    <c:forEach var="pageNum" begin="${pm.startPage}" end="${pm.endPage}">
-			      <li class="page-item ${pm.cri.page==pageNum ? 'active':''}"><a class="page-link" href="${pageNum}">${pageNum}</a></li>
-			    </c:forEach>
-			    <c:if test="${pm.next}">
-			      <li class="page-item page-next"><a class="page-link" href="${pm.endPage+1}">Next</a></li>
-			    </c:if>
-		    </ul>
+        <ul class="pagination justify-content-center">
+         	<!-- 이전버튼 -->
+         	<c:if test="${!empty list}">
+			<li class="page-item page-prev">
+				<a class="page-link" id="prev" data-value="${pm.prev}" href="${pm.startPage-1}"></a>
+			</li>
+			</c:if>
+			
+			<!-- 페이지 번호 -->
+          	<c:forEach var="pageNum" begin="${pm.startPage}" end="${pm.endPage}">
+    			  <li class="page-item ${pm.cri.page==pageNum ? 'active' : ''}">
+    			  	  <c:if test="${!empty list}">
+    				  <a class="page-link" href="${pageNum}">${pageNum}</a>
+    				  </c:if>
+    			  </li>
+  		 	</c:forEach>
+  		 	
+			<!-- 다음 버튼 -->
+          	<c:if test="${!empty list}">
+		  	<li class="page-item page-next">
+  				<a class="page-link" id="next" data-value="${pm.next}" href="${pm.endPage+1}"></a>
+  		  	</li>
+  		  	</c:if>
+          </ul>
+        </div>
 
-          <form id="pageFrm" action="mypage_likeList" method="get">
+          <form id="pageForm" action="mypage_likeList" method="get">
             <input type="hidden" id="page" name="page" value="${pm.cri.page}">
           </form>
       </div>
