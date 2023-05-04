@@ -557,7 +557,7 @@ function modifySubmit(){
 					</form:form>
 				</c:if>
 				<c:if test="${!empty login && pro.seller_mem_no eq login.mem_no}">
-				  <a href="#">
+				  <a href="/productDelete">
 					<input type="button" id="delete_btn" class="delete-btn" value="삭제하기">
 				  </a>
 				</c:if>

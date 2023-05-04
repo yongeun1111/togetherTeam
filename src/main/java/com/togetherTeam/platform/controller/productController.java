@@ -326,6 +326,13 @@ public class productController {
     	return "redirect:/";
     }
     
+    @GetMapping("/productDelete")
+    public String productDeleteGET(HttpSession session) {
+    	Member vo = (Member)session.getAttribute("login");
+    	mapper.productDelete(vo);
+    	
+    	return "redirect:/";
+    }
 
     
     
