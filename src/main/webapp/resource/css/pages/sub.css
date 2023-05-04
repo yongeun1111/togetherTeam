@@ -721,8 +721,8 @@ div.mem-out {
 
 .imgDeleteBtn{
     position: absolute;
-    top: 0;
-    right: 5%;
+    top: -4%;
+    right: -3%;
     background-color: #ef7d7d;
     color: wheat;
     font-weight: 900;
