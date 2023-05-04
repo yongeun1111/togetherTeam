@@ -569,20 +569,20 @@ footer .info_contact .info-wrap p {
     padding: 0;
 }
 
-.view-info .btn .like-btn {
+.view-info .btn .like-btn, .view-info .btn .modify-btn {
     border: 1px solid #1f79df;
     background: none;
     color: #1f79df;
     box-sizing: border-box;
 }
 
-.view-info .btn .like-btn:hover {
+.view-info .btn .like-btn:hover, .view-info .btn .modify-btn:hover {
     background-color: #1f79df;
     color: #fff;
     transition: all 0.2s;
 }
 
-.view-info .btn .chat-btn {
+.view-info .btn .chat-btn, .view-info .btn .delete-btn {
     margin-left: 10px;
     background-color: #1f79df;
     border: 1px solid #1f79df;
@@ -590,7 +590,7 @@ footer .info_contact .info-wrap p {
     box-sizing: border-box;
 }
 
-.view-info .btn .chat-btn:hover {
+.view-info .btn .chat-btn:hover, .view-info .btn .delete-btn:hover {
     background-color: #0059bf;
     color: #fff;
     transition: all 0.2s;

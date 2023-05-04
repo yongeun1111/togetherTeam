@@ -535,7 +535,7 @@ function modifySubmit(){
                   	<form:form id="modify_form" action="/modifyPage" method="GET" modelAttribute="modifyPro">
                   	   <a href="javascript:{}" onclick="modifySubmit()">
                   	   <form:input type="hidden" path="pro_no" value="${pro.pro_no}"/>
-					   <input type="button" value="수정하기" class="modify-btn">
+					   <input type="button" id="modify_btn" class="modify-btn" value="수정하기">
 					   </a>
 					</form:form>
 				  </c:if>
