@@ -16,6 +16,17 @@
 <script src="${contextPath}/resource/js/pages/sub.js"></script>
 <script src="${contextPath}/resource/js/com/common.js"></script>
 
+<script type="text/javascript">
+ $(document).ready(function(){
+	 if($("#error").val() != null){
+		 alert($("#error").val())
+		 
+	 }
+ });
+
+
+</script>
+
 <!-- #container -->
 <div class="fix-wrap">
   <div class="container">
@@ -26,6 +37,7 @@
         <div class="mb10"><input type="text" name="mem_id" placeholder="아이디"></div>
         <div><input type="password" name="mem_pwd" placeholder="비밀번호"></div>
         <c:if test="${!empty error}">
+		  <input id="error" type="hidden" value="${error}"/> 	          
           <span>${error}</span>
         </c:if>
         <div>
