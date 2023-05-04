@@ -15,7 +15,7 @@ public class WebsocketBrokerConfig implements WebSocketMessageBrokerConfigurer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebsocketBrokerConfig.class);
 	
 	
-	//onfigureMessageBroker
+	// configureMessageBroker
 	// 유저가 메시지를 전송하거나 받을 수 있도록 중간에서
 	// URL prefix(접두어)를 인식하고, 전송/전달(publish/subscribe) 중계
 	// 중개자(Broker) 역할

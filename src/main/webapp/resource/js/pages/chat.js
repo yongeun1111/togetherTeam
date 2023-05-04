@@ -91,22 +91,23 @@ $(document).ready(function(){
 		// map URL using SockJS
 		var socket = new SockJS('/broadcast');
 		var url = '/user/' + chatRoomNo + '/queue/messages';
-		// webSocket 대신 SockJS를 사용
-		// Stomp.client()가 아닌 Stomp.over()를 사용
 		stompClient = Stomp.over(socket);
 		stompClient.debug = null
-		// connect(header, connectCallback(연결 성공 메소드))
-		stompClient.connect({"chatRoomNo":chatRoomNo}, function(){
+		stompClient.connect({}, function(){
 			// url : 채팅방 참여자에게 공유 경로
 			// callback(function())
 			// 클라이언트가 서버(Controller broker)로부터 메시지를 수신했을 때 실행
 			// (STOMP send()가 실행되었을 때)
+			
+			// 채팅방에 유저가 접속했을 때 메시지 출력
 			stompClient.send("/app/connect", {}, JSON.stringify({
 				"chat_room_no":chatRoomNo,
 				"chat_mem_no":senderNo,
 				"chat_mem_id":senderId,
 				"chat_content":"connect"
 			}))
+			
+			// 채팅방에 유저 채팅 메시지 출력
 			stompClient.subscribe(url, function(output){
 				// JSP <body>에 append 할 메시지 내용
 				showBroadcastMessage(createTextNode(JSON.parse(output.body)));
