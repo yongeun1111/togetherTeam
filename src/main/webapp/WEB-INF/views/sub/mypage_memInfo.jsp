@@ -91,54 +91,59 @@ $(document).ready(function(){
     </div>
 
     <div class="meminfo-wrap">
+      
       <span class="mb10">※ 변경하시려는 정보를 입력해 주세요</span>
+      
       <div class="mem-out">  
         <form action="/memberDelete">
           <input type="submit" id="withdrawal" class="withdrawal-btn" value="회원탈퇴">
         </form>
       </div> 
-      <form action="/change_info" method="post">
-        <input type="hidden" name="mem_id" value="${login.mem_id}">
-        <table class="meminfo-table">
-          <tr>
-            <td col="col" width="13%">아이디</td>
-            <td>${login.mem_id}</td>
-          </tr>
-          <tr>
-            <td>이름</td>
-            <td>${login.mem_name}</td>
-          </tr>
-          <tr>
-            <td>비밀번호</td>
-            <td>
-              <input id="pw" type="password" name="mem_pwd" placeholder="변경할 비밀번호를 입력해 주세요. ">
-              <p class="pw_txt">영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자</p>
-            </td>
-          </tr>
-          <tr>
-            <td>비밀번호 재입력</td>
-            <td>
-            <input id="pw2" type="password" placeholder="변경할 비밀번호를 다시 한번  입력해 주세요. "><br>
-            <span id="check"></span>
-            </td>
-          </tr>
-          <tr>
-            <td>휴대폰 번호</td>
-            <td><input type="text" name="mem_phone" required value="${login.mem_phone}"></td>
-          </tr>
-          <tr>
-            <td>이메일</td>
-            <td><input type="text" name="mem_email" required value="${login.mem_email}"></td>
-          </tr>
-        </table>
+      
+      <div class="memform-wrap">
+        <form action="/change_info" method="post">
+          <input type="hidden" name="mem_id" value="${login.mem_id}">
+          <table class="meminfo-table">
+            <tr>
+              <td col="col" width="13%">아이디</td>
+              <td>${login.mem_id}</td>
+            </tr>
+            <tr>
+              <td>이름</td>
+              <td>${login.mem_name}</td>
+            </tr>
+            <tr>
+              <td>비밀번호</td>
+              <td>
+                <input id="pw" type="password" name="mem_pwd" placeholder="변경할 비밀번호를 입력해 주세요. ">
+                <p class="pw_txt">영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자</p>
+              </td>
+            </tr>
+            <tr>
+              <td>비밀번호 재입력</td>
+              <td>
+              <input id="pw2" type="password" placeholder="변경할 비밀번호를 다시 한번  입력해 주세요. "><br>
+              <span id="check"></span>
+              </td>
+            </tr>
+            <tr>
+              <td>휴대폰 번호</td>
+              <td><input type="text" name="mem_phone" required value="${login.mem_phone}"></td>
+            </tr>
+            <tr>
+              <td>이메일</td>
+              <td><input type="text" name="mem_email" required value="${login.mem_email}"></td>
+            </tr>
+          </table>
 
-        <div class="btn mt70">
-          <input id="submitBtn" type="submit" value="확인">
-          <input type="button" id="cancelBtn" value="취소" onClick="location.href='/'">
-        </div>
-  
-      </form>
-  
+          <div class="btn mt50">
+            <input id="submitBtn" type="submit" value="확인">
+            <input type="button" id="cancelBtn" value="취소" onClick="location.href='/'">
+          </div>
+    
+        </form>
+      </div>
+
     </div>
 
   </div>

@@ -173,7 +173,7 @@
     			  AND pro_sale = 'N'
     			  AND pro_delete = 'N'
     			ORDER BY pro_like DESC) T
-		) WHERE RNUM BETWEEN 1 and 3
+		) WHERE RNUM BETWEEN 1 and 6
 	</select>	
 	
 	<!-- proList.jsp 진입 전체 상품 불러오기 (최신순)  -->

@@ -362,21 +362,12 @@ subpage
     color: #222;
 }
 
-.mem-out form input {
-    width: 55px;
-    border-radius: 5px;
-    height: 35px;
-    border: 1px solid #666;
-    text-align: center;
-}
-
 .mypage-wrap .meminfo-table {
     width: 1400px;
     border-top: 2px solid #222;
     box-sizing: border-box;
     font-family: 'Pretendard';
 }
-
 .mypage-wrap .meminfo-table tr {
     border-bottom: 1px solid #ddd;
     box-sizing: border-box;
@@ -388,7 +379,7 @@ subpage
 
 .mypage-wrap .meminfo-table tr td:first-child {
     color: #222;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .mypage-wrap .meminfo-table tr td:last-child {
@@ -398,7 +389,8 @@ subpage
 .mypage-wrap .meminfo-table tr td p.pw_txt {
     margin: 10px 0 0 20px;
     font-size: 0.9rem;
-    color: #666;
+    color: #f00;
+    font-weight: 500;
 }
 
 .mypage-wrap .meminfo-table tr td input {
@@ -455,12 +447,26 @@ subpage
 
 /* 회원 탈퇴 버튼 */
 .meminfo-wrap .mem-out .withdrawal-btn{
-	padding: 0 35px;
-    height: 40px;
+	padding: 0 17px;
+    height: 30px;
     border-radius: 30px;
+    border: 1px solid #666;
     font-family: 'Pretendard';
-    font-size: 1.2rem;
+    font-size: 1.0rem;
     font-weight: 600;
+    color: #666;
+    background: none;
+    box-sizing: border-box;
+}
+
+.meminfo-wrap .mem-out .withdrawal-btn:hover{
+    color: #fff;
+    background: #666;
+    transition: 0.2s all;
+}
+
+.memform-wrap {
+    margin-top: 15px;
 }
 
 /* 내역 없을 경우(공통) */

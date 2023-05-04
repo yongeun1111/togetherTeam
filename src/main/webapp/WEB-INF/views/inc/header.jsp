@@ -17,7 +17,7 @@
 			      dataType: 'json', 
 			      success: function(res){
 			    	  if (res>0){
-			    		  unReadCount += '<span style="color:red; font-weight:bold;">'+res+' 채팅리스트</span>'
+			    		  unReadCount += '<span style="color: #007bff; font-weight:bold;">'+' 채팅리스트 </span>' + '<span style="display: inline-block; width: 20px; height: 20px; background-color:#007bff; color:#fff; font-size: 0.8rem;line-height: 22px; text-align: center; border-radius:50%; text-align-center;">' + res + '</sapn>' 
 				    	  $("#chatList").html(unReadCount)	    		  
 			    	  }
 			      },

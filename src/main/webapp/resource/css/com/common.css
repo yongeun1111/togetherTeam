@@ -373,6 +373,7 @@ footer .info_contact .info-wrap p {
     width: 330px;
     height: 330px;
     object-fit: cover;
+    padding: 5px;
 }
 
 .pro-list a .won {

@@ -44,9 +44,4 @@
 			<!-- wow animate -->
 			<link rel="stylesheet" href="${contextPath}/resource/css/com/animate.css">
 
-			<!-- wow.js -->
-			<script src="${contextPath}/resource/js/com/wow.js"></script>
-			<script>
-				new WOW().init();
-			</script>
 		</head>

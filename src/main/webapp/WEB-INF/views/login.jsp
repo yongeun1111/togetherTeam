@@ -38,7 +38,6 @@
         <div><input type="password" name="mem_pwd" placeholder="비밀번호"></div>
         <c:if test="${!empty error}">
 		  <input id="error" type="hidden" value="${error}"/> 	          
-          <span>${error}</span>
         </c:if>
         <div>
           <ul class="mt20">

@@ -186,7 +186,7 @@ $(document).ready(function(){
 			</table>
 
 			
-			<div class="inputArea btn mt70">
+			<div class="inputArea btn mt50">
 				<input type="submit" id="register_Btn" disabled value="확인">
 				<input type="button" id="cancelBtn" value="취소" onclick="location.href='/'">
 			  </div>
