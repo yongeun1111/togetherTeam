@@ -705,10 +705,18 @@ div.mem-out {
     display: block;
     padding: 5px;
     margin-top: 10px;
-    margin: auto;	
+    margin: auto;
+    width: 130px;
+    height: 150px;
+    object-fit: cover;	
 }
+
 #result_card {
     position: relative;
+}
+
+#uploadResult{
+	display: flex;
 }
 
 .imgDeleteBtn{
