@@ -55,12 +55,17 @@
     </select>
     
     <select id="getChatList" resultType="com.togetherTeam.platform.entity.ChatRoom">
-    	SELECT a.*
-  		  FROM CHAT_ROOM a INNER JOIN PRODUCT b
-    		ON a.PRO_NO = b.PRO_NO
- 	     WHERE (a.SELLER_MEM_NO = #{memNo}
-    		OR a.BUYER_MEM_NO = #{memNo})
-   		   AND b.PRO_DELETE = 'N'
+    	SELECT DISTINCT a.*
+  		  FROM CHAT_ROOM a INNER JOIN PRODUCT b 
+    	    ON a.PRO_NO = b.PRO_NO
+       	       INNER JOIN MEMBER c
+    	    ON a.SELLER_MEM_NO = c.MEM_NO
+    		OR a.BUYER_MEM_NO = c.MEM_NO
+ 		 WHERE b.PRO_DELETE = 'N'
+   		   AND c.MEM_DELETE = 'N'
+   		   AND (a.SELLER_MEM_NO = #{memNo}
+   		    OR a.BUYER_MEM_NO = #{memNo})
+   		 ORDER BY a.ROOM_DATE DESC
     </select>
     
     <select id="findChatRoom" resultType="com.togetherTeam.platform.entity.ChatRoom">
