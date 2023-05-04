@@ -138,6 +138,7 @@ $(document).ready(function(){
 								<option value="바비리스">바비리스</option>
 								<option value="드롱기">드롱기</option>
 								<option value="테팔">테팔</option>
+								<option value="키친아트">키친아트</option>
 							</select>
 							<!-- 상품 모델 -->
 							<input type="text" id="pro_name" name="pro_name" />
