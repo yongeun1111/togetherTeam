@@ -286,10 +286,10 @@
 				FROM (
   					SELECT S.*
   					FROM (
-    					SELECT a.seller_mem_no, a.pro_no, a.pro_title, b.upload_path, b.uuid, b.file_name, a.pro_category, a.pro_name, a.maker, a.pro_sale_price, a.pro_sale,
+    					SELECT a.seller_mem_no, a.pro_no, a.pro_title, b.upload_path, b.uuid, b.file_name, a.pro_category, a.pro_name, a.maker, a.pro_sale_price, a.pro_sale, a.pro_delete,
       						ROW_NUMBER() OVER (PARTITION BY a.pro_no ORDER BY a.pro_no DESC) AS RN
     					FROM product a LEFT OUTER JOIN image b ON a.pro_no = b.pro_no
-    					WHERE a.seller_mem_no = #{mem_no}
+    					WHERE a.seller_mem_no = #{mem_no} and pro_delete = 'N'
     					ORDER BY pro_no DESC
   					) S
 				) T
