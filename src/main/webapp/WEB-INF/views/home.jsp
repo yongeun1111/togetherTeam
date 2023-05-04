@@ -142,17 +142,17 @@ $(document).ready(function () {
 </script>
 
 <!-- main visual -->
-<section id="mvWrap" class="slider-box wow fadeInUp">
+<section id="mvWrap" class="slider-box">
 
   <div class="txt-wrap">
     <div class="mv-txt">
-      <p>쉽고, 편리하게!</p>
-      <p>간편한 중고 거래</p>
-      <p><span class="bold">자동 물품 등록</span>이 가능한 <span class="bold">중고 판매 서비스</span>,<br>
-        지금 바로 경험해 보세요!   </p>
+      <p class="wow bounceInLeft">쉽고, 편리하게!</p>
+      <p class="wow bounceInLeft" data-wow-delay="0.5s">간편한 중고 거래</p>
+      <p class="wow fadeInUp" data-wow-delay="1s"><span class="bold">자동 물품 등록</span>이 가능한 <span class="bold">중고 판매 서비스</span>,<br>
+        지금 바로 경험해 보세요!</p>
 
       <!-- button 커스텀을 위한 요소 --> 
-      <div class="mv-page wow fadeInUp">
+      <div class="mv-page">
         <div id="mvBtn" class="button">
           <div class="prev"></div>
           <div class="next"></div>
@@ -165,7 +165,7 @@ $(document).ready(function () {
   </div>
 
  
-  <div class="regular slick-slider">
+  <div class="regular slick-slider wow fadeInUp" data-wow-delay="1s">
     <div>
       <img src="${contextPath}/resource/images/mv_img01.png">
       
@@ -398,3 +398,22 @@ floatingObject('.floating1',1,15)
 floatingObject('.floating2',.5,15)
 floatingObject('.floating3',1.5,20)
 </script>
+
+<script src="${contextPath}/resource/js/com/wow.js"></script>
+  <script>
+    wow = new WOW(
+      {
+        animateClass: 'animated',
+        offset:       100,
+        callback:     function(box) {
+          console.log("WOW: animating <" + box.tagName.toLowerCase() + ">")
+        }
+      }
+    );
+    wow.init();
+    document.getElementById('moar').onclick = function() {
+      var section = document.createElement('section');
+      section.className = 'section--purple wow fadeInDown';
+      this.parentNode.insertBefore(section, this);
+    };
+  </script>
