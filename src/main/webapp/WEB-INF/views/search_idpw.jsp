@@ -16,7 +16,7 @@
 <script src="${contextPath}/resource/js/pages/main.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    var searchBtn = $('.search-btn2');
+    var searchBtn = $('.search-btn');
 
     // 검색 버튼 클릭시 데이터 처리하기
     searchBtn.click(function(){
