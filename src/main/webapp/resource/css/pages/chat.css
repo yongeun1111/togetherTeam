@@ -127,12 +127,10 @@
 
 #content::-webkit-scrollbar-track {
     background-color: #e6e6e6;
- }
-
+}
 
 .chatting-wrap .chat-info {
 	margin: 35px auto 0;
-	width: 90%;
 	padding: 15px 0;
 	background-color: #f5f5f5;
 	font-size: 1.0rem;

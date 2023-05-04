@@ -165,7 +165,7 @@ $(document).ready(function () {
   </div>
 
  
-  <div class="regular slick-slider wow fadeInUp" data-wow-delay="1s">
+  <div class="regular slick-slider">
     <div>
       <img src="${contextPath}/resource/images/mv_img01.png">
       
@@ -246,7 +246,7 @@ $(document).ready(function () {
         </div><!-- row // -->
 
         <div class="more-btn">
-          <button>더보기</button>
+          <button>중고 상품 페이지 GO</button>
         </div>
 
       </div>
@@ -279,7 +279,7 @@ $(document).ready(function () {
   </section>
 
   <!-- 중간 배너 영역 -->
-  <section>
+  <section class="wow fadeInUp" data-wow-duration="500">
     <div class="banner-wrap">
       <img src="${contextPath}/resource/images/mid_banner.png" alt="제품을 중고로 저렴하게 구매하고 싶은데
       중고 거래 사기가 걱정되사나요? 이제 그런 걱정은 NO!">
@@ -287,7 +287,7 @@ $(document).ready(function () {
   </section>
 
    <!-- 테마별 인기 상품 -->
-   <section>
+   <section class="wow fadeInUp" data-wow-duration="500">
     <h2>테마별 인기 상품</h2>
 
   <div class="thema-list">
@@ -399,21 +399,17 @@ floatingObject('.floating2',.5,15)
 floatingObject('.floating3',1.5,20)
 </script>
 
+<!-- wow -->
 <script src="${contextPath}/resource/js/com/wow.js"></script>
-  <script>
-    wow = new WOW(
-      {
-        animateClass: 'animated',
-        offset:       100,
-        callback:     function(box) {
-          console.log("WOW: animating <" + box.tagName.toLowerCase() + ">")
-        }
+<script>
+  wow = new WOW(
+    {
+      animateClass: 'animated',
+      offset:       100,
+      callback:     function(box) {
+        console.log("WOW: animating <" + box.tagName.toLowerCase() + ">")
       }
-    );
-    wow.init();
-    document.getElementById('moar').onclick = function() {
-      var section = document.createElement('section');
-      section.className = 'section--purple wow fadeInDown';
-      this.parentNode.insertBefore(section, this);
-    };
-  </script>
+    }
+  );
+  wow.init();
+</script>

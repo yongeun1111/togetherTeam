@@ -155,7 +155,7 @@ $(document).ready(function(){
 	function createTextNode(messageObj) {
 		console.log(messageObj)
 		if (messageObj.chat_content == "connect_chat"){
-			return '<div class="chat-info"><p>'+messageObj.chat_mem_id+' 님이 입장했습니다</p></div>'
+			return '<div class="chat-info mt80"><p>'+messageObj.chat_mem_id+' 님이 입장했습니다</p></div>'
 		}
 		if (messageObj.chat_content == "disconnect_chat"){
 			return '<div class="chat-info"><p>'+messageObj.chat_mem_id+' 님이 퇴장했습니다</p></div>'

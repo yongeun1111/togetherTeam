@@ -40,7 +40,7 @@ $(document).ready(function() {
 				if (loadCount < 8) {
 		            if (rowCount === 0) {
 	                // 새로운 row 시작
-	                html += "<div class=\"row\">";
+	                html += "<div class=\"row wow fadeInUp\">";
 		            }
 		            // 상품 정보 추가
 		            html += "<div class=\"col-lg-3 pro-list mb50\">" +
@@ -71,7 +71,7 @@ $(document).ready(function() {
 				} else {
 					if (rowCount === 0) {
 		                // 새로운 row 시작
-		                html += "<div class=\"row\" style='display:none;'>";
+		                html += "<div class=\"row wow fadeInUp\" data-wow-duration=\"100\" style='display:none;'>";
 			            }
 					html += "<div class=\"col-lg-3 pro-list mb50\">" +
                     "<a href=\"/proView?pro_no=" + item.pro_no + "\">" +
@@ -166,15 +166,38 @@ $(document).ready(function() {
 		
 </div>
 
+
+
+<c:import url="${contextPath}/WEB-INF/views/inc/footer.jsp"/>
+
+	
 <script type="text/javascript">
-//더보기 버튼 
-function moreInfo(e){
-	$("div:hidden").slice(0,16).show();
-	if ($("div:hidden").length == 0) {
-		$("#load").fadeOut(100);
+	//더보기 버튼 
+	function moreInfo(e){
+		$("div:hidden").slice(0,16).show();
+		if ($("div:hidden").length == 0) {
+			$("#load").fadeOut(100);
+		};
+		
 	};
-    
-};
 </script>
 
-	<c:import url="${contextPath}/WEB-INF/views/inc/footer.jsp"/>
+<!-- wow -->
+<script src="${contextPath}/resource/js/com/wow.js"></script>
+<script>
+  wow = new WOW(
+    {
+      animateClass: 'animated',
+      offset:       100,
+      callback:     function(box) {
+        console.log("WOW: animating <" + box.tagName.toLowerCase() + ">")
+      }
+    }
+  );
+  wow.init();
+  document.getElementById('moar').onclick = function() {
+    var section = document.createElement('section');
+    section.className = 'section--purple wow fadeInDown';
+    this.parentNode.insertBefore(section, this);
+  };
+</script>
