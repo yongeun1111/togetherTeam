@@ -587,8 +587,24 @@ div.mem-out {
 
 .inputArea .fake_textarea {
     line-height: 30px;
-    height: 160px;
+    height: 320px;
     overflow: auto;
+}
+
+.inputArea .fake_textarea table{
+    width: 100%;
+    font-family: 'Pretendard';
+}
+
+.inputArea .fake_textarea td:nth-child(2n-1) {
+    background-color: #f8f8f8;
+    border-right: 1px solid #ddd;
+    color: #222;
+    font-weight: 600;
+}
+
+.inputArea .fake_textarea td:nth-child(2) {
+    border-right: 1px solid #ddd;
 }
 
 .inputArea tr td input, .inputArea tr td select {
