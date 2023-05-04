@@ -676,21 +676,17 @@ function searchProduct(data){
 		searchHtml += '<p><img src="'+ contextPath +'/resource/images/empty_icon.png" alt=""></p>'
 		searchHtml += '<p class="mt30">검색한 상품이 존재하지 않습니다.</p></div>'
 	} else {
-		
+		searchHtml += '<p class="mypage-tit mb10">검색 결과</p>'
+		searchHtml += '<div class="result-area">'
 	$.each(data.list,function(index, obj){
-		if (rowCount === 0) {
-
-			searchHtml += '<p class="mypage-tit mb10">검색 결과</p>'
-			searchHtml += '<div class="result-area">'
-			
-        	searchHtml += '<div class="row">';
-        };
-        
+		
 	    var fileCallPath = encodeURIComponent(obj.upload_path + "/s_" + obj.uuid + "_" + obj.file_name);
 	    
         if (loadCount < 8) {
 	        // 상품 정보 추가
-	        
+	        if (rowCount === 0) {			
+        		searchHtml += '<div class="row">';
+        	};
 	        searchHtml += '<div class="col-lg-3 pro-list mb50">'
 	        searchHtml += '<a href="/proView?pro_no=' + obj.pro_no + '">'
 			searchHtml += '<div class="pro-img" "data-pro_no=' + obj.pro_no + '" data-path="' + obj.upload_path + '" data-uuid="' + data.list.uuid + '" data-file_name="' + obj.file_name + '">'
@@ -709,7 +705,10 @@ function searchProduct(data){
 	        };
 	        		
 		} else {
-			searchHtml += '<div class="col-lg-3 pro-list mb50" style="display:none;">'
+			if (rowCount === 0) {			
+        	searchHtml += '<div class="row" style="display:none;">'
+        	};
+			searchHtml += '<div class="col-lg-3 pro-list mb50">'
 	        searchHtml += '<a href="/proView?pro_no=' + obj.pro_no + '">'
 			searchHtml += '<div class="pro-img" "data-pro_no=' + obj.pro_no + '" data-path="' + obj.upload_path + '" data-uuid="' + data.list.uuid + '" data-file_name="' + obj.file_name + '">'
 	        searchHtml += '<img alt="" src="/display?file_name=' + fileCallPath + '"></div>' 
@@ -738,7 +737,7 @@ function searchProduct(data){
 	
 	
 	}
-	if (loadCount > 4){	
+	if (loadCount > 8){	
 		searchHtml += '</div><div class="more-btn"><button id="load" onclick="moreInfo()">더 보기</button></div>'
 	};
     $(".search-result").html(searchHtml);    
