@@ -50,10 +50,6 @@ $(document).ready(function(){
 			var chatHisId=obj.chat_mem_id;
 	        var chatHisContent=obj.chat_content;
 	        var chatHisDate=obj.chat_date;
-	        var chatHisRead = "";
-	        if (obj.chat_read == 1){
-		        chatHisRead=obj.chat_read;			
-			}
 	        var fileCallPath = encodeURIComponent(obj.opp_upload_path + "/s_" + obj.opp_uuid + "_" + obj.opp_file_name);
 	        var formattedDate = dateFormat(chatHisDate);
 	        if (tempHisDate != formattedDate){
@@ -62,8 +58,7 @@ $(document).ready(function(){
 	        }
 	        if (obj.chat_mem_id == senderId){
 		      	// 내가 보낸 메세지
-				hisList += '<div class="my-message-wrap">' + chatHisRead
-				hisList += '<span class="send-time" id="MessageSendTime">' + chatHisDate.substring(11, 16) + '</span>'
+				hisList += '<div class="my-message-wrap"><span class="send-time" id="MessageSendTime">' + chatHisDate.substring(11, 16) + '</span>'
 		        hisList += '<div class="row alert alert-info my-message"><div class="col_8"><span id="MessageSenderID">' + '</span></div>'
 		        hisList += '<div class="col_4 text-right"><span id="MessageContent">' + chatHisContent + '</span></div>' 
 	    	    hisList += '</div></div></div>' 	
@@ -106,11 +101,17 @@ $(document).ready(function(){
 			// callback(function())
 			// 클라이언트가 서버(Controller broker)로부터 메시지를 수신했을 때 실행
 			// (STOMP send()가 실행되었을 때)
+			stompClient.send("/app/connect", {}, JSON.stringify({
+				"chat_room_no":chatRoomNo,
+				"chat_mem_no":senderNo,
+				"chat_mem_id":senderId,
+				"chat_content":"connect"
+			}))
 			stompClient.subscribe(url, function(output){
 				// JSP <body>에 append 할 메시지 내용
 				showBroadcastMessage(createTextNode(JSON.parse(output.body)));
 				
-			});	
+			});
 			},
 				// connect() 에러 발생 시 실행
 				function(err){
@@ -151,17 +152,20 @@ $(document).ready(function(){
 	
 	// 입력 메시지를 HTML 형태로 가공
 	function createTextNode(messageObj) {
-		if (messageObj.chat_read == 0){
-			messageObj.chat_read = "";
+		console.log(messageObj)
+		if (messageObj.chat_content == "connect_chat"){
+			return '<div class="chat-info"><p>'+messageObj.chat_mem_id+' 님이 입장했습니다</p></div>'
 		}
+		if (messageObj.chat_content == "disconnect_chat"){
+			return '<div class="chat-info"><p>'+messageObj.chat_mem_id+' 님이 퇴장했습니다</p></div>'
+		}
+		
 		var contextPath = getContextPath();
 		var fileCallPath = encodeURIComponent(messageObj.opp_upload_path + "/s_" + messageObj.opp_uuid + "_" + messageObj.opp_file_name);
 		if (messageObj.chat_mem_id == senderId){
 			// 내가 보낸 메세지
-			return '<div class="my-message-wrap">' +
-			messageObj.chat_read +
-			'<span class="send-time" id="MessageSendTime">' + 
-			 messageObj.chat_date.substring(11, 16) +
+			return '<div class="my-message-wrap"><span class="send-time" id="MessageSendTime">' + 
+			messageObj.chat_date.substring(11, 16) +
 			'</span><div class="row alert alert-info my-message"><div class="col_8">' +
 			'</div><div class="col_4 text-right">' +
 			messageObj.chat_content +

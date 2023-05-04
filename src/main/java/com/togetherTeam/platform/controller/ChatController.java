@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Controller;
@@ -120,9 +121,32 @@ public class ChatController {
 		return "chat";
 	}
 	
+	@MessageMapping("/connect")
+	public void connect(Chat chat, SimpMessageHeaderAccessor headerAccessor) throws IOException{
+		
+		int chatRoomNo = chat.getChat_room_no();
+		int chatMemNo = chat.getChat_mem_no();
+		String chatMemId = chat.getChat_mem_id();
+		headerAccessor.getSessionAttributes().put("chat_room_no", chatRoomNo);
+		headerAccessor.getSessionAttributes().put("chat_mem_no", chatMemNo);
+		
+		chatRoomService.connectUser(chatRoomNo);
+		
+		String url = "/user/" + chatRoomNo + "/queue/messages";
+		
+		Chat message = new Chat();
+		message.setChat_mem_no(chatMemNo);
+		message.setChat_mem_id(chatMemId);
+		message.setChat_room_no(chatRoomNo);
+		message.setChat_content("connect_chat");
+		
+		simpMessage.convertAndSend(url, message);
+		
+	}
 	// 채팅 메시지
 	@MessageMapping("/broadcast")
 	public void send(Chat chat) throws IOException {
+				
 		// DB에서 채팅방 가져오기
 		ChatRoom chatRoom = chatRoomService.findChatRoom(chat.getChat_room_no());
 		
@@ -140,19 +164,19 @@ public class ChatController {
 		
 		// 채팅시각 바인딩
 		LocalDateTime now = LocalDateTime.now();
-        chat.setChat_date(now);
+		chat.setChat_date(now);
 		
-        // 채팅방에 상대편이 지금 있다면 채팅메시지 바로 읽음 처리
-        if (chatRoom.getUser_count() > 1) {
-        	chat.setChat_read(0);
-        } else {
-        	chat.setChat_read(1);
-        }
-        
-        // 채팅메시지 DB 저장
-        chatRoomService.insertChat(chat);
+		// 채팅방에 상대편이 지금 있다면 채팅메시지 바로 읽음 처리
+		if (chatRoom.getUser_count() > 1) {
+			chat.setChat_read(0);
+		} else {
+			chat.setChat_read(1);
+		}
 		
-        // 채팅메시지 view로 보내기
+		// 채팅메시지 DB 저장
+		chatRoomService.insertChat(chat);
+		
+		// 채팅메시지 view로 보내기
 		int chatRoomNo = chat.getChat_room_no();
 		String url = "/user/" + chatRoomNo + "/queue/messages";
 		
@@ -165,8 +189,10 @@ public class ChatController {
 		message.setOpp_upload_path(image.getMem_upload_path());
 		message.setOpp_uuid(image.getMem_uuid());
 		message.setOpp_file_name(image.getMem_file_name());
-				
+		
 		simpMessage.convertAndSend(url, message);
+			
+		
 	}
 	
 	// 헤더에서 채팅리스트 접속
@@ -281,22 +307,37 @@ public class ChatController {
 	
 	
 	// 채팅방 접속했을 때 DB 채팅방 유저카운트+1
-	@EventListener
-	public void webSocketConnectListener(SessionConnectEvent event) {
-		
-		StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
-		headerAccessor.getSessionAttributes().put("chatRoomNo", headerAccessor.getNativeHeader("chatRoomNo").get(0));
-		
-		int chatRoomNo = Integer.parseInt(headerAccessor.getNativeHeader("chatRoomNo").get(0));
-		chatRoomService.connectUser(chatRoomNo);
-		
-	}
+//	@EventListener
+//	public void webSocketConnectListener(SessionConnectEvent event) {
+//		
+//		StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
+//		headerAccessor.getSessionAttributes().put("chatRoomNo", headerAccessor.getNativeHeader("chatRoomNo").get(0));
+//		
+//		int chatRoomNo = Integer.parseInt(headerAccessor.getNativeHeader("chatRoomNo").get(0));
+//		chatRoomService.connectUser(chatRoomNo);
+//		
+//	}
 	
 	// 채팅방 접속해제했을 때 DB 채팅방 유저카운트-1
 	@EventListener
 	public void webSocketDisconnectListener(SessionDisconnectEvent event) {
 		StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
-		int chatRoomNo = Integer.parseInt(headerAccessor.getSessionAttributes().get("chatRoomNo").toString());
+		
+		int chatMemNo = Integer.parseInt(headerAccessor.getSessionAttributes().get("chat_mem_no").toString());
+		int chatRoomNo = Integer.parseInt(headerAccessor.getSessionAttributes().get("chat_room_no").toString());
+		String chatMemId = chatRoomService.getId(chatMemNo);
+		
 		chatRoomService.disconnectUser(chatRoomNo);
+		
+		String url = "/user/" + chatRoomNo + "/queue/messages";
+		
+		Chat message = new Chat();
+		message.setChat_room_no(chatRoomNo);
+		message.setChat_mem_no(chatMemNo);
+		message.setChat_mem_id(chatMemId);
+		message.setChat_content("disconnect_chat");
+		
+		simpMessage.convertAndSend(url, message);
+		
 	}
 }
