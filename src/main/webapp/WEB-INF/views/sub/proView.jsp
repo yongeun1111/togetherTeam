@@ -189,6 +189,8 @@ $(document).ready(function(){
 				pro_deInf += "<tr>";
 				pro_deInf += "<td> 필터등급 </td>";
 				pro_deInf += "<td>" + pro_Ex[0].필터등급 +"</td>";
+				pro_deInf += "<td></td>";
+				pro_deInf += "<td></td>";
 				pro_deInf += "</tr>";
 				pro_deInf += "</table>";
 				pro_de.append(pro_deInf);
@@ -291,6 +293,8 @@ $(document).ready(function(){
 				pro_deInf += "<tr>";
 				pro_deInf += "<td> 온도범위 </td>";
 				pro_deInf += "<td>" + pro_Ex[0].온도범위 +"</td>";
+				pro_deInf += "<td></td>";
+				pro_deInf += "<td></td>";
 				pro_deInf += "</tr>";
 				pro_deInf += "</table>";
 				pro_de.append(pro_deInf);
@@ -399,6 +403,8 @@ $(document).ready(function(){
 				pro_deInf += "<tr>";
 				pro_deInf += "<td> 뚜껑기능 </td>";
 				pro_deInf += "<td>" + pro_Ex[0].뚜껑기능 +"</td>";
+				pro_deInf += "<td></td>";
+				pro_deInf += "<td></td>";
 				pro_deInf += "</tr>";
 				pro_deInf += "</table>";
 				pro_de.append(pro_deInf);
@@ -449,6 +455,8 @@ $(document).ready(function(){
 				pro_deInf += "<tr>";
 				pro_deInf += "<td> 소비전력 </td>";
 				pro_deInf += "<td>" + pro_Ex[0].소비전력 +"</td>";
+				pro_deInf += "<td></td>";
+				pro_deInf += "<td></td>";
 				pro_deInf += "</tr>";
 				pro_deInf += "</table>";
 				pro_de.append(pro_deInf);
