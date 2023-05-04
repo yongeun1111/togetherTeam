@@ -453,6 +453,16 @@ subpage
     color: #fff;
 }
 
+/* 회원 탈퇴 버튼 */
+.meminfo-wrap .mem-out .withdrawal-btn{
+	padding: 0 35px;
+    height: 40px;
+    border-radius: 30px;
+    font-family: 'Pretendard';
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
 /* 내역 없을 경우(공통) */
 .meminfo-table .empty-area {
     text-align: center;

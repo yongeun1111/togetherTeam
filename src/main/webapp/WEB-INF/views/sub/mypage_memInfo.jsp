@@ -94,7 +94,7 @@ $(document).ready(function(){
       <span class="mb10">※ 변경하시려는 정보를 입력해 주세요</span>
       <div class="mem-out">  
         <form action="/memberDelete">
-          <input type="submit" value="회원탈퇴">
+          <input type="submit" id="withdrawal" class="withdrawal-btn" value="회원탈퇴">
         </form>
       </div> 
       <form action="/change_info" method="post">
