@@ -594,6 +594,8 @@ div.mem-out {
 .inputArea .fake_textarea table{
     width: 100%;
     font-family: 'Pretendard';
+    border-top: hidden;
+    border-bottom: hidden;
 }
 
 .inputArea .fake_textarea td:nth-child(2n-1) {
