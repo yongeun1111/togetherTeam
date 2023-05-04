@@ -121,6 +121,8 @@ public class ChatController {
 		return "chat";
 	}
 	
+	
+	// 채팅방에 유저가 접속했을 때 접속 메시지 + DB 채팅방 유저수+1
 	@MessageMapping("/connect")
 	public void connect(Chat chat, SimpMessageHeaderAccessor headerAccessor) throws IOException{
 		
@@ -306,17 +308,6 @@ public class ChatController {
 	}
 	
 	
-	// 채팅방 접속했을 때 DB 채팅방 유저카운트+1
-//	@EventListener
-//	public void webSocketConnectListener(SessionConnectEvent event) {
-//		
-//		StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
-//		headerAccessor.getSessionAttributes().put("chatRoomNo", headerAccessor.getNativeHeader("chatRoomNo").get(0));
-//		
-//		int chatRoomNo = Integer.parseInt(headerAccessor.getNativeHeader("chatRoomNo").get(0));
-//		chatRoomService.connectUser(chatRoomNo);
-//		
-//	}
 	
 	// 채팅방 접속해제했을 때 DB 채팅방 유저카운트-1
 	@EventListener
