@@ -302,7 +302,7 @@
 	<!-- 상품 총 개수 -->
   	<select id="memProTotalCount" parameterType="com.togetherTeam.platform.entity.Member" resultType="int">
   	
-  		select count(*) from product where seller_mem_no = #{mem_no}
+  		select count(*) from product where seller_mem_no = #{mem_no} and pro_delete = 'N'
 
   	</select>
 	

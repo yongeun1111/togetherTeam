@@ -48,6 +48,7 @@
 		
 	})
 	
+	
 	function conf(pro_no){
 		if(confirm("거래완료로 변경하시겠습니까? \n다시 거래중으로 되돌릴 수 없습니다. \n수락 하시겠습니까?")){
 			// console.log(pro_no);
@@ -145,21 +146,28 @@
       <div class="page pageMaker_wrap">
         <ul class="pagination justify-content-center">
          	<!-- 이전버튼 -->
+         	<c:if test="${!empty list}">
 			<li class="page-item page-prev">
 				<a class="page-link" id="prev" data-value="${pm.prev}" href="${pm.startPage-1}"></a>
 			</li>
+			</c:if>
           	
           <!-- 페이지 번호 -->
           <c:forEach var="pageNum" begin="${pm.startPage}" end="${pm.endPage}">
     			  <li class="page-item page-num ${pm.cri.page==pageNum ? 'active' : ''}">
+    			  	  <c:if test="${!empty list}">
     				  <a class="page-link" href="${pageNum}">${pageNum}</a>
+    				  </c:if>
     			  </li>
   		 </c:forEach>
+
           	
           <!-- 다음 버튼 -->
+          <c:if test="${!empty list}">
 		  <li class="page-item page-next">
   				<a class="page-link" id="next" data-value="${pm.next}" href="${pm.endPage+1}"></a>
   		  </li>
+  		  </c:if>
         </ul>
       </div>
   		
