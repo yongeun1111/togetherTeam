@@ -81,7 +81,7 @@ $(document).ready(function () {
 
                 // 생성된 HTML 코드를 categoryList 영역에 추가
                 categoryList.append(html);
-                categoryList.append("<div class=\"more-btn\"><button>더보기</button></div>");
+                categoryList.append("<div class=\"more-btn\"><button>중고 상품 페이지 GO</button></div>");
             },
             error: function () {
                 alert('데이터를 가져오는데 실패하였습니다.');
