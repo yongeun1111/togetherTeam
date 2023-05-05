@@ -53,11 +53,8 @@
 $(document).ready(function(){
 
     const search_input = document.querySelector("#searchProduct");
-    const suggestions_pannel = document.querySelector(".suggestions_panel");
-    const search_btn = document.getElementById("search-btn");
-
-    let suggestions_items = []; // 자동완성 결과 요소들을 저장하는 배열
-    let current_selected_index = -1; // 현재 선택된 결과의 인덱스를 저장하는 변수
+    const suggestions_panel = document.querySelector(".suggestions_panel");
+    const search_btn = document.getElementById("search");
     
     let s_jsonArray = new Array();
     let s_json1 = new Object();
@@ -84,85 +81,91 @@ $(document).ready(function(){
     s_json6.name = "공기청정기";
     s_json6.count = 1;
     s_jsonArray.push(s_json6);
+    
+    let suggestionElements = [];
+    let selectionIndex = -1;
+    let inputs = [];
+    
+    search_input.addEventListener('keyup', function(event){
 
-    search_input.addEventListener('keyup', function(){
-
-        if (window.event.keyCode === 13) {
-            window.event.preventDefault();
-            suggestions_pannel.innerHTML='';
-            search_btn.click();
-        }
-        
-        if (event.key === "ArrowUp" || event.key === "ArrowDown") {
-            event.preventDefault();
-
-            // 이전에 선택한 결과의 스타일을 제거
-            if (current_selected_index > -1) {
-              suggestions_items[current_selected_index].classList.remove("selected");
-            }
-
-            // 위 버튼을 눌렀을 때
-            if (event.key === "ArrowUp" && current_selected_index > 0) {
-              current_selected_index--;
-            } 
-            // 아래 버튼을 눌렀을 때
-            else if (event.key === "ArrowDown" && current_selected_index < suggestions_items.length - 1) {
-              current_selected_index++;
-            }
-
-            // 선택된 결과에 스타일을 적용
-            suggestions_items[current_selected_index].classList.add("selected");
-            // 검색창에 선택한 결과 표시
-            search_input.value = suggestions_items[current_selected_index].textContent;
-          }
-
-        suggestions_pannel.innerHTML='';
+        suggestions_panel.innerHTML='';
         let input = search_input.value;
         
-        let suggestions = s_jsonArray.filter(function(exam){
-            return exam.name.toLowerCase().startsWith(input);
+    	let suggestions = s_jsonArray.filter(function(exam){
+	        if (event.keyCode === 38 || event.keyCode === 40) {
+	        	inputs.push(input);
+	            return exam.name.toLowerCase().startsWith(inputs[0]);
+	        } else {
+	        	inputs = [];
+            	return exam.name.toLowerCase().startsWith(input);
+	        }
         });
-
+		
+        if(input === ""){
+            suggestions_panel.innerHTML='';
+        } else {
         suggestions.forEach(function(suggested){
             let div = document.createElement('div');
             div.innerHTML = suggested.name;
-            suggestions_pannel.appendChild(div);
+            suggestions_panel.appendChild(div);
             // 클릭처리 
             div.onclick= () =>{
                 search_input.value = div.innerHTML; 
-                suggestions_pannel.innerHTML='';
-            }
-            if(input === ""){
-            	suggestions_pannel.innerHTML='';
+                suggestions_panel.innerHTML='';
             }
         });
+        }
+        suggestionElements = Array.from(
+        	    document.querySelectorAll(".suggestions_panel div")
+        );
+        
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            suggestions_panel.innerHTML='';
+            search_btn.click();
+        }
+        if (event.keyCode === 8) {
+      	    selectionIndex = -1;
+      	    suggestionElements.forEach(function(div) {
+      	    div.classList.remove("selected");
+      	  });
+        }
+        if (event.keyCode === 38) {
+            event.preventDefault();
+            if (selectionIndex > 0) {
+              selectionIndex--;
+              selectDiv();
+            }
+        } 
+        if (event.keyCode === 40) {
+            event.preventDefault();
+            if (selectionIndex < suggestions.length -1) {
+              selectionIndex++;
+              selectDiv();
+            }
+        }
+        
+        console.log(inputs[0]);
+        console.log(inputs.length);
+        console.log(input);
+   
     });
     
-    suggestions.forEach(function(suggested) {
-        let div = document.createElement('div');
-        div.innerHTML = suggested.name;
-        suggestions_pannel.appendChild(div);
-        suggestions_items.push(div); // 요소를 배열에 추가
-
-        // 클릭과 마우스오버 이벤트 처리
-        div.addEventListener('click', function() {
-          search_input.value = div.innerHTML;
-          suggestions_pannel.innerHTML = '';
-        });
-
-        div.addEventListener('mouseover', function() {
-          // 이전에 선택한 결과의 스타일을 제거
-          if (current_selected_index > -1) {
-            suggestions_items[current_selected_index].classList.remove("selected");
-          }
-
-          // 현재 선택한 결과에 스타일을 적용하고, 인덱스를 업데이트
-          div.classList.add("selected");
-          current_selected_index = suggestions_items.indexOf(div);
-        });
-      });
+    search_btn.addEventListener('click', function() {
+    	search_input.value = "";
+    	suggestions_panel.innerHTML = "";
+    });
     
-    
+    function selectDiv() {
+    	  suggestionElements.forEach(function(div) {
+    	    div.classList.remove("selected");
+    	  });
+    	  if (selectionIndex >= 0 && selectionIndex < suggestionElements.length) {
+    	    let selectedDiv = suggestionElements[selectionIndex];
+    	    selectedDiv.classList.add("selected");
+    	    search_input.value = selectedDiv.innerHTML;
+    	  }
+    	}
     
 });
 </script>
