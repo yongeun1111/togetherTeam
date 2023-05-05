@@ -97,14 +97,16 @@ html {
 
 .thema-img .row {
     display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+
 }
 
-.thema-img .row a:nth-child(-n+4) {
+.thema-img .row a {
+    margin-right: 20px;
     margin-bottom: 20px;
 }
+
+
+
 
 .lg-wrap a img {
     width: 700px;

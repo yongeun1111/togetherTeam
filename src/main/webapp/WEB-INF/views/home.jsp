@@ -316,10 +316,9 @@ $(document).ready(function () {
               </div>
             </a>
           </c:forEach>
-          </div>
         </div>
-    </div>
-  </div>
+      </div>
+   </div>
   </div>
   </section>
   <!-- 테마별 인기 상품 // -->
