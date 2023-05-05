@@ -132,6 +132,9 @@ $(document).ready(function(){
                 search_input.value = div.innerHTML; 
                 suggestions_pannel.innerHTML='';
             }
+            if(input === ""){
+            	suggestions_pannel.innerHTML='';
+            }
         });
     });
     
