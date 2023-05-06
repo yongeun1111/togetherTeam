@@ -1049,6 +1049,8 @@ div.mem-out {
 }
 
 .suggestions > div {
+	width : 800px;
+	position : absolute;
     text-align: left;
     padding: 15px;
     padding-left: 30px;
