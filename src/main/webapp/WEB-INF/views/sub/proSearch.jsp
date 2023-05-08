@@ -94,10 +94,10 @@ $(document).ready(function(){
     	let suggestions = s_jsonArray.filter(function(exam){
 	        if (event.keyCode === 38 || event.keyCode === 40) {
 	        	inputs.push(input);
-	            return exam.name.toLowerCase().startsWith(inputs[0]);
+	            return exam.name.toLowerCase().includes(inputs[0]);
 	        } else {
 	        	inputs = [];
-            	return exam.name.toLowerCase().startsWith(input);
+            	return exam.name.toLowerCase().includes(input);
 	        }
         });
 		
