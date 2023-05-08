@@ -1048,26 +1048,28 @@ div.mem-out {
     background: white;
 }
 
+.suggestions {
+	position : absolute;
+	border: 1px solid #ddd;
+	border-radius:5px;
+}
+
 .suggestions > div {
 	width : 800px;
-	position : absolute;
     text-align: left;
     padding: 15px;
     padding-left: 30px;
     background-color: white;
-    border: 1px solid #ddd;
     cursor: pointer;
-}
-
-.suggestions > div:last-child {
-	border-radius: 5px;
 }
 
 .suggestions > div:hover {
     background-color: rgb(207, 204, 204);
 }
 
-
+.suggestions > .selected {
+	background-color: rgb(207, 204, 204);
+}
 
 
 
