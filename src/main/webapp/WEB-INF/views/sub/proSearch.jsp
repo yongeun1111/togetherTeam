@@ -135,6 +135,9 @@ $(document).ready(function(){
             if (selectionIndex > 0) {
               selectionIndex--;
               selectDiv();
+            } else if (selectionIndex <= 0 ) {
+            	selectionIndex = -1 ;
+            	search_input.value = inputs[0];
             }
         } 
         if (event.keyCode === 40) {
@@ -142,6 +145,9 @@ $(document).ready(function(){
             if (selectionIndex < suggestions.length -1) {
               selectionIndex++;
               selectDiv();
+            } else if (selectionIndex >= suggestions.length -1) {
+            	selectionIndex = suggestions.length -1;
+            	selectDiv();
             }
         }
         
